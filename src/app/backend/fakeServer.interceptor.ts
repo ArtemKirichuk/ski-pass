@@ -1,7 +1,8 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+
 import { Observable, of } from 'rxjs';
-import { InstructorType, KeyInstructorType, KeyVisitorType, SkiPassType, UserType, VisitorType } from '../shared/interfaces';
+import { InstructorType, KeyInstructorType, KeyVisitorType, SkiPassType, UserType, VisitorType } from '../types/types';
 import { Visiter } from './visiter/visiter';
 import { User } from './user/user';
 import { Auth } from './auth/auth';
@@ -22,6 +23,7 @@ export class MainInterceptor implements HttpInterceptor {
         this.Instructor = Instructor.instance;
         this.SkiPass = SkiPass.instance;
     }
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (request.url == 'visiter') {
             return this.getResponceVisiter(request, next);
@@ -41,7 +43,6 @@ export class MainInterceptor implements HttpInterceptor {
 
         return next.handle(request.clone());
     }
-
     getResponceUser(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (request.method === 'GET') {
             return of(new HttpResponse({ status: 200, body: this.Auth.checkAuth() }));

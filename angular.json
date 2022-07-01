@@ -107,5 +107,7 @@
       }
     }
   },
-  "defaultProject": "ang"
+  "cli": {
+    "analytics": false
+  }
 }
