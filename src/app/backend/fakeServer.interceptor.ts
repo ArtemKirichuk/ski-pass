@@ -10,8 +10,6 @@ import { SkiPass } from './skipass/skipass';
 
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
-
-
     Visiter: Visiter;
     User: User;
     Auth: Auth;
@@ -58,10 +56,10 @@ export class MainInterceptor implements HttpInterceptor {
     }
     getResponceInstructor(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (request.method === 'GET') {
-            return of(new HttpResponse({ status: 200, body: this.Instructor.get<Instructor>() }));
+            return of(new HttpResponse({ status: 200, body: this.Instructor.get<InstructorType>() }));
         }
         if (request.method === 'POST') {
-            return of(new HttpResponse({ status: 200, body: this.Instructor.create<Instructor>(request.body) }));
+            return of(new HttpResponse({ status: 200, body: this.Instructor.create<InstructorType>(request.body) }));
         }
         if (request.method === 'DELETE') {
             const fioKey = request.params.get('fio');
@@ -90,7 +88,7 @@ export class MainInterceptor implements HttpInterceptor {
             const fioKey = request.params.get('fio');
             if (!fioKey)
                 return of(new HttpResponse({ status: 200, body: false }));
-            const keyVisiter: KeyInstructorType = { fio: fioKey };
+            const keyVisiter: KeyVisitorType = { fio: fioKey };
             return of(new HttpResponse({ status: 200, body: this.Visiter.delete<KeyVisitorType>(keyVisiter) }));
         }
         return next.handle(request.clone());
@@ -107,10 +105,10 @@ export class MainInterceptor implements HttpInterceptor {
     }
     getResponceSkiPass(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (request.method === 'GET') {
-            return of(new HttpResponse({ status: 200, body: this.SkiPass.get<SkiPass>() }));
+            return of(new HttpResponse({ status: 200, body: this.SkiPass.get<SkiPassType>() }));
         }
         if (request.method === 'POST') {
-            return of(new HttpResponse({ status: 200, body: this.SkiPass.create<SkiPass>(request.body) }));
+            return of(new HttpResponse({ status: 200, body: this.SkiPass.create<SkiPassType>(request.body) }));
         }
         return next.handle(request.clone());
     }
