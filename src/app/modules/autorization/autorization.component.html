@@ -1,1 +1,57 @@
-<p>autorization works!</p>
+<div class="background">
+
+    <div class="login-block">
+        <img src="../../../assets/images/logo.svg" class="logo">
+
+        <div class="login-block__text-block">
+            <span class="login-block__text login-block__text_color_blue">
+                {{PERSONAL_ACCOUNT_TEXT | uppercase}}
+            </span>
+            <span class="login-block__text">
+                {{SKI_RESRORT_TEXT | uppercase}}
+            </span>
+        </div>        
+    
+        <form action="" class="login-block__form" [formGroup]="form">        
+            <div class="text-field text-field_floating">  
+                <input type="text" class="text-field__input" id="login_name" placeholder="{{NAME}}">
+                <label for="login_name" class="text-field__label">{{NAME}}</label>
+            </div>
+    
+            <div class="text-field text-field_floating">  
+                <input type="text" class="text-field__input" id="login_password" placeholder="{{PASSWORD}}">
+                <label for="login_password" class="text-field__label">{{PASSWORD}}</label>
+            </div>
+    
+            <div class="btn-block">
+                <app-button class="btn"
+                [text]=LOGIN>
+            </app-button>
+            </div>
+            
+        </form>
+
+        <div class="social-block">
+            <button class="google">
+                <img src="../../../assets/images/google-icon.svg">
+            </button>
+    
+            <button class="facebook">
+                <img src="../../../assets/images/facebook-icon.svg">
+            </button>
+    
+            <button class="vk">
+                <img src="../../../assets/images/vk-icon.svg">
+            </button>
+        </div>
+
+        <span class="registration-block">
+            <a href="">{{REGISTRATION}}</a>
+        </span>
+    </div>
+
+    <div class="copyright-block">
+        {{COPYRIGHT}}
+    </div>
+</div>
+
