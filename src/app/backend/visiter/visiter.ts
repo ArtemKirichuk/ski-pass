@@ -1,14 +1,14 @@
-import { VisitorType } from "../../shared/interfaces";
-import { crud } from "../crud";
+import { VisitorType } from '../../modules/shared/interfaces';
+import { crud } from '../crud';
 
 export class Visiter extends crud {
     //VISITER
     private static  visiterKey = 'visiter';
-    private static visiterKeys:string[]= ['fio' ]
-    visiters: VisitorType[] = []
-    static instance:Visiter = new Visiter()
+    private static visiterKeys:string[]= ['fio' ];
+    visiters: VisitorType[] = [];
+    static instance:Visiter = new Visiter();
     private constructor(){
-        super(Visiter.visiterKey, Visiter.visiterKeys)
+        super(Visiter.visiterKey, Visiter.visiterKeys);
     }    
     //VISITER
     // getVisiter(): IVisitor[] {

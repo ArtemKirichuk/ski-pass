@@ -1,12 +1,11 @@
-import { UserType } from "src/app/shared/interfaces";
-import { crud } from "../crud";
+import { crud } from '../crud';
 
 export class User extends crud{
     private static usersKey = 'users';
     private static  usersKeys:string[] = ['name'];
-    static instance:User = new User()
+    static instance:User = new User();
     private constructor(){
-        super(User.usersKey,User.usersKeys)
+        super(User.usersKey,User.usersKeys);
     }
     //USER
     // updateUser(updateUser: { name: string, surname: string }): boolean {

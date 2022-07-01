@@ -1,19 +1,18 @@
-import { UserType } from "src/app/shared/interfaces";
-import { User } from "../user/user";
+import { UserType } from 'src/app/modules/shared/interfaces';
+import { User } from '../user/user';
 
 export class Auth {
     loginKey = 'me';
     login: string | null = null;
     User:User;
-    static instance = new Auth()
+    static instance = new Auth();
     private constructor() { 
-        this.User = User.instance
+        this.User = User.instance;
     }
     signIn(inputUser: UserType): boolean {
-        let bExistUser: boolean;
-        let users = this.User.get<UserType>();
+        const users = this.User.get<UserType>();
         //проверяем существование localstore пользователей
-        bExistUser = users.some(e => e.name == inputUser.name && e.password == inputUser.password);
+        const bExistUser:boolean = users.some(e => e.name == inputUser.name && e.password == inputUser.password);
         if (bExistUser) {
             this.login = inputUser.name;
             localStorage.setItem(this.loginKey, inputUser.name);

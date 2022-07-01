@@ -1,0 +1,25 @@
+<div class = "main-page">
+    <header class="header">
+        <mat-icon class="header__icon">menu</mat-icon>
+        <p class="header__text">{{SKI_RESORT | uppercase }}</p>
+        <div class="header__form">
+            <mat-icon class = "header__form__icon">search</mat-icon>
+            <input class = "header__form__input" 
+                placeholder="{{SEARCH}}"
+                [formControl]="searchForm">
+        </div>
+        <div class="header__exit">
+            <mat-icon class="header__exit__icon">login</mat-icon>
+            <p class="header__exit__text">{{EXIT}}</p>
+        </div>
+    </header>
+    <body>
+        <div class="font">
+            <app-user-info></app-user-info>
+        </div>
+        
+    </body>
+
+</div>
+
+
