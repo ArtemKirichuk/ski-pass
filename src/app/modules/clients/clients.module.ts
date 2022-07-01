@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientsComponent } from './clients.component';
-import { SharedModule } from '../shared/shared.module';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ClientsComponent } from './clients.component';
 
 
 
@@ -15,7 +14,6 @@ import { RouterModule } from '@angular/router';
     ],
     imports: [
         CommonModule,
-        SharedModule,
         RouterModule.forChild([{path:'', component: ClientsComponent}])
     ]
 })
