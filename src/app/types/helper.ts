@@ -1,18 +1,18 @@
 export function parseImg (file: File, typeRead: string | null, callback: Function){
     
-    let fr = new FileReader();
+    const fr = new FileReader();
     fr.onload = function (e) {
-      callback(e.target!.result, file);
+        callback(e.target!.result, file);
     };
     switch (typeRead) {
-      case 'URL':
+    case 'URL':
         fr.readAsDataURL(file);
         break;
-      case 'Buffer':
+    case 'Buffer':
         fr.readAsArrayBuffer(file);
         break;
-      default:
+    default:
         fr.readAsBinaryString(file);
         break;
     }
-  }
+}
