@@ -14,7 +14,7 @@ import { MainPageComponent } from '../main-page/main-page.component';
                 loadChildren: () => import('src/app/modules/autorization/autorization.module').then(m=>m.AutorizationModule)}, 
             { path: 'registration', 
                 loadChildren: () => import('src/app/modules/registration/registration.module').then(m=>m.RegistrationModule)},
-            { path: '', component: MainPageComponent},
+            { path: '', loadChildren: () => import('src/app/modules/main-page/main-page.module').then(m=>m.MainPageModule)},
             { path: 'clients', 
                 loadChildren: () => import('src/app/modules/clients/clients.module').then(m=>m.ClientsModule)},
             { path: 'instructors', 
