@@ -17,6 +17,10 @@ export class UserService {
         return this.httpClient.post<UserType>('user', user);
     }
 
+    changeUser(user: UserType): Observable<UserType>{
+        return this.httpClient.put<UserType>('user', user);
+    }
+
     getUser$(): BehaviorSubject<UserType> {
         return this.currentUser$;
     }

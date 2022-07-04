@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { EditProfileComponent } from 'src/app/components/edit-profile/edit-profile.component';
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
+import { ButtonModule } from '../button/button.module';
 import { MainPageComponent } from './main-page.component';
-
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { MainPageComponent } from './main-page.component';
         MatFormFieldModule,
         ReactiveFormsModule,
         MatDialogModule,
-        RouterModule.forChild([{path:'', component: MainPageComponent}])
+        RouterModule.forChild([{path:'', component: MainPageComponent}]),
+        ButtonModule
     ]
 })
 export class MainPageModule { }
