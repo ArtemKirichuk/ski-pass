@@ -9,6 +9,6 @@
     <input class = "edit-profile__input" type="text" formControlName="name" placeholder="Имя">
     <input class = "edit-profile__input" type="text" formControlName="surname" placeholder="Фамилия">
     <div class = "edit-profile__button">
-        <app-button  type="submit" [text]="OK" [disabled]="editProfileGroup.invalid" (click)="doneEditProfile()" ></app-button>
+        <app-button  mat-dialog-close [text]="OK" [disabled]="editProfileGroup.invalid" (click)="doneEditProfile()" ></app-button>
     </div>
 </form>
