@@ -1,0 +1,17 @@
+<div class="name">Двойной 8:30-16:00</div>
+<div class="cost">3150р</div>
+
+<button mat-icon-button [matMenuTriggerFor]="menu" class="menu">
+    <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu" yPosition="below">
+    <button mat-menu-item>
+        <span>Назначить посетителя</span>
+    </button>
+    <button mat-menu-item>
+        <span>Редактировать</span>
+    </button>
+    <button mat-menu-item>
+        <span>Удалить</span>
+    </button>
+</mat-menu>

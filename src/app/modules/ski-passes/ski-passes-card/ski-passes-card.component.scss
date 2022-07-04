@@ -1,0 +1,48 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 120px;
+    border: 1px solid black;
+    border-radius: 8px;
+    position: relative;
+    margin: 10px;
+    // background-color: #000;
+    background: #000;
+
+    & .name {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 15px;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    & .cost {
+        position: absolute;
+        top: 60px;
+        left: 40px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 90%;
+        letter-spacing: -0.035em;
+        color: #FFFFFF;
+    }
+
+    & .menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: 0;
+        color: white;
+        cursor: pointer;
+    }
+}
+.mat-menu-item {
+    padding: 0 25px;
+}

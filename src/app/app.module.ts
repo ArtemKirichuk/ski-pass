@@ -15,6 +15,7 @@ import { MainPageModule } from './modules/main-page/main-page.module';
         AppComponent
     ],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
         FormsModule,

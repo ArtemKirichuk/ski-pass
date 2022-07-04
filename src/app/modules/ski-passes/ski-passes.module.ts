@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import { SkiPassesComponent } from './ski-passes.component';
+import { MatMenuModule } from '@angular/material/menu';
 
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { SkiPassesCardComponent } from './ski-passes-card/ski-passes-card.component';
 @NgModule({
     declarations: [
-        SkiPassesComponent
-    ],
-    exports:[
-        SkiPassesComponent
+        SkiPassesComponent,
+        SkiPassesCardComponent
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild([{path:'', component: SkiPassesComponent}])
+        MatMenuModule,
+        MatIconModule,
+        RouterModule.forChild([{ path: '', component: SkiPassesComponent }])
     ]
 })
 export class SkiPassesModule { }
