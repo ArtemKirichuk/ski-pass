@@ -8,7 +8,7 @@
                 placeholder="{{SEARCH}}"
                 [formControl]="searchForm">
         </div>
-        <div class="header__exit">
+        <div class="header__exit" (click) = "logOut()">
             <mat-icon class="header__exit__icon">login</mat-icon>
             <p class="header__exit__text">{{EXIT}}</p>
         </div>
