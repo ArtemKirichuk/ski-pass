@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'src/app/modules/button/button.module';
 import { AutorizationComponent } from './autorization.component';
 
 
@@ -15,8 +16,9 @@ import { AutorizationComponent } from './autorization.component';
     ],
     imports: [
         CommonModule,
-        SharedModule,
-        RouterModule.forChild([{path:'', component: AutorizationComponent}])
+        RouterModule.forChild([{path:'', component: AutorizationComponent}]),
+        ButtonModule,
+        ReactiveFormsModule
     ]
 })
 export class AutorizationModule { }
