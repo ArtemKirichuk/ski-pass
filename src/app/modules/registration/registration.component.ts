@@ -20,7 +20,7 @@ export class RegistrationComponent {
     PASSWORD = 'Пароль';
     LOGIN = 'Войти';
     REGISTRATION = 'Зарегистрироваться';
-    COPYRIGHT = '(с) 2021. Все права защещины';
+    COPYRIGHT = '(с) 2021. Все права защищены';
     ERRORS = 'Введите имя и пароль';
     ERROR_LOGIN = 'Введите имя';
     ERROR_PASSWORD = 'Введите пароль';

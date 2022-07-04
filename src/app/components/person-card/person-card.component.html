@@ -1,0 +1,33 @@
+<div class="person-card">
+    <div class="person-card__content">
+        <div class="person-card__avatar-block">
+            <img src="{{visitor.photo}}" class="person-card__avatar">
+        </div>
+        
+        <div class="person-card__info">        
+            <div>
+                <span class="person-card__text">{{visitor.fio}}</span>
+            </div>
+            <div>
+                <span class="person-card__text person-card__text_opacity_50">{{visitor.birthday | age}}</span>   
+            </div>                
+        </div>  
+    </div>    
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="person-card__menu-btn">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <span>{{APPOINT_COACH}}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{EDIT}}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{DELETE}}</span>
+    </button>
+    </mat-menu>
+
+</div>

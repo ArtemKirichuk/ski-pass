@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Auth } from 'src/app/backend/auth/auth';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class AutorizationComponent {
     PASSWORD = 'Пароль';
     LOGIN = 'Войти';
     REGISTRATION = 'Зарегистрироваться';
-    COPYRIGHT = '(с) 2021. Все права защещины';
+    COPYRIGHT = '(с) 2021. Все права защищены';
     ERROR_LOGIN = 'Введите имя';
     ERROR_PASSWORD = 'Введите пароль';
 
@@ -36,8 +37,14 @@ export class AutorizationComponent {
         this.userService.getUsers().subscribe(resp => {
             const user = resp.find( el => el.name === login && el.password === password );
             if (user) {
-                this.userService.sendUser$(user);
-                this.router.navigate(['']);
+                
+                this.userService.singIn(user).subscribe(val => {
+                    if (val) {
+                        this.userService.sendUser$(user);  
+                        this.router.navigate(['']);
+                    }
+                });
+                
             }
             else {
                 alert('Проверьте правильность логина и пароля');
