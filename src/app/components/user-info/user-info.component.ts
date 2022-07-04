@@ -17,13 +17,7 @@ export class UserInfoComponent {
     constructor(public dialog:MatDialog) { }
 
     editProfile(){
-        const user: UserType = {
-            name:this.USER_NAME,
-            surname:this.USER_SURNAME,
-            password:this.PASSWORD,
-            photo:this.URL
-        };
-        const dialogRef = this.dialog.open(EditProfileComponent, {data : user});
+        const dialogRef = this.dialog.open(EditProfileComponent, {height:'65%', width:'35%'});
         dialogRef.afterClosed().subscribe(value => this.closeEditProfile.call(this,value));
     }
   

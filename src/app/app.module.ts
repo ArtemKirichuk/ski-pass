@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { MainInterceptor } from './backend/fakeServer.interceptor';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { MainPageModule } from './modules/main-page/main-page.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { MainPageModule } from './modules/main-page/main-page.module';
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        MainPageModule 
+        MainPageModule,
+        BrowserAnimationsModule 
     ],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
