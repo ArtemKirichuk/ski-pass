@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { ButtonAddComponent } from "./button-add.component";
+import { NgModule } from '@angular/core';
+import { ButtonAddComponent } from './button-add.component';
 
 
 @NgModule({

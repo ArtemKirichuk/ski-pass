@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { AgePipe } from '../../age.pipe';
 import { ButtonAddModule } from '../button-add/button-add.module';
+import { PaginatorModule } from 'src/app/paginator/paginator.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ButtonAddModule } from '../button-add/button-add.module';
         RouterModule.forChild([{path:'', component: ClientsComponent}]),
         MatMenuModule,
         MatIconModule,        
-        ButtonAddModule
+        ButtonAddModule,
+        PaginatorModule
     ]
 })
 export class ClientsModule { }

@@ -1,0 +1,34 @@
+<div class="paginators" *ngIf="pagesCount>1">
+    <div class="paginator paginator_first-page" *ngIf="pagesCount>2&&currentPage===1">
+        <pre (click)="setPage(currentPage)" class="paginator__active-page">{{currentPage}} </pre>
+        <pre (click)="setPage(currentPage+1)">{{currentPage+1}} </pre>
+        <pre (click)="setPage(currentPage+2)">{{currentPage+2}} </pre>
+        <img src="../../../assets/images/next-page-icon.svg" (click)="setPage(currentPage+1)">
+    </div>    
+
+    <div class="paginator" *ngIf="pagesCount===2&&currentPage===1">        
+        <pre (click)="setPage(currentPage)" class="paginator__active-page">{{currentPage}} </pre>
+        <pre (click)="setPage(currentPage+1)">{{currentPage+1}} </pre>
+        <img src="../../../assets/images/next-page-icon.svg" (click)="setPage(currentPage+1)">
+    </div>
+
+    <div class="paginator" *ngIf="pagesCount===2&&currentPage===2">        
+        <pre (click)="setPage(currentPage-1)">{{currentPage-1}} </pre>
+        <pre (click)="setPage(currentPage)" class="paginator__active-page">{{currentPage}} </pre>  
+        <img src="../../../assets/images/next-page-icon.svg" (click)="setPage(currentPage+1)">      
+    </div>
+
+    <div class="paginator" *ngIf="pagesCount>2&&currentPage!==pagesCount&&currentPage!==1">
+        <pre (click)="setPage(currentPage-1)">{{currentPage-1}} </pre>
+        <pre (click)="setPage(currentPage)" class="paginator__active-page">{{currentPage}} </pre>
+        <pre (click)="setPage(currentPage+1)">{{currentPage+1}} </pre>
+        <img src="../../../assets/images/next-page-icon.svg" (click)="setPage(currentPage+1)">
+    </div>
+
+    <div class="paginator paginator_last-page" *ngIf="pagesCount>2&&currentPage===pagesCount">
+        <pre (click)="setPage(currentPage-2)">{{currentPage-2}} </pre>
+        <pre (click)="setPage(currentPage-1)">{{currentPage-1}} </pre>
+        <pre (click)="setPage(currentPage)" class="paginator__active-page">{{currentPage}} </pre>
+        <img src="../../../assets/images/next-page-icon.svg" (click)="setPage(currentPage+1)">
+    </div> 
+</div>

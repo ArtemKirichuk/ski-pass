@@ -1,0 +1,15 @@
+.paginators {
+    width: fit-content;
+    float: right;
+}
+
+.paginator,
+.paginator_first-page {
+    display: flex;
+    font-family: 'Roboto';
+    color: #B9B9B9;
+
+    &__active-page {
+        color: #4158F6;
+    }
+}
