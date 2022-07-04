@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 
         ])
     ],
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
     exports:[RouterModule]
 })
 export class AppRoutingModule { }
