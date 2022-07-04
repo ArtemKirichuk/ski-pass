@@ -5,20 +5,16 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MainInterceptor } from './backend/fakeServer.interceptor';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { MainPageModule } from './modules/main-page/main-page.module';
-import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        EditProfileComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        SharedModule,
         FormsModule,
         HttpClientModule,
         MainPageModule 

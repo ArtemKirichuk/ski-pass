@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { EditProfileComponent } from 'src/app/components/edit-profile/edit-profile.component';
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
-import { SharedModule } from '../shared/shared.module';
 import { MainPageComponent } from './main-page.component';
 
 
@@ -9,7 +14,8 @@ import { MainPageComponent } from './main-page.component';
 @NgModule({
     declarations: [
         MainPageComponent,
-        UserInfoComponent
+        UserInfoComponent,
+        EditProfileComponent
     ],
     exports: [
         MainPageComponent,
@@ -17,7 +23,11 @@ import { MainPageComponent } from './main-page.component';
     ],
     imports: [
         CommonModule,
-        SharedModule
+        MatIconModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        RouterModule.forChild([{path:'', component: MainPageComponent}])
     ]
 })
 export class MainPageModule { }

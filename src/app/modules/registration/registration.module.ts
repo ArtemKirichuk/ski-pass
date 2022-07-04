@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'src/app/modules/button/button.module';
 import { RegistrationComponent } from './registration.component';
-
 
 
 @NgModule({
@@ -15,8 +15,9 @@ import { RegistrationComponent } from './registration.component';
     ],
     imports: [
         CommonModule,
-        SharedModule,
-        RouterModule.forChild([{path:'', component: RegistrationComponent}])
+        RouterModule.forChild([{path:'', component: RegistrationComponent}]),
+        ReactiveFormsModule,
+        ButtonModule
     ]
 })
 export class RegistrationModule { }

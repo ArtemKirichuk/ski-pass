@@ -12,20 +12,31 @@
             </span>
         </div>        
     
-        <form action="" class="registration-block__form" [formGroup]="form">        
+        <form action="" class="registration-block__form" [formGroup]="form" (ngSubmit)="submit()">        
             <div class="text-field text-field_floating">  
-                <input type="text" class="text-field__input" id="registration_name" placeholder="{{NAME}}">
+                <input type="text" 
+                    class="text-field__input" 
+                    id="registration_name" 
+                    placeholder="{{NAME}}" 
+                    formControlName="login">
                 <label for="registration_name" class="text-field__label">{{NAME}}</label>
+                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">{{ ERROR_LOGIN }}</small>   
             </div>
     
             <div class="text-field text-field_floating">  
-                <input type="text" class="text-field__input" id="registration_password" placeholder="{{PASSWORD}}">
+                <input type="password" 
+                    class="text-field__input" 
+                    id="registration_password" 
+                    placeholder="{{PASSWORD}}"
+                    formControlName="password">
                 <label for="registration_password" class="text-field__label">{{PASSWORD}}</label>
+                <small *ngIf="form.controls['password'].invalid && form.controls['password'].touched">{{ ERROR_PASSWORD }}</small>       
             </div>
     
             <div class="btn-block">
                 <app-button class="btn"
-                [text]=REGISTRATION>
+                [text]=REGISTRATION
+                [disabled]="form.invalid">
                 </app-button>
             </div>
             
@@ -45,8 +56,8 @@
             </button>
         </div>
 
-        <span class="login-block">
-            <a href="">{{LOGIN}}</a>
+        <span class="login-block" >
+            <a routerLink="/autorization">{{LOGIN}}</a>
         </span>
     </div>
 
