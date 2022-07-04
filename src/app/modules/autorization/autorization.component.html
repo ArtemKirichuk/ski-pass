@@ -12,19 +12,32 @@
             </span>
         </div>        
     
-        <form action="" class="login-block__form" [formGroup]="form">        
+        <form action="" class="login-block__form" [formGroup]="form" (ngSubmit)="submit()">        
             <div class="text-field text-field_floating">  
-                <input type="text" class="text-field__input" id="login_name" placeholder="{{NAME}}">
+                <input 
+                    type="text" 
+                    class="text-field__input" 
+                    id="login_name" 
+                    placeholder="{{NAME}}"
+                    formControlName="login">
                 <label for="login_name" class="text-field__label">{{NAME}}</label>
+                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">{{ ERROR_LOGIN }}</small>
             </div>
     
             <div class="text-field text-field_floating">  
-                <input type="text" class="text-field__input" id="login_password" placeholder="{{PASSWORD}}">
+                <input 
+                    type="password" 
+                    class="text-field__input" 
+                    id="login_password" 
+                    placeholder="{{PASSWORD}}"
+                    formControlName="password">
                 <label for="login_password" class="text-field__label">{{PASSWORD}}</label>
+                <small *ngIf="form.controls['password'].invalid && form.controls['password'].touched">{{ ERROR_PASSWORD }}</small>
             </div>
     
             <div class="btn-block">
                 <app-button class="btn"
+                [disabled]="form.invalid"
                 [text]=LOGIN>
             </app-button>
             </div>
@@ -46,7 +59,7 @@
         </div>
 
         <span class="registration-block">
-            <a href="">{{REGISTRATION}}</a>
+            <a routerLink="/registration">{{REGISTRATION}}</a>
         </span>
     </div>
 

@@ -21,6 +21,14 @@ export class UserService {
         return this.currentUser$;
     }
 
+    singIn(user: UserType): Observable<boolean> {
+        return this.httpClient.post<boolean>('signIn', user);
+    }
+
+    getUsers(): Observable<UserType[]> {
+        return this.httpClient.get<UserType[]>('user');
+    }
+
     sendUser$(user: UserType): void {
         this.currentUser$.next(user);
     }
