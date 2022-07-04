@@ -46,6 +46,7 @@ export class RegistrationComponent {
 
         this.userService.createUser(user).subscribe(val => {
             if (val) {
+                this.userService.sendUser$(user);
                 this.router.navigate(['']);
             }
             else {
