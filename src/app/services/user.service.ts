@@ -33,6 +33,10 @@ export class UserService {
         return this.httpClient.get<string>('signIn');
     }
 
+    singOut():Observable<boolean>{
+        return this.httpClient.delete<boolean>('singIn');
+    }
+
     getUsers(): Observable<UserType[]> {
         return this.httpClient.get<UserType[]>('user');
     }

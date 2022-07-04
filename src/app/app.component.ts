@@ -16,27 +16,27 @@ export class AppComponent implements OnDestroy, OnInit{
 
     ngOnInit(): void {
         this.userService.singInGet()
-        .pipe(
-            takeUntil(this.destroy$))    
-        .subscribe(val=>{
-            if(val){
-                this.userService.getUsers()
-                .pipe(takeUntil(this.destroy$)) 
-                .subscribe(resp => {
-                    const user = resp.find( el => el.name === val);
-                    if (user) {
-                        this.userService.sendUser$(user);
-                        this.router.navigate(['']);
-                    }
-                    else {
-                        this.router.navigate(["/autorization"]);
-                    }
-                });
-            }
-            else{
-                this.router.navigate(['/autorization']);
-            }
-        })
+            .pipe(
+                takeUntil(this.destroy$))    
+            .subscribe(val=>{
+                if(val){
+                    this.userService.getUsers()
+                        .pipe(takeUntil(this.destroy$)) 
+                        .subscribe(resp => {
+                            const user = resp.find( el => el.name === val);
+                            if (user) {
+                                this.userService.sendUser$(user);
+                                this.router.navigate(['']);
+                            }
+                            else {
+                                this.router.navigate(['/autorization']);
+                            }
+                        });
+                }
+                else{
+                    this.router.navigate(['/autorization']);
+                }
+            });
     }
 
     ngOnDestroy(): void {
