@@ -45,7 +45,7 @@ export class MainInterceptor implements HttpInterceptor {
     }
     getResponceUser(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (request.method === 'GET') {
-            return of(new HttpResponse({ status: 200, body: this.Auth.checkAuth() }));
+            return of(new HttpResponse({ status: 200, body: this.User.get<UserType>() }));
         }
         if (request.method === 'POST') {
             return of(new HttpResponse({ status: 200, body: this.User.create<UserType>(request.body) }));
@@ -95,6 +95,9 @@ export class MainInterceptor implements HttpInterceptor {
         return next.handle(request.clone());
     }
     getResponceSignIn(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (request.method === 'GET') {
+            return of(new HttpResponse({ status: 200, body: this.Auth.checkAuth() }));
+        }
         if (request.method === 'POST') {
             return of(new HttpResponse({ status: 200, body: this.Auth.signIn(request.body) }));
         }
