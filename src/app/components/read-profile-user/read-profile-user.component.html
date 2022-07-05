@@ -1,0 +1,22 @@
+<div class = "title">
+    <p class="title__text">{{TITLE}}</p>
+    <mat-icon type="submit" mat-dialog-close class="title__icon">close</mat-icon>
+</div>
+<div class = "info" *ngIf="user$ | async as user" novalidate>
+    <div class = "info__avatar">
+        <div class = "info__avatar__div">
+            <img class = "info__avatar__div__img" src="{{user.photo}}" alt="">
+        </div>
+        <mat-icon class = "info__avatar__icon" (click)="editProfile()">edit</mat-icon>
+    </div>
+    <h2 class="info__name">
+        {{user.name + " " + user.surname}} 
+    </h2>
+    <small class="info__post">
+        {{POST}}
+    </small> 
+    
+    <div class = "info__button">
+        <app-button  mat-dialog-close [text]="OK"></app-button>
+    </div>
+</div>

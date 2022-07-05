@@ -12,6 +12,7 @@ import { MainPageComponent } from './main-page.component';
 import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
 import { ButtonAddModule } from '../button-add/button-add.module';
 import { PersonCardModule } from '../person-card/person-card.module';
+import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/read-profile-user.component';
 
 
 @NgModule({
@@ -19,11 +20,13 @@ import { PersonCardModule } from '../person-card/person-card.module';
         MainPageComponent,
         UserInfoComponent,
         EditProfileComponent,
-        ClientsMiniComponent
+        ClientsMiniComponent,
+        ReadProfileUserComponent
     ],
     exports: [
         MainPageComponent,
-        UserInfoComponent
+        UserInfoComponent,
+        ReadProfileUserComponent
     ],
     imports: [
         CommonModule,

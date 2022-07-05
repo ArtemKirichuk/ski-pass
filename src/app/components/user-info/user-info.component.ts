@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { UserType } from '../../types/types';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { ReadProfileUserComponent } from '../read-profile-user/read-profile-user.component';
 
 @Component({
     selector: 'app-user-info',
@@ -37,8 +38,12 @@ export class UserInfoComponent {
     }
 
 
-    editProfile(){
+    editProfile() : void{
         this.dialog.open(EditProfileComponent, {width:'35%'});
+    }
+
+    readInfoProfile() : void{
+        this.dialog.open(ReadProfileUserComponent, {width:'35%'});
     }
   
 }
