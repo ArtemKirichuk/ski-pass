@@ -3,11 +3,18 @@
     float: right;
 }
 
-.paginator,
-.paginator_first-page {
+.paginator {
     display: flex;
     font-family: 'Roboto';
     color: #B9B9B9;
+
+    &__page {
+        margin-right: 5px;
+    }
+
+    &__page:hover{
+        cursor: pointer;
+    }
 
     &__active-page {
         color: #4158F6;
