@@ -4,8 +4,16 @@
     padding-top: 60px;
     background-size: cover;
     height: 100%;
-    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    //box-sizing: border-box;
+    //position: relative;
+    //padding-bottom: 55px;
     //width: 100%;
+    //-moz-box-sizing: border-box;
+    //-moz-height: 100%
+    //border: 1px solid black;
 }
 
 .login-block {
@@ -42,14 +50,12 @@
     }
 }
 
-
 .logo {
     width: 16%;
     margin-top: 75px;
     margin-bottom: 15px;
     border: none;
 }
-
 
 .text-field {
     margin-bottom: 1rem;
@@ -138,7 +144,6 @@
     }
 }
 
-
 .btn-block {
     width: 50%;
     margin: 0 auto;
@@ -147,7 +152,7 @@
 
 .social-block {
     margin-top: 40px;    
-    width: 33%;
+    width: 169px;
     display: flex;
     justify-content: space-between;
 }
@@ -169,5 +174,4 @@
 
 .copyright-block {
     text-align: center;
-    margin-top: 30px;
 }
