@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
@@ -29,7 +28,6 @@ export class UserInfoComponent {
             .pipe(takeUntil(this.destroy$))
             .subscribe( user =>{
                 this.currentUser$.next(user);
-                console.log('tut', user);
             });
     }
 
@@ -40,7 +38,7 @@ export class UserInfoComponent {
 
 
     editProfile(){
-        const dialogRef = this.dialog.open(EditProfileComponent, {height:'65%', width:'35%'});
+        this.dialog.open(EditProfileComponent, {width:'35%'});
     }
   
 }

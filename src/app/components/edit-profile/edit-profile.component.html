@@ -2,11 +2,17 @@
     <p class="title__text">{{TITLE}}</p>
     <mat-icon type="submit" mat-dialog-close class="title__icon">close</mat-icon>
 </div>
-<form class = "edit-profile" [formGroup]="editProfileGroup" novalidate>
-    <div class = "edit-profile__img">
-        <img class = "edit-profile__img__input" type="image" formControlName = "url" src="{{editProfileGroup.get('url')?.value}}" alt="{{IMG_NOT_FOUND}}">
+<form class = "edit-profile" [formGroup]="editProfileGroup" *ngIf="user$ | async as user" novalidate>
+    <div class = "edit-profile__img" (click)="clickEditPhoto()">
+        <img class = "edit-profile__img__input" 
+            type="image" 
+            src="{{user.photo}}" 
+            alt="{{IMG_NOT_FOUND}}">
     </div>
+
     <input class = "edit-profile__input" type="text" formControlName="name" placeholder="Имя">
+    <small class = "edit-profile__error" *ngIf = "checkEmptyName()">{{ERROR_EMPTY_NAME}}</small>
+        
     <input class = "edit-profile__input" type="text" formControlName="surname" placeholder="Фамилия">
     <div class = "edit-profile__button">
         <app-button  mat-dialog-close [text]="OK" [disabled]="editProfileGroup.invalid" (click)="doneEditProfile()" ></app-button>
