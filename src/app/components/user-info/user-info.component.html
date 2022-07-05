@@ -1,6 +1,8 @@
 <div class="info" *ngIf="currentUser$ | async as user">
     <div class = "info__avatar">
-        <img class = "info__avatar__img" src="{{user.photo}}" alt="">
+        <div class = "info__avatar__div">
+            <img class = "info__avatar__div__img" src="{{user.photo}}" alt="">
+        </div>
         <mat-icon class = "info__avatar__icon" (click)="editProfile()">edit</mat-icon>
     </div>
     <div class="info__name">{{user.name + " " + user.surname}}</div>

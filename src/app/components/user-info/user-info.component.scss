@@ -2,6 +2,7 @@
     &__avatar{
         position: relative;
         text-align: center;
+        left: 10%;
         top: 0px;
         &__icon{
             background-color: #E8EDF1;
@@ -9,7 +10,8 @@
             color:#B3B3B3;
             position: absolute;
             bottom: 0;
-            right: 25px;
+            right: 3%;
+            bottom: -4%;
             font-size: 21px;
             text-align: center;
             line-height: 22px;
@@ -17,12 +19,18 @@
                 background-color: #cfd2d4;
             }
         }
-        &__img{
+        &__div{
             position: relative;
             width: 64px;
             height: 64px;
             border-radius: 50%;
+            &__img{
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
         }
+
     }
     &__name{
         color: white;
