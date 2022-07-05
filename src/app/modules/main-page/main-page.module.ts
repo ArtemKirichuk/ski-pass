@@ -9,13 +9,17 @@ import { EditProfileComponent } from 'src/app/components/edit-profile/edit-profi
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
 import { ButtonModule } from '../button/button.module';
 import { MainPageComponent } from './main-page.component';
+import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
+import { ButtonAddModule } from '../button-add/button-add.module';
+import { PersonCardModule } from '../person-card/person-card.module';
 
 
 @NgModule({
     declarations: [
         MainPageComponent,
         UserInfoComponent,
-        EditProfileComponent
+        EditProfileComponent,
+        ClientsMiniComponent
     ],
     exports: [
         MainPageComponent,
@@ -28,7 +32,9 @@ import { MainPageComponent } from './main-page.component';
         ReactiveFormsModule,
         MatDialogModule,
         RouterModule.forChild([{path:'', component: MainPageComponent}]),
-        ButtonModule
+        ButtonModule,
+        ButtonAddModule,
+        PersonCardModule
     ]
 })
 export class MainPageModule { }

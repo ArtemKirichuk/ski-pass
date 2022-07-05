@@ -1,8 +1,14 @@
-.clients-block {
+.clients-mini-block {
     padding: 20px 50px 20px 50px;
     display: flex;
     flex-direction: column;
     border-radius: 12px;
+    background-color: white;
+
+    &__header {
+        display: flex;
+        align-items: center;        
+    }
 
     &__text{
         font-weight: 500;
@@ -22,21 +28,20 @@
     &__client {
         width: 50%;
         margin-bottom: 15px;
-    }    
-}
+    }
 
-.paginators {
-    width: fit-content;
-    float: right;
-}
+    &__minimize {
+        margin-left: auto;
+    }
+    
+    &__minimize:active {
+        transform: rotate(180deg);
+        transition: 0.5s;
+    }
 
-.paginator,
-.paginator_first-page {
-    display: flex;
-    font-family: 'Roboto';
-    color: #B9B9B9;
-
-    &__active-page {
+    &__all {
+        font-family: 'Roboto';
         color: #4158F6;
+        float: right;
     }
 }

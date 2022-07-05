@@ -1,0 +1,29 @@
+<div class="clients-mini-block">
+    <div class="clients-mini-block__header">
+        <span class="clients-mini-block__text">{{CLIENTS}}</span>
+
+        <app-button-add
+            [text]="ADD"
+        ></app-button-add>
+
+        <img src="{{minimizeURL}}" class="clients-mini-block__minimize" (click)="minimize()">
+
+        
+    </div>
+
+    <div class="clients-mini-block__list" *ngIf="showVisitors">
+        <app-person-card
+            class="clients-mini-block__client"
+            *ngFor="let cl of visitors; let ind = index"
+            [visitor]="cl"
+        ></app-person-card>
+    </div>
+
+    <div>
+        <span class="clients-mini-block__all" routerLink="/clients">
+            {{ALL}} 
+            <img src="../../../assets/images/next-page-icon.svg">
+        </span>
+    </div>
+    
+</div>

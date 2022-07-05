@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserType } from '../types/types';
+import { UserType, VisitorType } from '../types/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -39,6 +39,10 @@ export class UserService {
 
     getUsers(): Observable<UserType[]> {
         return this.httpClient.get<UserType[]>('user');
+    }
+
+    getVisitors(){
+        return this.httpClient.get<VisitorType[]>('visiter');
     }
 
     sendUser$(user: UserType): void {
