@@ -15,7 +15,7 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
     dateStart: new FormControl(null, [Validators.required]),
     dateEnd: new FormControl(null, [Validators.required]),
     cost: new FormControl(null, [Validators.required]),
-    photo: new FormControl(null)
+    photo: new FormControl('')
   });
   srcPhoto:string|SafeUrl = 'assets/images/default-photo.svg'
   skiPass!: SkiPassType;
