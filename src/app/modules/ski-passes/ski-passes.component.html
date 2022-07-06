@@ -1,7 +1,7 @@
 <div class="block">
     <div class="block__header">
         <span class="block__text">{{SKIPASSES}}</span>
-        <app-button-add (click)="openForm()"[text]="ADD_NEW"></app-button-add>
+        <app-button [mode]="'icon'"  (click)="openForm()"[text]="ADD_NEW"></app-button>
         <app-paginator [itemsOnPage]="3" [allItems]="skipasses" (onChangePage)="onChangedPage($event)"></app-paginator>
     </div>
     

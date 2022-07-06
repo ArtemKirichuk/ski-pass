@@ -7,8 +7,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { SkiPassesCardComponent } from './ski-passes-card/ski-passes-card.component';
-import { ButtonAddModule } from '../button-add/button-add.module';
-import { PaginatorModule } from 'src/app/paginator/paginator.module';
+
+
 import { SkiPassesFormComponent } from './form/form.component';
 import { ButtonModule } from '../button/button.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PaginatorModule } from '../paginator/paginator.module';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,7 @@ import { MatInputModule } from '@angular/material/input';
         ReactiveFormsModule,
         CommonModule,
         RouterModule.forChild([{ path: '', component: SkiPassesComponent }]),
-        ButtonAddModule,
+        ButtonModule,
         PaginatorModule,
         ButtonModule,
         //mat
