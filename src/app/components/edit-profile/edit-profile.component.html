@@ -3,15 +3,18 @@
     <mat-icon type="submit" mat-dialog-close class="title__icon">close</mat-icon>
 </div>
 <form class = "edit-profile" [formGroup]="editProfileGroup" *ngIf="user$ | async as user" novalidate>
-    <div class = "edit-profile__img" (click)="clickEditPhoto()">
+    <app-photo-form 
+        [img] = "user.photo" 
+        (imgLink)="handlerEvent($event)">
+    </app-photo-form>
+    <!-- <div class = "edit-profile__img" (click)="clickEditPhoto()">
         <img class = "edit-profile__img__input" 
             type="image" 
             src="{{user.photo}}" 
             alt="{{IMG_NOT_FOUND}}">
-    </div>
+    </div> -->
 
     <app-input class = "edit-profile__input" [title]="NAME"  formControlName="name"></app-input>
-    <!-- <input class = "edit-profile__input" type="text" formControlName="name" placeholder="Имя"> -->
     <small class = "edit-profile__error" *ngIf = "checkEmptyName()">{{ERROR_EMPTY_NAME}}</small>
     
     <app-input class = "edit-profile__input" [title]="SURNAME" formControlName="surname"></app-input>
