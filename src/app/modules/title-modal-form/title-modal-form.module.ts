@@ -6,15 +6,15 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [
-    TitleModalFormComponent
-  ],
-  imports: [
-    CommonModule,
-    MatIconModule
-  ],
-  exports:[
-    TitleModalFormComponent
-  ]
+    declarations: [
+        TitleModalFormComponent
+    ],
+    imports: [
+        CommonModule,
+        MatIconModule
+    ],
+    exports:[
+        TitleModalFormComponent
+    ]
 })
 export class TitleModalFormModule { }

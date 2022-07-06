@@ -11,7 +11,7 @@ import { SkiPassesFormComponent } from './form/form.component';
     styleUrls: ['./ski-passes.component.scss']
 })
 export class SkiPassesComponent extends i18n{
-    skipasses: number[] = [1, 2, 3]
+    skipasses: number[] = [1, 2, 3];
     destroy$: Subject<boolean>;
     
     constructor(private matDialog: MatDialog) {
@@ -27,7 +27,7 @@ export class SkiPassesComponent extends i18n{
             .pipe(takeUntil(this.destroy$))
             .subscribe((skipass: SkiPassType) => {
                 if (skipass) {
-                    debugger
+                    debugger;
                 }
             });
     }

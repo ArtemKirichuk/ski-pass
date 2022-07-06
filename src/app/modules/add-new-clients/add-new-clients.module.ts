@@ -5,12 +5,12 @@ import { AddNewClientsComponent } from './add-new-clients.component';
 
 
 @NgModule({
-  declarations: [AddNewClientsComponent],
-  imports: [
-    CommonModule
-  ],
-  exports:[
-    AddNewClientsComponent
-  ]
+    declarations: [AddNewClientsComponent],
+    imports: [
+        CommonModule
+    ],
+    exports:[
+        AddNewClientsComponent
+    ]
 })
 export class AddNewClientsModule { }

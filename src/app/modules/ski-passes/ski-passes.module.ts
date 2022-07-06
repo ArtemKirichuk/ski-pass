@@ -41,7 +41,7 @@ import { PaginatorModule } from '../paginator/paginator.module';
         MatMenuModule,
         MatIconModule,
         MatFormFieldModule,
-    MatInputModule,
+        MatInputModule,
 
     ],
 

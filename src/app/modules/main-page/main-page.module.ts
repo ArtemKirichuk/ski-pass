@@ -44,7 +44,8 @@ import { InstructorCardModule } from '../instructor-card/instructor-card.module'
         PersonCardModule,
         InputModule,
         PhotoFormModule,
-        TitleModalFormModule
+        TitleModalFormModule,
+        InstructorCardModule
     ]
 })
 export class MainPageModule { }
