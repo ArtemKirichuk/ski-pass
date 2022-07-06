@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { InstructorType, KeyInstructorType, KeyVisitorType, SkiPassType, UserType, VisitorType } from '../types/types';
+import { InstructorType, KeyInstructorType, KeySkiPassType, KeyUserType, KeyVisitorType, SkiPassType, UserType, VisitorType } from '../types/types';
 import { Visiter } from './visiter/visiter';
 import { User } from './user/user';
 import { Auth } from './auth/auth';
@@ -51,7 +51,9 @@ export class MainInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body: this.User.create<UserType>(request.body) }));
         }
         if (request.method === 'PUT') {
-            return of(new HttpResponse({ status: 200, body: this.User.update<UserType>(request.body) }));
+            const isSuccess = this.Instructor.delete<KeyUserType>(request.body.oldKey) &&
+                this.Instructor.create<UserType>(request.body.newRow);
+            return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         return next.handle(request.clone());
     }
@@ -71,7 +73,9 @@ export class MainInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body: this.Instructor.delete<KeyInstructorType>(keyInstructor) }));
         }
         if (request.method === 'PUT') {
-            return of(new HttpResponse({ status: 200, body: this.Instructor.update<Instructor>(request.body) }));
+            const isSuccess = this.Instructor.delete<KeyInstructorType>(request.body.oldKey) &&
+                this.Instructor.create<InstructorType>(request.body.newRow);
+            return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         return next.handle(request.clone());
     }
@@ -83,7 +87,9 @@ export class MainInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body: this.Visiter.create<VisitorType>(request.body) }));
         }
         if (request.method === 'PUT') {
-            return of(new HttpResponse({ status: 200, body: this.Visiter.update<VisitorType>(request.body) }));
+            const isSuccess = this.Instructor.delete<KeyVisitorType>(request.body.oldKey) &&
+                this.Instructor.create<VisitorType>(request.body.newRow);
+            return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         if (request.method === 'DELETE') {
             const fioKey = request.params.get('fio');
@@ -114,6 +120,11 @@ export class MainInterceptor implements HttpInterceptor {
         }
         if (request.method === 'POST') {
             return of(new HttpResponse({ status: 200, body: this.SkiPass.create<SkiPassType>(request.body) }));
+        }
+        if (request.method === 'PUT') {
+            const isSuccess = this.Instructor.delete<KeySkiPassType>(request.body.oldKey) &&
+                this.Instructor.create<SkiPassType>(request.body.newRow);
+            return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         return next.handle(request.clone());
     }

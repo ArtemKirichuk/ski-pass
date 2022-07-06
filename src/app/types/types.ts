@@ -1,3 +1,6 @@
+export type KeyUserType = {
+    name:string;
+}
 export type UserType = {
     name:string;
     surname:string;
@@ -37,4 +40,8 @@ export type SkiPassType = {
     visiter:string;
     cost: number;
     photo: string;
+}
+export type updateType<T,U> = {
+    oldKey:T;
+    newRow:U;
 }
