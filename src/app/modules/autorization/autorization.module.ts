@@ -6,7 +6,6 @@ import { ButtonModule } from 'src/app/modules/button/button.module';
 import { AutorizationComponent } from './autorization.component';
 
 
-
 @NgModule({
     declarations: [
         AutorizationComponent

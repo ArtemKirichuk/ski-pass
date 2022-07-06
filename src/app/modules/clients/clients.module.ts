@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { PaginatorModule } from 'src/app/paginator/paginator.module';
-import { ButtonAddModule } from '../button-add/button-add.module';
+import { ButtonModule } from '../button/button.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { ClientsComponent } from './clients.component';
 
@@ -21,7 +21,7 @@ import { ClientsComponent } from './clients.component';
         RouterModule.forChild([{path:'', component: ClientsComponent}]),
         MatMenuModule,
         MatIconModule,        
-        ButtonAddModule,
+        ButtonModule,
         PaginatorModule,
         PersonCardModule
     ]

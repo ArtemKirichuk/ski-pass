@@ -3,9 +3,10 @@
 
         <span class="clients-block__text">{{CLIENTS}}</span>
 
-        <app-button-add
+        <app-button
             [text]="ADD"
-        ></app-button-add>
+            [mode]="'icon'"
+        ></app-button>
 
         <app-paginator
             [itemsOnPage]="26"
