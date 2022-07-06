@@ -14,6 +14,8 @@ import { InputModule } from '../input/input.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { PhotoFormModule } from '../photo-form/photo-form.module';
 import { MainPageComponent } from './main-page.component';
+import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/instructors-mini.component';
+import { InstructorCardModule } from '../instructor-card/instructor-card.module';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { MainPageComponent } from './main-page.component';
         UserInfoComponent,
         EditProfileComponent,
         ClientsMiniComponent,
-        ReadProfileUserComponent
+        ReadProfileUserComponent,
+        InstructorsMiniComponent
     ],
     exports: [
         MainPageComponent,
@@ -39,7 +42,8 @@ import { MainPageComponent } from './main-page.component';
         ButtonModule,
         PersonCardModule,
         InputModule,
-        PhotoFormModule
+        PhotoFormModule,
+        InstructorCardModule
     ]
 })
 export class MainPageModule { }
