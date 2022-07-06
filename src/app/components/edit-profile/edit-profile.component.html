@@ -1,23 +1,26 @@
-<div class = "title">
+<!-- <div class = "title">
     <p class="title__text">{{TITLE}}</p>
     <mat-icon type="submit" mat-dialog-close class="title__icon">close</mat-icon>
-</div>
+</div> -->
+<app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
 <form class = "edit-profile" [formGroup]="editProfileGroup" *ngIf="user$ | async as user" novalidate>
     <app-photo-form 
         [img] = "user.photo" 
         (imgLink)="handlerEvent($event)">
     </app-photo-form>
-    <!-- <div class = "edit-profile__img" (click)="clickEditPhoto()">
-        <img class = "edit-profile__img__input" 
-            type="image" 
-            src="{{user.photo}}" 
-            alt="{{IMG_NOT_FOUND}}">
-    </div> -->
 
-    <app-input class = "edit-profile__input" [title]="NAME"  formControlName="name"></app-input>
+    <app-input 
+        class = "edit-profile__input" 
+        [title]="NAME"  
+        formControlName="name">
+    </app-input>
     <small class = "edit-profile__error" *ngIf = "checkEmptyName()">{{ERROR_EMPTY_NAME}}</small>
     
-    <app-input class = "edit-profile__input" [title]="SURNAME" formControlName="surname"></app-input>
+    <app-input 
+        class = "edit-profile__input" 
+        [title]="SURNAME" 
+        formControlName="surname">
+    </app-input>
     
     <div class = "edit-profile__button">
         <app-button  mat-dialog-close [text]="OK" [disabled]="editProfileGroup.invalid" (click)="doneEditProfile()" ></app-button>

@@ -83,5 +83,11 @@ export class EditProfileComponent implements OnDestroy, OnInit{
         this.user$.next(user);
     }
 
+    handlerClose($event:boolean):void{
+        if($event){
+            this.dialogRef.close();
+        }
+    }
+
 
 }

@@ -13,6 +13,7 @@ import { ButtonModule } from '../button/button.module';
 import { InputModule } from '../input/input.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { PhotoFormModule } from '../photo-form/photo-form.module';
+import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
 import { MainPageComponent } from './main-page.component';
 
 
@@ -39,7 +40,8 @@ import { MainPageComponent } from './main-page.component';
         ButtonModule,
         PersonCardModule,
         InputModule,
-        PhotoFormModule
+        PhotoFormModule,
+        TitleModalFormModule
     ]
 })
 export class MainPageModule { }
