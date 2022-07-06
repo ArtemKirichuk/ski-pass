@@ -3,9 +3,10 @@
 
         <span class="clients-block__text">{{CLIENTS}}</span>
 
-        <app-button-add
-            [text]="ADD"
-        ></app-button-add>
+        <app-button
+        [text]="ADD"
+        [mode]="'icon'"
+        ></app-button>
 
         <app-paginator
             [itemsOnPage]="26"
@@ -17,9 +18,9 @@
 
     <div class="clients-block__list">
         <app-person-card
-            class="clients-block__client"
-            *ngFor="let cl of showedVisitors; let ind = index"
-            [visitor]="cl"
+        class="clients-block__client"
+        *ngFor="let visitor of showedVisitors;"
+        [visitor]="visitor"
         ></app-person-card>
     </div>
 </div>
