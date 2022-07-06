@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-import { parseImg } from 'src/app/types/helper';
 import { UserType } from 'src/app/types/types';
 
 @Component({
@@ -17,7 +16,6 @@ export class EditProfileComponent implements OnDestroy, OnInit{
 
     TITLE  = 'Личный кабинет администратора';
     OK  = 'OK';
-    IMG_NOT_FOUND  = 'Изображение не найдено';
     DEFAULT_IMG  = '../../../assets/images/default-photo.svg';
     ERROR_EMPTY_NAME = 'Необходимо заполнить имя';
     NAME  = 'Имя';
@@ -27,8 +25,7 @@ export class EditProfileComponent implements OnDestroy, OnInit{
     destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(public dialogRef: MatDialogRef<EditProfileComponent>, public userService:UserService) { 
-        //console.log(this.user$.value);
-        
+                
     }
 
     ngOnInit(): void {
@@ -73,51 +70,17 @@ export class EditProfileComponent implements OnDestroy, OnInit{
                     if(val){
                         this.userService.currentUser$.next(this.user$.value);
                     }
+                    console.log(this.userService.currentUser$.value);
                 });
         }
         
     }
 
-    clickEditPhoto() : void{
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = '.jpg, .jpeg, .png';
-        input.onchange = e => { 
 
-            this.getImageList(e); 
-        };
-        input.click();
-    }
-
-    getImageList(event : Event) : void{
-        if(event){
-            const target= event.target as HTMLInputElement;
-            const file: File = (target.files as FileList)[0];
-            if(!file || file.size === 0) {
-                alert('You must select an image');
-                return;
-            }
-            
-            const mimeType = file.type;
-            
-            if (mimeType.match(/image\/*/) == null) {
-                alert('Only images are supported');
-                return;
-            }
-            
-            
-            parseImg(file, 'URL', (res : string) => {
-                if(res.split(' ').length != 0){
-                    res = res.split(' ')[0];
-                }
-                
-                //this.editProfileGroup.patchValue({url:res.toString()});
-                const user = this.user$.value;
-                user.photo = res;
-                this.user$.next(user);
-            });
-        }
-        
+    handlerEvent($event:string):void{
+        const user = this.user$.value;
+        user.photo = $event;
+        this.user$.next(user);
     }
 
 

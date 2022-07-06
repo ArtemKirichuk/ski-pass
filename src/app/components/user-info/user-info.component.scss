@@ -1,8 +1,10 @@
 .info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     &__avatar{
         position: relative;
         text-align: center;
-        left: 15%;
         top: 0px;
         
         &__div{

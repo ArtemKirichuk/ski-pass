@@ -95,6 +95,7 @@ export class MainInterceptor implements HttpInterceptor {
         return next.handle(request.clone());
     }
     getResponceSignIn(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        
         if (request.method === 'GET') {
             return of(new HttpResponse({ status: 200, body: this.Auth.checkAuth() }));
         }
