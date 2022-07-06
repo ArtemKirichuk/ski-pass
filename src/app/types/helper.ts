@@ -16,3 +16,17 @@ export function parseImg (file: File, typeRead: string | null, callback: Functio
         break;
     }
 }
+export  class i18n{
+    readonly ADD_NEW = 'Добавить новый';
+    readonly SKIPASSES = 'Ски-пассы';
+    readonly ASSIGN_VISITOR ='Назначить посетителя';
+    readonly EDIT ='Назначить посетителя';
+    readonly DELETE ='Удалить';
+    readonly ADD ='Добавить';
+    readonly FORM_TITLE_SKIPASS ='Добавить новый ски-пасс';
+    readonly FORM_CARD_NUMBER ='Начало действия';
+    readonly FORM_DATE_START ='Начало действия';
+    readonly FORM_DATE_END ='Коец действия';
+    readonly FORM_COST ='Стоимость';
+    // private constructor(){}
+}
