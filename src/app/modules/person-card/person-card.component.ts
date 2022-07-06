@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { VisitorType } from 'src/app/types/types';
+import { InstructorType } from '../shared/interfaces';
 
 @Component({
     selector: 'app-person-card',
@@ -8,7 +9,7 @@ import { VisitorType } from 'src/app/types/types';
 })
 export class PersonCardComponent {
 
-  @Input() visitor: VisitorType = {
+  @Input() person: VisitorType = {
       fio: 'Зубенко Михаил Петрович',
       birthday: new Date(1970, 0, 1),
       photo: '../../../assets/images/user-default.jpg',
