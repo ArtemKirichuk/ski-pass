@@ -42,7 +42,7 @@ import { InstructorCardModule } from '../instructor-card/instructor-card.module'
         ButtonModule,
         PersonCardModule,
         InputModule,
-        PhotoFormModule
+        PhotoFormModule,
         InstructorCardModule
     ]
 })
