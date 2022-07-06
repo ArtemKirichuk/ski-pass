@@ -5,14 +5,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
 import { EditProfileComponent } from 'src/app/components/edit-profile/edit-profile.component';
+import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/read-profile-user.component';
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
 import { ButtonModule } from '../button/button.module';
-import { MainPageComponent } from './main-page.component';
-import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
-import { ButtonAddModule } from '../button-add/button-add.module';
+import { InputModule } from '../input/input.module';
 import { PersonCardModule } from '../person-card/person-card.module';
-import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/read-profile-user.component';
+import { PhotoFormModule } from '../photo-form/photo-form.module';
+import { MainPageComponent } from './main-page.component';
 
 
 @NgModule({
@@ -36,8 +37,9 @@ import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/r
         MatDialogModule,
         RouterModule.forChild([{path:'', component: MainPageComponent}]),
         ButtonModule,
-        ButtonAddModule,
-        PersonCardModule
+        PersonCardModule,
+        InputModule,
+        PhotoFormModule
     ]
 })
 export class MainPageModule { }

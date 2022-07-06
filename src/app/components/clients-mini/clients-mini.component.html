@@ -2,9 +2,10 @@
     <div class="clients-mini-block__header">
         <span class="clients-mini-block__text">{{CLIENTS}}</span>
 
-        <app-button-add
+        <app-button
             [text]="ADD"
-        ></app-button-add>
+            [mode]="'icon'"
+        ></app-button>
 
         <img src="{{minimizeURL}}" class="clients-mini-block__minimize" (click)="minimize()">
 
@@ -14,8 +15,8 @@
     <div class="clients-mini-block__list" *ngIf="showVisitors">
         <app-person-card
             class="clients-mini-block__client"
-            *ngFor="let cl of visitors; let ind = index"
-            [visitor]="cl"
+            *ngFor="let visitor of visitors; let ind = index"
+            [person]="visitor"
         ></app-person-card>
     </div>
 

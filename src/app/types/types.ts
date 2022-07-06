@@ -28,6 +28,7 @@ export type InstructorType ={
     visiter:string;
     category: string;
     photo:string;
+    startWork: Date;
 }
 export type KeySkiPassType = {
     cardNumber:number;

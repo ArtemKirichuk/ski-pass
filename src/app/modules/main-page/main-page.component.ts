@@ -19,8 +19,12 @@ export class MainPageComponent{
 
     }
 
-    logOut(){
+    logOut():void{
         this.userService.singOut();
         this.router.navigate(['/autorization']);
+    }
+
+    routingMainPage():void{
+        this.router.navigate(['']);
     }
 }

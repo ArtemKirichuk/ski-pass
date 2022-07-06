@@ -2,19 +2,21 @@ import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AgeModule } from '../age/age.module';
-import { PersonCardComponent } from './person-card.component';
+import { InstructorCardComponent } from './instructor-card.component';
 
 @NgModule({
     declarations: [
-        PersonCardComponent
+        InstructorCardComponent
     ],
-    exports: [PersonCardComponent],
+    exports: [
+        InstructorCardComponent
+    ],
     imports: [
         MatMenuModule,
         MatIconModule,
         AgeModule
     ]
 })
-export class PersonCardModule {
+export class InstructorCardModule {
 
 }

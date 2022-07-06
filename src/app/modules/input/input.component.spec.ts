@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReadProfileUserComponent } from './read-profile-user.component';
+import { InputComponent } from './input.component';
 
-describe('ReadProfileUserComponent', () => {
-    let component: ReadProfileUserComponent;
-    let fixture: ComponentFixture<ReadProfileUserComponent>;
+describe('InputComponent', () => {
+    let component: InputComponent;
+    let fixture: ComponentFixture<InputComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ ReadProfileUserComponent ]
+            declarations: [ InputComponent ]
         })
             .compileComponents();
 
-        fixture = TestBed.createComponent(ReadProfileUserComponent);
+        fixture = TestBed.createComponent(InputComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

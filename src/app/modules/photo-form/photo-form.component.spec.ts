@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReadProfileUserComponent } from './read-profile-user.component';
+import { PhotoFormComponent } from './photo-form.component';
 
-describe('ReadProfileUserComponent', () => {
-    let component: ReadProfileUserComponent;
-    let fixture: ComponentFixture<ReadProfileUserComponent>;
+describe('PhotoFormComponent', () => {
+    let component: PhotoFormComponent;
+    let fixture: ComponentFixture<PhotoFormComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ ReadProfileUserComponent ]
+            declarations: [ PhotoFormComponent ]
         })
             .compileComponents();
 
-        fixture = TestBed.createComponent(ReadProfileUserComponent);
+        fixture = TestBed.createComponent(PhotoFormComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

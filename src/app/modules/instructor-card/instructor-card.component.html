@@ -1,0 +1,34 @@
+<div class="instructor-card">
+    <div class="instructor-card__content">
+        <div class="instructor-card__avatar-block">
+            <img src="{{instructor.photo}}" class="instructor-card__avatar">
+        </div>
+        
+        <div class="instructor-card__info">        
+            <div>
+                <span class="instructor-card__text">{{instructor.fio}}</span>
+            </div>
+            <div>
+                <span class="instructor-card__text instructor-card__text_opacity_50">{{instructor.category+". "}}</span>   
+                <span class="instructor-card__text instructor-card__text_opacity_50">{{instructor.startWork | age}}</span>   
+            </div>  
+        </div>  
+    </div>    
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="instructor-card__menu-btn">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <span>{{APPOINT_COACH}}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{EDIT}}</span>
+    </button>
+    <button mat-menu-item>
+        <span>{{DELETE}}</span>
+    </button>
+    </mat-menu>
+
+</div>

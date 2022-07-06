@@ -16,7 +16,7 @@ export class ClientsComponent {
     allVisitors: VisitorType[] = [];
 
     constructor() {
-        for(let i = 0; i < 100; i++) {
+        for(let i = 0; i < 30; i++) {
             if (i % 2 === 0) {
                 const visitor: VisitorType = {
                     fio: `Иванов Иван Иванович ${i}`,

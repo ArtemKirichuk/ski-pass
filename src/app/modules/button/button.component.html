@@ -1,1 +1,13 @@
-<button class="custom-btn" [disabled]="disabled">{{text}}</button>
+<button 
+*ngIf="mode==='noIcon'"
+class="custom-btn" 
+[disabled]="disabled">
+    {{text}}
+</button>
+
+<button 
+class="btn-add"
+*ngIf="mode==='icon'">
+    <img src="../../../assets/images/plus-icon.svg" class="btn-add__plus">
+    {{text}}
+</button>

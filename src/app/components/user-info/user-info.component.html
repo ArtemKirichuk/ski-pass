@@ -2,8 +2,11 @@
     <div class = "info__avatar">
         <div class = "info__avatar__div">
             <img class = "info__avatar__div__img" src="{{user.photo}}" alt="" (click)="readInfoProfile()">
+            <div>
+                <mat-icon class = "info__avatar__div__img__icon" (click)="editProfile()">edit</mat-icon>
+            </div>
         </div>
-        <mat-icon class = "info__avatar__icon" (click)="editProfile()">edit</mat-icon>
+        
     </div>
     <div class="info__name">{{user.name + " " + user.surname}}</div>
     <div class="info__post">{{POST}}</div>
