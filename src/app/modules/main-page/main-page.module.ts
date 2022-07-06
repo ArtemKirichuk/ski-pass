@@ -13,6 +13,8 @@ import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mi
 import { PersonCardModule } from '../person-card/person-card.module';
 import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/read-profile-user.component';
 import { InputModule } from '../input/input.module';
+import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/instructors-mini.component';
+import { InstructorCardModule } from '../instructor-card/instructor-card.module';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { InputModule } from '../input/input.module';
         UserInfoComponent,
         EditProfileComponent,
         ClientsMiniComponent,
-        ReadProfileUserComponent
+        ReadProfileUserComponent,
+        InstructorsMiniComponent
     ],
     exports: [
         MainPageComponent,
@@ -37,7 +40,8 @@ import { InputModule } from '../input/input.module';
         RouterModule.forChild([{path:'', component: MainPageComponent}]),
         ButtonModule,
         PersonCardModule,
-        InputModule
+        InputModule,
+        InstructorCardModule
     ]
 })
 export class MainPageModule { }
