@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
@@ -11,20 +11,27 @@ import { UserType } from 'src/app/types/types';
     templateUrl: './edit-profile.component.html',
     styleUrls: ['./edit-profile.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
+    
 })
-export class EditProfileComponent implements OnDestroy{
+export class EditProfileComponent implements OnDestroy, OnInit{
 
     TITLE  = 'Личный кабинет администратора';
     OK  = 'OK';
     IMG_NOT_FOUND  = 'Изображение не найдено';
     DEFAULT_IMG  = '../../../assets/images/default-photo.svg';
     ERROR_EMPTY_NAME = 'Необходимо заполнить имя';
-    editProfileGroup : FormGroup;
+    NAME  = 'Имя';
+    SURNAME  = 'Фамилия';
+    editProfileGroup : FormGroup = {} as FormGroup;
     user$ : BehaviorSubject<UserType> = new BehaviorSubject({} as UserType);
     destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(public dialogRef: MatDialogRef<EditProfileComponent>, public userService:UserService) { 
-        console.log(this.user$.value);
+        //console.log(this.user$.value);
+        
+    }
+
+    ngOnInit(): void {
         this.userService.currentUser$
             .pipe(takeUntil(this.destroy$))
             .subscribe(value=>{
@@ -51,7 +58,7 @@ export class EditProfileComponent implements OnDestroy{
 
     doneEditProfile() : void{
         const formValue = this.editProfileGroup.getRawValue();
-        
+        console.log(formValue);
         if(this.user$.value.photo==this.DEFAULT_IMG){
             this.user$.value.photo='';
         }

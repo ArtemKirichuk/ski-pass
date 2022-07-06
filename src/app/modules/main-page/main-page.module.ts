@@ -12,6 +12,7 @@ import { MainPageComponent } from './main-page.component';
 import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/read-profile-user.component';
+import { InputModule } from '../input/input.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/r
         MatDialogModule,
         RouterModule.forChild([{path:'', component: MainPageComponent}]),
         ButtonModule,
-        PersonCardModule
+        PersonCardModule,
+        InputModule
     ]
 })
 export class MainPageModule { }
