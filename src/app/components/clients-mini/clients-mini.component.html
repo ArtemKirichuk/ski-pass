@@ -15,8 +15,8 @@
     <div class="clients-mini-block__list" *ngIf="showVisitors">
         <app-person-card
             class="clients-mini-block__client"
-            *ngFor="let cl of visitors; let ind = index"
-            [visitor]="cl"
+            *ngFor="let visitor of visitors; let ind = index"
+            [person]="visitor"
         ></app-person-card>
     </div>
 

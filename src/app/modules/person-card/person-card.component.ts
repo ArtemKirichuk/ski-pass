@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { VisitorType } from 'src/app/types/types';
-import { InstructorType } from '../shared/interfaces';
 
 @Component({
     selector: 'app-person-card',

@@ -1,1 +1,26 @@
-<p>instructors works!</p>
+<div class="instructors-block">
+    <div class="clients-block__header">
+
+        <span class="instructors-block__text">{{INSTRUCTORS}}</span>
+
+        <app-button
+        [text]="ADD"
+        [mode]="'icon'"
+        ></app-button>
+
+        <app-paginator
+            [itemsOnPage]="26"
+            [allItems]="allInstructors"
+            (onChangePage)="onChangedPage($event)">            
+        </app-paginator>
+
+    </div>   
+
+    <div class="instructors-block__list">
+        <app-instructor-card
+        class="instructors-block__instructor"
+        *ngFor="let instructor of showedInstructors;"
+        [instructor]="instructor"
+        ></app-instructor-card>
+    </div>
+</div>
