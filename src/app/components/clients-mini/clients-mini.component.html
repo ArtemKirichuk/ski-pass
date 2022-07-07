@@ -5,6 +5,7 @@
         <app-button
             [text]="ADD"
             [mode]="'icon'"
+            (click) = "addNewClients()"
         ></app-button>
 
         <img src="{{minimizeURL}}" class="clients-mini-block__minimize" (click)="minimize()">

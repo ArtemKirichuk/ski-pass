@@ -17,6 +17,7 @@ export class InputComponent implements ControlValueAccessor{
 
   @Input() title  = 'title';
   @Input() value  = 'text';
+  @Input() type = 'text';
   onChange = (val:string)=>{this.value = val;};
   onTouched = (val:string)=>{this.value = val;};
 

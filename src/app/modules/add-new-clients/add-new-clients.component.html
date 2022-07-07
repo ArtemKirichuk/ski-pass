@@ -1,0 +1,46 @@
+
+<app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
+<form class = "add-clients" [formGroup]="addClientsForm" novalidate>
+    <app-photo-form 
+        [img] = "DEFAULT_IMG" 
+        (imgLink)="handlerEvent($event)">
+    </app-photo-form>
+
+    <app-input 
+        class = "add-clients__input" 
+        [title]="NAME"  
+        formControlName="name">
+    </app-input>
+    <small 
+        class = "add-clients__error" 
+        *ngIf = "addClientsForm.get('name')?.errors?.['required'] && addClientsForm.get('name')?.touched">
+            {{ERROR_EMPTY_NAME}}
+    </small>
+    
+    <app-input 
+        class = "add-clients__input-number" 
+        [title]="NUMBER"  
+        [type]="NUMBER_TYPE"
+        formControlName="numberSkiPasses">
+    </app-input>
+    <small 
+        class = "add-clients__error" 
+        *ngIf = "addClientsForm.get('numberSkiPasses')?.errors?.['required'] && addClientsForm.get('numberSkiPasses')?.touched">
+            {{ERROR_EMPTY_NUMBER}}
+    </small>
+
+    <app-input 
+        class = "add-clients__input" 
+        [title]="SPORT"  
+        formControlName="category">
+    </app-input>
+    <small 
+        class = "add-clients__error" 
+        *ngIf = "addClientsForm.get('category')?.errors?.['required'] && addClientsForm.get('category')?.touched">
+            {{ERROR_EMPTY_SPORT}}
+    </small>
+    
+    <div class = "edit-profile__button">
+        <app-button  mat-dialog-close [text]="BUTTON_ADD" [disabled]="addClientsForm.invalid" (click)="doneAddClients()" ></app-button>
+    </div>
+</form>

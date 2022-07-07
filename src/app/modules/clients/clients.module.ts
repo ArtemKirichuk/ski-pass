@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { PaginatorModule } from 'src/app/modules/paginator/paginator.module';
+import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
 import { ButtonModule } from '../button/button.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { ClientsComponent } from './clients.component';
@@ -23,7 +24,8 @@ import { ClientsComponent } from './clients.component';
         MatIconModule,        
         ButtonModule,
         PaginatorModule,
-        PersonCardModule
+        PersonCardModule,
+        AddNewClientsModule
     ]
 })
 export class ClientsModule { }

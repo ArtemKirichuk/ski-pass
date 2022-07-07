@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType } from 'src/app/types/types';
 
 @Component({
@@ -6,7 +7,7 @@ import { InstructorType } from 'src/app/types/types';
     templateUrl: './instructors.component.html',
     styleUrls: ['./instructors.component.scss']
 })
-export class InstructorsComponent {
+export class InstructorsComponent implements OnInit{
 
     INSTRUCTORS = 'Инструкторы';
     ADD = 'Добавить нового';
@@ -14,23 +15,16 @@ export class InstructorsComponent {
     showedInstructors: InstructorType[] = [];
     allInstructors: InstructorType[] = [];
 
-    constructor() {
-        for(let i = 0; i < 100; i++) {
-            const instructor: InstructorType = {
-                fio: 'Клеткин Николай Кимович',
-                birthday: new Date(1964, 0, 7),
-                category: 'Лыжи',
-                photo: '../../../assets/images/user-default.jpg',
-                sex: 'муж',
-                visiter: '',
-                startWork: new Date(2012, 0, 12)
-            };
-
-            this.allInstructors.push(instructor);
-        }
+    constructor(private instructorService: InstuctorService) {
     }
 
-    onChangedPage(event: InstructorType[]) {
+    ngOnInit(): void {
+        this.instructorService.getInstructors().subscribe(resp => {
+            this.allInstructors = resp;
+        });
+    }
+
+    onChangedPage(event: InstructorType[]): void {
         this.showedInstructors = event;
     }
 

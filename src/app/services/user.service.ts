@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UserType } from '../types/types';
+import { KeyUserType, updateType, UserType } from '../types/types';
 
 @Injectable({
     providedIn: 'root'
@@ -27,8 +27,8 @@ export class UserService {
         return this.httpClient.post<UserType>('user', user);
     }
 
-    changeUser(user: UserType): Observable<boolean>{
-        return this.httpClient.put<boolean>('user', user);
+    changeUser(update: updateType<KeyUserType, UserType>): Observable<boolean>{
+        return this.httpClient.put<boolean>('user', update);
     }   
 
     getUsers(): Observable<UserType[]> {

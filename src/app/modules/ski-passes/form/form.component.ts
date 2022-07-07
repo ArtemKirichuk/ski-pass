@@ -22,9 +22,7 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
     @Inject(MAT_DIALOG_DATA) public skiPass: SkiPassType) {
     super()
     this.isCreate = skiPass ? false : true;
-    
-    
-    
+
     this.skiPassForm = new FormGroup({
       photo: new FormControl(this.skiPass?.photo),
       cardNumber: new FormControl(this.skiPass?.cardNumber, [
@@ -41,7 +39,7 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
       ]),
       cost: new FormControl(this.skiPass?.cost, [Validators.required]),
     });
-    
+
   }
   ngOnInit(): void {
   }
