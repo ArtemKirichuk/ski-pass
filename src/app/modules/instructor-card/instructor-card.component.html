@@ -15,7 +15,7 @@
         </div>  
     </div>    
     
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="instructor-card__menu-btn">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="instructor-card__menu-btn" *ngIf="showMenu">
         <mat-icon>more_vert</mat-icon>
     </button>
 

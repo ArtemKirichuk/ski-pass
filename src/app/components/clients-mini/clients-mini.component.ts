@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNewClientsComponent } from 'src/app/modules/add-new-clients/add-new-clients.component';
-import { UserService } from 'src/app/services/user.service';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 

@@ -18,6 +18,7 @@ import { MainPageComponent } from './main-page.component';
 import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/instructors-mini.component';
 import { InstructorCardModule } from '../instructor-card/instructor-card.module';
 import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
+import { SelectModule } from '../select/select.module';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
         PhotoFormModule,
         TitleModalFormModule,
         InstructorCardModule,
-        AddNewClientsModule
+        AddNewClientsModule,
+        SelectModule
     ]
 })
 export class MainPageModule { }

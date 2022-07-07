@@ -20,6 +20,7 @@ export class InstructorsMiniComponent implements OnInit {
     minimizeURL = this.arrowUpURL;
 
     constructor(private instructorService: InstuctorService) {
+
     }
 
     ngOnInit(): void {
@@ -37,5 +38,5 @@ export class InstructorsMiniComponent implements OnInit {
         else {
             this.minimizeURL = this.arrowUpURL;
         }
-    }
+    }  
 }
