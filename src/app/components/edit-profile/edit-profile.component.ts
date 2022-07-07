@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-import { UserType } from 'src/app/types/types';
+import { KeyUserType, updateType, UserType } from 'src/app/types/types';
 
 @Component({
     selector: 'app-edit-profile',
@@ -23,6 +23,7 @@ export class EditProfileComponent implements OnDestroy, OnInit{
     editProfileGroup : FormGroup = {} as FormGroup;
     user$ : BehaviorSubject<UserType> = new BehaviorSubject({} as UserType);
     destroy$: Subject<boolean> = new Subject<boolean>();
+    userKey = '';
 
     constructor(public dialogRef: MatDialogRef<EditProfileComponent>, public userService:UserService) { 
                 
@@ -41,6 +42,8 @@ export class EditProfileComponent implements OnDestroy, OnInit{
             name: new FormControl(this.user$.value.name, Validators.required),
             surname:new FormControl(this.user$.value.surname)
         });
+
+        this.userKey = this.user$.value.name;
     }
 
     ngOnDestroy(): void {
@@ -64,7 +67,12 @@ export class EditProfileComponent implements OnDestroy, OnInit{
         }
         if(formValue.name){
             this.user$.value.name = formValue.name;
-            this.userService.changeUser(this.user$.value)
+            const update: updateType<KeyUserType, UserType> = {
+                oldKey: {name: this.userKey},
+                newRow: this.user$.value
+            };
+
+            this.userService.changeUser(update)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(val=>{
                     if(val){
