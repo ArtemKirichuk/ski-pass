@@ -2,14 +2,14 @@
     <p class="title__textTitle">{{FORM_TITLE_SKIPASS}}</p>
     <mat-icon mat-dialog-close class="title__iconClose">close</mat-icon>
 </div>
-<form [formGroup]="skiPssForm" class="form">
+<form [formGroup]="skiPassForm" class="form">
     <!-- Фото карты -->
     <div class="form__conteiner">
-        <img class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
+        <img id="img"class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
     </div>
     <!-- Номер карты -->
     <mat-form-field class="form__field" appearance="fill">
-        <input formControlName="cardNumber" id="cardNumber" [placeholder]="FORM_CARD_NUMBER" type="number" matInput />
+        <input formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER"  matInput />
     </mat-form-field>
     <!-- Дата начала -->
     <mat-form-field class="form__field" appearance="fill">
@@ -26,32 +26,16 @@
         <mat-datepicker #dateEndRef></mat-datepicker>
         <!-- <mat-error *ngIf="dateEnd.errors?.['errorDate']">Дата завершения меньше даты начала.</mat-error> -->
     </mat-form-field>
-     <!-- Стоимость -->
-     <mat-form-field class="form__field" appearance="fill">
-        <input matInput formControlName="cardNumber" id="cardNumber" [placeholder]="FORM_COST" type="number"  />
+    <!-- Стоимость -->
+    <mat-form-field class="form__field" appearance="fill">
+        <input matInput formControlName="cost" type="number" [placeholder]="FORM_COST"  />
     </mat-form-field>
-    <!-- Кнопка подтверждения -->
-    <div class="form__button">
-        <app-button [mat-dialog-close]="skiPass" [text]="ADD" [disabled]="skiPssForm.invalid" (click)="saveRow()">
-        </app-button>
-
-    </div>
-
 
 </form>
-<!-- <form class="form" [formGroup]="skiPssForm">
-    <div class="form__conteiner">
-        <img class="form__conteiner__img" [src]="srcDefaultPhoto" type="image" alt="{{'IMG_NOT_FOUND'}}">
-    </div>
-    <div class="form__fild">
-        <input matInput class="form__fild__input" [matDatepicker]="dateEndRef" [matDatepickerFilter]="compareCompleteDate"
-            (dateChange)="changeDate()" formControlName="dateEnd">
-        <mat-datepicker-toggle class="form__fild__iconDatepicker" matSuffix [for]="dateEndRef"></mat-datepicker-toggle>
-        <mat-datepicker #dateEndRef></mat-datepicker>
-    </div>
-    <div class="form__button">
-        <app-button mat-dialog-close [text]="'OK'" [disabled]="skiPssForm.invalid" (click)="doneEditProfile()">
-        </app-button>
-
-    </div>
-</form> -->
+<!-- Кнопка подтверждения -->
+<div class="form__button">
+    <!-- [disabled]="skiPassForm.invalid" -->
+    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPass" [text]="ADD" [disabled]="skiPassForm.invalid"
+        (click)="saveRow()"></app-button>
+    <app-button *ngIf="!isCreate" [mat-dialog-close]="skiPass" [text]="SAVE" (click)="saveRow()"></app-button>
+</div>
