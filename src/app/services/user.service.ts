@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserType, VisitorType } from '../types/types';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserType } from '../types/types';
 
 @Injectable({
     providedIn: 'root'
@@ -13,18 +13,29 @@ export class UserService {
     constructor(private httpClient: HttpClient) {
     }
 
+    //------------------------------ stream -----------------------------------
+    getUser$(): BehaviorSubject<UserType> {
+        return this.currentUser$;
+    }
+
+    sendUser$(user: UserType): void {
+        this.currentUser$.next(user);
+    }
+
+    //------------------------------- user ------------------------------------
     createUser(user: UserType): Observable<UserType> {
         return this.httpClient.post<UserType>('user', user);
     }
 
     changeUser(user: UserType): Observable<boolean>{
         return this.httpClient.put<boolean>('user', user);
+    }   
+
+    getUsers(): Observable<UserType[]> {
+        return this.httpClient.get<UserType[]>('user');
     }
 
-    getUser$(): BehaviorSubject<UserType> {
-        return this.currentUser$;
-    }
-
+    //------------------------------ singIn -----------------------------------
     singIn(user: UserType): Observable<boolean> {
         return this.httpClient.post<boolean>('signIn', user);
     }
@@ -37,15 +48,7 @@ export class UserService {
         return this.httpClient.delete<boolean>('singIn');
     }
 
-    getUsers(): Observable<UserType[]> {
-        return this.httpClient.get<UserType[]>('user');
-    }
+    
 
-    getVisitors(){
-        return this.httpClient.get<VisitorType[]>('visiter');
-    }
-
-    sendUser$(user: UserType): void {
-        this.currentUser$.next(user);
-    }
+    
 }
