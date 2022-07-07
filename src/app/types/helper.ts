@@ -23,6 +23,7 @@ export  class i18n{
     readonly EDIT ='Назначить посетителя';
     readonly DELETE ='Удалить';
     readonly ADD ='Добавить';
+    readonly SAVE ='Сохранить';
     readonly FORM_TITLE_SKIPASS ='Добавить новый ски-пасс';
     readonly FORM_CARD_NUMBER ='Начало действия';
     readonly FORM_DATE_START ='Начало действия';

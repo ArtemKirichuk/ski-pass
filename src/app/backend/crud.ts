@@ -29,7 +29,7 @@ export class crud {
 
     delete<T extends object>(keyRow: T): boolean {
         const db = this.get<T>();
-
+        
         const delRow = db.find(e => {
             for (const key in keyRow) {
                 if (e[key] !== keyRow[key]) {
