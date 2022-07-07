@@ -17,6 +17,7 @@ import { TitleModalFormModule } from '../title-modal-form/title-modal-form.modul
 import { MainPageComponent } from './main-page.component';
 import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/instructors-mini.component';
 import { InstructorCardModule } from '../instructor-card/instructor-card.module';
+import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { InstructorCardModule } from '../instructor-card/instructor-card.module'
         InputModule,
         PhotoFormModule,
         TitleModalFormModule,
-        InstructorCardModule
+        InstructorCardModule,
+        AddNewClientsModule
     ]
 })
 export class MainPageModule { }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { VisitorType } from 'src/app/types/types';
+import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class ClientsComponent {
     showedVisitors: VisitorType[] = [];
     allVisitors: VisitorType[] = [];
 
-    constructor() {
+    constructor(private dialog : MatDialog) {
         for(let i = 0; i < 30; i++) {
             if (i % 2 === 0) {
                 const visitor: VisitorType = {
@@ -45,5 +47,10 @@ export class ClientsComponent {
 
     onChangedPage(event: VisitorType[]) {
         this.showedVisitors = event;
+    }
+
+    addNewClients():void{
+        console.log("tut");
+        this.dialog.open(AddNewClientsComponent, {width:'35%'});
     }
 }

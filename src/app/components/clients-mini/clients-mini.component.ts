@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddNewClientsComponent } from 'src/app/modules/add-new-clients/add-new-clients.component';
 import { UserService } from 'src/app/services/user.service';
 import { VisitorType } from 'src/app/types/types';
 
@@ -19,7 +21,7 @@ export class ClientsMiniComponent implements OnInit {
     arrowDownURL = '../../../assets/images/arrow-down-icon.svg';
     minimizeURL = this.arrowUpURL;
 
-    constructor(private userService: UserService) { }
+    constructor(private dialog:MatDialog) { }
 
     ngOnInit(): void {
     // this.userService.getVisitors().subscribe(resp => {
@@ -48,6 +50,11 @@ export class ClientsMiniComponent implements OnInit {
         else {
             this.minimizeURL = this.arrowUpURL;
         }
+    }
+
+    addNewClients():void{
+        console.log("tut");
+        this.dialog.open(AddNewClientsComponent, {width:'35%'});
     }
 
 }
