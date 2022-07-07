@@ -22,29 +22,16 @@ export class ClientsMiniComponent implements OnInit {
     arrowDownURL = '../../../assets/images/arrow-down-icon.svg';
     minimizeURL = this.arrowUpURL;
 
-    constructor(private userService: UserService,
-                private visitorService: VisitorService,
+    constructor(private visitorService: VisitorService,
                 private dialog:MatDialog) { }
 
     ngOnInit(): void {
-    // this.userService.getVisitors().subscribe(resp => {
-    //   this.visitors = resp.slice(0, 12);
-    // });
-        for(let i = 0; i < 12; i++) {
-            const visitor: VisitorType = {
-                fio: 'Жмышенко Валерий Альбертович',
-                birthday: new Date(1925, 4, 2),
-                instructor: '',
-                photo: '../../../assets/images/user-default.jpg',
-                skiPass: 0,
-                sport: ''
-            };
-
-            this.visitors.push(visitor);
-        }
+        this.visitorService.getVisitors().subscribe(resp => {
+            this.visitors = resp.slice(0, 12);
+        });
     }
 
-    minimize() {
+    minimize(): void {
         this.showVisitors = !this.showVisitors;
 
         if (this.minimizeURL === this.arrowUpURL) {
@@ -55,8 +42,8 @@ export class ClientsMiniComponent implements OnInit {
         }
     }
 
-    addNewClients():void{
-        console.log("tut");
+    addNewClients(): void {
+        console.log('tut');
         this.dialog.open(AddNewClientsComponent, {width:'35%'});
     }
 

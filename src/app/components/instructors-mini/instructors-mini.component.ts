@@ -13,34 +13,23 @@ export class InstructorsMiniComponent implements OnInit {
     ADD = 'Добавить нового';
     ALL = 'Все';
     instructors: InstructorType[] = [];
-    showVisitors = true;
+    showInstructors = true;
 
     arrowUpURL = '../../../assets/images/arrow-up-icon.svg';
     arrowDownURL = '../../../assets/images/arrow-down-icon.svg';
     minimizeURL = this.arrowUpURL;
 
     constructor(private instructorService: InstuctorService) {
-
     }
 
     ngOnInit(): void {
-        for(let i = 0; i < 12; i++) {
-            const instructor: InstructorType = {
-                fio: 'Щекочихина-Крестовоздвиженская Мерседес Ивановна',
-                birthday: new Date(1925, 4, 2),
-                category: 'Лыжи',
-                photo: '../../../assets/images/user-default.jpg',
-                sex: 'Муж',
-                visiter: '',
-                startWork: new Date(2012, 0, 0)
-            };
-
-            this.instructors.push(instructor);
-        }
+        this.instructorService.getInstructors().subscribe(resp => {
+            this.instructors = resp.slice(0, 12);
+        });
     }
 
-    minimize() {
-        this.showVisitors = !this.showVisitors;
+    minimize(): void {
+        this.showInstructors = !this.showInstructors;
 
         if (this.minimizeURL === this.arrowUpURL) {
             this.minimizeURL = this.arrowDownURL;

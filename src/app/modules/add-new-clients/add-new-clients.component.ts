@@ -15,12 +15,12 @@ export class AddNewClientsComponent implements OnInit, OnDestroy {
     ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
     ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
     ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта';
-    BIRTHDAY = "День рождения";
-    NUMBER = "Номер ски-пасса";
-    NUMBER_TYPE = "number";
-    INSTRUCTOR = "Назначить тренера";
-    SPORT = "Вид спорта";
-    BUTTON_ADD = "Добавить";
+    BIRTHDAY = 'День рождения';
+    NUMBER = 'Номер ски-пасса';
+    NUMBER_TYPE = 'number';
+    INSTRUCTOR = 'Назначить тренера';
+    SPORT = 'Вид спорта';
+    BUTTON_ADD = 'Добавить';
 
     addClientsForm : FormGroup;
     destroy$: Subject<boolean> = new Subject<boolean>();
@@ -36,7 +36,7 @@ export class AddNewClientsComponent implements OnInit, OnDestroy {
                 Validators.maxLength(16)]),
             instructor : new FormControl(null),
             category : new FormControl(null, Validators.required)
-        })
+        });
     }
 
     ngOnInit(): void {

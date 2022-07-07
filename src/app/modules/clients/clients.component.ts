@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
 
@@ -9,7 +10,7 @@ import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.compo
     templateUrl: './clients.component.html',
     styleUrls: ['./clients.component.scss']
 })
-export class ClientsComponent {
+export class ClientsComponent implements OnInit{
 
     CLIENTS = 'Посетители';
     ADD = 'Добавить нового';
@@ -17,40 +18,22 @@ export class ClientsComponent {
     showedVisitors: VisitorType[] = [];
     allVisitors: VisitorType[] = [];
 
-    constructor(private dialog : MatDialog) {
-        for(let i = 0; i < 30; i++) {
-            if (i % 2 === 0) {
-                const visitor: VisitorType = {
-                    fio: `Иванов Иван Иванович ${i}`,
-                    birthday: new Date(1970, 0, 1),
-                    photo: '../../../assets/images/user-default.jpg',
-                    instructor: '',
-                    skiPass: 0,
-                    sport: ''
-                };
-                this.allVisitors.push(visitor);
-              
-            }
-            else {
-                const visitor: VisitorType = {
-                    fio: `Петрова Наталья Ивановна ${i}`,
-                    birthday: new Date(1975, 0, 1),
-                    photo: '../../../assets/images/user-default.jpg',
-                    instructor: '',
-                    skiPass: 0,
-                    sport: ''
-                };
-                this.allVisitors.push(visitor);
-            }
-        }
+    constructor(private dialog : MatDialog,
+                private visitorService: VisitorService) {        
     }
 
-    onChangedPage(event: VisitorType[]) {
+    ngOnInit(): void {
+        this.visitorService.getVisitors().subscribe(resp=> {
+            this.allVisitors = resp;
+        });
+    }
+
+    onChangedPage(event: VisitorType[]): void  {
         this.showedVisitors = event;
     }
 
-    addNewClients():void{
-        console.log("tut");
+    addNewClients(): void {
+        console.log('tut');
         this.dialog.open(AddNewClientsComponent, {width:'35%'});
     }
 }
