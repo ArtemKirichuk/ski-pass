@@ -87,8 +87,8 @@ export class MainInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body: this.Visiter.create<VisitorType>(request.body) }));
         }
         if (request.method === 'PUT') {
-            const isSuccess = this.Instructor.delete<KeyVisitorType>(request.body.oldKey) &&
-                this.Instructor.create<VisitorType>(request.body.newRow);
+            const isSuccess = this.Visiter.delete<KeyVisitorType>(request.body.oldKey) &&
+                this.Visiter.create<VisitorType>(request.body.newRow);
             return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         if (request.method === 'DELETE') {

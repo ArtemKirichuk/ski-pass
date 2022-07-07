@@ -1,0 +1,23 @@
+.title{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-right: 4%;
+    &__text{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        color: #212121;
+    }
+    &__icon{
+        color: black;
+        text-align: right;
+        line-height: 17px;
+        font-size: 15px;
+        font-weight: 1000;
+        margin-left: 40%;
+    }
+}
