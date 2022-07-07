@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PaginatorModule } from '../paginator/paginator.module';
 
+
 @NgModule({
     declarations: [
         SkiPassesComponent,
@@ -41,8 +42,7 @@ import { PaginatorModule } from '../paginator/paginator.module';
         MatMenuModule,
         MatIconModule,
         MatFormFieldModule,
-        MatInputModule,
-
+        MatInputModule
     ],
 
 })
