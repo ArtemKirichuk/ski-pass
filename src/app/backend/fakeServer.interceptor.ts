@@ -51,8 +51,8 @@ export class MainInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body: this.User.create<UserType>(request.body) }));
         }
         if (request.method === 'PUT') {
-            const isSuccess = this.Instructor.delete<KeyUserType>(request.body.oldKey) &&
-                this.Instructor.create<UserType>(request.body.newRow);
+            const isSuccess = this.User.delete<KeyUserType>(request.body.oldKey) &&
+                this.User.create<UserType>(request.body.newRow);
             return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         return next.handle(request.clone());
@@ -122,8 +122,8 @@ export class MainInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body: this.SkiPass.create<SkiPassType>(request.body) }));
         }
         if (request.method === 'PUT') {
-            const isSuccess = this.Instructor.delete<KeySkiPassType>(request.body.oldKey) &&
-                this.Instructor.create<SkiPassType>(request.body.newRow);
+            const isSuccess = this.SkiPass.delete<KeySkiPassType>(request.body.oldKey) &&
+                this.SkiPass.create<SkiPassType>(request.body.newRow);
             return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         return next.handle(request.clone());
