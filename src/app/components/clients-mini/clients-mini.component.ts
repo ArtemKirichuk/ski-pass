@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 
 @Component({
@@ -19,7 +20,8 @@ export class ClientsMiniComponent implements OnInit {
     arrowDownURL = '../../../assets/images/arrow-down-icon.svg';
     minimizeURL = this.arrowUpURL;
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService,
+                private visitorService: VisitorService) { }
 
     ngOnInit(): void {
     // this.userService.getVisitors().subscribe(resp => {
@@ -49,5 +51,4 @@ export class ClientsMiniComponent implements OnInit {
             this.minimizeURL = this.arrowUpURL;
         }
     }
-
 }
