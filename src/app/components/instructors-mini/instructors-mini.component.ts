@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType } from 'src/app/types/types';
 
 @Component({
@@ -17,6 +18,10 @@ export class InstructorsMiniComponent implements OnInit {
     arrowUpURL = '../../../assets/images/arrow-up-icon.svg';
     arrowDownURL = '../../../assets/images/arrow-down-icon.svg';
     minimizeURL = this.arrowUpURL;
+
+    constructor(private instructorService: InstuctorService) {
+
+    }
 
     ngOnInit(): void {
         for(let i = 0; i < 12; i++) {
@@ -44,5 +49,4 @@ export class InstructorsMiniComponent implements OnInit {
             this.minimizeURL = this.arrowUpURL;
         }
     }
-
 }
