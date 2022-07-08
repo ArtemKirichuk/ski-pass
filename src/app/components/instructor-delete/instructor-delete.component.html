@@ -1,0 +1,15 @@
+<div class="instructor-delete">
+    <app-title-modal-form [title]="TITLE" class="title"></app-title-modal-form>
+
+    <div class = "avatar-block">
+        <img class = "avatar-block__avatar" src="{{instructor.photo}}">      
+    </div>
+
+    <span class="instructor-delete__fio">{{instructor.fio}}</span>
+    <span class="instructor-delete__category">{{instructor.category}}</span>
+    <span class="instructor-delete__text">{{ TEXT }}</span>
+
+    <app-button [text]="OK" class="btn">        
+    </app-button>
+
+</div>

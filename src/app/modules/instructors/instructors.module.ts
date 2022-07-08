@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
 import { InstructorInfoComponent } from 'src/app/components/instructor-info/instructor-info.component';
 import { PaginatorModule } from 'src/app/modules/paginator/paginator.module';
 import { ButtonModule } from '../button/button.module';
 import { InstructorCardModule } from '../instructor-card/instructor-card.module';
 import { PersonCardModule } from '../person-card/person-card.module';
+import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
 import { InstructorsComponent } from './instructors.component';
 
 
@@ -13,7 +15,8 @@ import { InstructorsComponent } from './instructors.component';
 @NgModule({
     declarations: [
         InstructorsComponent,
-        InstructorInfoComponent
+        InstructorInfoComponent,
+        InstructorDeleteComponent
     ],
     exports:[
         InstructorsComponent
@@ -24,7 +27,8 @@ import { InstructorsComponent } from './instructors.component';
         ButtonModule,
         PaginatorModule,
         PersonCardModule,
-        InstructorCardModule
+        InstructorCardModule,
+        TitleModalFormModule
     ]
 })
 export class InstructorsModule { }
