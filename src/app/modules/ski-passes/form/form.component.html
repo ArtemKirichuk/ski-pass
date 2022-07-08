@@ -5,8 +5,9 @@
 <form [formGroup]="skiPassForm" class="form">
     <!-- Фото карты -->
     <div class="form__conteiner">
-        <img id="img" class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
+        <img  class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
     </div>
+    <input id="file"formControlName="photo" type="file" hidden="true">
     <!-- Номер карты -->
     <mat-form-field class="form__field" appearance="fill">
         <input formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER" matInput />

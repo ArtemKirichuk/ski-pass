@@ -50,5 +50,6 @@ export  class i18n{
     readonly FORM_DATE_START ='Начало действия';
     readonly FORM_DATE_END ='Коец действия';
     readonly FORM_COST ='Стоимость';
+    readonly PASS ='Пропуск';
     // private constructor(){}
 }

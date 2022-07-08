@@ -2,11 +2,11 @@
     <div class="block__header">
         <span class="block__text">{{SKIPASSES}}</span>
         <app-button [mode]="'icon'"  (click)="openForm()"[text]="ADD_NEW"></app-button>
-        <app-paginator [itemsOnPage]="3" [allItems]="skipasses" (onChangePage)="onChangedPage($event)"></app-paginator>
+        <!-- <app-paginator [itemsOnPage]="3" [allItems]="skipasses" (onChangePage)="onChangedPage($event)"></app-paginator> -->
     </div>
     
     <div>
         
-        <app-ski-passes-card></app-ski-passes-card>
+        <app-ski-passes-card *ngFor="let item of skipasses$ | async" [skipass]="item"></app-ski-passes-card>
     </div>
 </div>
