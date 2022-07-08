@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType } from 'src/app/types/types';
 
@@ -15,7 +16,8 @@ export class InstructorsComponent implements OnInit{
     showedInstructors: InstructorType[] = [];
     allInstructors: InstructorType[] = [];
 
-    constructor(private instructorService: InstuctorService) {
+    constructor(private dialog : MatDialog,
+                private instructorService: InstuctorService) {
     }
 
     ngOnInit(): void {
@@ -26,6 +28,5 @@ export class InstructorsComponent implements OnInit{
 
     onChangedPage(event: InstructorType[]): void {
         this.showedInstructors = event;
-    }
-
+    }    
 }
