@@ -18,11 +18,10 @@ export class InstructorCardComponent {
       startWork: new Date(2021, 0, 1)
   };
   @Input() showMenu = true;
-  constructor(){
-      console.log('pic', typeof this.instructor.photo);
-  }
+
 
   APPOINT_COACH = 'Назначить поситителя';
   EDIT = 'Редактировать';
   DELETE = 'Удалить';
+  EXPERIENCE = '. Опыт ';
 }

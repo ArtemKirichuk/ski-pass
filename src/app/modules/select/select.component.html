@@ -1,6 +1,13 @@
 <div class="custom-select">
     <div class="custom-select__item">
-        <input type="text" value="{{displayedItem.fio}}" class="custom-select__input" disabled>
+        <input 
+            type="text" 
+            [(ngModel)]="value" 
+            class="custom-select__input" 
+            (input)="onChange(value)"
+            (change)="onChange(value)"
+            disabled>
+
         <button (click)="toggleVariants()" class="custom-select__show-variants">
             <img src="../../../assets/images/arrow-down-filled.svg" alt="">
         </button>
