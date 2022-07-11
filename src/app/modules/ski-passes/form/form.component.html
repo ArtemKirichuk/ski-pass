@@ -11,11 +11,10 @@
     <!-- Номер карты -->
     <mat-form-field class="form__field" appearance="fill">
         <input formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER" matInput />
+        <mat-error *ngIf="cardNumber?.errors?.['errorCard']">Неверный номер карты.</mat-error>
     </mat-form-field>
     <!-- Дата начала -->
-
     <mat-form-field class="form__field " appearance="fill">
-
         <input matInput formControlName="dateStart" [matDatepicker]="dateStartRef" [placeholder]="FORM_DATE_START"
             (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateStartRef"></mat-datepicker-toggle>
@@ -29,13 +28,20 @@
         <mat-datepicker-toggle matSuffix [for]="dateEndRef"></mat-datepicker-toggle>
         <mat-datepicker #dateEndRef></mat-datepicker>
         <mat-error *ngIf="dateEnd.errors?.['errorDate']">Дата завершения меньше даты начала.</mat-error>
-        <!-- <mat-error *ngIf="dateEnd.errors?.['errorDate']">Дата завершения меньше даты начала.</mat-error> -->
     </mat-form-field>
     <!-- Стоимость -->
     <mat-form-field class="form__field" appearance="fill">
         <input matInput formControlName="cost" type="number" [placeholder]="FORM_COST" />
     </mat-form-field>
-
+    <!-- Категория -->
+    <mat-form-field class="form__field" appearance="fill">
+        <input type="text" matInput formControlName="visiter" [placeholder]="VISITER" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
 </form>
 <!-- Кнопка подтверждения -->
 <div class="form__button">

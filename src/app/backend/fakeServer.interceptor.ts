@@ -126,6 +126,14 @@ export class MainInterceptor implements HttpInterceptor {
                 this.SkiPass.create<SkiPassType>(request.body.newRow);
             return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
+        if (request.method === 'DELETE') {
+            const cardNumberParam = request.params.get('cardNumber');
+            
+            if (!cardNumberParam)
+                return of(new HttpResponse({ status: 200, body: false }));
+            const cardNumber: KeySkiPassType = { cardNumber: Number(cardNumberParam) };
+            return of(new HttpResponse({ status: 200, body: this.SkiPass.delete<KeySkiPassType>(cardNumber) }));
+        }
         return next.handle(request.clone());
     }
 

@@ -1,7 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { Subject, takeUntil } from 'rxjs';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { i18n } from 'src/app/types/helper';
-import { SkiPassType } from 'src/app/types/types';
+import { KeySkiPassType, SkiPassType } from 'src/app/types/types';
+
+import { DeleteFormComponent } from '../delete-form/delete-form.component';
 
 @Component({
     selector: 'app-ski-passes-card',
@@ -10,10 +15,26 @@ import { SkiPassType } from 'src/app/types/types';
 })
 export class SkiPassesCardComponent extends i18n {
     @Input() skipass!: SkiPassType;
-    constructor() {
+    constructor(private matDialog: MatDialog) {
         super()
     }
+    @Output() deleteCard: EventEmitter<KeySkiPassType> = new EventEmitter<KeySkiPassType>()
+    destroy$ = new Subject()
     delete() {
         // this.skipassService
+    }
+    getPhoto(img: string) {
+        return `url(${img})`
+    }
+    openDeleteForm() {
+        const config = { height: '580px', width: '500px', data: this.skipass };
+        const dialogRef = this.matDialog.open(DeleteFormComponent, config);
+        dialogRef.afterClosed()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(isDelete => {
+                if (isDelete) {
+                    this.deleteCard.emit({ cardNumber: this.skipass.cardNumber });
+                }
+            })
     }
 }

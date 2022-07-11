@@ -1,21 +1,20 @@
 ::ng-deep .mat-dialog-container {
     border-radius: 12px;
 }
+
 .form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 60px;
+
     ::ng-deep {
         .mat-form-field-flex {
             border-radius: 10px;
             padding-top: 0;
         }
-        .mat-form-field-underline {
-            // display: none;
-            transform: scale3d(0.96, 0.2, 1);
-        }
     }
+
     &__conteiner {
         display: flex;
         margin-top: 2%;
@@ -27,16 +26,32 @@
         vertical-align: middle;
         outline: none;
         border-radius: 10px;
+
         &__img {
             width: 100%;
-            cursor: pointer;
             margin: 0 auto;
         }
     }
+
     &__field {
         width: 80%;
+
+        &__cardNumber {
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 50px;
+            color: #212121;
+        }
+
+        &__question {
+            text-align: center;
+            font-weight: 400;
+            line-height: 16.5px;
+            margin: 40px 0;
+        }
     }
 }
+
 .form__button {
     display: flex;
     justify-content: center;
@@ -47,6 +62,7 @@
         cursor: pointer;
     }
 }
+
 .title {
     display: flex;
     flex-direction: row;
@@ -54,12 +70,14 @@
     margin-top: 2%;
     margin-left: 4%;
     margin-right: 4%;
+
     &__textTitle {
         font-style: normal;
         font-weight: 500;
         line-height: 16px;
         color: #212121;
     }
+
     &__iconClose {
         cursor: pointer;
         color: black;
