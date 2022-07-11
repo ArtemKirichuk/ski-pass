@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, map, Subscription } from 'rxjs';
 import { AddNewClientsComponent } from 'src/app/modules/add-new-clients/add-new-clients.component';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
@@ -36,9 +36,13 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
             this.visitorService.sendVisitorToStream(resp);
         });
 
-        this.subscription = this.visitorService.getVisitorsListStream$().subscribe(resp => {
-            this.visitors$.next(resp);           
-        }); 
+        this.subscription = this.visitorService.getVisitorsListStream$()
+            .pipe(
+                map(value => value.slice(0, 10))
+            )
+            .subscribe(resp => {
+                this.visitors$.next(resp);           
+            }); 
     }
 
     ngOnDestroy(): void {

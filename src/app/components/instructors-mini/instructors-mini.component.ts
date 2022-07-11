@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, map, Subscription } from 'rxjs';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType } from 'src/app/types/types';
 import { InstructorDeleteComponent } from '../instructor-delete/instructor-delete.component';
@@ -36,9 +36,13 @@ export class InstructorsMiniComponent implements OnInit, OnDestroy {
             this.instructorService.sendInstructorToStream(resp);
         });
 
-        this.subscription = this.instructorService.getInstructorListStream$().subscribe(resp=>{
-            this.instructors$.next(resp);
-        });
+        this.subscription = this.instructorService.getInstructorListStream$()
+            .pipe(
+                map(value => value.slice(0, 10))
+            )
+            .subscribe(resp=>{
+                this.instructors$.next(resp);
+            });
     }
 
     ngOnDestroy(): void {
