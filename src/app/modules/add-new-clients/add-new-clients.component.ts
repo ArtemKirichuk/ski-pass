@@ -64,7 +64,7 @@ export class AddNewClientsComponent {
             fio: this.addClientsForm.get('name')?.value,
             birthday: this.addClientsForm.get('birthday')?.value,
             instructor: this.addClientsForm.get('instructor')?.value,
-            skiPass: this.addClientsForm.get('instructor')?.value,
+            skiPass: this.addClientsForm.get('numberSkiPasses')?.value,
             sport: this.addClientsForm.get('category')?.value,
             photo: this.photoClients
         };

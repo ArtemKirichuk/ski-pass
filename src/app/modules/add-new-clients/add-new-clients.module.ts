@@ -11,6 +11,7 @@ import { ButtonModule } from '../button/button.module';
 import { DatepickerModule } from '../datepicker/datepicker.module';
 import { InputModule } from '../input/input.module';
 import { PhotoFormModule } from '../photo-form/photo-form.module';
+import { SelectModule } from '../select/select.module';
 import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
 import { AddNewClientsComponent } from './add-new-clients.component';
 
@@ -33,7 +34,8 @@ import { AddNewClientsComponent } from './add-new-clients.component';
         MatNativeDateModule,
         MatInputModule,
         DatepickerModule,
-        MatButtonModule
+        MatButtonModule,
+        SelectModule
     ],
     exports:[
         AddNewClientsComponent
