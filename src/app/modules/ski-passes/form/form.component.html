@@ -5,18 +5,22 @@
 <form [formGroup]="skiPassForm" class="form">
     <!-- Фото карты -->
     <div class="form__conteiner">
-        <img id="img"class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
+        <img  class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
     </div>
+    <input id="file"formControlName="photo" type="file" hidden="true">
     <!-- Номер карты -->
     <mat-form-field class="form__field" appearance="fill">
-        <input formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER"  matInput />
+        <input formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER" matInput />
     </mat-form-field>
     <!-- Дата начала -->
-    <mat-form-field class="form__field" appearance="fill">
+
+    <mat-form-field class="form__field " appearance="fill">
+
         <input matInput formControlName="dateStart" [matDatepicker]="dateStartRef" [placeholder]="FORM_DATE_START"
             (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateStartRef"></mat-datepicker-toggle>
         <mat-datepicker #dateStartRef></mat-datepicker>
+
     </mat-form-field>
     <!-- Дата завершения -->
     <mat-form-field class="form__field" appearance="fill">
@@ -24,18 +28,19 @@
             [matDatepickerFilter]="compareCompleteDate" (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateEndRef"></mat-datepicker-toggle>
         <mat-datepicker #dateEndRef></mat-datepicker>
+        <mat-error *ngIf="dateEnd.errors?.['errorDate']">Дата завершения меньше даты начала.</mat-error>
         <!-- <mat-error *ngIf="dateEnd.errors?.['errorDate']">Дата завершения меньше даты начала.</mat-error> -->
     </mat-form-field>
     <!-- Стоимость -->
     <mat-form-field class="form__field" appearance="fill">
-        <input matInput formControlName="cost" type="number" [placeholder]="FORM_COST"  />
+        <input matInput formControlName="cost" type="number" [placeholder]="FORM_COST" />
     </mat-form-field>
 
 </form>
 <!-- Кнопка подтверждения -->
 <div class="form__button">
     <!-- [disabled]="skiPassForm.invalid" -->
-    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPass" [text]="ADD" [disabled]="skiPassForm.invalid"
+    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="ADD" [disabled]="skiPassForm.invalid"
         (click)="saveRow()"></app-button>
     <app-button *ngIf="!isCreate" [mat-dialog-close]="skiPass" [text]="SAVE" (click)="saveRow()"></app-button>
 </div>

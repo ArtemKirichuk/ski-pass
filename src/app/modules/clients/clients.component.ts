@@ -1,56 +1,74 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { ClientDeleteComponent } from 'src/app/components/client-delete/client-delete.component';
+import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
+import { PaginatorComponent } from '../paginator/paginator.component';
 
 
 @Component({
     selector: 'app-clients',
     templateUrl: './clients.component.html',
-    styleUrls: ['./clients.component.scss']
+    styleUrls: ['./clients.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClientsComponent {
+export class ClientsComponent implements OnInit, OnDestroy{
 
     CLIENTS = 'Посетители';
     ADD = 'Добавить нового';
 
     showedVisitors: VisitorType[] = [];
-    allVisitors: VisitorType[] = [];
+    @ViewChild('paginator') paginator:PaginatorComponent<VisitorType> | undefined;
 
-    constructor(private dialog : MatDialog) {
-        for(let i = 0; i < 30; i++) {
-            if (i % 2 === 0) {
-                const visitor: VisitorType = {
-                    fio: `Иванов Иван Иванович ${i}`,
-                    birthday: new Date(1970, 0, 1),
-                    photo: '../../../assets/images/user-default.jpg',
-                    instructor: '',
-                    skiPass: 0,
-                    sport: ''
-                };
-                this.allVisitors.push(visitor);
-              
-            }
-            else {
-                const visitor: VisitorType = {
-                    fio: `Петрова Наталья Ивановна ${i}`,
-                    birthday: new Date(1975, 0, 1),
-                    photo: '../../../assets/images/user-default.jpg',
-                    instructor: '',
-                    skiPass: 0,
-                    sport: ''
-                };
-                this.allVisitors.push(visitor);
-            }
-        }
+    allVisitors$ = new BehaviorSubject<VisitorType[]>([]);
+    subscription = new Subscription();
+
+    constructor(private dialog : MatDialog,
+                private visitorService: VisitorService) {        
     }
 
-    onChangedPage(event: VisitorType[]) {
+    ngOnInit(): void {
+        this.visitorService.getVisitors().subscribe(resp=> {
+            this.visitorService.sendVisitorToStream(resp);
+        });
+
+        this.subscription = this.visitorService.getVisitorsListStream$().subscribe(resp => {
+            this.allVisitors$.next(resp);
+            if (this.paginator) {
+                this.paginator.allItems = resp;
+                this.paginator?.setPage(this.paginator.currentPage);
+            }            
+        });        
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
+
+    onChangedPage(event: VisitorType[]): void  {
         this.showedVisitors = event;
     }
 
-    addNewClients():void{
-        
-        this.dialog.open(AddNewClientsComponent, {width:'35%'});
+    addNewClients(): void {
+        console.log('tut');
+        this.dialog.open(AddNewClientsComponent, {width:'35%'});            
+    }
+
+    onDeleteVisitor(visitor: VisitorType) {
+        const data = { data: visitor };
+        const dialogRef = this.dialog.open(ClientDeleteComponent, data);
+        dialogRef.afterClosed().subscribe(ok => {
+            if(ok) {
+                this.visitorService.deleteVisitor(visitor).subscribe(resp => {
+                    if (resp) {
+                        this.visitorService.getVisitors().subscribe(visitorsList => {
+                            this.visitorService.sendVisitorToStream(visitorsList);
+                        });
+                    }
+                });
+            }
+        });        
     }
 }

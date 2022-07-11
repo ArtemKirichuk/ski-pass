@@ -1,0 +1,100 @@
+.instructor-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 6% 0 6%;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box; 
+    }
+
+    &__title {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 16px;
+    }
+
+    &__edit {
+        margin-right: 21px;
+    }
+
+    &__fio {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 36px;
+        line-height: 138.19%;
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    &__sport {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        /* or 171% */
+
+        text-align: center;
+        text-transform: capitalize;
+        color: #707EF9;
+    }
+
+    &__label {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 24px;
+        /* or 200% */
+
+        text-transform: uppercase;
+        text-align: center;
+
+        color: rgba(160, 160, 160, 0.541327);
+    }
+
+    &__value {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        /* identical to box height */
+        color: rgba(0, 0, 0, 0.87);
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    &__all-info {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.avatar-block {
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 173px;
+    height: 173px;
+    margin-top: 20px;
+
+    &__avatar {
+        width: auto;
+        height: 100%;
+        margin: 0 auto;
+    }
+}
+
+.btn {
+    margin-top: 20px;
+    width: 169px;
+}

@@ -5,7 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class AgePipe implements PipeTransform {
 
-    transform(dateBirth: Date): string {
+    transform(dateBirthOut: Date): string {
+        const dateBirth = new Date(dateBirthOut);
         const dateNow: Date = new Date();
         if (dateNow < dateBirth) return '';
 
@@ -15,6 +16,9 @@ export class AgePipe implements PipeTransform {
        (dateNow.getMonth() === dateBirth.getMonth() && dateNow.getDate() <= dateBirth.getDate())) {
             age = age - 1;
         }
+
+        if (age === 0) return 'Менее года';
+        if(age >= 11 && age <= 19) return age.toString() + ' лет';
 
         let ageMod = age;
         do {

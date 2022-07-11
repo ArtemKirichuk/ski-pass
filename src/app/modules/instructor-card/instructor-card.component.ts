@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InstructorType } from 'src/app/types/types';
 
 @Component({
@@ -8,17 +8,16 @@ import { InstructorType } from 'src/app/types/types';
 })
 export class InstructorCardComponent {
 
-  @Input() instructor: InstructorType = {
-      fio: 'Зубенко Михаил Петрович',
-      birthday: new Date(1970, 0, 1),
-      photo: '../../../assets/images/user-default.jpg',
-      category: 'Лыжи',
-      sex: 'Мужчина',
-      visiter: '',
-      startWork: new Date(2021, 0, 1)
-  };
+  @Input() instructor: InstructorType = { } as InstructorType;
+  @Input() showMenu = true;
+  @Output() onDeleteInstructor = new EventEmitter<InstructorType>();
 
   APPOINT_COACH = 'Назначить поситителя';
   EDIT = 'Редактировать';
   DELETE = 'Удалить';
+  EXPERIENCE = '. Опыт ';
+
+  deleteInstructor() {
+      this.onDeleteInstructor.emit(this.instructor);
+  }
 }

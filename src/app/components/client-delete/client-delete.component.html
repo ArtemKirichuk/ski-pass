@@ -1,0 +1,22 @@
+<div class="client-delete">
+    <app-title-modal-form 
+        [title]="TITLE" 
+        class="title"
+        (closeEvent)="closeNo()">
+    </app-title-modal-form>
+
+    <div class = "avatar-block">
+        <img class = "avatar-block__avatar" src="{{visitor.photo}}">      
+    </div>
+
+    <span class="client-delete__fio">{{visitor.fio}}</span>
+    <span class="client-delete__sport">{{visitor.sport}}</span>
+    <span class="client-delete__text">{{ TEXT }}</span>
+
+    <app-button 
+        [text]="OK" 
+        class="btn"
+        (click)="closeYes()">        
+    </app-button>
+
+</div>

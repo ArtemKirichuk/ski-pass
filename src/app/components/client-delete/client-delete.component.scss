@@ -1,0 +1,66 @@
+.client-delete {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 8% 0 8%;
+    align-items: center;
+
+    &__fio {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 36px;
+        line-height: 138.19%;
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    &__sport {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        /* or 171% */
+
+        text-align: center;
+        text-transform: capitalize;
+        color: #707EF9;
+    }
+
+    &__text {
+        margin-top: 35px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        /* identical to box height */
+        color: rgba(0, 0, 0, 0.87);
+        text-align: center;
+        margin-bottom: 35px;
+    }
+}
+
+.title {
+    width: 100%;
+}
+
+.avatar-block {
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 173px;
+    height: 173px;
+    margin-top: 20px;
+
+    &__avatar {
+        width: auto;
+        height: 100%;
+        margin: 0 auto;
+    }
+}
+
+.btn {
+    width: 169px;
+}

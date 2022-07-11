@@ -1,6 +1,12 @@
 ::ng-deep .mat-dialog-container{
     border-radius: 12px;
 }
+.front{
+    z-index: 9999;
+}
+::ng-deep .timepicker-overlay {
+    z-index: 1100 !important;
+  }
 .form {
     display: flex;
     flex-direction: column;

@@ -20,9 +20,10 @@
     &__list {
         display: flex;
         flex-wrap: wrap;
-        //width: 95%;
+        width: 100%;
         margin: 0 auto;
         margin-top: 30px;
+        justify-content: space-between;
     }
 
     &__client {

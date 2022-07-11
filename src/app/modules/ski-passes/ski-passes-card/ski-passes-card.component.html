@@ -1,5 +1,5 @@
-<div class="name">Двойной 8:30-16:00</div>
-<div class="cost">3150р</div>
+<div class="name">{{PASS}} {{skipass.dateStart | date}}-{{skipass.dateEnd | date}}</div>
+<div class="cost">{{skipass.cost}}</div>
 
 <button mat-icon-button [matMenuTriggerFor]="menu" class="menu">
     <mat-icon>more_vert</mat-icon>
@@ -11,7 +11,7 @@
     <button mat-menu-item>
         <span>{{EDIT}}</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="delete()">
         <span>{{DELETE}}</span>
     </button>
 </mat-menu>

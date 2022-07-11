@@ -1,0 +1,31 @@
+<div class="custom-select">
+    <div class="custom-select__item">
+        <input 
+            type="text" 
+            [(ngModel)]="value" 
+            class="custom-select__input" 
+            (input)="onChange(value)"
+            (change)="onChange(value)"
+            disabled>
+
+        <button (click)="toggleVariants()" class="custom-select__show-variants">
+            <img src="../../../assets/images/arrow-down-filled.svg" alt="">
+        </button>
+    </div>
+
+    
+
+    <div class="custom-select__variants" *ngIf="showVariants">
+        <div *ngFor="let instructor of instructors" class="custom-select__instructor" >
+            <app-instructor-card
+            [instructor]="instructor"
+            [showMenu]="false"
+            (click)="selectItem(instructor)"
+            ></app-instructor-card>
+        </div>
+        
+    </div>
+
+</div>
+
+
