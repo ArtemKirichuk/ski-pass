@@ -1,4 +1,4 @@
-<div class="clients-mini-block">
+<div class="clients-mini-block" *ngIf="visitors$ | async as visitors">
     <div class="clients-mini-block__header">
         <span class="clients-mini-block__text">{{CLIENTS}}</span>
 
@@ -18,6 +18,7 @@
             class="clients-mini-block__client"
             *ngFor="let visitor of visitors;"
             [person]="visitor"
+            (onDeleteVisitor)="onDeleteVisitor($event)"
         ></app-person-card>
     </div>
 
