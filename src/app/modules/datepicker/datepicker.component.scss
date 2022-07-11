@@ -1,0 +1,52 @@
+.date{
+    height: calc(3.0rem + 2px);
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    box-sizing: border-box;
+
+    &:focus {
+        color: #212529;
+        border-color: #bdbdbd;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+    }
+    
+    &__input{
+        position: relative;
+        border: none;
+        background-color: transparent;
+        font-family: 'Roboto';
+        width: 90%;
+        border-radius: 10px;
+        //height: calc(2.25rem + 2px);
+        flex-basis: 90%;
+        
+        
+        &::placeholder{
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 24px;
+            color: #bdbdbd;
+        }
+
+        text-transform: capitalize;
+        outline: none;
+
+        &:focus {
+            color: #212529;
+            outline: 0;
+        }
+        
+    }
+    &__icon{
+        text-align: right;
+    }
+}

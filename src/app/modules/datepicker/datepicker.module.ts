@@ -1,42 +1,38 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ButtonModule } from '../button/button.module';
-import { DatepickerModule } from '../datepicker/datepicker.module';
-import { InputModule } from '../input/input.module';
-import { PhotoFormModule } from '../photo-form/photo-form.module';
-import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
-import { AddNewClientsComponent } from './add-new-clients.component';
+import { HeaderDatepickerComponent } from 'src/app/components/header-datepicker/header-datepicker.component';
+import { DatepickerComponent } from './datepicker.component';
 
 
 
 @NgModule({
     declarations: [
-        AddNewClientsComponent
+        DatepickerComponent,
+        HeaderDatepickerComponent
     ],
     imports: [
         CommonModule,
-        TitleModalFormModule,
-        PhotoFormModule,
-        ButtonModule,
-        InputModule,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatDatepickerModule,
         MatIconModule,
         MatNativeDateModule,
         MatInputModule,
-        DatepickerModule,
-        MatButtonModule
+        MatMomentDateModule,
+        MatButtonModule,
+        FormsModule
     ],
     exports:[
-        AddNewClientsComponent
+        DatepickerComponent,
+        HeaderDatepickerComponent
     ]
 })
-export class AddNewClientsModule { }
+export class DatepickerModule { }

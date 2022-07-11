@@ -37,17 +37,19 @@
 
     &:focus {
         color: #212529;
-        background-color: #fff;
+        //background-color: #fff;
         border-color: #bdbdbd;
         outline: 0;
         box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
     }
 
-    &::-webkit-inner-spin-button {
-        /* display: none; <- Crashes Chrome on hover */
-        -webkit-appearance: none;
-        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-    }
+    
 
     
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

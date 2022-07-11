@@ -56,7 +56,6 @@ export class ClientsMiniComponent implements OnInit {
     }
 
     addNewClients():void{
-        console.log("tut");
         this.dialog.open(AddNewClientsComponent, {width:'35%'});
     }
 

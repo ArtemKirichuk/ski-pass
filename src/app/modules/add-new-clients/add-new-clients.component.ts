@@ -1,33 +1,40 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Subject } from 'rxjs';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
     selector: 'app-add-new-clients',
     templateUrl: './add-new-clients.component.html',
     styleUrls: ['./add-new-clients.component.scss']
 })
-export class AddNewClientsComponent implements OnInit, OnDestroy {
+export class AddNewClientsComponent {
     TITLE  = 'Добавить нового посетителя';
     DEFAULT_IMG  = '../../../assets/images/default-photo.svg';
+    IMG_DATEPICKER = '../../assets/images/datepicker.svg';
     NAME = 'ФИО';
     ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
     ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
     ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта';
-    BIRTHDAY = "День рождения";
-    NUMBER = "Номер ски-пасса";
-    NUMBER_TYPE = "number";
-    INSTRUCTOR = "Назначить тренера";
-    SPORT = "Вид спорта";
-    BUTTON_ADD = "Добавить";
+    BIRTHDAY = 'День рождения';
+    NUMBER = 'Номер ски-пасса';
+    NUMBER_TYPE = 'number';
+    TEXT_TYPE = 'text';
+    INSTRUCTOR = 'Назначить тренера';
+    SPORT = 'Вид спорта';
+    BUTTON_ADD = 'Добавить';
+    value='';
+    clickAddButton  = false;
+    photoClients : string = this.DEFAULT_IMG;
 
     addClientsForm : FormGroup;
-    destroy$: Subject<boolean> = new Subject<boolean>();
 
-    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) { 
+    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+       
+        iconRegistry.addSvgIcon('datepicker', sanitizer.bypassSecurityTrustResourceUrl(this.IMG_DATEPICKER)); 
         this.addClientsForm = new FormGroup({
-            photo : new FormControl(null),
             name: new FormControl(null, Validators.required),
             birthday: new FormControl(null, Validators.required),
             numberSkiPasses: new FormControl(null, [
@@ -36,16 +43,7 @@ export class AddNewClientsComponent implements OnInit, OnDestroy {
                 Validators.maxLength(16)]),
             instructor : new FormControl(null),
             category : new FormControl(null, Validators.required)
-        })
-    }
-
-    ngOnInit(): void {
-        
-    }
-
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.unsubscribe();
+        });
     }
 
     handlerClose($event:boolean):void{
@@ -55,25 +53,19 @@ export class AddNewClientsComponent implements OnInit, OnDestroy {
     }
 
     handlerEvent($event:string):void{
-        this.addClientsForm.patchValue({photo:$event});
+        this.photoClients = $event;
     }
 
-    checkEmptyName():boolean{
-        const formValue = this.addClientsForm.getRawValue();
-        return formValue.name === ''; 
-    }
-
-    checkEmptyNumber():boolean{
-        const formValue = this.addClientsForm.getRawValue();
-        return formValue.numberSkiPasses === ''; 
-    }
-
-    checkEmptyCategory():boolean{
-        const formValue = this.addClientsForm.getRawValue();
-        return formValue.category === ''; 
-    }
 
     doneAddClients():void{
-        
+        this.clickAddButton = true;
     }
+
+
+    checkName():boolean{
+        return this.addClientsForm.get('name')?.value === null && this.clickAddButton;
+    }
+
+    
 }
+

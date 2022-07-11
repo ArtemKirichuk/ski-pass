@@ -50,7 +50,7 @@ export class ClientsComponent {
     }
 
     addNewClients():void{
-        console.log("tut");
+        
         this.dialog.open(AddNewClientsComponent, {width:'35%'});
     }
 }
