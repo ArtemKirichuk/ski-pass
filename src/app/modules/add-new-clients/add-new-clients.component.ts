@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { VisitorType } from 'src/app/types/types';
 
 
 @Component({
@@ -48,7 +49,7 @@ export class AddNewClientsComponent {
 
     handlerClose($event:boolean):void{
         if($event){
-            this.dialogRef.close();
+            this.dialogRef.close(null);
         }
     }
 
@@ -59,6 +60,15 @@ export class AddNewClientsComponent {
 
     doneAddClients():void{
         this.clickAddButton = true;
+        const visitor: VisitorType = {
+            fio: this.addClientsForm.get('name')?.value,
+            birthday: this.addClientsForm.get('birthday')?.value,
+            instructor: this.addClientsForm.get('instructor')?.value,
+            skiPass: this.addClientsForm.get('instructor')?.value,
+            sport: this.addClientsForm.get('category')?.value,
+            photo: this.photoClients
+        };
+        this.dialogRef.close(visitor);
     }
 
 
