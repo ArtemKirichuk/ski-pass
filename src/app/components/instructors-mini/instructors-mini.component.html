@@ -1,4 +1,4 @@
-<div class="instructors-mini-block">
+<div class="instructors-mini-block" *ngIf="instructors$ | async as instructors">
     <div class="instructors-mini-block__header">
         <span class="instructors-mini-block__text">{{INSTRUCTORS}}</span>
 
@@ -18,6 +18,7 @@
             *ngFor="let instructor of instructors;"
             [instructor]="instructor"
             [showMenu]="true"
+            (onDeleteInstructor)="onDeleteInstructor($event)"
         ></app-instructor-card>
     </div>
 

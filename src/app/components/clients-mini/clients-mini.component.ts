@@ -28,7 +28,7 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
     minimizeURL = this.arrowUpURL;
 
     constructor(private visitorService: VisitorService,
-                private dialog:MatDialog) { }
+                private dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.visitorService.getVisitors().subscribe(resp => {
