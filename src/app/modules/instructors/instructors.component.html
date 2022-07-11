@@ -1,14 +1,15 @@
-<div class="instructors-block">
+<div class="instructors-block" *ngIf="allInstructors$ | async as allInstructors">
     <div class="clients-block__header">
 
         <span class="instructors-block__text">{{INSTRUCTORS}}</span>
 
         <app-button
-        [text]="ADD"
-        [mode]="'icon'"
+            [text]="ADD"
+            [mode]="'icon'"
         ></app-button>
 
         <app-paginator
+            #paginator
             [itemsOnPage]="26"
             [allItems]="allInstructors"
             (onChangePage)="onChangedPage($event)">            
@@ -18,9 +19,10 @@
 
     <div class="instructors-block__list">
         <app-instructor-card
-        class="instructors-block__instructor"
-        *ngFor="let instructor of showedInstructors;"
-        [instructor]="instructor"
+            class="instructors-block__instructor"
+            *ngFor="let instructor of showedInstructors;"
+            [instructor]="instructor"
+            (onDeleteInstructor)="onDeleteInstructor($event)"
         ></app-instructor-card>
     </div>
 </div>

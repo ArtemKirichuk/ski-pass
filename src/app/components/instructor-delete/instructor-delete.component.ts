@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { InstructorType } from 'src/app/types/types';
 
 @Component({
@@ -15,7 +15,16 @@ export class InstructorDeleteComponent {
 
     instructor: InstructorType = {} as InstructorType;
 
-    constructor(@Inject(MAT_DIALOG_DATA) public _instructor: InstructorType) { 
+    constructor(@Inject(MAT_DIALOG_DATA) public _instructor: InstructorType,
+                private dialogRef: MatDialogRef<InstructorDeleteComponent>) { 
         this.instructor = _instructor;
+    }
+
+    closeNo() {
+        this.dialogRef.close(null);
+    }
+
+    closeYes() {
+        this.dialogRef.close(true);
     }
 }
