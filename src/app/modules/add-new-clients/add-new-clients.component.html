@@ -2,20 +2,29 @@
 <app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
 <form class = "add-clients" [formGroup]="addClientsForm" novalidate>
     <app-photo-form 
-        [img] = "DEFAULT_IMG" 
+        [img] = "photoClients" 
         (imgLink)="handlerEvent($event)">
     </app-photo-form>
+
 
     <app-input 
         class = "add-clients__input" 
         [title]="NAME"  
+        [type]="TEXT_TYPE"
         formControlName="name">
     </app-input>
-    <small 
+    <!-- <small 
         class = "add-clients__error" 
-        *ngIf = "addClientsForm.get('name')?.errors?.['required'] && addClientsForm.get('name')?.touched">
+        *ngIf = "checkName()">
             {{ERROR_EMPTY_NAME}}
-    </small>
+    </small> -->
+
+    <app-datepicker
+        class="add-clients__date"
+        [dayPlaceholder] = "BIRTHDAY"
+        formControlName = "birthday">
+    </app-datepicker>
+
     
     <app-input 
         class = "add-clients__input-number" 
@@ -23,24 +32,25 @@
         [type]="NUMBER_TYPE"
         formControlName="numberSkiPasses">
     </app-input>
-    <small 
+    <!-- <small 
         class = "add-clients__error" 
-        *ngIf = "addClientsForm.get('numberSkiPasses')?.errors?.['required'] && addClientsForm.get('numberSkiPasses')?.touched">
+        *ngIf = "addClientsForm.controls['name'].invalid && addClientsForm.controls['name'].hasError('touched')">
             {{ERROR_EMPTY_NUMBER}}
-    </small>
+    </small> -->
 
     <app-input 
         class = "add-clients__input" 
         [title]="SPORT"  
+        [type]="TEXT_TYPE"
         formControlName="category">
     </app-input>
-    <small 
+    <!-- <small 
         class = "add-clients__error" 
         *ngIf = "addClientsForm.get('category')?.errors?.['required'] && addClientsForm.get('category')?.touched">
             {{ERROR_EMPTY_SPORT}}
-    </small>
+    </small> -->
     
-    <div class = "edit-profile__button">
+    <div class = "add-clients__button">
         <app-button  mat-dialog-close [text]="BUTTON_ADD" [disabled]="addClientsForm.invalid" (click)="doneAddClients()" ></app-button>
     </div>
 </form>

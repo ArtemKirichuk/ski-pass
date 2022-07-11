@@ -58,7 +58,7 @@ export class EditProfileComponent implements OnDestroy, OnInit{
 
     doneEditProfile() : void{
         const formValue = this.editProfileGroup.getRawValue();
-        console.log(formValue);
+        
         if(this.user$.value.photo==this.DEFAULT_IMG){
             this.user$.value.photo='';
         }
@@ -78,7 +78,7 @@ export class EditProfileComponent implements OnDestroy, OnInit{
                     if(val){
                         this.userService.currentUser$.next(this.user$.value);
                     }
-                    console.log(this.userService.currentUser$.value);
+                    
                 });
         }
         

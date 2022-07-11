@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { VisitorType } from 'src/app/types/types';
 
 @Component({
@@ -8,16 +8,14 @@ import { VisitorType } from 'src/app/types/types';
 })
 export class PersonCardComponent {
 
-  @Input() person: VisitorType = {
-      fio: 'Зубенко Михаил Петрович',
-      birthday: new Date(1970, 0, 1),
-      photo: '../../../assets/images/user-default.jpg',
-      instructor: '',
-      skiPass: 0,
-      sport: ''
-  };
+  @Input() person: VisitorType = {} as VisitorType;
+  @Output() onDeleteVisitor = new EventEmitter<VisitorType>();
 
   APPOINT_COACH = 'Назначить тренера';
   EDIT = 'Редактировать';
   DELETE = 'Удалить';
+
+  deleteVisitor() {
+      this.onDeleteVisitor.emit(this.person);
+  }
 }

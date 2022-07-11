@@ -1,23 +1,39 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddNewClientsComponent } from './add-new-clients.component';
-import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
-import { PhotoFormModule } from '../photo-form/photo-form.module';
-import { ButtonModule } from '../button/button.module';
-import { InputModule } from '../input/input.module';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { ButtonModule } from '../button/button.module';
+import { DatepickerModule } from '../datepicker/datepicker.module';
+import { InputModule } from '../input/input.module';
+import { PhotoFormModule } from '../photo-form/photo-form.module';
+import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
+import { AddNewClientsComponent } from './add-new-clients.component';
 
 
 
 @NgModule({
-    declarations: [AddNewClientsComponent],
+    declarations: [
+        AddNewClientsComponent
+    ],
     imports: [
         CommonModule,
         TitleModalFormModule,
         PhotoFormModule,
         ButtonModule,
         InputModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatNativeDateModule,
+        MatInputModule,
+        DatepickerModule,
+        MatButtonModule
     ],
     exports:[
         AddNewClientsComponent
