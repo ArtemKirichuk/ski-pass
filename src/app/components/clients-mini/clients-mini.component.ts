@@ -61,20 +61,32 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
     }
 
     addNewClients(): void {
-        console.log('tut');
-        this.dialog.open(AddNewClientsComponent, {width:'35%'});
+        const dialogRef = this.dialog.open(AddNewClientsComponent, {width:'35%'});
+        dialogRef.afterClosed().subscribe(visitor => {
+            if (visitor) {
+                this.visitorService.createVisitor(visitor).subscribe(ok => {
+                    if (ok) {
+                        this.updateVisitors();
+                    }
+                });
+            }
+        });
     }
 
-    onDeleteVisitor(visitor: VisitorType) {
+    updateVisitors(): void{
+        this.visitorService.getVisitors().subscribe(visitorsList => {
+            this.visitorService.sendVisitorToStream(visitorsList);
+        });
+    }
+
+    onDeleteVisitor(visitor: VisitorType): void {
         const data = { data: visitor };
         const dialogRef = this.dialog.open(ClientDeleteComponent, data);
         dialogRef.afterClosed().subscribe(resp => {
             if(resp) {
                 this.visitorService.deleteVisitor(visitor).subscribe(resp => {
                     if (resp) {
-                        this.visitorService.getVisitors().subscribe(visitorsList => {
-                            this.visitorService.sendVisitorToStream(visitorsList);
-                        });
+                        this.updateVisitors();
                     }
                 });
             }
