@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VisitorType } from 'src/app/types/types';
 
 @Component({
@@ -14,7 +14,16 @@ export class ClientDeleteComponent {
     OK = 'OK';
 
     visitor: VisitorType = {} as VisitorType;
-    constructor(@Inject(MAT_DIALOG_DATA) public _visitor: VisitorType) { 
+    constructor(@Inject(MAT_DIALOG_DATA) public _visitor: VisitorType,
+                private dialogRef: MatDialogRef<ClientDeleteComponent>) { 
         this.visitor = _visitor;
+    }
+
+    closeNo() {
+        this.dialogRef.close(null);
+    }
+
+    closeYes() {
+        this.dialogRef.close(true);
     }
 }

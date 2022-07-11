@@ -1,14 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
     selector: 'app-paginator',
     templateUrl: './paginator.component.html',
-    styleUrls: ['./paginator.component.scss']
+    styleUrls: ['./paginator.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PaginatorComponent<T> implements OnInit {
 
-  @Input()itemsOnPage = 26;
+  @Input()itemsOnPage = 26;  
+
   @Input()allItems: Array<T> = [];
 
   @Output() onChangePage = new EventEmitter<T[]>();
