@@ -2,10 +2,13 @@
 <app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
 <div class = "info" *ngIf="user$ | async as user" novalidate>
     
-    <app-photo-form 
-        [img] = "user.photo" 
-        (imgLink)="handlerEvent($event)">
-    </app-photo-form>
+    <div class = "info__avatar">
+        <div class = "info__avatar__div">
+            <img class = "info__avatar__div__img" src="{{user.photo}}" alt="">
+        </div>
+        <mat-icon class = "info__avatar__icon" (click)="editProfile()">edit</mat-icon>
+    </div>
+
     
     <h2 class="info__name">
         {{user.name + " " + user.surname}} 
