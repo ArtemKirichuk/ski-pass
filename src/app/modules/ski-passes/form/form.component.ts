@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { map, Observable, startWith } from 'rxjs';
 import { CustomValidator, i18n, parseImg } from 'src/app/types/helper';
 import { SkiPassType } from 'src/app/types/types';
 
@@ -15,9 +16,13 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
     srcPhoto: string = 'assets/images/default-photo.svg';
 
     isCreate: boolean;
+    get cardNumber() { return this.skiPassForm.get('cardNumber'); }
     get dateStart() { return this.skiPassForm.get('dateStart'); }
     get dateEnd() { return this.skiPassForm.get('dateEnd')!; }
     get photo() { return this.skiPassForm.get('photo')!; }
+    get visiter() { return this.skiPassForm.get('visiter')!; }
+    visiters:string[]=[]
+    filteredOptions!: Observable<string[]>;
     constructor(private sanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) public skiPass: SkiPassType) {
         super();
@@ -26,7 +31,8 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         this.skiPassForm = new FormGroup({
             photo: new FormControl(this.skiPass?.photo),
             cardNumber: new FormControl(this.skiPass?.cardNumber, [
-                Validators.required
+                Validators.required,
+                CustomValidator.cardNumber()
             ]),
             dateStart: new FormControl(this.skiPass?.dateStart, [
                 Validators.required,
@@ -38,12 +44,20 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
 
             ]),
             cost: new FormControl(this.skiPass?.cost, [Validators.required]),
+            visiter: new FormControl(this.skiPass?.visiter),
         });
 
     }
     ngOnInit(): void {
+        this.filteredOptions = this.visiter.valueChanges.pipe(
+            startWith(''),
+            map(value => this.filterVisiter(value || '')),
+          );
     }
-
+    private filterVisiter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+        return this.visiters.filter(e => e.toLowerCase().includes(filterValue));
+      }
     changeDate(): void {
         this.skiPassForm.controls['dateStart'].updateValueAndValidity();
         this.skiPassForm.controls['dateEnd'].updateValueAndValidity();
@@ -66,10 +80,11 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         input.accept = '.jpg, .jpeg, .png';
         input.onchange = (event: Event) => {
             const file: File = (event.target as HTMLInputElement).files![0];
-            parseImg(file, 'URL', (res: string, file: File) => {
-                // this.srcPhoto = this.sanitizer.bypassSecurityTrustUrl(res);
-                this.srcPhoto = res;
-            });
+            if (file)
+                parseImg(file, 'URL', (res: string, file: File) => {
+                    // this.srcPhoto = this.sanitizer.bypassSecurityTrustUrl(res);
+                    this.srcPhoto = res;
+                });
         };
         input.click();
     }

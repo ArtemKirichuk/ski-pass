@@ -5,7 +5,7 @@ import { SkiPassesComponent } from './ski-passes.component';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { SkiPassesCardComponent } from './ski-passes-card/ski-passes-card.component';
 
 
@@ -14,17 +14,20 @@ import { ButtonModule } from '../button/button.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PaginatorModule } from '../paginator/paginator.module';
-
-
+import localeRu from '@angular/common/locales/ru';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DeleteFormComponent } from './delete-form/delete-form.component';
 @NgModule({
     declarations: [
         SkiPassesComponent,
         SkiPassesCardComponent,
-        SkiPassesFormComponent
+        SkiPassesFormComponent,
+        DeleteFormComponent
     ],
     imports: [
         FormsModule,
@@ -42,8 +45,15 @@ import { PaginatorModule } from '../paginator/paginator.module';
         MatMenuModule,
         MatIconModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatSelectModule,
+        MatAutocompleteModule
     ],
+    providers: [ ],
 
 })
-export class SkiPassesModule { }
+export class SkiPassesModule { 
+    constructor(){
+        registerLocaleData(localeRu,'ru')
+      }
+}
