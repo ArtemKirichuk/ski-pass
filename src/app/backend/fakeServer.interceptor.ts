@@ -119,6 +119,7 @@ export class MainInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body: this.SkiPass.get<SkiPassType>() }));
         }
         if (request.method === 'POST') {
+            
             return of(new HttpResponse({ status: 200, body: this.SkiPass.create<SkiPassType>(request.body) }));
         }
         if (request.method === 'PUT') {

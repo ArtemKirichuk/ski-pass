@@ -16,7 +16,6 @@ export class DeleteFormComponent extends i18n implements OnInit  {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: SkiPassType) { 
     super(); 
-    
   }
   
   ngOnInit(): void {
