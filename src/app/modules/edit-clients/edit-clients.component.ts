@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VisitorType } from '../shared/interfaces';
 
 
@@ -9,7 +9,7 @@ import { VisitorType } from '../shared/interfaces';
   templateUrl: './edit-clients.component.html',
   styleUrls: ['./edit-clients.component.scss']
 })
-export class EditClientsComponent implements OnInit {
+export class EditClientsComponent {
   TITLE = "Редактировать профиль пользователя";
   NAME = 'ФИО';
   ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
@@ -39,8 +39,6 @@ export class EditClientsComponent implements OnInit {
     });
     }
 
-  ngOnInit(): void {
-  }
 
   handlerClose($event:boolean):void{
     if($event){

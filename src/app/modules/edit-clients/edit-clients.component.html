@@ -1,6 +1,6 @@
 
 <app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
-<form class = "add-clients" [formGroup]="editClientsForm" novalidate>
+<form class = "edit-clients" [formGroup]="editClientsForm" novalidate>
     <app-photo-form 
         [img] = "photoClients" 
         (imgLink)="handlerEvent($event)">
@@ -8,7 +8,7 @@
 
 
     <app-input 
-        class = "add-clients__input" 
+        class = "edit-clients__input" 
         [title]="NAME"  
         [type]="TEXT_TYPE"
         formControlName="name">
@@ -20,21 +20,21 @@
     </small> -->
 
     <app-datepicker
-        class="add-clients__date"
+        class="edit-clients__date"
         [dayPlaceholder] = "BIRTHDAY"
         formControlName = "birthday">
     </app-datepicker>
 
     
     <app-input 
-        class = "add-clients__input-number" 
+        class = "edit-clients__input-number" 
         [title]="NUMBER"  
         [type]="NUMBER_TYPE"
         formControlName="numberSkiPasses">
     </app-input>
 
     <app-select
-        class="add-clients__select-instructor"
+        class="edit-clients__select-instructor"
         formControlName="instructor">        
     </app-select>
     <!-- <small 
@@ -44,7 +44,7 @@
     </small> -->
 
     <app-input 
-        class = "add-clients__input" 
+        class = "edit-clients__input" 
         [title]="SPORT"  
         [type]="TEXT_TYPE"
         formControlName="category">
@@ -55,7 +55,7 @@
             {{ERROR_EMPTY_SPORT}}
     </small> -->
     
-    <div class = "add-clients__button">
+    <div class = "edit-clients__button">
         <app-button  mat-dialog-close [text]="BUTTON_EDIT" [disabled]="editClientsForm.invalid" (click)="editClients()" ></app-button>
     </div>
 </form>

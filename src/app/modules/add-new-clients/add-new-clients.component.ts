@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { VisitorType } from 'src/app/types/types';
 
 
@@ -14,7 +12,6 @@ import { VisitorType } from 'src/app/types/types';
 export class AddNewClientsComponent {
     TITLE  = 'Добавить нового посетителя';
     DEFAULT_IMG  = '../../../assets/images/default-photo.svg';
-    IMG_DATEPICKER = '../../assets/images/datepicker.svg';
     NAME = 'ФИО';
     ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
     ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
@@ -32,9 +29,8 @@ export class AddNewClientsComponent {
 
     addClientsForm : FormGroup;
 
-    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) {
        
-        iconRegistry.addSvgIcon('datepicker', sanitizer.bypassSecurityTrustResourceUrl(this.IMG_DATEPICKER)); 
         this.addClientsForm = new FormGroup({
             name: new FormControl(null, Validators.required),
             birthday: new FormControl(null, Validators.required),
