@@ -11,6 +11,7 @@ import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/in
 import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/read-profile-user.component';
 import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
 import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
+import { AddNewInstructorModule } from '../add-new-instructor/add-new-instructor.module';
 import { ButtonModule } from '../button/button.module';
 import { InputModule } from '../input/input.module';
 import { InstructorCardModule } from '../instructor-card/instructor-card.module';
@@ -47,7 +48,8 @@ import { MainPageComponent } from './main-page.component';
         PhotoFormModule,
         TitleModalFormModule,
         InstructorCardModule,
-        AddNewClientsModule
+        AddNewClientsModule,
+        AddNewInstructorModule
     ]
 })
 export class MainPageModule { }

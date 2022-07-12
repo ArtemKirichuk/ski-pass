@@ -4,6 +4,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType } from 'src/app/types/types';
+import { AddNewInstructorComponent } from '../add-new-instructor/add-new-instructor.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
 
 @Component({
@@ -62,6 +63,28 @@ export class InstructorsComponent implements OnInit, OnDestroy{
                     }
                 });
             }
+        });
+    }
+
+    addNewInstructor(): void {
+        const dialogRef = this.dialog.open(AddNewInstructorComponent, {width:'35%'});
+        dialogRef.afterClosed().subscribe(instructor => {
+            if (instructor) {
+                this.instructorService.createInstructor(instructor).subscribe(ok => {
+                    if (ok) {
+                        this.updateInstructors();
+                    }
+                    else {
+                        alert('Ошибка добавления пользователя');
+                    }
+                });
+            }
+        });
+    }
+
+    updateInstructors(): void{
+        this.instructorService.getInstructors().subscribe(instructorsList => {
+            this.instructorService.sendInstructorToStream(instructorsList);
         });
     }
 }

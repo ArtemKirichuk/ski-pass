@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -12,7 +13,8 @@ import { PersonCardComponent } from './person-card.component';
     imports: [
         MatMenuModule,
         MatIconModule,
-        AgeModule
+        AgeModule,
+        CommonModule
     ]
 })
 export class PersonCardModule {

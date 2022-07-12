@@ -3,6 +3,7 @@
         <input 
             type="text" 
             [(ngModel)]="value" 
+            [placeholder]="placeholder"
             class="custom-select__input" 
             (input)="onChange(value)"
             (change)="onChange(value)"

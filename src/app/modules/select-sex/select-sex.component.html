@@ -1,0 +1,26 @@
+<div class="select-sex">
+    <div class="select-sex__item">
+        <input 
+            type="text" 
+            [(ngModel)]="value" 
+            placeholder="{{title}}"
+            class="select-sex__input" 
+            (input)="onChange(value)"
+            (change)="onChange(value)"
+            disabled>
+
+        <button (click)="toggleVariants()" class="select-sex__show-variants">
+            <img src="../../../assets/images/arrow-down-filled.svg" alt="">
+        </button>
+    </div>    
+
+    <div class="select-sex__variants" *ngIf="showVariants">
+        <div *ngFor="let gender of SEX_LIST" class="select-sex__gender" >
+            <p (click)="selectItem(gender)">{{gender}}</p>
+        </div>
+        
+    </div>
+
+</div>
+
+

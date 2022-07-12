@@ -58,8 +58,11 @@ export class EditClientsComponent {
         clients.fio = formValue.name;
         clients.birthday = formValue.birthday;
         clients.instructor = formValue.instructor;
-        clients.skiPass = formValue.skiPass;
+        clients.skiPass = formValue.numberSkiPasses;
         clients.sport = formValue.sport;
+
+        console.log('send', clients);
+
         this.dialogRef.close(clients); 
     }
 

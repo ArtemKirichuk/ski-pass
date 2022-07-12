@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, map, Subscription } from 'rxjs';
+import { AddNewInstructorComponent } from 'src/app/modules/add-new-instructor/add-new-instructor.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType } from 'src/app/types/types';
 import { InstructorDeleteComponent } from '../instructor-delete/instructor-delete.component';
@@ -74,6 +75,28 @@ export class InstructorsMiniComponent implements OnInit, OnDestroy {
                     }
                 });
             }
+        });
+    }
+
+    addNewInstructor(): void {
+        const dialogRef = this.dialog.open(AddNewInstructorComponent, {width:'35%'});
+        dialogRef.afterClosed().subscribe(instructor => {
+            if (instructor) {
+                this.instructorService.createInstructor(instructor).subscribe(ok => {
+                    if (ok) {
+                        this.updateInstructors();
+                    }
+                    else {
+                        alert('Ошибка добавления пользователя');
+                    }
+                });
+            }
+        });
+    }
+
+    updateInstructors(): void{
+        this.instructorService.getInstructors().subscribe(instructorsList => {
+            this.instructorService.sendInstructorToStream(instructorsList);
         });
     }
 }

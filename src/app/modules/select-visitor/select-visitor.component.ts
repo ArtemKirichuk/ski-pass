@@ -4,16 +4,17 @@ import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 
 @Component({
-    selector: 'app-select-instructor',
-    templateUrl: './select-instructor.component.html',
-    styleUrls: ['./select-instructor.component.scss']
+    selector: 'app-select-visitor',
+    templateUrl: './select-visitor.component.html',
+    styleUrls: ['./select-visitor.component.scss']
 })
-export class SelectInstructorComponent implements OnInit, ControlValueAccessor {
+export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
 
-  @Input()value = '';
+  @Input() value = '';
+  @Input() placeholder = '';
 
   visitors: VisitorType[] = [];
-  displayedItem: VisitorType = {} as VisitorType;
+  selectedItems: Set<string> = new Set();
   showVariants = false;
 
   onChange = (val:string)=>{this.value = val;};
@@ -24,18 +25,20 @@ export class SelectInstructorComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
       this.visitorService.getVisitors().subscribe(resp => {
-          this.visitors = resp.slice(0, 10);
+          this.visitors = resp;
       });    
   }
 
-  toggleVariants() {
+  toggleVariants(): void {
       this.showVariants = !this.showVariants;
   }
 
-  selectItem(item: VisitorType) {
-      this.displayedItem = item;
+  selectItem(item: VisitorType): void {
       this.showVariants = false;
-      this.value = item.fio;
+      this.selectedItems.add(item.fio);
+      const valueArr = Array.from(this.selectedItems);
+      this.value = valueArr.join(', ');
+
       this.onChange(this.value);
       this.onTouch(this.value);  
   }
