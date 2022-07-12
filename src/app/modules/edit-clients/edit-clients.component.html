@@ -1,6 +1,6 @@
 
 <app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
-<form class = "add-clients" [formGroup]="addClientsForm" novalidate>
+<form class = "add-clients" [formGroup]="editClientsForm" novalidate>
     <app-photo-form 
         [img] = "photoClients" 
         (imgLink)="handlerEvent($event)">
@@ -56,6 +56,6 @@
     </small> -->
     
     <div class = "add-clients__button">
-        <app-button  mat-dialog-close [text]="BUTTON_ADD" [disabled]="addClientsForm.invalid" (click)="doneAddClients()" ></app-button>
+        <app-button  mat-dialog-close [text]="BUTTON_EDIT" [disabled]="editClientsForm.invalid" (click)="editClients()" ></app-button>
     </div>
 </form>

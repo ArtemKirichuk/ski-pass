@@ -18,6 +18,7 @@ export class InputComponent implements ControlValueAccessor{
   @Input() title  = 'title';
   @Input() value  = '';
   @Input() type = 'text';
+  touched:boolean = false;
   onChange = (val:string)=>{this.value = val;};
   onTouched = (val:string)=>{this.value = val;};
 
@@ -32,8 +33,9 @@ export class InputComponent implements ControlValueAccessor{
   registerOnChange(fn :  (val:string) => void): void {
       this.onChange = fn;
   }
-  registerOnTouched(fn:  (val:string) => void) : void{
+  registerOnTouched(fn:  (val:string) => void) {
       this.onTouched = fn;
+      this.touched = true;
   }
 
   

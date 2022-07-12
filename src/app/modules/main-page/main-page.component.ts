@@ -13,6 +13,7 @@ export class MainPageComponent{
     SEARCH  = 'Поиск';
     EXIT  = 'Выход';
     SKI_RESORT  = 'Горнолыжный курорт';
+    
     searchForm = new FormControl('');
     
     constructor(private userService:UserService, private router : Router){
