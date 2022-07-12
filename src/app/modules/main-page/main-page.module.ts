@@ -13,6 +13,7 @@ import { UserInfoComponent } from 'src/app/components/user-info/user-info.compon
 import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
 import { AddNewInstructorModule } from '../add-new-instructor/add-new-instructor.module';
 import { ButtonModule } from '../button/button.module';
+import { HeaderModule } from '../header/header.module';
 import { InputModule } from '../input/input.module';
 import { InstructorCardModule } from '../instructor-card/instructor-card.module';
 import { PersonCardModule } from '../person-card/person-card.module';
@@ -49,7 +50,8 @@ import { MainPageComponent } from './main-page.component';
         TitleModalFormModule,
         InstructorCardModule,
         AddNewClientsModule,
-        AddNewInstructorModule
+        AddNewInstructorModule,
+        HeaderModule
     ]
 })
 export class MainPageModule { }
