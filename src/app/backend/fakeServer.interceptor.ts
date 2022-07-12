@@ -23,9 +23,8 @@ export class MainInterceptor implements HttpInterceptor {
         this.Instructor = Instructor.instance;
         this.SkiPass = SkiPass.instance;
     }
-
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (request.url == 'visiter') {
+        if (request.url as string == 'visiter') {
             return this.getResponceVisiter(request, next);
         }
         if (request.url == 'user') {

@@ -1,0 +1,18 @@
+<div class="title">
+    <p class="title__textTitle">{{FORM_TITLE_SKIPASS}}</p>
+    <mat-icon mat-dialog-close class="title__iconClose">close</mat-icon>
+</div>
+<div class="form">
+    <!-- [style]="{background : getPhoto(data.photo)}" -->
+    <div class="form__conteiner" >
+        <img class="form__conteiner__img" [src]="data.photo" type="image">
+    </div>
+    <div class="form__field" >
+        <div class="form__field__cardNumber">{{data.cardNumber}}</div>
+    </div>
+    
+</div>
+<!-- Кнопка подтверждения -->
+<div class="form__button">
+    <app-button [mat-dialog-close]="true" [text]="OK"></app-button>
+</div>

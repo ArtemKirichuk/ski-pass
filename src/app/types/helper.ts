@@ -1,20 +1,22 @@
-export function parseImg(file: File, typeRead: string | null, callback: Function) {
+export function parseImg(file: File, typeRead: string | null, callback: ( res: string | ArrayBuffer | null,file:File)=>void ) {
 
     const fr = new FileReader();
     fr.onload = function (e) {
-        callback(e.target!.result, file);
+        callback(e.target ? e.target.result:'', file);
     };
+    
     switch (typeRead) {
-        case 'URL':
-            fr.readAsDataURL(file);
-            break;
-        case 'Buffer':
-            fr.readAsArrayBuffer(file);
-            break;
-        default:
-            fr.readAsBinaryString(file);
-            break;
+    case 'URL':
+        fr.readAsDataURL(file);
+        break;
+    case 'Buffer':
+        fr.readAsArrayBuffer(file);
+        break;
+    default:
+        fr.readAsBinaryString(file);
+        break;
     }
+    return;
 }
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export class CustomValidator {
@@ -39,9 +41,9 @@ export class CustomValidator {
     static cardNumber() {
         return (control: AbstractControl): ValidationErrors | null => {
 
-            const error = String(control.value).length !== 16
+            const error = String(control.value).length !== 16;
 
-            return error ? { errorCard: { value: control.value } } : null;;
+            return error ? { errorCard: { value: control.value } } : null;
         };
     }
 

@@ -12,22 +12,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [
-    EditClientsComponent
-  ],
-  imports: [
-    CommonModule,
-    TitleModalFormModule,
-    PhotoFormModule,
-    SelectModule,
-    InputModule,
-    ButtonModule,
-    DatepickerModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  exports:[
-    EditClientsComponent
-  ]
+    declarations: [
+        EditClientsComponent
+    ],
+    imports: [
+        CommonModule,
+        TitleModalFormModule,
+        PhotoFormModule,
+        SelectModule,
+        InputModule,
+        ButtonModule,
+        DatepickerModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    exports:[
+        EditClientsComponent
+    ]
 })
 export class EditClientsModule { }
