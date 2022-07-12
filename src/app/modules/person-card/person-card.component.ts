@@ -9,6 +9,7 @@ import { VisitorType } from 'src/app/types/types';
 export class PersonCardComponent {
 
   @Input() person: VisitorType = {} as VisitorType;
+  @Input() showMenu = true;
   @Output() onDeleteVisitor = new EventEmitter<VisitorType>();
   @Output() onEditVisitor = new EventEmitter<VisitorType>();
 

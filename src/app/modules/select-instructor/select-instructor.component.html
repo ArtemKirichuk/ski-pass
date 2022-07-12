@@ -1,0 +1,34 @@
+<div class="select-instructor">
+    <div class="select-instructor__item">
+        <input 
+            type="text" 
+            [(ngModel)]="value" 
+            class="select-instructor__input" 
+            (input)="onChange(value)"
+            (change)="onChange(value)"
+            disabled>
+
+        <button (click)="toggleVariants()" class="select-instructor__show-variants">
+            <img src="../../../assets/images/arrow-down-filled.svg" alt="">
+        </button>
+    </div>    
+
+    <div class="select-instructor__variants" *ngIf="showVariants">
+        <div *ngFor="let visitor of visitors" class="select-instructor__visitor" >
+            <!-- <app-instructor-card
+            [instructor]="instructor"
+            [showMenu]="false"
+            (click)="selectItem(instructor)"
+            ></app-instructor-card> -->
+            <app-person-card
+                [person]="visitor"
+                [showMenu]="false"
+                (click)="selectItem(visitor)">
+            </app-person-card>
+        </div>
+        
+    </div>
+
+</div>
+
+
