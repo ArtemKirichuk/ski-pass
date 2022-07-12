@@ -66,5 +66,10 @@ export class i18n {
     readonly PASS = 'Пропуск';
     readonly VISITER = 'Посетитель';
     readonly DELETE_TEXT = 'Вы уверены, что хотите удалить карточку этого ски-пасса?';
+    readonly ACTION_TIME = 'Время действия';
+    readonly COST = 'Цена';
+    readonly ASSIGNE_VISITER = 'Назначенный посетитель';
+    readonly CARD_SKIPASS = 'Карточка ски-пасса';
+
     // private constructor(){}
 }

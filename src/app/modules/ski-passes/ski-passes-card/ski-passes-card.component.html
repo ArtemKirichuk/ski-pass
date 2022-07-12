@@ -1,13 +1,10 @@
-<div class="container"[style]="{background : getPhoto(skipass.photo)}" >
-<!-- <div class="container" > -->
+<div class="container"[style]="{background : getPhoto(skipass.photo)}"  (click)="openDisplayForm()">
     
-    
-    <!-- <img [src]="skipass.photo" alt=""> -->
     <div class="name">{{PASS}} {{skipass.dateStart | date: 'dd.MM.yyyy'}}-{{skipass.dateEnd | date : 'dd.MM.yyyy' }}
     </div>
     <div class="cost">{{skipass.cost | currency : 'RUR':'symbol':'1.0-0'}}</div>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="menu">
+    <button mat-icon-button (click)="openMenu($event)" [matMenuTriggerFor]="menu" class="menu">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" yPosition="below">

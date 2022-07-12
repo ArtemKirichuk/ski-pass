@@ -28,8 +28,9 @@
         border-radius: 10px;
 
         &__img {
-            width: 100%;
+            overflow: auto;
             margin: 0 auto;
+            border-radius: inherit;
         }
     }
 
@@ -41,6 +42,7 @@
             font-size: 36px;
             line-height: 50px;
             color: #212121;
+            text-align: center;
         }
 
         &__question {

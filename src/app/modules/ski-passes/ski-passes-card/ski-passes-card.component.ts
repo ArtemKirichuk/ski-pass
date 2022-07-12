@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input,  Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { i18n } from 'src/app/types/helper';
 import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 import { DeleteFormComponent } from '../delete-form/delete-form.component';
+import { DisplayFormComponent } from '../display-form/display-form.component';
 import { SkiPassesFormComponent } from '../form/form.component';
 
 @Component({
@@ -44,5 +45,21 @@ export class SkiPassesCardComponent extends i18n {
                     this.editCard.emit(updateData);
                 }
             });
+    }
+    openDisplayForm() {
+        const config = { height: '770px', width: '500px', data: this.skipass };
+        const dialogRef = this.matDialog.open(DisplayFormComponent, config);
+        dialogRef.afterClosed().pipe(takeUntil(this.destroy$))
+            .subscribe(isEdit => {
+                if (isEdit) {
+                    this.openEditForm()
+                } else if (isEdit === false) {
+                    this.openDeleteForm()
+                }
+            });;
+    }
+
+    openMenu(event: Event) {
+        event.stopImmediatePropagation()
     }
 }
