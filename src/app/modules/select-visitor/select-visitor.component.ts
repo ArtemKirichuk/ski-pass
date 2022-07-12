@@ -4,9 +4,9 @@ import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 
 @Component({
-    selector: 'app-select-instructor',
-    templateUrl: './select-instructor.component.html',
-    styleUrls: ['./select-instructor.component.scss']
+    selector: 'app-select-visitor',
+    templateUrl: './select-visitor.component.html',
+    styleUrls: ['./select-visitor.component.scss']
 })
 export class SelectInstructorComponent implements OnInit, ControlValueAccessor {
 

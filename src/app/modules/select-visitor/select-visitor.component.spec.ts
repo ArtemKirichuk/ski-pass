@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectInstructorComponent } from './select-instructor.component';
+import { SelectInstructorComponent } from './select-visitor.component';
 
 describe('SelectInstructorComponent', () => {
     let component: SelectInstructorComponent;
