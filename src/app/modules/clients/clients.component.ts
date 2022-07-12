@@ -5,6 +5,7 @@ import { ClientDeleteComponent } from 'src/app/components/client-delete/client-d
 import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
+import { EditClientsComponent } from '../edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
 
 
@@ -85,5 +86,14 @@ export class ClientsComponent implements OnInit, OnDestroy{
                 });
             }
         });        
+    }
+
+    onEditVisitor(visitor: VisitorType): void  {
+        const data = { data: visitor };
+        const dialogRef = this.dialog.open(EditClientsComponent, data);
+        
+        dialogRef.afterClosed().subscribe(visitor => {
+            console.log('edit', visitor);
+        });
     }
 }
