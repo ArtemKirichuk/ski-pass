@@ -5,6 +5,7 @@
         <app-button
             [text]="ADD"
             [mode]="'icon'"
+            (click) = "addNewInstructor()"
         ></app-button>
 
         <img src="{{minimizeURL}}" class="instructors-mini-block__minimize" (click)="minimize()">

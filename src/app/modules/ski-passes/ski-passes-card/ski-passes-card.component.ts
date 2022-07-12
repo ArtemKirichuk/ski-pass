@@ -16,15 +16,15 @@ import { SkiPassesFormComponent } from '../form/form.component';
 })
 export class SkiPassesCardComponent extends i18n {
     @Input() skipass!: SkiPassType;
-    @Output() deleteCard: EventEmitter<KeySkiPassType> = new EventEmitter<KeySkiPassType>()
-    @Output() editCard: EventEmitter<updateType<KeySkiPassType, SkiPassType>> = new EventEmitter<updateType<KeySkiPassType, SkiPassType>>()
-    destroy$ = new Subject()
+    @Output() deleteCard: EventEmitter<KeySkiPassType> = new EventEmitter<KeySkiPassType>();
+    @Output() editCard: EventEmitter<updateType<KeySkiPassType, SkiPassType>> = new EventEmitter<updateType<KeySkiPassType, SkiPassType>>();
+    destroy$ = new Subject();
     constructor(private matDialog: MatDialog) {
-        super()
+        super();
     }
 
     getPhoto(img: string) {
-        return `url(${img})`
+        return `url(${img})`;
     }
     openDeleteForm() {
         const config = { height: '580px', width: '500px', data: this.skipass };
@@ -35,7 +35,7 @@ export class SkiPassesCardComponent extends i18n {
                 if (isDelete) {
                     this.deleteCard.emit({ cardNumber: this.skipass.cardNumber });
                 }
-            })
+            });
     }
     openEditForm() {
         const config = { height: '730px', width: '500px', data: this.skipass };
@@ -46,6 +46,6 @@ export class SkiPassesCardComponent extends i18n {
                 if (updateData) {
                     this.editCard.emit(updateData);
                 }
-            })
+            });
     }
 }

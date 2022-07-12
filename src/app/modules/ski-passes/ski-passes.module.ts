@@ -54,6 +54,6 @@ import { DeleteFormComponent } from './delete-form/delete-form.component';
 })
 export class SkiPassesModule { 
     constructor(){
-        registerLocaleData(localeRu,'ru')
-      }
+        registerLocaleData(localeRu,'ru');
+    }
 }

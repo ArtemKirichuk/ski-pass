@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, map, Subscription } from 'rxjs';
 import { AddNewClientsComponent } from 'src/app/modules/add-new-clients/add-new-clients.component';
@@ -70,12 +70,13 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
                         this.updateVisitors();
                     }
                     else {
-                        alert("Ошибка добавления пользователя")
+                        alert('Ошибка добавления пользователя');
                     }
                 });
             }
         });
     }
+
 
     updateVisitors(): void{
         this.visitorService.getVisitors().subscribe(visitorsList => {
@@ -104,12 +105,12 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
                 const update: updateType<KeyVisitorType, VisitorType> = {
                     oldKey: { fio: visitor.fio },
                     newRow: editedVisitor
-                }
+                };
                 this.visitorService.changeVisitor(update).subscribe(ok => {
                     if (ok) {
                         this.updateVisitors();
                     }
-                })
+                });
             }
         });
     }

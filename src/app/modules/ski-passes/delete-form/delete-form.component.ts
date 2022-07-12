@@ -7,19 +7,19 @@ import { SkiPassType } from 'src/app/types/types';
 
 
 @Component({
-  selector: 'app-delete-form',
-  templateUrl: './delete-form.component.html',
-  styleUrls: ['./delete-form.component.scss']
+    selector: 'app-delete-form',
+    templateUrl: './delete-form.component.html',
+    styleUrls: ['./delete-form.component.scss']
 })
 export class DeleteFormComponent extends i18n implements OnInit  {
   
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: SkiPassType) { 
-    super(); 
-  }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: SkiPassType) { 
+        super(); 
+    }
   
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 
 }

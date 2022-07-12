@@ -13,19 +13,19 @@ import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 })
 export class SkiPassesFormComponent extends i18n implements OnInit {
     skiPassForm: FormGroup;
-    srcPhoto: string = 'assets/images/default-photo.svg';
+    srcPhoto = 'assets/images/default-photo.svg';
     isCreate: boolean;
-    get cardNumber() { return this.skiPassForm.get('cardNumber'); };
-    get dateStart() { return this.skiPassForm.get('dateStart'); };
-    get dateEnd() { return this.skiPassForm.get('dateEnd')!; };
-    get photo() { return this.skiPassForm.get('photo')!; };
-    get visiter() { return this.skiPassForm.get('visiter')!; };
-    visiters:string[]=[]
+    get cardNumber() { return this.skiPassForm.get('cardNumber'); }
+    get dateStart() { return this.skiPassForm.get('dateStart'); }
+    get dateEnd() { return this.skiPassForm.get('dateEnd')!; }
+    get photo() { return this.skiPassForm.get('photo')!; }
+    get visiter() { return this.skiPassForm.get('visiter')!; }
+    visiters:string[]=[];
     filteredOptions!: Observable<string[]>;
     constructor(private sanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) public skiPass: SkiPassType) {
         super();
-        this.isCreate = false
+        this.isCreate = false;
         if(!skiPass){
             this.isCreate = true;
             this.skiPass = {} as SkiPassType;
@@ -57,12 +57,12 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         this.filteredOptions = this.visiter.valueChanges.pipe(
             startWith(''),
             map(value => this.filterVisiter(value || '')),
-          );
+        );
     }
     private filterVisiter(value: string): string[] {
         const filterValue = value.toLowerCase();
         return this.visiters.filter(e => e.toLowerCase().includes(filterValue));
-      }
+    }
     changeDate(): void {
         this.skiPassForm.controls['dateStart'].updateValueAndValidity();
         this.skiPassForm.controls['dateEnd'].updateValueAndValidity();
@@ -75,7 +75,7 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
     
     //Сохранить изменения
     saveRow(): void {
-        Object.assign( this.updateData, { oldKey: { cardNumber: this.skiPass.cardNumber } , newRow : this.skiPassForm.value} )
+        Object.assign( this.updateData, { oldKey: { cardNumber: this.skiPass.cardNumber } , newRow : this.skiPassForm.value} );
     }
     loadPhoto(): void {
         const input = document.createElement('input');

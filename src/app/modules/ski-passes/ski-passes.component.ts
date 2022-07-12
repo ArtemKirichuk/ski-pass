@@ -24,13 +24,13 @@ export class SkiPassesComponent extends i18n {
         this.destroy$ = new Subject();
         this.updateSkipass$ = new Observable(observer => {
             this.skipassService.get().subscribe(skipasses => {
-                observer.next(skipasses)
-            })
+                observer.next(skipasses);
+            });
 
-        })
+        });
         this.updateSkipass$.subscribe(skipasses => {            
-            this.skipasses$ = of(skipasses)
-        })
+            this.skipasses$ = of(skipasses);
+        });
     }
     onChangedPage(array: number[]) {
 
@@ -43,8 +43,8 @@ export class SkiPassesComponent extends i18n {
                 if (skipass) {
                     this.create(skipass).subscribe(skipasses => {
                         
-                        this.skipasses$ = of(skipasses)
-                    })
+                        this.skipasses$ = of(skipasses);
+                    });
                 }
             });
     }
@@ -52,22 +52,22 @@ export class SkiPassesComponent extends i18n {
         return this.skipassService.create(data).pipe(
             takeUntil(this.destroy$),
             switchMap((q) => this.updateSkipass$)
-        )
+        );
     }
     update(data:updateType<KeySkiPassType,SkiPassType>){
         this.skipassService.update(data).pipe(
             takeUntil(this.destroy$),
             switchMap(() => this.updateSkipass$)
         ).subscribe((skipasses)=>{
-            this.skipasses$ = of(skipasses)
-        })
+            this.skipasses$ = of(skipasses);
+        });
     }
     delete(event: KeySkiPassType) {
         this.skipassService.delete(event).pipe(
             takeUntil(this.destroy$),
             switchMap((isDelete) => this.updateSkipass$)
         ).subscribe(skipasses => {
-            this.skipasses$ = of(skipasses)
+            this.skipasses$ = of(skipasses);
         });
     }
 }

@@ -20,6 +20,6 @@ export class SkipassService {
         return this.http.delete<boolean>(this.url,{params:key});
     }
     update(data:updateType<KeySkiPassType, SkiPassType>):Observable<boolean>{
-      return this.http.put<boolean>(this.url,data);
-  }
+        return this.http.put<boolean>(this.url,data);
+    }
 }
