@@ -2,13 +2,24 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { InstructorType, KeyInstructorType, KeySkiPassType, KeyUserType, KeyVisitorType, SkiPassType, UserType, VisitorType } from '../types/types';
+import { InstructorType, KeyInstructorType, KeySkiPassType, KeyUserType, KeyVisitorType, SkiPassType, updateType, UserType, VisitorType } from '../types/types';
 import { Visiter } from './visiter/visiter';
 import { User } from './user/user';
 import { Auth } from './auth/auth';
 import { Instructor } from './instructor/instructor';
 import { SkiPass } from './skipass/skipass';
-
+type request = HttpRequest<
+    UserType |
+    VisitorType |
+    InstructorType |
+    SkiPassType |
+    KeyUserType |
+    updateType<KeyUserType, UserType> |
+    updateType<KeyInstructorType, InstructorType>|
+    updateType<KeyVisitorType, VisitorType>|
+    updateType<KeySkiPassType, SkiPassType>
+>;
+type responce = boolean | UserType[] | VisitorType[] | InstructorType[] | SkiPassType[]|string;
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
     Visiter: Visiter;
@@ -23,8 +34,8 @@ export class MainInterceptor implements HttpInterceptor {
         this.Instructor = Instructor.instance;
         this.SkiPass = SkiPass.instance;
     }
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (request.url as string == 'visiter') {
+    intercept(request: request, next: HttpHandler): Observable<HttpEvent<responce>> {
+        if (request.url == 'visiter') {
             return this.getResponceVisiter(request, next);
         }
         if (request.url == 'user') {
@@ -39,55 +50,20 @@ export class MainInterceptor implements HttpInterceptor {
         if (request.url == 'skipass') {
             return this.getResponceSkiPass(request, next);
         }
-
         return next.handle(request.clone());
     }
-    getResponceUser(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (request.method === 'GET') {
-            return of(new HttpResponse({ status: 200, body: this.User.get<UserType>() }));
-        }
-        if (request.method === 'POST') {
-            return of(new HttpResponse({ status: 200, body: this.User.create<UserType>(request.body) }));
-        }
-        if (request.method === 'PUT') {
-            const isSuccess = this.User.delete<KeyUserType>(request.body.oldKey) &&
-                this.User.create<UserType>(request.body.newRow);
-            return of(new HttpResponse({ status: 200, body: isSuccess }));
-        }
-        return next.handle(request.clone());
-    }
-    getResponceInstructor(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (request.method === 'GET') {
-            return of(new HttpResponse({ status: 200, body: this.Instructor.get<InstructorType>() }));
-        }
-        if (request.method === 'POST') {
-            return of(new HttpResponse({ status: 200, body: this.Instructor.create<InstructorType>(request.body) }));
-        }
-        if (request.method === 'DELETE') {
-            const fioKey = request.params.get('fio');
-            if (!fioKey)
-                return of(new HttpResponse({ status: 200, body: false }));
-            const keyInstructor: KeyInstructorType = { fio: fioKey };
-
-            return of(new HttpResponse({ status: 200, body: this.Instructor.delete<KeyInstructorType>(keyInstructor) }));
-        }
-        if (request.method === 'PUT') {
-            const isSuccess = this.Instructor.delete<KeyInstructorType>(request.body.oldKey) &&
-                this.Instructor.create<InstructorType>(request.body.newRow);
-            return of(new HttpResponse({ status: 200, body: isSuccess }));
-        }
-        return next.handle(request.clone());
-    }
-    getResponceVisiter(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    getResponceVisiter(request: request, next: HttpHandler): Observable<HttpEvent<responce>> {
         if (request.method === 'GET') {
             return of(new HttpResponse({ status: 200, body: this.Visiter.get<VisitorType>() }));
         }
         if (request.method === 'POST') {
-            return of(new HttpResponse({ status: 200, body: this.Visiter.create<VisitorType>(request.body) }));
+            return of(new HttpResponse({ status: 200, body: this.Visiter.create<VisitorType>(request.body as VisitorType) }));
         }
         if (request.method === 'PUT') {
-            const isSuccess = this.Visiter.delete<KeyVisitorType>(request.body.oldKey) &&
-                this.Visiter.create<VisitorType>(request.body.newRow);
+            const oldkey: KeyVisitorType = (request.body as updateType<KeyVisitorType, VisitorType>).oldKey;
+            const newRow: VisitorType = (request.body as updateType<KeyVisitorType, VisitorType>).newRow;
+            const isSuccess = this.Visiter.delete<KeyVisitorType>(oldkey) &&
+                this.Visiter.create<VisitorType>(newRow);
             return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         if (request.method === 'DELETE') {
@@ -99,13 +75,54 @@ export class MainInterceptor implements HttpInterceptor {
         }
         return next.handle(request.clone());
     }
-    getResponceSignIn(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    getResponceUser(request: request, next: HttpHandler): Observable<HttpEvent<responce>> {
+        if (request.method === 'GET') {
+            return of(new HttpResponse({ status: 200, body: this.User.get<UserType>() }));
+        }
+        if (request.method === 'POST') {
+            return of(new HttpResponse({ status: 200, body: this.User.create<UserType>(request.body as UserType) }));
+        }
+        if (request.method === 'PUT') {
+            const oldkey: KeyUserType = (request.body as updateType<KeyUserType, UserType>).oldKey;
+            const newRow: UserType = (request.body as updateType<KeyUserType, UserType>).newRow;
+            const isSuccess = this.User.delete<KeyUserType>(oldkey) &&
+                this.User.create<UserType>(newRow);
+            return of(new HttpResponse({ status: 200, body: isSuccess }));
+        }
+        return next.handle(request.clone());
+    }
+    getResponceInstructor(request: request, next: HttpHandler): Observable<HttpEvent<responce>> {
+        if (request.method === 'GET') {
+            return of(new HttpResponse({ status: 200, body: this.Instructor.get<InstructorType>() }));
+        }
+        if (request.method === 'POST') {
+            return of(new HttpResponse({ status: 200, body: this.Instructor.create<InstructorType>(request.body as InstructorType) }));
+        }
+        if (request.method === 'PUT') {
+            const oldkey: KeyInstructorType = (request.body as updateType<KeyInstructorType, InstructorType>).oldKey;
+            const newRow: InstructorType = (request.body as updateType<KeyInstructorType, InstructorType>).newRow;
+            const isSuccess = this.Instructor.delete<KeyInstructorType>(oldkey) &&
+                this.Instructor.create<InstructorType>(newRow);
+            return of(new HttpResponse({ status: 200, body: isSuccess }));
+        }
+        if (request.method === 'DELETE') {
+            const fioKey = request.params.get('fio');
+            if (!fioKey)
+                return of(new HttpResponse({ status: 200, body: false }));
+            const keyInstructor: KeyInstructorType = { fio: fioKey };
+            return of(new HttpResponse({ status: 200, body: this.Instructor.delete<KeyInstructorType>(keyInstructor) }));
+        }
         
+        return next.handle(request.clone());
+    }
+
+    getResponceSignIn(request: request , next: HttpHandler): Observable<HttpEvent<responce>> {
+
         if (request.method === 'GET') {
             return of(new HttpResponse({ status: 200, body: this.Auth.checkAuth() }));
         }
         if (request.method === 'POST') {
-            return of(new HttpResponse({ status: 200, body: this.Auth.signIn(request.body) }));
+            return of(new HttpResponse({ status: 200, body: this.Auth.signIn(request.body as UserType) }));
         }
         if (request.method === 'DELETE') {
             this.Auth.signOut();
@@ -113,22 +130,23 @@ export class MainInterceptor implements HttpInterceptor {
         }
         return next.handle(request.clone());
     }
-    getResponceSkiPass(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    getResponceSkiPass(request: request, next: HttpHandler): Observable<HttpEvent<responce>> {
         if (request.method === 'GET') {
             return of(new HttpResponse({ status: 200, body: this.SkiPass.get<SkiPassType>() }));
         }
         if (request.method === 'POST') {
-            
-            return of(new HttpResponse({ status: 200, body: this.SkiPass.create<SkiPassType>(request.body) }));
+
+            return of(new HttpResponse({ status: 200, body: this.SkiPass.create<SkiPassType>(request.body as SkiPassType) }));
         }
         if (request.method === 'PUT') {
-            const isSuccess = this.SkiPass.delete<KeySkiPassType>(request.body.oldKey) &&
-                this.SkiPass.create<SkiPassType>(request.body.newRow);
+            const oldkey: KeySkiPassType = (request.body as updateType<KeySkiPassType, SkiPassType>).oldKey;
+            const newRow: SkiPassType = (request.body as updateType<KeySkiPassType, SkiPassType>).newRow;
+            const isSuccess = this.SkiPass.delete<KeySkiPassType>(oldkey) &&
+                this.SkiPass.create<SkiPassType>(newRow);
             return of(new HttpResponse({ status: 200, body: isSuccess }));
         }
         if (request.method === 'DELETE') {
             const cardNumberParam = request.params.get('cardNumber');
-            
             if (!cardNumberParam)
                 return of(new HttpResponse({ status: 200, body: false }));
             const cardNumber: KeySkiPassType = { cardNumber: Number(cardNumberParam) };
