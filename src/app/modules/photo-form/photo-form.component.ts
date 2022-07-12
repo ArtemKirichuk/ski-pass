@@ -39,7 +39,8 @@ export class PhotoFormComponent {
           }
           
           
-          parseImg(file, 'URL', (res : string) => {
+          parseImg(file, 'URL', (res : string | ArrayBuffer | null) => {
+              res = (res as string);
               if(res.split(' ').length != 0){
                   res = res.split(' ')[0];
               }

@@ -53,7 +53,6 @@ export class EditClientsComponent {
 
     editClients(){
         const formValue = this.editClientsForm.getRawValue();
-
         const clients = {} as VisitorType;
         clients.photo = this.photoClients;
         clients.fio = formValue.name;

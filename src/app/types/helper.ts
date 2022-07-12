@@ -1,9 +1,10 @@
-export function parseImg(file: File, typeRead: string | null, callback: Function) {
+export function parseImg(file: File, typeRead: string | null, callback: ( res: string | ArrayBuffer | null,file:File)=>void ) {
 
     const fr = new FileReader();
     fr.onload = function (e) {
-        callback(e.target!.result, file);
+        callback(e.target ? e.target.result:'', file);
     };
+    
     switch (typeRead) {
     case 'URL':
         fr.readAsDataURL(file);
@@ -15,6 +16,7 @@ export function parseImg(file: File, typeRead: string | null, callback: Function
         fr.readAsBinaryString(file);
         break;
     }
+    return;
 }
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export class CustomValidator {

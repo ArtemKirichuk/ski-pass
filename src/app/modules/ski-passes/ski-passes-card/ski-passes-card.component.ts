@@ -1,11 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input,  Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { bootstrapApplication } from '@angular/platform-browser';
 import { Subject, takeUntil } from 'rxjs';
-import { SkipassService } from 'src/app/services/skipass.service';
 import { i18n } from 'src/app/types/helper';
 import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
-
 import { DeleteFormComponent } from '../delete-form/delete-form.component';
 import { SkiPassesFormComponent } from '../form/form.component';
 

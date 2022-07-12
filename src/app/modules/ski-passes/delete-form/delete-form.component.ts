@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -11,15 +11,11 @@ import { SkiPassType } from 'src/app/types/types';
     templateUrl: './delete-form.component.html',
     styleUrls: ['./delete-form.component.scss']
 })
-export class DeleteFormComponent extends i18n implements OnInit  {
+export class DeleteFormComponent extends i18n  {
   
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: SkiPassType) { 
         super(); 
     }
-  
-    ngOnInit(): void {
-    }
-
 
 }

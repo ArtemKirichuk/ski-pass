@@ -32,9 +32,7 @@ export class SkiPassesComponent extends i18n {
             this.skipasses$ = of(skipasses);
         });
     }
-    onChangedPage(array: number[]) {
-
-    }
+  
     openCreateForm() {
         const dialogRef = this.matDialog.open(SkiPassesFormComponent, { height: '730px', width: '500px' });
         dialogRef.afterClosed()
@@ -51,7 +49,7 @@ export class SkiPassesComponent extends i18n {
     create(data: SkiPassType): Observable<SkiPassType[]> {
         return this.skipassService.create(data).pipe(
             takeUntil(this.destroy$),
-            switchMap((q) => this.updateSkipass$)
+            switchMap(() => this.updateSkipass$)
         );
     }
     update(data:updateType<KeySkiPassType,SkiPassType>){
@@ -65,7 +63,7 @@ export class SkiPassesComponent extends i18n {
     delete(event: KeySkiPassType) {
         this.skipassService.delete(event).pipe(
             takeUntil(this.destroy$),
-            switchMap((isDelete) => this.updateSkipass$)
+            switchMap(() => this.updateSkipass$)
         ).subscribe(skipasses => {
             this.skipasses$ = of(skipasses);
         });
