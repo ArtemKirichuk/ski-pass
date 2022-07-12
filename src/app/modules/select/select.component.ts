@@ -27,18 +27,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     onTouch = (val:string)=>{this.value = val;};
 
     constructor(private instructorService: InstuctorService) { 
-    // for(let i = 0; i < 10; i++) {
-    //   const instr: InstructorType = {
-    //     birthday: new Date(1996, 3, 4),
-    //     category: "snowboard",
-    //     fio: `Альбер Эйнштейн ${i}`,
-    //     photo: "",
-    //     sex: "male",
-    //     visiter: '../../../assets/images/user-default.jpg',
-    //     startWork: new Date(2010, 9, 4)
-    //   }
-    //   this.instructors.push(instr);
-    // }
     }
 
     ngOnInit(): void {

@@ -9,13 +9,19 @@ import { VisitorType } from 'src/app/types/types';
 export class PersonCardComponent {
 
   @Input() person: VisitorType = {} as VisitorType;
+  @Input() showMenu = true;
   @Output() onDeleteVisitor = new EventEmitter<VisitorType>();
+  @Output() onEditVisitor = new EventEmitter<VisitorType>();
 
   APPOINT_COACH = 'Назначить тренера';
   EDIT = 'Редактировать';
   DELETE = 'Удалить';
 
-  deleteVisitor() {
+  deleteVisitor(): void {
       this.onDeleteVisitor.emit(this.person);
+  }
+
+  editVisitor(): void {
+      this.onEditVisitor.emit(this.person);
   }
 }

@@ -1,4 +1,4 @@
-.custom-select {
+.select-instructor {
     display: flex;
     position: relative;
     box-sizing: border-box;
@@ -61,5 +61,6 @@
         border: none;
         outline: none;
         box-sizing: border-box;
+        flex-grow: 1;
     }
 }

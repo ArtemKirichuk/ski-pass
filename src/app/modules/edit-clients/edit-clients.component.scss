@@ -1,4 +1,4 @@
-.add-clients{
+.edit-clients{
     
     display: flex;
     flex-direction: column;
@@ -21,9 +21,8 @@
         margin-top: 2%;
     }
 
-    &__select {
+    &__select-instructor {
         width: 100%;
         margin-bottom: 3%;  
     }
 }
-

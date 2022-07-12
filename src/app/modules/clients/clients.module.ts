@@ -8,6 +8,7 @@ import { ClientInfoComponent } from 'src/app/components/client-info/client-info.
 import { PaginatorModule } from 'src/app/modules/paginator/paginator.module';
 import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
 import { ButtonModule } from '../button/button.module';
+import { EditClientsModule } from '../edit-clients/edit-clients.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
 import { ClientsComponent } from './clients.component';
@@ -31,7 +32,8 @@ import { ClientsComponent } from './clients.component';
         PaginatorModule,
         PersonCardModule,
         AddNewClientsModule,
-        TitleModalFormModule
+        TitleModalFormModule,
+        EditClientsModule
     ]
 })
 export class ClientsModule { }

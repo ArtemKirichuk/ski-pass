@@ -14,7 +14,7 @@
         </div>  
     </div>    
     
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="person-card__menu-btn">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="person-card__menu-btn" *ngIf="showMenu">
         <mat-icon>more_vert</mat-icon>
     </button>
 
@@ -22,7 +22,7 @@
     <button mat-menu-item>
         <span>{{APPOINT_COACH}}</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="editVisitor()">
         <span>{{EDIT}}</span>
     </button>
     <button mat-menu-item (click)="deleteVisitor()">

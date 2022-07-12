@@ -24,6 +24,7 @@
         *ngFor="let visitor of showedVisitors;"
         [person]="visitor"
         (onDeleteVisitor)="onDeleteVisitor($event)"
+        (onEditVisitor)="onEditVisitor($event)"
         ></app-person-card>
     </div>
 </div>

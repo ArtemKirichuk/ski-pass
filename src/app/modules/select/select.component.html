@@ -11,9 +11,7 @@
         <button (click)="toggleVariants()" class="custom-select__show-variants">
             <img src="../../../assets/images/arrow-down-filled.svg" alt="">
         </button>
-    </div>
-
-    
+    </div>    
 
     <div class="custom-select__variants" *ngIf="showVariants">
         <div *ngFor="let instructor of instructors" class="custom-select__instructor" >

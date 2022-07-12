@@ -5,6 +5,7 @@ import { ClientDeleteComponent } from 'src/app/components/client-delete/client-d
 import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
+import { EditClientsComponent } from '../edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
 
 
@@ -52,23 +53,46 @@ export class ClientsComponent implements OnInit, OnDestroy{
     }
 
     addNewClients(): void {
-        console.log('tut');
-        this.dialog.open(AddNewClientsComponent, {width:'35%'});            
+        const dialogRef = this.dialog.open(AddNewClientsComponent, {width:'35%'});    
+        dialogRef.afterClosed().subscribe(visitor => {
+            if (visitor) {
+                this.visitorService.createVisitor(visitor).subscribe(ok => {
+                    if (ok) {
+                        this.updateVisitors();
+                    }
+                });
+            }
+        });        
     }
 
-    onDeleteVisitor(visitor: VisitorType) {
+    updateVisitors(): void {
+        this.visitorService.getVisitors().subscribe(visitorsList => {
+            this.visitorService.sendVisitorToStream(visitorsList);
+        });
+    }
+
+    onDeleteVisitor(visitor: VisitorType): void {
         const data = { data: visitor };
         const dialogRef = this.dialog.open(ClientDeleteComponent, data);
         dialogRef.afterClosed().subscribe(ok => {
             if(ok) {
                 this.visitorService.deleteVisitor(visitor).subscribe(resp => {
                     if (resp) {
-                        this.visitorService.getVisitors().subscribe(visitorsList => {
-                            this.visitorService.sendVisitorToStream(visitorsList);
-                        });
+                        this.updateVisitors();
+                        // this.visitorService.getVisitors().subscribe(visitorsList => {
+                        //     this.visitorService.sendVisitorToStream(visitorsList);
+                        // });
                     }
                 });
             }
         });        
+    }
+
+    onEditVisitor(visitor: VisitorType): void  {
+        const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'35%'});
+        
+        dialogRef.afterClosed().subscribe(visitor => {
+            console.log('edit', visitor);
+        });
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, map, Subscription } from 'rxjs';
 import { AddNewClientsComponent } from 'src/app/modules/add-new-clients/add-new-clients.component';
+import { EditClientsComponent } from 'src/app/modules/edit-clients/edit-clients.component';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 import { ClientDeleteComponent } from '../client-delete/client-delete.component';
@@ -61,23 +62,42 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
     }
 
     addNewClients(): void {
-        console.log('tut');
-        this.dialog.open(AddNewClientsComponent, {width:'35%'});
+        const dialogRef = this.dialog.open(AddNewClientsComponent, {width:'35%'});
+        dialogRef.afterClosed().subscribe(visitor => {
+            if (visitor) {
+                this.visitorService.createVisitor(visitor).subscribe(ok => {
+                    if (ok) {
+                        this.updateVisitors();
+                    }
+                });
+            }
+        });
     }
 
-    onDeleteVisitor(visitor: VisitorType) {
+    updateVisitors(): void{
+        this.visitorService.getVisitors().subscribe(visitorsList => {
+            this.visitorService.sendVisitorToStream(visitorsList);
+        });
+    }
+
+    onDeleteVisitor(visitor: VisitorType): void {
         const data = { data: visitor };
         const dialogRef = this.dialog.open(ClientDeleteComponent, data);
         dialogRef.afterClosed().subscribe(resp => {
             if(resp) {
                 this.visitorService.deleteVisitor(visitor).subscribe(resp => {
                     if (resp) {
-                        this.visitorService.getVisitors().subscribe(visitorsList => {
-                            this.visitorService.sendVisitorToStream(visitorsList);
-                        });
+                        this.updateVisitors();
                     }
                 });
             }
         });
     }
-}
+
+    onEditVisitor(visitor: VisitorType): void {
+        const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'35%'});
+        dialogRef.afterClosed().subscribe(editedVisitor => {
+            console.log(editedVisitor);
+        });
+    }
+} 
