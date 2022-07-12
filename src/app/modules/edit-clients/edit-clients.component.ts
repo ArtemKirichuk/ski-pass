@@ -27,8 +27,9 @@ export class EditClientsComponent {
   editClientsForm : FormGroup;
   photoClients : string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: {clients : VisitorType}, 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {clients : VisitorType, width : string}, 
     private dialogRef: MatDialogRef<EditClientsComponent>) {
+      console.log(data.clients);
       this.photoClients = data.clients.photo;
       this.editClientsForm = new FormGroup({
         name : new FormControl(data.clients.fio, Validators.required),

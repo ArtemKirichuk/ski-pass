@@ -95,8 +95,7 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
     }
 
     onEditVisitor(visitor: VisitorType): void {
-        const data = { data: visitor };
-        const dialogRef = this.dialog.open(EditClientsComponent, data);
+        const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'35%'});
         dialogRef.afterClosed().subscribe(editedVisitor => {
             console.log(editedVisitor);
         });
