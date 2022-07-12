@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ControlContainer, ControlValueAccessor, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map, Observable, startWith } from 'rxjs';
 import { CustomValidator, i18n, parseImg } from 'src/app/types/helper';
-import { SkiPassType } from 'src/app/types/types';
+import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 
 @Component({
     selector: 'app-form',
@@ -14,22 +14,27 @@ import { SkiPassType } from 'src/app/types/types';
 export class SkiPassesFormComponent extends i18n implements OnInit {
     skiPassForm: FormGroup;
     srcPhoto: string = 'assets/images/default-photo.svg';
-
     isCreate: boolean;
-    get cardNumber() { return this.skiPassForm.get('cardNumber'); }
-    get dateStart() { return this.skiPassForm.get('dateStart'); }
-    get dateEnd() { return this.skiPassForm.get('dateEnd')!; }
-    get photo() { return this.skiPassForm.get('photo')!; }
-    get visiter() { return this.skiPassForm.get('visiter')!; }
+    get cardNumber() { return this.skiPassForm.get('cardNumber'); };
+    get dateStart() { return this.skiPassForm.get('dateStart'); };
+    get dateEnd() { return this.skiPassForm.get('dateEnd')!; };
+    get photo() { return this.skiPassForm.get('photo')!; };
+    get visiter() { return this.skiPassForm.get('visiter')!; };
     visiters:string[]=[]
     filteredOptions!: Observable<string[]>;
     constructor(private sanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) public skiPass: SkiPassType) {
         super();
-        this.isCreate = skiPass ? false : true;
-
+        this.isCreate = false
+        if(!skiPass){
+            this.isCreate = true;
+            this.skiPass = {} as SkiPassType;
+        }
+        // this.skiPass.photo = this.skiPass.photo ? this.skiPass.photo : this.srcPhoto;
+        this.srcPhoto = this.skiPass.photo ? this.skiPass.photo : this.srcPhoto;
+        
         this.skiPassForm = new FormGroup({
-            photo: new FormControl(this.skiPass?.photo),
+            photo: new FormControl(this.skiPass.photo),
             cardNumber: new FormControl(this.skiPass?.cardNumber, [
                 Validators.required,
                 CustomValidator.cardNumber()
@@ -66,24 +71,25 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         const day = (d || new Date());
         return day !== null && day.getTime() >= new Date().setHours(0, 0, 0, 0);
     };
+    updateData:updateType<KeySkiPassType,SkiPassType> = {} as updateType<KeySkiPassType,SkiPassType>;
+    
     //Сохранить изменения
     saveRow(): void {
-        if (!this.photo.value)
-            this.skiPassForm.value.photo = '';
-        else
-            this.skiPassForm.value.photo = this.srcPhoto;
+        Object.assign( this.updateData, { oldKey: { cardNumber: this.skiPass.cardNumber } , newRow : this.skiPassForm.value} )
     }
     loadPhoto(): void {
-
-        const input = document.getElementById('file') as HTMLInputElement;
-        // input.type = 'file';
+        const input = document.createElement('input');
+        // const input = document.getElementById('file') as HTMLInputElement;
+        input.type = 'file';
         input.accept = '.jpg, .jpeg, .png';
+        
         input.onchange = (event: Event) => {
             const file: File = (event.target as HTMLInputElement).files![0];
             if (file)
                 parseImg(file, 'URL', (res: string, file: File) => {
-                    // this.srcPhoto = this.sanitizer.bypassSecurityTrustUrl(res);
+                    // this.skiPass.photo = res
                     this.srcPhoto = res;
+                    this.skiPassForm.controls['photo'].setValue(res);
                 });
         };
         input.click();

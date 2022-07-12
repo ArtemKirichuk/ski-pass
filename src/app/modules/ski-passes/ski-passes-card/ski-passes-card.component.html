@@ -5,16 +5,16 @@
     <!-- <img [src]="skipass.photo" alt=""> -->
     <div class="name">{{PASS}} {{skipass.dateStart | date: 'dd.MM.yyyy'}}-{{skipass.dateEnd | date : 'dd.MM.yyyy' }}
     </div>
-    <div class="cost">{{skipass.cost}}</div>
+    <div class="cost">{{skipass.cost | currency : 'RUR':'symbol':'1.0-0'}}</div>
 
     <button mat-icon-button [matMenuTriggerFor]="menu" class="menu">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" yPosition="below">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="openEditForm()">
             <span>{{ASSIGN_VISITOR}}</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="openEditForm()">
             <span>{{EDIT}}</span>
         </button>
         <button mat-menu-item (click)="openDeleteForm()">

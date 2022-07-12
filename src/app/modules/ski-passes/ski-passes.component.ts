@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { i18n } from 'src/app/types/helper';
+import { updateType } from 'src/app/types/types';
 import { KeySkiPassType, SkiPassType } from '../shared/interfaces';
 import { SkiPassesFormComponent } from './form/form.component';
 
@@ -27,37 +28,46 @@ export class SkiPassesComponent extends i18n {
             })
 
         })
-        this.updateSkipass$.subscribe(skipass => {
-            this.skipasses$ = of(skipass)
+        this.updateSkipass$.subscribe(skipasses => {            
+            this.skipasses$ = of(skipasses)
         })
     }
     onChangedPage(array: number[]) {
 
     }
-    openForm() {
+    openCreateForm() {
         const dialogRef = this.matDialog.open(SkiPassesFormComponent, { height: '730px', width: '500px' });
         dialogRef.afterClosed()
             .pipe(takeUntil(this.destroy$))
             .subscribe((skipass: SkiPassType) => {
                 if (skipass) {
-                    this.createSkipass(skipass).subscribe(skipass => {
-                        this.skipasses$ = of(skipass)
+                    this.create(skipass).subscribe(skipasses => {
+                        
+                        this.skipasses$ = of(skipasses)
                     })
                 }
             });
     }
-    createSkipass(data: SkiPassType): Observable<SkiPassType[]> {
+    create(data: SkiPassType): Observable<SkiPassType[]> {
         return this.skipassService.create(data).pipe(
             takeUntil(this.destroy$),
             switchMap((q) => this.updateSkipass$)
         )
     }
+    update(data:updateType<KeySkiPassType,SkiPassType>){
+        this.skipassService.update(data).pipe(
+            takeUntil(this.destroy$),
+            switchMap(() => this.updateSkipass$)
+        ).subscribe((skipasses)=>{
+            this.skipasses$ = of(skipasses)
+        })
+    }
     delete(event: KeySkiPassType) {
         this.skipassService.delete(event).pipe(
             takeUntil(this.destroy$),
             switchMap((isDelete) => this.updateSkipass$)
-        ).subscribe(skipass => {
-            this.skipasses$ = of(skipass)
+        ).subscribe(skipasses => {
+            this.skipasses$ = of(skipasses)
         });
     }
 }

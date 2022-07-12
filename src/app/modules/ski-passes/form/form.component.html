@@ -7,7 +7,7 @@
     <div class="form__conteiner">
         <img  class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
     </div>
-    <input id="file"formControlName="photo" type="file" hidden="true">
+    <!-- <input id="file" formControlName="photo" type="file" hidden="true"> -->
     <!-- Номер карты -->
     <mat-form-field class="form__field" appearance="fill">
         <input formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER" matInput />
@@ -46,7 +46,6 @@
 <!-- Кнопка подтверждения -->
 <div class="form__button">
     <!-- [disabled]="skiPassForm.invalid" -->
-    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="ADD" [disabled]="skiPassForm.invalid"
-        (click)="saveRow()"></app-button>
-    <app-button *ngIf="!isCreate" [mat-dialog-close]="skiPass" [text]="SAVE" (click)="saveRow()"></app-button>
+    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="ADD" [disabled]="skiPassForm.invalid"></app-button>
+    <app-button *ngIf="!isCreate" [mat-dialog-close]="updateData" [text]="SAVE" (click)="saveRow()" [disabled]="skiPassForm.invalid"></app-button>
 </div>

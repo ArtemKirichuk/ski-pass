@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { KeySkiPassType, SkiPassType } from '../types/types';
+import { KeySkiPassType, SkiPassType, updateType } from '../types/types';
 
 @Injectable({
     providedIn: 'root'
@@ -19,4 +19,7 @@ export class SkipassService {
     delete(key:KeySkiPassType):Observable<boolean>{
         return this.http.delete<boolean>(this.url,{params:key});
     }
+    update(data:updateType<KeySkiPassType, SkiPassType>):Observable<boolean>{
+      return this.http.put<boolean>(this.url,data);
+  }
 }
