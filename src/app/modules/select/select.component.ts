@@ -17,11 +17,12 @@ import { InstructorType } from 'src/app/types/types';
 })
 export class SelectComponent implements OnInit, ControlValueAccessor {
 
-    @Input()value = '';
+    @Input() value = '';
+    @Input() placeholder = "";
 
     instructors: InstructorType[] = [];
-    displayedItem: InstructorType = {} as InstructorType;
     showVariants = false;
+    selectedItems: Set<string> = new Set();
 
     onChange = (val:string)=>{this.value = val;};
     onTouch = (val:string)=>{this.value = val;};
@@ -31,7 +32,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
     ngOnInit(): void {
         this.instructorService.getInstructors().subscribe(resp => {
-            this.instructors = resp.slice(0, 10);
+            this.instructors = resp;
         });    
     }
 
@@ -40,9 +41,11 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     }
 
     selectItem(item: InstructorType) {
-        this.displayedItem = item;
         this.showVariants = false;
-        this.value = item.fio;
+        this.selectedItems.add(item.fio);
+        const valuesArr = Array.from(this.selectedItems);
+        this.value = valuesArr.join(', '); 
+
         this.onChange(this.value);
         this.onTouch(this.value);  
     }

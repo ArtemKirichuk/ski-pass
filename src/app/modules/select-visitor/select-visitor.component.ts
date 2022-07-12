@@ -10,10 +10,11 @@ import { VisitorType } from 'src/app/types/types';
 })
 export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
 
-  @Input()value = '';
+  @Input() value = '';
+  @Input() placeholder = '';
 
   visitors: VisitorType[] = [];
-  displayedItem: VisitorType = {} as VisitorType;
+  selectedItems: Set<string> = new Set();
   showVariants = false;
 
   onChange = (val:string)=>{this.value = val;};
@@ -24,18 +25,20 @@ export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
       this.visitorService.getVisitors().subscribe(resp => {
-          this.visitors = resp.slice(0, 10);
+          this.visitors = resp;
       });    
   }
 
-  toggleVariants() {
+  toggleVariants(): void {
       this.showVariants = !this.showVariants;
   }
 
-  selectItem(item: VisitorType) {
-      this.displayedItem = item;
+  selectItem(item: VisitorType): void {
       this.showVariants = false;
-      this.value = item.fio;
+      this.selectedItems.add(item.fio);
+      const valueArr = Array.from(this.selectedItems);
+      this.value = valueArr.join(', ');
+
       this.onChange(this.value);
       this.onTouch(this.value);  
   }
