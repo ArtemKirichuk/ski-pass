@@ -1,6 +1,8 @@
 .custom-select {
     display: flex;
     position: relative;
+    box-sizing: border-box;
+    justify-content: center;
 
     &__variants {
         border-radius: 8px;
@@ -9,7 +11,6 @@
         width: 359px;
         height: 282px;
         position: absolute;
-        //border: 1px solid black;
         top: 25px;
         overflow-y: scroll;
 
@@ -42,11 +43,16 @@
 
     &__item {
         background: #F3F3F3;
-        width: fit-content;
         border-radius: 10px;
         height: 40px;
-        padding-left: 10px;
         vertical-align: middle;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        height: calc(3.0rem + 2px); 
+        padding-left: 11px;
+        padding-right: 11px;
+        box-sizing: border-box;
     }
 
     &__input {
@@ -54,6 +60,6 @@
         border-radius: 10px;
         border: none;
         outline: none;
-        height: 35px;
+        box-sizing: border-box;
     }
 }
