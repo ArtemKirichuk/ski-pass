@@ -24,7 +24,7 @@ export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
       this.visitorService.getVisitors().subscribe(resp => {
-          this.visitors = resp.slice(0, 10);
+          this.visitors = resp;
       });    
   }
 

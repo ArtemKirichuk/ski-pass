@@ -70,7 +70,7 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
                         this.updateVisitors();
                     }
                     else {
-                        alert("Ошибка добавления пользователя")
+                        alert('Ошибка добавления пользователя');
                     }
                 });
             }
@@ -104,12 +104,12 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
                 const update: updateType<KeyVisitorType, VisitorType> = {
                     oldKey: { fio: visitor.fio },
                     newRow: editedVisitor
-                }
+                };
                 this.visitorService.changeVisitor(update).subscribe(ok => {
                     if (ok) {
                         this.updateVisitors();
                     }
-                })
+                });
             }
         });
     }
