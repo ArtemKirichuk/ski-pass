@@ -10,7 +10,8 @@ import { VisitorType } from 'src/app/types/types';
 })
 export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
 
-  @Input()value = '';
+  @Input() value = '';
+  @Input() placeholder = '';
 
   visitors: VisitorType[] = [];
   selectedItems: Set<string> = new Set();

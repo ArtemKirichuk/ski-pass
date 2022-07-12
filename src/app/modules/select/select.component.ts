@@ -17,7 +17,8 @@ import { InstructorType } from 'src/app/types/types';
 })
 export class SelectComponent implements OnInit, ControlValueAccessor {
 
-    @Input()value = '';
+    @Input() value = '';
+    @Input() placeholder = "";
 
     instructors: InstructorType[] = [];
     showVariants = false;
