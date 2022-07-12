@@ -14,17 +14,19 @@
         </button>
     </div>    
 
-    <div class="select-visitor__variants" *ngIf="showVariants">
-        <div *ngFor="let visitor of visitors" class="select-visitor__visitor" >
-        
-            <app-person-card
-                [person]="visitor"
-                [showMenu]="false"
-                (click)="selectItem(visitor)">
-            </app-person-card>
+    <div class="select-visitor__variants-wrapper">
+        <div class="select-visitor__variants" *ngIf="showVariants">
+            <div *ngFor="let visitor of visitors" class="select-visitor__visitor" >
+            
+                <app-person-card
+                    [person]="visitor"
+                    [showMenu]="false"
+                    (click)="selectItem(visitor)">
+                </app-person-card>
+            </div>        
         </div>
-        
     </div>
+    
 
 </div>
 
