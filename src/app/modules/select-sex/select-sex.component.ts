@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
-  selector: 'app-select-sex',
-  templateUrl: './select-sex.component.html',
-  styleUrls: ['./select-sex.component.scss']
+    selector: 'app-select-sex',
+    templateUrl: './select-sex.component.html',
+    styleUrls: ['./select-sex.component.scss']
 })
 export class SelectSexComponent implements ControlValueAccessor {
 

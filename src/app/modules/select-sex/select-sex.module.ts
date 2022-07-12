@@ -6,14 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [SelectSexComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  exports:[
-    SelectSexComponent
-  ]
+    declarations: [SelectSexComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
+    exports:[
+        SelectSexComponent
+    ]
 })
 export class SelectSexModule { }

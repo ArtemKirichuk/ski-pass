@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { InstructorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
 
@@ -31,7 +29,7 @@ export class AddNewInstructorComponent{
     addInstructorForm : FormGroup;
   
 
-    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) {
       
         this.addInstructorForm = new FormGroup({
             name: new FormControl(null, Validators.required),
