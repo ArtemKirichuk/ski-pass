@@ -1,12 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { VisitorType } from 'src/app/types/types';
 
 @Component({
     selector: 'app-select-visitor',
     templateUrl: './select-visitor.component.html',
-    styleUrls: ['./select-visitor.component.scss']
+    styleUrls: ['./select-visitor.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SelectVisitorComponent),
+            multi: true
+        }
+    ]
 })
 export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
 

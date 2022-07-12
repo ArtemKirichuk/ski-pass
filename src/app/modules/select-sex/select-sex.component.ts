@@ -1,10 +1,17 @@
-import { Component, Input } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'app-select-sex',
     templateUrl: './select-sex.component.html',
-    styleUrls: ['./select-sex.component.scss']
+    styleUrls: ['./select-sex.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SelectSexComponent),
+            multi: true
+        }
+    ]
 })
 export class SelectSexComponent implements ControlValueAccessor {
 

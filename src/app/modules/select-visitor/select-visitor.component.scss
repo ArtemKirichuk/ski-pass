@@ -62,5 +62,10 @@
         outline: none;
         box-sizing: border-box;
         flex-grow: 1;
+        &::placeholder {
+            color: #212529;
+            opacity: 0.4;
+            font-size: 12px;
+        }
     }
 }
