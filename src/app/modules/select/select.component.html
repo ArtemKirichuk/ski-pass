@@ -14,17 +14,17 @@
         </button>
     </div>    
 
-    <div class="custom-select__variants" *ngIf="showVariants">
-        <div *ngFor="let instructor of instructors" class="custom-select__instructor" >
-            <app-instructor-card
-            [instructor]="instructor"
-            [showMenu]="false"
-            (click)="selectItem(instructor)"
-            ></app-instructor-card>
+    <div class="custom-select__variants-wrapper">
+        <div class="custom-select__variants" *ngIf="showVariants">
+            <div *ngFor="let instructor of instructors" class="custom-select__instructor" >
+                <app-instructor-card
+                [instructor]="instructor"
+                [showMenu]="false"
+                (click)="selectItem(instructor)"
+                ></app-instructor-card>
+            </div>        
         </div>
-        
     </div>
-
 </div>
 
 
