@@ -2,6 +2,8 @@ import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { HeaderDatepickerComponent } from 'src/app/components/header-datepicker/header-datepicker.component';
 
 class CustomDateAdapter extends MomentDateAdapter {
@@ -39,10 +41,15 @@ const MATERIAL_DATEPICKER_FORMATS = {
 })
 
 export class DatepickerComponent  implements ControlValueAccessor{
+    IMG_DATEPICKER = '../../assets/images/datepicker.svg';
+
     @Input() dayPlaceholder = 'Дата';
     exampleHeader = HeaderDatepickerComponent;
     @Input() value  = {} as Date;
     
+    constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+        iconRegistry.addSvgIcon('datepicker', sanitizer.bypassSecurityTrustResourceUrl(this.IMG_DATEPICKER)); 
+    }
     
     onChange = (val:Date)=>{this.value = val;};
     onTouched = (val:Date)=>{this.value = val;};
