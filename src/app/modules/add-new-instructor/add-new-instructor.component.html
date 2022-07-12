@@ -1,0 +1,66 @@
+
+<app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
+<form class = "add-instructor" [formGroup]="addInstructorForm" novalidate>
+    <app-photo-form 
+        [img] = "photoInstructor" 
+        (imgLink)="handlerEvent($event)">
+    </app-photo-form>
+
+
+    <app-input 
+        class = "add-instructor__input" 
+        [title]="NAME"  
+        formControlName="name">
+    </app-input>
+    <!-- <small 
+        class = "add-clients__error" 
+        *ngIf = "checkName()">
+            {{ERROR_EMPTY_NAME}}
+    </small> -->
+
+    <app-datepicker
+        class="add-instructor__date"
+        [dayPlaceholder] = "BIRTHDAY"
+        formControlName = "birthday">
+    </app-datepicker>
+
+    <app-datepicker
+        class="add-instructor__date"
+        [dayPlaceholder] = "START_WORK"
+        formControlName = "startWork">
+    </app-datepicker>
+    
+    <app-select-sex
+        formControlName="sex"
+        [title] = "SEX"
+        class="add-instructor__select">
+    </app-select-sex>
+
+    <app-select-visitor
+        formControlName="client"
+        class="add-instructor__select">        
+    </app-select-visitor>
+
+
+    <!-- <small 
+        class = "add-clients__error" 
+        *ngIf = "addClientsForm.controls['name'].invalid && addClientsForm.controls['name'].hasError('touched')">
+            {{ERROR_EMPTY_NUMBER}}
+    </small> -->
+
+    <app-input 
+        class = "add-instructor__input" 
+        [title]="CATEGORY"  
+        formControlName="category">
+    </app-input>
+    <!-- <small 
+        class = "add-clients__error" 
+        *ngIf = "addClientsForm.get('category')?.errors?.['required'] && addClientsForm.get('category')?.touched">
+            {{ERROR_EMPTY_SPORT}}
+    </small> -->
+    
+    <div class = "add-instructor__button">
+        <app-button  mat-dialog-close [text]="BUTTON_ADD" [disabled]="addInstructorForm.invalid" (click)="doneAddInstructor()" ></app-button>
+    </div>
+</form>
+
