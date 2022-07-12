@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PersonCardModule } from '../person-card/person-card.module';
-import { SelectInstructorComponent } from './select-visitor.component';
+import { SelectVisitorComponent } from './select-visitor.component';
 
 @NgModule({
     declarations: [
-        SelectInstructorComponent
+        SelectVisitorComponent
     ],
     exports: [
-        SelectInstructorComponent
+        SelectVisitorComponent
     ],
     imports: [
         PersonCardModule,
@@ -17,6 +17,6 @@ import { SelectInstructorComponent } from './select-visitor.component';
         FormsModule
     ]
 })
-export class SelectInstructorModule {
+export class SelectVisitorModule {
 
 }

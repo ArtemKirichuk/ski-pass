@@ -3,10 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ClientDeleteComponent } from 'src/app/components/client-delete/client-delete.component';
 import { VisitorService } from 'src/app/services/visitor.service';
-import { VisitorType } from 'src/app/types/types';
+import { updateType, VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
 import { EditClientsComponent } from '../edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
+import { KeyVisitorType } from '../shared/interfaces';
 
 
 @Component({
@@ -79,9 +80,6 @@ export class ClientsComponent implements OnInit, OnDestroy{
                 this.visitorService.deleteVisitor(visitor).subscribe(resp => {
                     if (resp) {
                         this.updateVisitors();
-                        // this.visitorService.getVisitors().subscribe(visitorsList => {
-                        //     this.visitorService.sendVisitorToStream(visitorsList);
-                        // });
                     }
                 });
             }
@@ -91,8 +89,18 @@ export class ClientsComponent implements OnInit, OnDestroy{
     onEditVisitor(visitor: VisitorType): void  {
         const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'35%'});
         
-        dialogRef.afterClosed().subscribe(visitor => {
-            console.log('edit', visitor);
+        dialogRef.afterClosed().subscribe(editedVisitor => {
+            if (editedVisitor) {
+                const update: updateType<KeyVisitorType, VisitorType> = {
+                    oldKey: { fio: visitor.fio },
+                    newRow: editedVisitor
+                };
+                this.visitorService.changeVisitor(update).subscribe(ok => {
+                    if (ok) {
+                        this.updateVisitors();
+                    }
+                });
+            }
         });
     }
 }

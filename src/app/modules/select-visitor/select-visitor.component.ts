@@ -8,7 +8,7 @@ import { VisitorType } from 'src/app/types/types';
     templateUrl: './select-visitor.component.html',
     styleUrls: ['./select-visitor.component.scss']
 })
-export class SelectInstructorComponent implements OnInit, ControlValueAccessor {
+export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
 
   @Input()value = '';
 

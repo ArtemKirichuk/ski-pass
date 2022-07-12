@@ -53,13 +53,17 @@ export class EditClientsComponent {
 
   editClients(){
     const formValue = this.editClientsForm.getRawValue();
+
     const clients = {} as VisitorType;
     clients.photo = this.photoClients;
     clients.fio = formValue.name;
     clients.birthday = formValue.birthday;
     clients.instructor = formValue.instructor;
-    clients.skiPass = formValue.skiPass;
+    clients.skiPass = formValue.numberSkiPasses;
     clients.sport = formValue.sport;
+
+    console.log("send", clients);
+
     this.dialogRef.close(clients); 
   }
 

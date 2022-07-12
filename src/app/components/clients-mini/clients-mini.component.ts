@@ -4,7 +4,7 @@ import { BehaviorSubject, map, Subscription } from 'rxjs';
 import { AddNewClientsComponent } from 'src/app/modules/add-new-clients/add-new-clients.component';
 import { EditClientsComponent } from 'src/app/modules/edit-clients/edit-clients.component';
 import { VisitorService } from 'src/app/services/visitor.service';
-import { VisitorType } from 'src/app/types/types';
+import { KeyVisitorType, updateType, VisitorType } from 'src/app/types/types';
 import { ClientDeleteComponent } from '../client-delete/client-delete.component';
 
 @Component({
@@ -69,6 +69,9 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
                     if (ok) {
                         this.updateVisitors();
                     }
+                    else {
+                        alert("Ошибка добавления пользователя")
+                    }
                 });
             }
         });
@@ -97,7 +100,17 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
     onEditVisitor(visitor: VisitorType): void {
         const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'35%'});
         dialogRef.afterClosed().subscribe(editedVisitor => {
-            console.log(editedVisitor);
+            if (editedVisitor) {
+                const update: updateType<KeyVisitorType, VisitorType> = {
+                    oldKey: { fio: visitor.fio },
+                    newRow: editedVisitor
+                }
+                this.visitorService.changeVisitor(update).subscribe(ok => {
+                    if (ok) {
+                        this.updateVisitors();
+                    }
+                })
+            }
         });
     }
 } 

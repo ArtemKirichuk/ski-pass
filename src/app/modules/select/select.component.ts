@@ -48,9 +48,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     }
 
     writeValue(val: string): void {
-        console.log('val', val);
         if (val) {
-            //this.displayedItem = obj;
             this.value = val;
             this.onChange(val);
             this.onTouch(val);            
