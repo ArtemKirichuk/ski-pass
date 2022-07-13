@@ -2,8 +2,8 @@
     <div class="instructor-info__header">
         <span class="instructor-info__title">{{TITLE}}</span>
         <div class="instructor-info__icons">
-            <img src="../../../assets/images/edit-icon.svg" class="instructor-info__edit">
-            <img src="../../../assets/images/delete-icon.svg" class="instructor-info__delete">
+            <img src="../../../assets/images/edit-icon.svg" class="instructor-info__edit" (click)="onEditInstructor()">
+            <img src="../../../assets/images/delete-icon.svg" class="instructor-info__delete" (click)="onDeleteInstructor()">
         </div>
     </div>
 
@@ -25,6 +25,6 @@
         <span class="instructor-info__value">{{instructor.visiter}}</span>
     </div>    
 
-    <app-button [text]="OK" class="btn">        
+    <app-button [text]="OK" class="btn" mat-dialog-close>        
     </app-button>
 </div>

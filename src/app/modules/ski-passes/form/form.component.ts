@@ -97,5 +97,7 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         };
         input.click();
     }
-
+    getPhoto(img: string) {
+        return ` center url(${img}) #F3F3F3 `;
+    }
 }

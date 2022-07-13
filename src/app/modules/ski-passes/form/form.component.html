@@ -4,9 +4,7 @@
 </div>
 <form [formGroup]="skiPassForm" class="form">
     <!-- Фото карты -->
-    <div class="form__conteiner">
-        <img  class="form__conteiner__img" (click)="loadPhoto()" [src]="srcPhoto" type="image">
-    </div>
+    <div class="form__conteiner" [style]="{    background : 'no-repeat #F3F3F3  center url('+srcPhoto+')' } " (click)="loadPhoto()"></div>
     <!-- <input id="file" formControlName="photo" type="file" hidden="true"> -->
     <!-- Номер карты -->
     <mat-form-field class="form__field" appearance="fill">

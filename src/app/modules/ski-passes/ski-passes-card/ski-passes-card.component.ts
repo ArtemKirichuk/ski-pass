@@ -22,7 +22,7 @@ export class SkiPassesCardComponent extends i18n {
     }
 
     getPhoto(img: string) {
-        return `url(${img})`;
+        return `no-repeat url(${img})`;
     }
     openDeleteForm() {
         const config = { height: '580px', width: '500px', data: this.skipass };
