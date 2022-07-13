@@ -10,6 +10,7 @@ import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/in
 import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
 import { AddNewInstructorModule } from '../add-new-instructor/add-new-instructor.module';
 import { ButtonModule } from '../button/button.module';
+import { EditInstructorModule } from '../edit-instructor/edit-instructor.module';
 import { HeaderModule } from '../header/header.module';
 import { InputModule } from '../input/input.module';
 import { InstructorCardModule } from '../instructor-card/instructor-card.module';
@@ -43,7 +44,8 @@ import { MainPageComponent } from './main-page.component';
         InstructorCardModule,
         AddNewClientsModule,
         AddNewInstructorModule,
-        HeaderModule
+        HeaderModule,
+        EditInstructorModule
     ]
 })
 export class MainPageModule { }

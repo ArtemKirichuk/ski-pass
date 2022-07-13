@@ -5,6 +5,7 @@ import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/
 import { InstructorInfoComponent } from 'src/app/components/instructor-info/instructor-info.component';
 import { PaginatorModule } from 'src/app/modules/paginator/paginator.module';
 import { ButtonModule } from '../button/button.module';
+import { EditInstructorModule } from '../edit-instructor/edit-instructor.module';
 import { InstructorCardModule } from '../instructor-card/instructor-card.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
@@ -28,7 +29,8 @@ import { InstructorsComponent } from './instructors.component';
         PaginatorModule,
         PersonCardModule,
         InstructorCardModule,
-        TitleModalFormModule
+        TitleModalFormModule,
+        EditInstructorModule
     ]
 })
 export class InstructorsModule { }

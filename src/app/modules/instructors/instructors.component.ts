@@ -3,9 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
-import { InstructorType } from 'src/app/types/types';
+import { InstructorType, updateType } from 'src/app/types/types';
 import { AddNewInstructorComponent } from '../add-new-instructor/add-new-instructor.component';
+import { EditInstructorComponent } from '../edit-instructor/edit-instructor.component';
 import { PaginatorComponent } from '../paginator/paginator.component';
+import { KeyInstructorType } from '../shared/interfaces';
 
 @Component({
     selector: 'app-instructors',
@@ -85,6 +87,25 @@ export class InstructorsComponent implements OnInit, OnDestroy{
     updateInstructors(): void{
         this.instructorService.getInstructors().subscribe(instructorsList => {
             this.instructorService.sendInstructorToStream(instructorsList);
+        });
+    }
+
+    onEditInstructor(instructor: InstructorType): void {
+        const params = {data : {instructor : instructor}, width:'35%'};
+        const dialogRef = this.dialog.open(EditInstructorComponent, params);
+
+        dialogRef.afterClosed().subscribe(editedInstructor => {
+            if (editedInstructor) {
+                const update: updateType<KeyInstructorType, InstructorType> = {
+                    oldKey: { fio: instructor.fio },
+                    newRow: editedInstructor
+                };
+                this.instructorService.changeInstructor(update).subscribe(ok => {
+                    if (ok) {
+                        this.updateInstructors();
+                    }
+                });
+            }
         });
     }
 }

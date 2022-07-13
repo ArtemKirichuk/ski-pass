@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, map, Subscription } from 'rxjs';
 import { AddNewInstructorComponent } from 'src/app/modules/add-new-instructor/add-new-instructor.component';
+import { EditInstructorComponent } from 'src/app/modules/edit-instructor/edit-instructor.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
-import { InstructorType } from 'src/app/types/types';
+import { InstructorType, KeyInstructorType, updateType } from 'src/app/types/types';
 import { InstructorDeleteComponent } from '../instructor-delete/instructor-delete.component';
 
 @Component({
@@ -73,6 +74,25 @@ export class InstructorsMiniComponent implements OnInit, OnDestroy {
                             this.instructorService.sendInstructorToStream(instructors);
                         });
                     }
+                });
+            }
+        });
+    }
+
+    onEditInstructor(instructor: InstructorType): void {
+        const data = {data : {instructor : instructor}, width:'35%'};
+        const dialogRef = this.dialog.open(EditInstructorComponent, data);
+
+        dialogRef.afterClosed().subscribe(editedtInstructor => {
+            if (editedtInstructor) {
+                const update: updateType<KeyInstructorType, InstructorType> = {
+                    oldKey: { fio: instructor.fio},
+                    newRow: editedtInstructor
+                };
+                this.instructorService.changeInstructor(update).subscribe(ok => {
+                    if (ok) {
+                        this.updateInstructors();
+                    }                    
                 });
             }
         });

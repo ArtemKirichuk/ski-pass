@@ -11,13 +11,18 @@ export class InstructorCardComponent {
   @Input() instructor: InstructorType = { } as InstructorType;
   @Input() showMenu = true;
   @Output() onDeleteInstructor = new EventEmitter<InstructorType>();
+  @Output() onEditInstuctor = new EventEmitter<InstructorType>();
 
   APPOINT_COACH = 'Назначить поситителя';
   EDIT = 'Редактировать';
   DELETE = 'Удалить';
   EXPERIENCE = '. Опыт ';
 
-  deleteInstructor() {
+  deleteInstructor(): void {
       this.onDeleteInstructor.emit(this.instructor);
+  }
+
+  editInstructor(): void {
+      this.onEditInstuctor.emit(this.instructor);
   }
 }

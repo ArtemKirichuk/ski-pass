@@ -20,10 +20,10 @@
     </button>
 
     <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="editInstructor()">
         <span>{{APPOINT_COACH}}</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="editInstructor()">
         <span>{{EDIT}}</span>
     </button>
     <button mat-menu-item (click)="deleteInstructor()">

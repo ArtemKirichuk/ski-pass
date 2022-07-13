@@ -1,7 +1,6 @@
 .person-card {
     display: flex;
     flex-direction: row;
-    //border: 1px solid black;
     font-size: 100%;
     font-family: 'Roboto';
     align-items: center;
@@ -22,11 +21,14 @@
         margin: 0 auto;
         overflow: hidden;
         margin-right: 15px;
+        
     }
 
     &__avatar {
-        width: auto;
-        height: 100%;
+        // width: auto;
+        // height: 100%;
+        width: 100%;
+        height: auto;
         margin: 0 auto;
     }
 
