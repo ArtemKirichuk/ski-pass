@@ -7,9 +7,10 @@
 </div>
 <div class="form">
     <!-- [style]="{background : getPhoto(data.photo)}" -->
-    <div class="form__conteiner">
+    <div class="form__conteiner" [style]="{    background : 'no-repeat #F3F3F3  center url('+data.photo+')' } " ></div>
+    <!-- <div class="form__conteiner">
         <img class="form__conteiner__img" [src]="data.photo" type="image">
-    </div>
+    </div> -->
     <div class="form__field">
         <div class="form__field__cardNumber">{{data.cardNumber}}</div>
     </div>

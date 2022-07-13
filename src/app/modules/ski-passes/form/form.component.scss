@@ -27,13 +27,7 @@
         vertical-align: middle;
         outline: none;
         border-radius: 10px;
-        &__img {
-            // width: 100%;
-            overflow: auto;
-            border-radius: inherit;
-            cursor: pointer;
-            margin: 0 auto;
-        }
+    
     }
     &__field {
         width: 80%;
