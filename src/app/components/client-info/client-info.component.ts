@@ -1,6 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { VisitorType } from 'src/app/types/types';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EditClientsComponent } from 'src/app/modules/edit-clients/edit-clients.component';
+import { VisitorService } from 'src/app/services/visitor.service';
+import { KeyVisitorType, updateType, VisitorType } from 'src/app/types/types';
+import { ClientDeleteComponent } from '../client-delete/client-delete.component';
 
 @Component({
     selector: 'app-client-info',
@@ -15,16 +18,51 @@ export class ClientInfoComponent {
     APPOINTED_INSTRUCTOR = 'Назначенный тренер';
     OK = 'OK';
 
-    visitor: VisitorType = {
-        fio: 'Петров Василий',
-        birthday: new Date(1994, 2, 1),
-        instructor: 'Васечкин Пётр',
-        photo: '../../../assets/images/user-default.jpg',
-        skiPass: 88005553535,
-        sport: 'Сноуборд'
-    };
+    visitor: VisitorType = { } as VisitorType;
 
-    constructor(@Inject(MAT_DIALOG_DATA) public _visitor: VisitorType) { 
+    constructor(@Inject(MAT_DIALOG_DATA) public _visitor: VisitorType,
+                private visitorService: VisitorService,
+                private dialog: MatDialog,
+                private dialogRef:MatDialogRef<ClientInfoComponent>) { 
         this.visitor = _visitor;
+    }
+
+    updateVisitors(): void {
+        this.visitorService.getVisitors().subscribe(visitorsList => {
+            this.visitorService.sendVisitorToStream(visitorsList);
+        });
+    }
+
+    editVisitor(): void {
+        const editDialogRef = this.dialog.open(EditClientsComponent, {data : {clients : this.visitor}, width:'35%'});
+        editDialogRef.afterClosed().subscribe(editedVisitor => {
+            if (editedVisitor) {
+                const update: updateType<KeyVisitorType, VisitorType> = {
+                    oldKey: { fio: this.visitor.fio },
+                    newRow: editedVisitor
+                };
+                this.visitorService.changeVisitor(update).subscribe(ok => {
+                    if (ok) {
+                        this.updateVisitors();
+                        this.dialogRef.close();
+                    }
+                });
+            }
+        });
+    }
+
+    deleteVisitor(): void {
+        const data = { data: this.visitor };
+        const dialogRef = this.dialog.open(ClientDeleteComponent, data);
+        dialogRef.afterClosed().subscribe(resp => {
+            if(resp) {
+                this.visitorService.deleteVisitor(this.visitor).subscribe(resp => {
+                    if (resp) {
+                        this.updateVisitors();
+                        this.dialogRef.close(); 
+                    }
+                });
+            }
+        });
     }
 }

@@ -6,6 +6,7 @@ import { EditClientsComponent } from 'src/app/modules/edit-clients/edit-clients.
 import { VisitorService } from 'src/app/services/visitor.service';
 import { KeyVisitorType, updateType, VisitorType } from 'src/app/types/types';
 import { ClientDeleteComponent } from '../client-delete/client-delete.component';
+import { ClientInfoComponent } from '../client-info/client-info.component';
 
 @Component({
     selector: 'app-clients-mini',
@@ -33,7 +34,6 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.visitorService.getVisitors().subscribe(resp => {
-            // this.visitors = resp.slice(0, 12);
             this.visitorService.sendVisitorToStream(resp);
         });
 
@@ -42,7 +42,8 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
                 map(value => value.slice(0, 10))
             )
             .subscribe(resp => {
-                this.visitors$.next(resp);           
+                this.visitors$.next(resp);       
+                console.log('got visitors list');    
             }); 
     }
 
@@ -113,5 +114,14 @@ export class ClientsMiniComponent implements OnInit, OnDestroy {
                 });
             }
         });
+    }
+
+    onShowVisitor(visitor: VisitorType): void {
+        const params = {
+            data: visitor,
+            width: '511px',
+            height: '782px'
+        };
+        this.dialog.open(ClientInfoComponent, params);
     }
 } 

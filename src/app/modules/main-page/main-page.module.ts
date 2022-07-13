@@ -6,10 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
-import { EditProfileComponent } from 'src/app/components/edit-profile/edit-profile.component';
 import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/instructors-mini.component';
-import { ReadProfileUserComponent } from 'src/app/components/read-profile-user/read-profile-user.component';
-import { UserInfoComponent } from 'src/app/components/user-info/user-info.component';
 import { AddNewClientsModule } from '../add-new-clients/add-new-clients.module';
 import { AddNewInstructorModule } from '../add-new-instructor/add-new-instructor.module';
 import { ButtonModule } from '../button/button.module';
@@ -25,16 +22,11 @@ import { MainPageComponent } from './main-page.component';
 @NgModule({
     declarations: [
         MainPageComponent,
-        UserInfoComponent,
-        EditProfileComponent,
         ClientsMiniComponent,
-        ReadProfileUserComponent,
         InstructorsMiniComponent
     ],
     exports: [
-        MainPageComponent,
-        UserInfoComponent,
-        ReadProfileUserComponent
+        MainPageComponent
     ],
     imports: [
         CommonModule,
