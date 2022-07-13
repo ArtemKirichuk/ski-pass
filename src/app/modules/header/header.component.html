@@ -1,14 +1,45 @@
-<header class="header">
-    <mat-icon class="header__icon" click="routingMainPage()">menu</mat-icon>
-    <p class="header__text">{{SKI_RESORT | uppercase }}</p>
-    <div class="header__form">
-        <mat-icon class = "header__form__icon">search</mat-icon>
-        <input class = "header__form__input" 
-            placeholder="{{SEARCH}}"
-            [formControl]="searchForm">
+
+<header class="font">
+    <div class="header">
+        <mat-icon class="header__icon" click="routingMainPage()">menu</mat-icon>
+        <p class="header__text">{{SKI_RESORT | uppercase }}</p>
+        <div class="header__form">
+            <mat-icon class = "header__form__icon">search</mat-icon>
+            <input class = "header__form__input" 
+                placeholder="{{SEARCH}}"
+                [formControl]="searchForm">
+        </div>
+        <div class="header__exit" (click) = "logOut()">
+            <mat-icon class="header__exit__icon">login</mat-icon>
+            <p class="header__exit__text">{{EXIT}}</p>
+        </div>
     </div>
-    <div class="header__exit" (click) = "logOut()">
-        <mat-icon class="header__exit__icon">login</mat-icon>
-        <p class="header__exit__text">{{EXIT}}</p>
-    </div>
+    <app-user-info
+        class="user-info">
+    </app-user-info>
 </header>
+<div class="menu">
+    <div class="menu__clients" (click)="routerClients()">
+        <mat-icon class="menu__icon">people</mat-icon>
+        <p class="menu__text">{{CLIENTS}}</p>
+    </div>
+    <div class="menu__instructors" (click)="routerInstructors()">
+        <mat-icon class="menu__icon">record_voice_over</mat-icon>
+        <p class="menu__text">{{INSTRUCTORS}}</p>
+    </div>
+    <div class="menu__ski-passes" (click)="routerSkiPasses()">
+        <mat-icon class="menu__icon">chrome_reader_mode</mat-icon>
+        <p class="menu__text">{{SKI_PASSES}}</p>
+    </div>
+    <div class="menu__admin-mode">
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+        <p class="menu__text-mode">{{ADMIN_MODE}}</p>
+    </div>
+    <div class="menu__settings" (click)="editProfile()">
+        <mat-icon class="menu__icon" svgIcon="setting"></mat-icon>
+        <p class="menu__text">{{SETTINGS}}</p>
+    </div>
+</div>
