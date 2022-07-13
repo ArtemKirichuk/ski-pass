@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType } from 'src/app/types/types';
 
 
@@ -15,7 +16,10 @@ export class AddNewClientsComponent {
     NAME = 'ФИО';
     ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
     ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
+    ERROR_SKI_PASS_LEN = 'Ски-пасс должен быть 16-символьным'; 
+    ERROR_SKI_PASS_NOT_FOUND = 'Такого ски-пасса не существует'; 
     ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта';
+    ERROR_EMPTY_BIRTHDAY = 'Необходимо заполнить день рождения';
     BIRTHDAY = 'День рождения';
     NUMBER = 'Номер ски-пасса';
     NUMBER_TYPE = 'number';
@@ -29,7 +33,7 @@ export class AddNewClientsComponent {
 
     addClientsForm : FormGroup;
 
-    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) {
+    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>, private skiPassService : SkipassService) {
        
         this.addClientsForm = new FormGroup({
             name: new FormControl(null, Validators.required),
@@ -42,6 +46,14 @@ export class AddNewClientsComponent {
             category : new FormControl(null, Validators.required)
         });
     }
+  
+
+    // ngAfterViewInit(): void {
+    //     const button = this.buttonAdd.nativeElement
+    //     if(button){
+    //         button.addEventListener("click", this.clickButton(), false);
+    //     }
+    // }
 
     handlerClose($event:boolean):void{
         if($event){
@@ -56,21 +68,41 @@ export class AddNewClientsComponent {
 
     doneAddClients():void{
         this.clickAddButton = true;
-        const visitor: VisitorType = {
-            fio: this.addClientsForm.get('name')?.value,
-            birthday: this.addClientsForm.get('birthday')?.value,
-            instructor: this.addClientsForm.get('instructor')?.value,
-            skiPass: this.addClientsForm.get('numberSkiPasses')?.value,
-            sport: this.addClientsForm.get('category')?.value,
-            photo: this.photoClients
-        };
-        this.dialogRef.close(visitor);
+        if(this.addClientsForm.valid){
+            const visitor: VisitorType = {
+                fio: this.addClientsForm.get('name')?.value,
+                birthday: this.addClientsForm.get('birthday')?.value,
+                instructor: this.addClientsForm.get('instructor')?.value,
+                skiPass: this.addClientsForm.get('numberSkiPasses')?.value,
+                sport: this.addClientsForm.get('category')?.value,
+                photo: this.photoClients
+            };
+            this.dialogRef.close(visitor);
+        }
     }
 
 
-    checkName():boolean{
-        return this.addClientsForm.get('name')?.value === null && this.clickAddButton;
+    checkEmpty(param: string):boolean{
+        console.log(typeof this.addClientsForm.get(param)?.value)
+        return this.addClientsForm.get(param)?.value === null || this.addClientsForm.get(param)?.value === '';
     }
+
+    checkLen(param:string):boolean{
+        return `${this.addClientsForm.get(param)?.value}`.length !== 16;
+    }
+
+    // checkSkiPass(skiPass:number){
+
+    // }
+
+
+
+    clickButton(){
+        this.clickAddButton = true;
+        console.log('aaaaa')
+    }
+
+
 
     
 }
