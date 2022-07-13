@@ -122,7 +122,7 @@ export class InstructorsMiniComponent implements OnInit, OnDestroy {
     }
 
     onShowInstructor(instructor: InstructorType): void {
-        const params = { data: instructor, width: "511px",  height: "766px"};
+        const params = { data: instructor, width: '511px',  height: '766px'};
         this.dialog.open(InstructorInfoComponent, params);
     }
 }

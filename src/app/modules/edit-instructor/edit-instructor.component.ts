@@ -26,6 +26,7 @@ export class EditInstructorComponent {
     photoInstructor : string;
 
     editInstructorForm : FormGroup;
+    clickCloseWindow  = false;
 
 
     constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>, 
@@ -52,17 +53,24 @@ export class EditInstructorComponent {
     }
 
     doneEditInstructor(){
-        const formValue = this.editInstructorForm.getRawValue();
-        const instructor: InstructorType = {
-            fio: formValue.name,
-            birthday: formValue.birthday,
-            visiter: formValue.client,
-            sex: formValue.sex,
-            category: formValue.category,
-            photo: this.photoInstructor,
-            startWork: formValue.startWork
-        };
-        this.dialogRef.close(instructor);
+        this.clickCloseWindow = true;
+        if(this.editInstructorForm.valid){
+            const formValue = this.editInstructorForm.getRawValue();
+            const instructor: InstructorType = {
+                fio: formValue.name,
+                birthday: formValue.birthday,
+                visiter: formValue.client,
+                sex: formValue.sex,
+                category: formValue.category,
+                photo: this.photoInstructor,
+                startWork: formValue.startWork
+            };
+            this.dialogRef.close(instructor);
+        }
+    }
+
+    checkEmpty(param: string):boolean{
+        return this.editInstructorForm.get(param)?.value === null || this.editInstructorForm.get(param)?.value === '';
     }
 
 }

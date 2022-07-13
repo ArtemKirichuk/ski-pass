@@ -28,6 +28,6 @@ export class InstructorCardComponent {
   }
 
   showInstructor(): void {
-    this.onShowInstructor.emit(this.instructor);
+      this.onShowInstructor.emit(this.instructor);
   }
 }

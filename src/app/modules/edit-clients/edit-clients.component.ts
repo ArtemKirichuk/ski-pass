@@ -28,7 +28,7 @@ export class EditClientsComponent {
 
     editClientsForm : FormGroup;
     photoClients : string;
-    clickEditButton:boolean = false;
+    clickEditButton = false;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: {clients : VisitorType, width : string}, 
     private dialogRef: MatDialogRef<EditClientsComponent>) {
