@@ -14,27 +14,27 @@ import { PhotoFormModule } from '../photo-form/photo-form.module';
 
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    UserInfoComponent,
-    EditProfileComponent,
-    ReadProfileUserComponent
-  ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    FormsModule,
-    TitleModalFormModule,
-    InputModule,
-    ButtonModule,
-    PhotoFormModule
-  ],
-  exports:[
-    HeaderComponent,
-    UserInfoComponent,
-    EditProfileComponent,
-    ReadProfileUserComponent
-  ]
+    declarations: [
+        HeaderComponent,
+        UserInfoComponent,
+        EditProfileComponent,
+        ReadProfileUserComponent
+    ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        FormsModule,
+        TitleModalFormModule,
+        InputModule,
+        ButtonModule,
+        PhotoFormModule
+    ],
+    exports:[
+        HeaderComponent,
+        UserInfoComponent,
+        EditProfileComponent,
+        ReadProfileUserComponent
+    ]
 })
 export class HeaderModule { }
