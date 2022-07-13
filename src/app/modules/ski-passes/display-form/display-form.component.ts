@@ -11,17 +11,17 @@ import { KeySkiPassType, SkiPassType } from 'src/app/types/types';
     styleUrls: ['./display-form.component.scss']
 })
 export class DisplayFormComponent extends i18n {
-  destroy$ = new Subject();
-  @Output() deleteCard = new EventEmitter<KeySkiPassType>()
-    constructor(
+    destroy$ = new Subject();
+  @Output() deleteCard = new EventEmitter<KeySkiPassType>();
+  constructor(
       @Inject(MAT_DIALOG_DATA) public data: SkiPassType
-    ) {
-        super();
-    }
-    openDeleteForm(){
+  ) {
+      super();
+  }
+  openDeleteForm(){
     
-    }
-    openEditForm(){
+  }
+  openEditForm(){
 
-    }
+  }
 }

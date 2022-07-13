@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType } from 'src/app/types/types';
 
 
@@ -33,7 +32,7 @@ export class AddNewClientsComponent {
 
     addClientsForm : FormGroup;
 
-    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>, private skiPassService : SkipassService) {
+    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) {
        
         this.addClientsForm = new FormGroup({
             name: new FormControl(null, Validators.required),
@@ -47,14 +46,6 @@ export class AddNewClientsComponent {
         });
     }
   
-
-    // ngAfterViewInit(): void {
-    //     const button = this.buttonAdd.nativeElement
-    //     if(button){
-    //         button.addEventListener("click", this.clickButton(), false);
-    //     }
-    // }
-
     handlerClose($event:boolean):void{
         if($event){
             this.dialogRef.close(null);
@@ -83,7 +74,6 @@ export class AddNewClientsComponent {
 
 
     checkEmpty(param: string):boolean{
-        console.log(typeof this.addClientsForm.get(param)?.value)
         return this.addClientsForm.get(param)?.value === null || this.addClientsForm.get(param)?.value === '';
     }
 
@@ -94,13 +84,6 @@ export class AddNewClientsComponent {
     // checkSkiPass(skiPass:number){
 
     // }
-
-
-
-    clickButton(){
-        this.clickAddButton = true;
-        console.log('aaaaa')
-    }
 
 
 
