@@ -8,7 +8,7 @@
 
 
     <app-input 
-        class = "add-instructor__input" 
+        class = "edit-instructor__input" 
         [title]="NAME"  
         formControlName="name">
     </app-input>
@@ -19,13 +19,13 @@
     </small> -->
 
     <app-datepicker
-        class="add-instructor__date"
+        class="edit-instructor__date"
         [dayPlaceholder] = "BIRTHDAY"
         formControlName = "birthday">
     </app-datepicker>
 
     <app-datepicker
-        class="add-instructor__date"
+        class="edit-instructor__date"
         [dayPlaceholder] = "START_WORK"
         formControlName = "startWork">
     </app-datepicker>
@@ -33,12 +33,12 @@
     <app-select-sex
         formControlName="sex"
         [title] = "SEX"
-        class="add-instructor__select">
+        class="edit-instructor__select">
     </app-select-sex>
 
     <app-select-visitor
         formControlName="client"
-        class="add-instructor__select"
+        class="edit-instructor__select"
         [placeholder]="CLIENT">        
     </app-select-visitor>
 
@@ -50,7 +50,7 @@
     </small> -->
 
     <app-input 
-        class = "add-instructor__input" 
+        class = "edit-instructor__input" 
         [title]="CATEGORY"  
         formControlName="category">
     </app-input>
@@ -60,7 +60,7 @@
             {{ERROR_EMPTY_SPORT}}
     </small> -->
     
-    <div class = "add-instructor__button">
+    <div class = "edit-instructor__button">
         <app-button  mat-dialog-close [text]="BUTTON_EDIT" [disabled]="editInstructorForm.invalid" (click)="doneEditInstructor()" ></app-button>
     </div>
 </form>
