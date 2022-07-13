@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ClientDeleteComponent } from 'src/app/components/client-delete/client-delete.component';
+import { ClientInfoComponent } from 'src/app/components/client-info/client-info.component';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { updateType, VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
@@ -102,5 +103,14 @@ export class ClientsComponent implements OnInit, OnDestroy{
                 });
             }
         });
+    }
+
+    onShowVisitor(visitor: VisitorType): void {
+        const params = {
+            data: visitor,
+            width: '511px',
+            height: '782px'
+        };
+        this.dialog.open(ClientInfoComponent, params);
     }
 }

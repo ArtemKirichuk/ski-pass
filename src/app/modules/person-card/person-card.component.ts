@@ -12,6 +12,7 @@ export class PersonCardComponent {
   @Input() showMenu = true;
   @Output() onDeleteVisitor = new EventEmitter<VisitorType>();
   @Output() onEditVisitor = new EventEmitter<VisitorType>();
+  @Output() onShowVisitor = new EventEmitter<VisitorType>();
 
   APPOINT_COACH = 'Назначить тренера';
   EDIT = 'Редактировать';
@@ -23,5 +24,9 @@ export class PersonCardComponent {
 
   editVisitor(): void {
       this.onEditVisitor.emit(this.person);
+  }
+
+  showVisitor(): void {
+      this.onShowVisitor.emit(this.person);
   }
 }
