@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
 import { InstructorInfoComponent } from 'src/app/components/instructor-info/instructor-info.component';
@@ -30,7 +31,8 @@ import { InstructorsComponent } from './instructors.component';
         PersonCardModule,
         InstructorCardModule,
         TitleModalFormModule,
-        EditInstructorModule
+        EditInstructorModule,
+        MatDialogModule
     ]
 })
 export class InstructorsModule { }

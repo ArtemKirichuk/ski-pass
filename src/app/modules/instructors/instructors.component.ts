@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, OnDestroy, ChangeDetectionStrategy } from
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
+import { InstructorInfoComponent } from 'src/app/components/instructor-info/instructor-info.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType, updateType } from 'src/app/types/types';
 import { AddNewInstructorComponent } from '../add-new-instructor/add-new-instructor.component';
@@ -107,5 +108,10 @@ export class InstructorsComponent implements OnInit, OnDestroy{
                 });
             }
         });
+    }
+
+    onShowInstructor(instructor: InstructorType): void {
+        const params = { data: instructor, width: "511px",  height: "766px"};
+        this.dialog.open(InstructorInfoComponent, params);
     }
 }
