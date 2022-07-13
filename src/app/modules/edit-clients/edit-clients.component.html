@@ -13,17 +13,22 @@
         [type]="TEXT_TYPE"
         formControlName="name">
     </app-input>
-    <!-- <small 
-        class = "add-clients__error" 
-        *ngIf = "checkName()">
+    <small 
+        class = "edit-clients__error" 
+        *ngIf = "clickEditButton && checkEmpty('name')">
             {{ERROR_EMPTY_NAME}}
-    </small> -->
+    </small>
 
     <app-datepicker
         class="edit-clients__date"
         [dayPlaceholder] = "BIRTHDAY"
         formControlName = "birthday">
     </app-datepicker>
+    <small 
+        class = "edit-clients__error" 
+        *ngIf = "clickEditButton && checkEmpty('birthday')">
+            {{ERROR_EMPTY_BIRTHDAY}}
+    </small>
 
     
     <app-input 
@@ -32,17 +37,23 @@
         [type]="NUMBER_TYPE"
         formControlName="numberSkiPasses">
     </app-input>
+    <small 
+        class = "edit-clients__error" 
+        *ngIf = "clickEditButton && checkEmpty('numberSkiPasses')">
+            {{ERROR_EMPTY_NUMBER}}
+    </small>
+    <small 
+        class = "edit-clients__error" 
+        *ngIf = "clickEditButton && !checkEmpty('numberSkiPasses') && checkLen('numberSkiPasses')">
+            {{ERROR_SKI_PASS_LEN}}
+    </small>
 
     <app-select
         class="edit-clients__select-instructor"
         formControlName="instructor"
         [placeholder]="INSTRUCTOR">        
     </app-select>
-    <!-- <small 
-        class = "add-clients__error" 
-        *ngIf = "addClientsForm.controls['name'].invalid && addClientsForm.controls['name'].hasError('touched')">
-            {{ERROR_EMPTY_NUMBER}}
-    </small> -->
+    
 
     <app-input 
         class = "edit-clients__input" 
@@ -50,13 +61,13 @@
         [type]="TEXT_TYPE"
         formControlName="sport">
     </app-input>
-    <!-- <small 
-        class = "add-clients__error" 
-        *ngIf = "addClientsForm.get('category')?.errors?.['required'] && addClientsForm.get('category')?.touched">
+    <small 
+        class = "edit-clients__error" 
+        *ngIf = "clickEditButton && checkEmpty('sport')">
             {{ERROR_EMPTY_SPORT}}
-    </small> -->
+    </small>
     
     <div class = "edit-clients__button">
-        <app-button  mat-dialog-close [text]="BUTTON_EDIT" [disabled]="editClientsForm.invalid" (click)="editClients()" ></app-button>
+        <app-button [text]="BUTTON_EDIT" (click)="editClients()" ></app-button>
     </div>
 </form>
