@@ -1,4 +1,6 @@
-<div class="container"[style]="{background : getPhoto(skipass.photo)}"  (click)="openDisplayForm()">
+<div class="container"[style]="{    background : getPhoto(skipass.photo) ,
+                                    backgroundPosition: 'center'}"  (click)="openDisplayForm()">
+    
     
     <div class="name">{{PASS}} {{skipass.dateStart | date: 'dd.MM.yyyy'}}-{{skipass.dateEnd | date : 'dd.MM.yyyy' }}
     </div>
