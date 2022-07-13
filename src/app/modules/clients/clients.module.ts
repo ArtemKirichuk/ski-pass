@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
@@ -33,7 +34,8 @@ import { ClientsComponent } from './clients.component';
         PersonCardModule,
         AddNewClientsModule,
         TitleModalFormModule,
-        EditClientsModule
+        EditClientsModule,
+        MatDialogModule
     ]
 })
 export class ClientsModule { }
