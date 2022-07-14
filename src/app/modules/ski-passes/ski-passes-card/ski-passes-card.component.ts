@@ -24,7 +24,7 @@ export class SkiPassesCardComponent extends i18n {
     getPhoto(img: string) {
         return `no-repeat url(${img})`;
     }
-    openDeleteForm() {
+    openDeleteForm(redirectToDispaly?:boolean) {
         const config = { height: '580px', width: '500px', data: this.skipass };
         const dialogRef = this.matDialog.open(DeleteFormComponent, config);
         dialogRef.afterClosed()
@@ -32,10 +32,12 @@ export class SkiPassesCardComponent extends i18n {
             .subscribe(isDelete => {
                 if (isDelete) {
                     this.deleteCard.emit({ cardNumber: this.skipass.cardNumber });
+                    return
                 }
+                if(redirectToDispaly) this.openDisplayForm()
             });
     }
-    openEditForm() {
+    openEditForm(redirectToDispaly?:boolean) {
         const config = { height: '730px', width: '500px', data: this.skipass };
         const dialogRef = this.matDialog.open(SkiPassesFormComponent, config);
         dialogRef.afterClosed()
@@ -43,7 +45,9 @@ export class SkiPassesCardComponent extends i18n {
             .subscribe((updateData: updateType<KeySkiPassType, SkiPassType>) => {
                 if (updateData) {
                     this.editCard.emit(updateData);
+                    return
                 }
+                if(redirectToDispaly) this.openDisplayForm()
             });
     }
     openDisplayForm() {
@@ -52,9 +56,9 @@ export class SkiPassesCardComponent extends i18n {
         dialogRef.afterClosed().pipe(takeUntil(this.destroy$))
             .subscribe(isEdit => {
                 if (isEdit) {
-                    this.openEditForm();
+                    this.openEditForm(true);
                 } else if (isEdit === false) {
-                    this.openDeleteForm();
+                    this.openDeleteForm(true);
                 }
             });
     }
