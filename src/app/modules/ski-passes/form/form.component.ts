@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { map, Observable, startWith } from 'rxjs';
-import { CustomValidator, i18n, parseImg } from 'src/app/types/helper';
+import { CustomValidator, i18n, parseImg } from 'src/app/modules/shared/helper';
 import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 
 @Component({

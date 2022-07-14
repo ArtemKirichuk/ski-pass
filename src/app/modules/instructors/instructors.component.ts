@@ -4,11 +4,11 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
 import { InstructorInfoComponent } from 'src/app/components/instructor-info/instructor-info.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
-import { InstructorType, updateType } from 'src/app/types/types';
-import { AddNewInstructorComponent } from '../add-new-instructor/add-new-instructor.component';
-import { EditInstructorComponent } from '../edit-instructor/edit-instructor.component';
-import { PaginatorComponent } from '../paginator/paginator.component';
-import { KeyInstructorType } from '../shared/interfaces';
+import { InstructorType, updateType,KeyInstructorType } from 'src/app/types/types';
+import { AddNewInstructorComponent } from './add-new-instructor/add-new-instructor.component';
+import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
+import { PaginatorComponent } from '../shared/paginator/paginator.component';
+// import { KeyInstructorType } from '../shared/interfaces';
 
 @Component({
     selector: 'app-instructors',

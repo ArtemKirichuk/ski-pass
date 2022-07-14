@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EditClientsComponent } from 'src/app/modules/edit-clients/edit-clients.component';
+import { EditClientsComponent } from 'src/app/modules/clients/edit-clients/edit-clients.component';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { KeyVisitorType, updateType, VisitorType } from 'src/app/types/types';
 import { ClientDeleteComponent } from '../client-delete/client-delete.component';

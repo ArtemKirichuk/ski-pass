@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { VisitorType } from '../shared/interfaces';
+import { VisitorType } from 'src/app/types/types';
+
 
 
 @Component({

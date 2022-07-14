@@ -1,12 +1,11 @@
-:host{
-    margin-top: 20px;
-}
+
 .mini-block {
-    padding: 30px 50px 25px 50px;
+    // padding: 30px 50px 25px 50px;
     display: flex;
     flex-direction: column;
     border-radius: 12px;
     background-color: white;
+    margin-top: 20px;
 
     &__header {
         display: flex;
@@ -35,12 +34,11 @@
         margin-bottom: 15px;
     }
 
-    // &__client:hover {
-    //     background-color: #F3F3F3;
-    // }
-
     &__minimize {
         margin-left: auto;
+        cursor: pointer;
+        margin-right: 33px;
+        margin-top: 15px;
     }
     
     &__minimize:active {
@@ -52,6 +50,8 @@
         font-family: 'Roboto';
         color: #4158F6;
         float: right;
+        margin-right: 17px;
+        margin-bottom: 15px;
     }
 
     &__all:hover {

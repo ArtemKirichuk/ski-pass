@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
-import { InstructorType } from '../../types/types';
+import { AddNewClientsComponent } from '../../clients/add-new-clients/add-new-clients.component';
+import { InstructorType } from '../../../types/types';
 
 @Component({
     selector: 'app-edit-instructor',

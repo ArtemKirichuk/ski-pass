@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { SkipassService } from 'src/app/services/skipass.service';
-import { i18n } from 'src/app/types/helper';
-import { updateType } from 'src/app/types/types';
-import { KeySkiPassType, SkiPassType } from '../shared/interfaces';
+import { i18n } from 'src/app/modules/shared/helper';
+
+import { updateType,SkiPassType, KeySkiPassType } from 'src/app/types/types';
+// import { KeySkiPassType, SkiPassType } from '../shared/interfaces';
 import { SkiPassesFormComponent } from './form/form.component';
 
 @Component({

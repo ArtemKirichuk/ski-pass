@@ -7,12 +7,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ButtonModule } from '../button/button.module';
-import { DatepickerModule } from '../datepicker/datepicker.module';
-import { InputModule } from '../input/input.module';
-import { PhotoFormModule } from '../photo-form/photo-form.module';
-import { SelectModule } from '../select/select.module';
-import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
+import { ButtonModule } from '../../shared/button/button.module';
+import { DatepickerModule } from '../../datepicker/datepicker.module';
+import { InputModule } from '../../shared/input/input.module';
+import { PhotoFormModule } from '../../photo-form/photo-form.module';
+import { SelectModule } from '../../select/select.module';
+import { TitleModalFormModule } from '../../shared/title-modal-form/title-modal-form.module';
 import { AddNewClientsComponent } from './add-new-clients.component';
 
 

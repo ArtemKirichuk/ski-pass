@@ -4,11 +4,11 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { ClientDeleteComponent } from 'src/app/components/client-delete/client-delete.component';
 import { ClientInfoComponent } from 'src/app/components/client-info/client-info.component';
 import { VisitorService } from 'src/app/services/visitor.service';
-import { updateType, VisitorType } from 'src/app/types/types';
-import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
-import { EditClientsComponent } from '../edit-clients/edit-clients.component';
-import { PaginatorComponent } from '../paginator/paginator.component';
-import { KeyVisitorType } from '../shared/interfaces';
+import { KeyVisitorType, updateType, VisitorType } from 'src/app/types/types';
+import { AddNewClientsComponent } from './add-new-clients/add-new-clients.component';
+import { EditClientsComponent } from './edit-clients/edit-clients.component';
+import { PaginatorComponent } from '../shared/paginator/paginator.component';
+
 
 
 @Component({

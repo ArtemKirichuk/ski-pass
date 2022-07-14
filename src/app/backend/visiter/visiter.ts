@@ -1,4 +1,5 @@
-import { VisitorType } from '../../modules/shared/interfaces';
+
+import { VisitorType } from 'src/app/types/types';
 import { crud } from '../crud';
 
 export class Visiter extends crud {

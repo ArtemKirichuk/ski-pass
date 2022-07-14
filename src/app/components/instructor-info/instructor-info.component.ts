@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EditInstructorComponent } from 'src/app/modules/edit-instructor/edit-instructor.component';
+import { EditInstructorComponent } from 'src/app/modules/instructors/edit-instructor/edit-instructor.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType, KeyInstructorType, updateType } from 'src/app/types/types';
 import { InstructorDeleteComponent } from '../instructor-delete/instructor-delete.component';

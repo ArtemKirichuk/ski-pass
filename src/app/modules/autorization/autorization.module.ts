@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ButtonModule } from 'src/app/modules/button/button.module';
+import { ButtonModule } from 'src/app/modules/shared/button/button.module';
 import { AutorizationComponent } from './autorization.component';
 
 

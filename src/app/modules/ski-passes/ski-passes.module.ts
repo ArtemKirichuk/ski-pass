@@ -10,14 +10,14 @@ import { SkiPassesCardComponent } from './ski-passes-card/ski-passes-card.compon
 
 
 import { SkiPassesFormComponent } from './form/form.component';
-import { ButtonModule } from '../button/button.module';
+import { ButtonModule } from '../shared/button/button.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { PaginatorModule } from '../paginator/paginator.module';
+import { PaginatorModule } from '../shared/paginator/paginator.module';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';

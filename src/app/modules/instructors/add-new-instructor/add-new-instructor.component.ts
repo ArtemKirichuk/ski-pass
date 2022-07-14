@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { InstructorType } from 'src/app/types/types';
-import { AddNewClientsComponent } from '../add-new-clients/add-new-clients.component';
+import { AddNewClientsComponent } from '../../clients/add-new-clients/add-new-clients.component';
 
 @Component({
     selector: 'app-add-new-instructor',

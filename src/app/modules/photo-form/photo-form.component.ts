@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { parseImg } from 'src/app/types/helper';
+import { parseImg } from 'src/app/modules/shared/helper';
 
 @Component({
     selector: 'app-photo-form',

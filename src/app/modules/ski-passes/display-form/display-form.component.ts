@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { i18n } from 'src/app/types/helper';
+import { i18n } from 'src/app/modules/shared/helper';
 import { KeySkiPassType, SkiPassType } from 'src/app/types/types';
 
 

@@ -1,21 +1,9 @@
 <div class="main-page">
     <app-header></app-header>
-
     <body>
         <div class="font">
-
             <div class="mini-apps">
-                
-                <app-container-mini title="{{VISITERS}}" route="/clients">
-                    <app-clients-mini content ></app-clients-mini>
-                </app-container-mini>
-                <app-container-mini title="{{INSTRUCTORS}}" route="/instructors">
-                    <app-instructors-mini content></app-instructors-mini>
-                </app-container-mini>   
-                <app-container-mini title="{{SKIPASSES}}" route="/ski-passes">
-                    <app-ski-passes  content></app-ski-passes>
-                </app-container-mini>
-
+                <router-outlet></router-outlet>
             </div>
         </div>
     </body>

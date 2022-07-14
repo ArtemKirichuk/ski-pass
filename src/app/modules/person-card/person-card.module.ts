@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { AgeModule } from '../age/age.module';
+import { AgeModule } from '../shared/age/age.module';
 import { PersonCardComponent } from './person-card.component';
 
 @NgModule({

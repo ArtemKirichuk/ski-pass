@@ -21,18 +21,18 @@ import { RouterModule } from '@angular/router';
                 path: '',
                 loadChildren: () => import('src/app/modules/main-page/main-page.module').then(m => m.MainPageModule)
             },
-            {
-                path: 'clients',
-                loadChildren: () => import('src/app/modules/clients/clients.module').then(m => m.ClientsModule)
-            },
-            {
-                path: 'instructors',
-                loadChildren: () => import('src/app/modules/instructors/instructors.module').then(m => m.InstructorsModule)
-            },
-            {
-                path: 'ski-passes',
-                loadChildren: () => import('src/app/modules/ski-passes/ski-passes.module').then(m => m.SkiPassesModule)
-            },
+            // {
+            //     path: 'clients',
+            //     loadChildren: () => import('src/app/modules/clients/clients.module').then(m => m.ClientsModule)
+            // },
+            // {
+            //     path: 'instructors',
+            //     loadChildren: () => import('src/app/modules/instructors/instructors.module').then(m => m.InstructorsModule)
+            // },
+            // {
+            //     path: 'ski-passes',
+            //     loadChildren: () => import('src/app/modules/ski-passes/ski-passes.module').then(m => m.SkiPassesModule)
+            // },
 
         ])
     ],

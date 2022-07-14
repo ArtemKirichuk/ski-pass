@@ -4,12 +4,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
 import { InstructorInfoComponent } from 'src/app/components/instructor-info/instructor-info.component';
-import { PaginatorModule } from 'src/app/modules/paginator/paginator.module';
-import { ButtonModule } from '../button/button.module';
-import { EditInstructorModule } from '../edit-instructor/edit-instructor.module';
-import { InstructorCardModule } from '../instructor-card/instructor-card.module';
+import { PaginatorModule } from 'src/app/modules/shared/paginator/paginator.module';
+import { ButtonModule } from '../shared/button/button.module';
+import { EditInstructorModule } from './edit-instructor/edit-instructor.module';
+import { InstructorCardModule } from './instructor-card/instructor-card.module';
 import { PersonCardModule } from '../person-card/person-card.module';
-import { TitleModalFormModule } from '../title-modal-form/title-modal-form.module';
+import { TitleModalFormModule } from '../shared/title-modal-form/title-modal-form.module';
 import { InstructorsComponent } from './instructors.component';
 
 
@@ -25,10 +25,10 @@ import { InstructorsComponent } from './instructors.component';
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild([{path:'',component: InstructorsComponent}]),
+        // RouterModule.forChild([{path:'',component: InstructorsComponent}]),
         ButtonModule,
         PaginatorModule,
-        PersonCardModule,
+        // PersonCardModule,
         InstructorCardModule,
         TitleModalFormModule,
         EditInstructorModule,

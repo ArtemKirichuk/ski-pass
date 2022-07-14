@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InstructorCardModule } from '../instructor-card/instructor-card.module';
+import { InstructorCardModule } from '../instructors/instructor-card/instructor-card.module';
 import { SelectComponent } from './select.component';
 
 @NgModule({

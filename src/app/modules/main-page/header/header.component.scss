@@ -33,7 +33,6 @@
         }
     }
     &__text{
-        font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
         font-size: 13px;
@@ -44,6 +43,7 @@
         margin-right: 80px;
         margin-top: 10px;
         flex-basis: 10%;
+        
     }
 
     &__exit{
@@ -55,7 +55,6 @@
         //margin-left: 7%;
         
         &__text{
-            font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
             font-size: 13px;
@@ -160,17 +159,16 @@
     }
 
     &__text{
-        font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
         line-height: 24px;
         color: #A5AAAD;
         margin-left: 30px;
+        cursor: pointer;
     }
 
     &__text-mode{
-        font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
@@ -238,7 +236,6 @@ input:checked + .slider:before {
 }
 
 .copy-right{
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 9px;

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { i18n } from 'src/app/types/helper';
+import { i18n } from 'src/app/modules/shared/helper';
 
 @Component({
     selector: 'app-main-page',

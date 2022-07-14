@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
-import { i18n } from 'src/app/types/helper';
+import { i18n } from 'src/app/modules/shared/helper';
 import { SkiPassType } from 'src/app/types/types';
 
 

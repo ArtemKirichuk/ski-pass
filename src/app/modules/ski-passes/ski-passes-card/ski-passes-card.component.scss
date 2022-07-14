@@ -2,12 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
     height: 120px;
     border: 1px solid black;
     border-radius: 8px;
     position: relative;
-    margin: 10px;
 
     & .name {
         position: absolute;

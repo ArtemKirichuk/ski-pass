@@ -1,4 +1,5 @@
-import { UserType } from 'src/app/modules/shared/interfaces';
+
+import { UserType } from 'src/app/types/types';
 import { User } from '../user/user';
 
 export class Auth {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserType } from '../shared/interfaces';
+
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { UserType } from 'src/app/types/types';
 
 
 @Component({
