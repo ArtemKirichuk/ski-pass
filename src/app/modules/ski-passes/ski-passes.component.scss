@@ -1,14 +1,7 @@
 .block {
-    padding: 20px 50px 20px 50px;
     display: flex;
     flex-direction: column;
-
-    &__text{
-        font-weight: 500;
-        font-family: 'Roboto';
-        font-size: 14px;
-        margin-right: 30px;
-    }
+    position: relative;
 
     &__list {
         display: flex;
@@ -23,7 +16,12 @@
         margin-bottom: 15px;
     }
 
-    
+    &__btnAdd {
+        position: absolute;
+        top: -49px;
+        left: 115px;
+    }
+
 }
 
 .paginators {

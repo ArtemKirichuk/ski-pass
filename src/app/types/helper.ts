@@ -70,6 +70,7 @@ export class i18n {
     readonly COST = 'Цена';
     readonly ASSIGNE_VISITER = 'Назначенный посетитель';
     readonly CARD_SKIPASS = 'Карточка ски-пасса';
+    readonly ALL = 'Все';
 
     // private constructor(){}
 }

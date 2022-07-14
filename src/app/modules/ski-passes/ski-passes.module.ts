@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 
-import { RouterModule } from '@angular/router';
+// import { RouterModule } from '@angular/router';
 import { SkiPassesComponent } from './ski-passes.component';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { SkiPassesCardComponent } from './ski-passes-card/ski-passes-card.component';
 
 
@@ -18,7 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PaginatorModule } from '../paginator/paginator.module';
-import localeRu from '@angular/common/locales/ru';
+
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DeleteFormComponent } from './delete-form/delete-form.component';
@@ -35,7 +35,7 @@ import { DisplayFormComponent } from './display-form/display-form.component';
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        RouterModule.forChild([{ path: '', component: SkiPassesComponent }]),
+        // RouterModule.forChild([{ path: '', component: SkiPassesComponent }]),
         ButtonModule,
         PaginatorModule,
         ButtonModule,
@@ -43,7 +43,6 @@ import { DisplayFormComponent } from './display-form/display-form.component';
         MatDialogModule,
         MatNativeDateModule,
         MatDatepickerModule,
-
         MatMenuModule,
         MatIconModule,
         MatFormFieldModule,
@@ -51,12 +50,15 @@ import { DisplayFormComponent } from './display-form/display-form.component';
         MatSelectModule,
         MatAutocompleteModule
     ],
-    providers: [],
+    exports:[
+        SkiPassesComponent,
+        SkiPassesCardComponent,
+        SkiPassesFormComponent,
+        DeleteFormComponent,
+        DisplayFormComponent
+    ]
 
 })
 export class SkiPassesModule {
-    constructor() {
-        if (localeRu)
-            registerLocaleData(localeRu, 'ru');
-    }
+ 
 }

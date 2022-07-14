@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
+import * as moment from 'moment';
 import { map, Observable, startWith } from 'rxjs';
 import { CustomValidator, i18n, parseImg } from 'src/app/types/helper';
 import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
@@ -68,8 +69,8 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         this.skiPassForm.controls['dateStart'].updateValueAndValidity();
         this.skiPassForm.controls['dateEnd'].updateValueAndValidity();
     }
-    compareCompleteDate = (d: Date | null): boolean => {
-        const day = (d || new Date());
+    compareCompleteDate = (d: moment.Moment | null): boolean => {
+        const day:Date = (d?.toDate() || new Date());
         return day !== null && day.getTime() >= new Date().setHours(0, 0, 0, 0);
     };
     updateData: updateType<KeySkiPassType, SkiPassType> = {} as updateType<KeySkiPassType, SkiPassType>;
@@ -97,7 +98,5 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         };
         input.click();
     }
-    getPhoto(img: string) {
-        return ` center url(${img}) #F3F3F3 `;
-    }
+
 }

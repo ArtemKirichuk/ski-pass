@@ -11,11 +11,13 @@ import { MainInterceptor } from './backend/fakeServer.interceptor';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { MainPageModule } from './modules/main-page/main-page.module';
 
+
+
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,        
     ],
     imports: [
         BrowserAnimationsModule,

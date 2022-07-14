@@ -1,0 +1,16 @@
+<div class="mini-block">
+    <div class="mini-block__header">
+        <span class="mini-block__text">{{title}}</span>
+        <img src="{{minimizeURL}}" class="mini-block__minimize" (click)="minimize()">
+    </div>
+    <div *ngIf="show">
+        <ng-content select="[content]"></ng-content>
+    </div>
+    <div>
+        <span class="mini-block__all" [routerLink]="route">
+            {{ALL}}
+            <img src="assets/images/next-page-icon.svg">
+        </span>
+    </div>
+
+</div>
