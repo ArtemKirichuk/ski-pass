@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { EditProfileComponent } from 'src/app/components/edit-profile/edit-profile.component';
 import { UserService } from 'src/app/services/user.service';
 
@@ -24,14 +25,26 @@ export class HeaderComponent{
     IMG_SETTING = '../../assets/images/setting.svg';
     COPYRIGHT = 'Все права защищены';
     searchForm = new FormControl('');
+    destroy$ : Subject<boolean> = new Subject<boolean>();
     
     constructor(private userService:UserService, private router : Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog : MatDialog){
         iconRegistry.addSvgIcon('setting', sanitizer.bypassSecurityTrustResourceUrl(this.IMG_SETTING));
     }
 
+    ngOnDestroy(): void {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
+    }
+
     logOut():void{
-        this.userService.singOut();
-        this.router.navigate(['/autorization']);
+        this.userService.singOut()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(result =>{
+            if(result){
+                this.router.navigate(['/autorization']);
+            }
+        });
+        
     }
 
     routingMainPage():void{

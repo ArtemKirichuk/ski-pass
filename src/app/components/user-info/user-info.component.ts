@@ -15,7 +15,8 @@ import { ReadProfileUserComponent } from '../read-profile-user/read-profile-user
 export class UserInfoComponent {
     POST  = 'Администратор';
     PASSWORD  = '123456';
-    
+    DEFAULT_IMG  = '../../../assets/images/default-photo.svg';
+
     destroy$: Subject<boolean> = new Subject<boolean>();
    
     currentUser$ : BehaviorSubject<UserType> = new BehaviorSubject<UserType>({} as UserType);
@@ -29,6 +30,8 @@ export class UserInfoComponent {
             .pipe(takeUntil(this.destroy$))
             .subscribe( user =>{
                 this.currentUser$.next(user);
+                if(!this.currentUser$.value.photo)
+                    this.currentUser$.value.photo = this.DEFAULT_IMG;
             });
     }
 
