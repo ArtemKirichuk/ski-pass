@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType } from 'src/app/types/types';
 
@@ -12,10 +13,15 @@ import { InstructorType } from 'src/app/types/types';
             provide:NG_VALUE_ACCESSOR,
             useExisting: forwardRef(()=>SelectComponent),
             multi:true
-        }
+        },
+        {
+            provide: NG_VALIDATORS,
+            useExisting: SelectComponent,
+            multi: true,
+        },
     ]
 })
-export class SelectComponent implements OnInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, ControlValueAccessor, Validator {
 
     @Input() value = '';
     @Input() placeholder = '';
@@ -24,7 +30,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     showVariants = false;
     selectedItems: Set<string> = new Set();
 
-    onChange = (val:string)=>{this.value = val;};
+    filteredOptions: BehaviorSubject<InstructorType[]> = new BehaviorSubject<InstructorType[]>([]);
+
+    onChange = (val:string)=> {this.value = val;};
     onTouch = (val:string)=>{this.value = val;};
 
     constructor(private instructorService: InstuctorService) { 
@@ -33,14 +41,34 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     ngOnInit(): void {
         this.instructorService.getInstructors().subscribe(resp => {
             this.instructors = resp;
+            this.filteredOptions = new BehaviorSubject<InstructorType[]>(resp);
         });    
+    }
+
+    tempFn(value: string) {
+        this.instructors.some(el => el.fio === value);
+    }
+
+    validate(control: AbstractControl): ValidationErrors | null {        
+        if (control.value) {
+            const value = <string>control.value;
+            const splittedVals = value.split(', ');
+
+            const oks = splittedVals.map(val => {
+                return this.instructors.some(el => el.fio === val);
+            });
+
+            return oks.every(el => el === true)? null : {invalid: true};
+
+        }
+        return {invalid: true};
     }
 
     toggleVariants() {
         this.showVariants = !this.showVariants;
     }
 
-    selectItem(item: InstructorType) {
+    selectItem(item: InstructorType) {   
         this.showVariants = false;
         this.selectedItems.add(item.fio);
         const valuesArr = Array.from(this.selectedItems);
@@ -66,4 +94,32 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
         this.onTouch = fn;
     }
 
+    modelChanged(val: string): void {        
+
+        const editedSelectedItems = new Set<string>();
+        const splittedVals = val.split(', ');
+        if (splittedVals.length > 1 ) {
+            splittedVals.forEach(el => {
+                const el2 = el.replace(',', '');
+                if (this.selectedItems.has(el2)) {
+                    editedSelectedItems.add(el2);
+                }
+            });
+    
+            this.selectedItems = editedSelectedItems;
+        }
+
+        const valuesArr = Array.from(this.selectedItems);
+        this.value = valuesArr.join(', '); 
+
+        const instructorsStrings = val.split(', ');
+        const compareVal = instructorsStrings[instructorsStrings.length-1];
+
+        const filteredVals = this.instructors.filter(el => el.fio.toLowerCase().startsWith(compareVal));
+
+        this.filteredOptions.next(filteredVals);
+
+        this.onChange(this.value);
+        this.onTouch(this.value);  
+    }
 }
