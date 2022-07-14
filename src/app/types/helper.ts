@@ -71,6 +71,8 @@ export class i18n {
     readonly ASSIGNE_VISITER = 'Назначенный посетитель';
     readonly CARD_SKIPASS = 'Карточка ски-пасса';
     readonly ALL = 'Все';
+    readonly INSTRUCTORS = 'Инструкторы';
+    readonly VISITERS = 'Посетители';
 
     // private constructor(){}
 }

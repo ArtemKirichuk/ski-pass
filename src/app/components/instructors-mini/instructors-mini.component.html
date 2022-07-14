@@ -1,17 +1,18 @@
-<div class="instructors-mini-block" *ngIf="instructors$ | async as instructors">
-    <div class="instructors-mini-block__header">
-        <span class="instructors-mini-block__text">{{INSTRUCTORS}}</span>
+ <div class="instructors-mini-block" *ngIf="instructors$ | async as instructors">
+  <!--  <div class="instructors-mini-block__header">
+        <span class="instructors-mini-block__text">{{INSTRUCTORS}}</span> -->
 
         <app-button
+        class="instructors-mini-block__btnAdd"
             [text]="ADD"
             [mode]="'icon'"
             (click) = "addNewInstructor()"
         ></app-button>
 
-        <img src="{{minimizeURL}}" class="instructors-mini-block__minimize" (click)="minimize()">
+        <!-- <img src="{{minimizeURL}}" class="instructors-mini-block__minimize" (click)="minimize()">
 
         
-    </div>
+    </div> -->
 
     <div class="instructors-mini-block__list" *ngIf="showInstructors">
         <app-instructor-card
@@ -25,10 +26,10 @@
         ></app-instructor-card>
     </div>
 
-    <div>
+    <!-- <div>
         <span class="instructors-mini-block__all" routerLink="/instructors">
             {{ALL}} 
             <img src="../../../assets/images/next-page-icon.svg">
         </span>
-    </div>        
-</div>
+    </div>        -->
+</div> 

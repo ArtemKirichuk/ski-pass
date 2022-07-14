@@ -4,6 +4,13 @@
     flex-direction: column;
     border-radius: 12px;
     background-color: white;
+    position: relative;
+
+    &__btnAdd {
+        position: absolute;
+        top: -49px;
+        left: 115px;
+    }
 
     &__header {
         display: flex;

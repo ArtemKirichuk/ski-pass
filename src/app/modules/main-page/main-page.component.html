@@ -5,15 +5,15 @@
         <div class="font">
 
             <div class="mini-apps">
-                <app-clients-mini ></app-clients-mini>
                 
-                
-
-                <app-instructors-mini class="mini-apps_margin-top_20px"></app-instructors-mini>
-                
+                <app-container-mini title="{{VISITERS}}" route="/clients">
+                    <app-clients-mini content ></app-clients-mini>
+                </app-container-mini>
+                <app-container-mini title="{{INSTRUCTORS}}" route="/instructors">
+                    <app-instructors-mini content></app-instructors-mini>
+                </app-container-mini>   
                 <app-container-mini title="{{SKIPASSES}}" route="/ski-passes">
                     <app-ski-passes  content></app-ski-passes>
-                    <!-- <app-ski-pass-mimi content></app-ski-pass-mimi> -->
                 </app-container-mini>
 
             </div>
