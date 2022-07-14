@@ -13,17 +13,23 @@
         [type]="TEXT_TYPE"
         formControlName="name">
     </app-input>
-    <!-- <small 
+    <small 
         class = "add-clients__error" 
-        *ngIf = "checkName()">
+        *ngIf = "clickAddButton && checkEmpty('name')">
             {{ERROR_EMPTY_NAME}}
-    </small> -->
+    </small>
 
     <app-datepicker
         class="add-clients__date"
         [dayPlaceholder] = "BIRTHDAY"
         formControlName = "birthday">
     </app-datepicker>
+    <small 
+        class = "add-clients__error" 
+        *ngIf = "clickAddButton && checkEmpty('birthday')">
+            {{ERROR_EMPTY_BIRTHDAY}}
+    </small>
+    
 
     
     <app-input 
@@ -32,18 +38,23 @@
         [type]="NUMBER_TYPE"
         formControlName="numberSkiPasses">
     </app-input>
-
+    <small 
+        class = "add-clients__error" 
+        *ngIf = "clickAddButton && checkEmpty('numberSkiPasses')">
+            {{ERROR_EMPTY_NUMBER}}
+    </small>
+    <small 
+        class = "add-clients__error" 
+        *ngIf = "clickAddButton && !checkEmpty('numberSkiPasses') && checkLen('numberSkiPasses')">
+            {{ERROR_SKI_PASS_LEN}}
+    </small>
+    
+    
     <app-select
         formControlName="instructor"
         class="add-clients__select"
         [placeholder]="INSTRUCTOR">        
     </app-select>
-
-    <!-- <small 
-        class = "add-clients__error" 
-        *ngIf = "addClientsForm.controls['name'].invalid && addClientsForm.controls['name'].hasError('touched')">
-            {{ERROR_EMPTY_NUMBER}}
-    </small> -->
 
     <app-input 
         class = "add-clients__input" 
@@ -51,13 +62,13 @@
         [type]="TEXT_TYPE"
         formControlName="category">
     </app-input>
-    <!-- <small 
+    <small 
         class = "add-clients__error" 
-        *ngIf = "addClientsForm.get('category')?.errors?.['required'] && addClientsForm.get('category')?.touched">
+        *ngIf = "clickAddButton && checkEmpty('category')">
             {{ERROR_EMPTY_SPORT}}
-    </small> -->
+    </small>
     
     <div class = "add-clients__button">
-        <app-button  mat-dialog-close [text]="BUTTON_ADD" [disabled]="addClientsForm.invalid" (click)="doneAddClients()" ></app-button>
+        <app-button [text]="BUTTON_ADD"  (click)="doneAddClients()"></app-button>
     </div>
 </form>

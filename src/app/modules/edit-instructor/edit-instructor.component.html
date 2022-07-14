@@ -8,60 +8,68 @@
 
 
     <app-input 
-        class = "add-instructor__input" 
+        class = "edit-instructor__input" 
         [title]="NAME"  
         formControlName="name">
     </app-input>
-    <!-- <small 
-        class = "add-clients__error" 
-        *ngIf = "checkName()">
+    <small 
+        class = "edit-instructor__error" 
+        *ngIf = "clickCloseWindow && checkEmpty('name')">
             {{ERROR_EMPTY_NAME}}
-    </small> -->
+    </small>
 
     <app-datepicker
-        class="add-instructor__date"
+        class="edit-instructor__date"
         [dayPlaceholder] = "BIRTHDAY"
         formControlName = "birthday">
     </app-datepicker>
+    <small 
+        class = "edit-instructor__error" 
+        *ngIf = "clickCloseWindow && checkEmpty('birthday')">
+            {{ERROR_EMPTY_BIRTHDAY}}
+    </small>
 
     <app-datepicker
-        class="add-instructor__date"
+        class="edit-instructor__date"
         [dayPlaceholder] = "START_WORK"
         formControlName = "startWork">
     </app-datepicker>
+    <small 
+        class = "edit-instructor__error" 
+        *ngIf = "clickCloseWindow && checkEmpty('startWork')">
+            {{ERROR_EMPTY_START_WORK}}
+    </small>
     
     <app-select-sex
         formControlName="sex"
         [title] = "SEX"
-        class="add-instructor__select">
+        class="edit-instructor__select">
     </app-select-sex>
+    <small 
+        class = "edit-instructor__error" 
+        *ngIf = "clickCloseWindow && checkEmpty('sex')">
+            {{ERROR_EMPTY_SEX}}
+    </small>
 
     <app-select-visitor
         formControlName="client"
-        class="add-instructor__select"
+        class="edit-instructor__select"
         [placeholder]="CLIENT">        
     </app-select-visitor>
 
-
-    <!-- <small 
-        class = "add-clients__error" 
-        *ngIf = "addClientsForm.controls['name'].invalid && addClientsForm.controls['name'].hasError('touched')">
-            {{ERROR_EMPTY_NUMBER}}
-    </small> -->
-
     <app-input 
-        class = "add-instructor__input" 
+        class = "edit-instructor__input" 
         [title]="CATEGORY"  
         formControlName="category">
     </app-input>
-    <!-- <small 
-        class = "add-clients__error" 
-        *ngIf = "addClientsForm.get('category')?.errors?.['required'] && addClientsForm.get('category')?.touched">
-            {{ERROR_EMPTY_SPORT}}
-    </small> -->
+    <small 
+        class = "edit-instructor__error" 
+        *ngIf = "clickCloseWindow && checkEmpty('category')">
+            {{ERROR_EMPTY_CATEGORY}}
+    </small>
     
-    <div class = "add-instructor__button">
-        <app-button  mat-dialog-close [text]="BUTTON_EDIT" [disabled]="editInstructorForm.invalid" (click)="doneEditInstructor()" ></app-button>
+    <div class = "edit-instructor__button">
+        <app-button  [text]="BUTTON_EDIT"  (click)="doneEditInstructor()" ></app-button>
     </div>
 </form>
 

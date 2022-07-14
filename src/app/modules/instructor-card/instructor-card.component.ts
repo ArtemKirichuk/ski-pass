@@ -12,6 +12,7 @@ export class InstructorCardComponent {
   @Input() showMenu = true;
   @Output() onDeleteInstructor = new EventEmitter<InstructorType>();
   @Output() onEditInstuctor = new EventEmitter<InstructorType>();
+  @Output() onShowInstructor = new EventEmitter<InstructorType>();
 
   APPOINT_COACH = 'Назначить поситителя';
   EDIT = 'Редактировать';
@@ -24,5 +25,9 @@ export class InstructorCardComponent {
 
   editInstructor(): void {
       this.onEditInstuctor.emit(this.instructor);
+  }
+
+  showInstructor(): void {
+      this.onShowInstructor.emit(this.instructor);
   }
 }

@@ -52,14 +52,14 @@ export class SkiPassesCardComponent extends i18n {
         dialogRef.afterClosed().pipe(takeUntil(this.destroy$))
             .subscribe(isEdit => {
                 if (isEdit) {
-                    this.openEditForm()
+                    this.openEditForm();
                 } else if (isEdit === false) {
-                    this.openDeleteForm()
+                    this.openDeleteForm();
                 }
-            });;
+            });
     }
 
     openMenu(event: Event) {
-        event.stopImmediatePropagation()
+        event.stopImmediatePropagation();
     }
 }

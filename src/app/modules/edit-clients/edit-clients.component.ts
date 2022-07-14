@@ -16,6 +16,8 @@ export class EditClientsComponent {
     ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
     ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта';
     ERROR_EMPTY_BIRTHDAY = 'Необходимо заполнить дату рождения';
+    ERROR_SKI_PASS_LEN = 'Ски-пасс должен быть 16-символьным'; 
+    ERROR_SKI_PASS_NOT_FOUND = 'Такого ски-пасса не существует'; 
     BIRTHDAY = 'День рождения';
     NUMBER = 'Номер ски-пасса';
     NUMBER_TYPE = 'number';
@@ -26,6 +28,7 @@ export class EditClientsComponent {
 
     editClientsForm : FormGroup;
     photoClients : string;
+    clickEditButton = false;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: {clients : VisitorType, width : string}, 
     private dialogRef: MatDialogRef<EditClientsComponent>) {
@@ -52,18 +55,27 @@ export class EditClientsComponent {
     }
 
     editClients(){
-        const formValue = this.editClientsForm.getRawValue();
-        const clients = {} as VisitorType;
-        clients.photo = this.photoClients;
-        clients.fio = formValue.name;
-        clients.birthday = formValue.birthday;
-        clients.instructor = formValue.instructor;
-        clients.skiPass = formValue.numberSkiPasses;
-        clients.sport = formValue.sport;
+        this.clickEditButton = true;
+        if(this.editClientsForm.valid){
+            const formValue = this.editClientsForm.getRawValue();
+            const clients : VisitorType = {
+                photo : this.photoClients,
+                fio : formValue.name,
+                birthday : formValue.birthday,
+                instructor : formValue.instructor,
+                skiPass : formValue.numberSkiPasses,
+                sport : formValue.sport
+            };
+            this.dialogRef.close(clients); 
+        }
+    }
 
-        console.log('send', clients);
+    checkEmpty(param: string):boolean{
+        return this.editClientsForm.get(param)?.value === null || this.editClientsForm.get(param)?.value === '';
+    }
 
-        this.dialogRef.close(clients); 
+    checkLen(param:string):boolean{
+        return `${this.editClientsForm.get(param)?.value}`.length !== 16;
     }
 
 }

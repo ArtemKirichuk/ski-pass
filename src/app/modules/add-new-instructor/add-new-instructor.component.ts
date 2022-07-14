@@ -27,6 +27,7 @@ export class AddNewInstructorComponent{
     photoInstructor : string = this.DEFAULT_IMG;
 
     addInstructorForm : FormGroup;
+    clickCloseWindow  = false;
   
 
     constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) {
@@ -51,18 +52,26 @@ export class AddNewInstructorComponent{
         this.photoInstructor = $event;
     }
 
-    doneAddInstructor(){
-        const formValue = this.addInstructorForm.getRawValue();
-        const instructor: InstructorType = {
-            fio: formValue.name,
-            birthday: formValue.birthday,
-            visiter: formValue.client,
-            sex: formValue.sex,
-            category: formValue.category,
-            photo: this.photoInstructor,
-            startWork: formValue.startWork
-        };
-        this.dialogRef.close(instructor);
+    doneAddInstructor():void{
+        this.clickCloseWindow = true;
+        if(this.addInstructorForm.valid){
+            const formValue = this.addInstructorForm.getRawValue();
+            const instructor: InstructorType = {
+                fio: formValue.name,
+                birthday: formValue.birthday,
+                visiter: formValue.client,
+                sex: formValue.sex,
+                category: formValue.category,
+                photo: this.photoInstructor,
+                startWork: formValue.startWork
+            };
+            this.dialogRef.close(instructor);
+        }
     }
+
+    checkEmpty(param: string):boolean{
+        return this.addInstructorForm.get(param)?.value === null || this.addInstructorForm.get(param)?.value === '';
+    }
+
 
 }

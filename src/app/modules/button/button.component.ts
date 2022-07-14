@@ -13,4 +13,6 @@ export class ButtonComponent {
   // values: icon, noIcon
   @Input() mode = 'noIcon';
 
+  
+
 }

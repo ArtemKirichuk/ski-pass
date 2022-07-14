@@ -15,7 +15,10 @@ export class AddNewClientsComponent {
     NAME = 'ФИО';
     ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
     ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
+    ERROR_SKI_PASS_LEN = 'Ски-пасс должен быть 16-символьным'; 
+    ERROR_SKI_PASS_NOT_FOUND = 'Такого ски-пасса не существует'; 
     ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта';
+    ERROR_EMPTY_BIRTHDAY = 'Необходимо заполнить день рождения';
     BIRTHDAY = 'День рождения';
     NUMBER = 'Номер ски-пасса';
     NUMBER_TYPE = 'number';
@@ -42,7 +45,7 @@ export class AddNewClientsComponent {
             category : new FormControl(null, Validators.required)
         });
     }
-
+  
     handlerClose($event:boolean):void{
         if($event){
             this.dialogRef.close(null);
@@ -56,21 +59,33 @@ export class AddNewClientsComponent {
 
     doneAddClients():void{
         this.clickAddButton = true;
-        const visitor: VisitorType = {
-            fio: this.addClientsForm.get('name')?.value,
-            birthday: this.addClientsForm.get('birthday')?.value,
-            instructor: this.addClientsForm.get('instructor')?.value,
-            skiPass: this.addClientsForm.get('numberSkiPasses')?.value,
-            sport: this.addClientsForm.get('category')?.value,
-            photo: this.photoClients
-        };
-        this.dialogRef.close(visitor);
+        if(this.addClientsForm.valid){
+            const visitor: VisitorType = {
+                fio: this.addClientsForm.get('name')?.value,
+                birthday: this.addClientsForm.get('birthday')?.value,
+                instructor: this.addClientsForm.get('instructor')?.value,
+                skiPass: this.addClientsForm.get('numberSkiPasses')?.value,
+                sport: this.addClientsForm.get('category')?.value,
+                photo: this.photoClients
+            };
+            this.dialogRef.close(visitor);
+        }
     }
 
 
-    checkName():boolean{
-        return this.addClientsForm.get('name')?.value === null && this.clickAddButton;
+    checkEmpty(param: string):boolean{
+        return this.addClientsForm.get(param)?.value === null || this.addClientsForm.get(param)?.value === '';
     }
+
+    checkLen(param:string):boolean{
+        return `${this.addClientsForm.get(param)?.value}`.length !== 16;
+    }
+
+    // checkSkiPass(skiPass:number){
+
+    // }
+
+
 
     
 }

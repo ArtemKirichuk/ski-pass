@@ -6,6 +6,7 @@ import { EditInstructorComponent } from 'src/app/modules/edit-instructor/edit-in
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType, KeyInstructorType, updateType } from 'src/app/types/types';
 import { InstructorDeleteComponent } from '../instructor-delete/instructor-delete.component';
+import { InstructorInfoComponent } from '../instructor-info/instructor-info.component';
 
 @Component({
     selector: 'app-instructors-mini',
@@ -118,5 +119,10 @@ export class InstructorsMiniComponent implements OnInit, OnDestroy {
         this.instructorService.getInstructors().subscribe(instructorsList => {
             this.instructorService.sendInstructorToStream(instructorsList);
         });
+    }
+
+    onShowInstructor(instructor: InstructorType): void {
+        const params = { data: instructor, width: '511px',  height: '766px'};
+        this.dialog.open(InstructorInfoComponent, params);
     }
 }
