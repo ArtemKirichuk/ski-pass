@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -10,12 +10,14 @@ import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 @Component({
     selector: 'app-form',
     templateUrl: './form.component.html',
-    styleUrls: ['./form.component.scss']
+    styleUrls: ['./form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkiPassesFormComponent extends i18n implements OnInit {
     skiPassForm: FormGroup;
     srcPhoto = 'assets/images/default-photo.svg';
     isCreate: boolean;
+    updateData: updateType<KeySkiPassType, SkiPassType> = {} as updateType<KeySkiPassType, SkiPassType>;
     get cardNumber() { return this.skiPassForm.get('cardNumber'); }
     get dateStart() { return this.skiPassForm.get('dateStart'); }
     get dateEnd() { return this.skiPassForm.get('dateEnd'); }
@@ -31,9 +33,7 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
             this.isCreate = true;
             this.skiPass = {} as SkiPassType;
         }
-        // this.skiPass.photo = this.skiPass.photo ? this.skiPass.photo : this.srcPhoto;
         this.srcPhoto = this.skiPass.photo ? this.skiPass.photo : this.srcPhoto;
-
         this.skiPassForm = new FormGroup({
             photo: new FormControl(this.skiPass.photo),
             cardNumber: new FormControl(this.skiPass?.cardNumber, [
@@ -70,10 +70,10 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         this.skiPassForm.controls['dateEnd'].updateValueAndValidity();
     }
     compareCompleteDate = (d: moment.Moment | null): boolean => {
-        const day:Date = (d?.toDate() || new Date());
+        const day: Date = (d?.toDate() || new Date());
         return day !== null && day.getTime() >= new Date().setHours(0, 0, 0, 0);
     };
-    updateData: updateType<KeySkiPassType, SkiPassType> = {} as updateType<KeySkiPassType, SkiPassType>;
+    
 
     //Сохранить изменения
     saveRow(): void {

@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { i18n } from 'src/app/modules/shared/helper';
 
-import { updateType,SkiPassType, KeySkiPassType } from 'src/app/types/types';
+import { updateType, SkiPassType, KeySkiPassType } from 'src/app/types/types';
 // import { KeySkiPassType, SkiPassType } from '../shared/interfaces';
 import { SkiPassesFormComponent } from './form/form.component';
 
 @Component({
     selector: 'app-ski-passes',
     templateUrl: './ski-passes.component.html',
-    styleUrls: ['./ski-passes.component.scss']
+    styleUrls: ['./ski-passes.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkiPassesComponent extends i18n {
-    skipasses$!: Observable<SkiPassType[]>;
+export class SkiPassesComponent extends i18n implements OnDestroy {
+    // skipasses$!: Observable<SkiPassType[]>;
+    skipassesBe$: BehaviorSubject<SkiPassType[]> ;
     destroy$: Subject<boolean>;
     updateSkipass$: Observable<SkiPassType[]>;
     constructor(
@@ -22,51 +24,60 @@ export class SkiPassesComponent extends i18n {
         private skipassService: SkipassService
     ) {
         super();
+        this.skipassesBe$ = new BehaviorSubject<SkiPassType[]>([] as SkiPassType[])
         this.destroy$ = new Subject();
         this.updateSkipass$ = new Observable(observer => {
             this.skipassService.get().subscribe(skipasses => {
-                observer.next(skipasses);
+                
+                this.skipassesBe$.next(skipasses);
+                observer.next();
             });
 
         });
-        this.updateSkipass$.subscribe(skipasses => {            
-            this.skipasses$ = of(skipasses);
+        this.updateSkipass$.subscribe({
+            // next: skipasses => {
+            //     this.skipasses$ = of(skipasses);
+            // }
         });
     }
-  
-    openCreateForm() {
+
+    openCreateForm(): void {
         const dialogRef = this.matDialog.open(SkiPassesFormComponent, { height: '730px', width: '500px' });
         dialogRef.afterClosed()
             .pipe(takeUntil(this.destroy$))
             .subscribe((skipass: SkiPassType) => {
                 if (skipass) {
-                    this.create(skipass).subscribe(skipasses => {
-                        
-                        this.skipasses$ = of(skipasses);
-                    });
+                    this.create(skipass);
                 }
             });
     }
-    create(data: SkiPassType): Observable<SkiPassType[]> {
-        return this.skipassService.create(data).pipe(
+    create(data: SkiPassType): void {
+        this.skipassService.create(data)
+        .pipe(
             takeUntil(this.destroy$),
             switchMap(() => this.updateSkipass$)
-        );
+        )
+        .subscribe(()=>{
+            // this.skipasses$ = of(skipasses);
+        });
     }
-    update(data:updateType<KeySkiPassType,SkiPassType>){
+    update(data: updateType<KeySkiPassType, SkiPassType>): void {
         this.skipassService.update(data).pipe(
             takeUntil(this.destroy$),
             switchMap(() => this.updateSkipass$)
-        ).subscribe((skipasses)=>{
-            this.skipasses$ = of(skipasses);
+        ).subscribe(() => {
+            // this.skipasses$ = of(skipasses);
         });
     }
-    delete(event: KeySkiPassType) {
+    delete(event: KeySkiPassType): void {
         this.skipassService.delete(event).pipe(
             takeUntil(this.destroy$),
             switchMap(() => this.updateSkipass$)
-        ).subscribe(skipasses => {
-            this.skipasses$ = of(skipasses);
+        ).subscribe(() => {
+            // this.skipasses$ = of(skipasses);
         });
+    }
+    ngOnDestroy(): void {
+        this.destroy$.next(true);
     }
 }

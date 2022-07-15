@@ -73,6 +73,7 @@ export class i18n {
     readonly ALL = 'Все';
     readonly INSTRUCTORS = 'Инструкторы';
     readonly VISITERS = 'Посетители';
+    readonly ERROR_DATE_END_LT_DATE_START = 'Дата завершения меньше даты начала.';
 
     // private constructor(){}
 }

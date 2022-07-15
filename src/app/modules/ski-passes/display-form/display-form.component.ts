@@ -18,10 +18,4 @@ export class DisplayFormComponent extends i18n {
   ) {
       super();
   }
-  openDeleteForm(){
-    
-  }
-  openEditForm(){
-
-  }
 }

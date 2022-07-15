@@ -21,10 +21,10 @@ export class SkiPassesCardComponent extends i18n {
         super();
     }
 
-    getPhoto(img: string) {
+    getPhoto(img: string):string {
         return `no-repeat url(${img})`;
     }
-    openDeleteForm(redirectToDispaly?:boolean) {
+    openDeleteForm(redirectToDispaly?:boolean):void {
         const config = { height: '580px', width: '500px', data: this.skipass };
         const dialogRef = this.matDialog.open(DeleteFormComponent, config);
         dialogRef.afterClosed()
@@ -37,7 +37,7 @@ export class SkiPassesCardComponent extends i18n {
                 if(redirectToDispaly) this.openDisplayForm()
             });
     }
-    openEditForm(redirectToDispaly?:boolean) {
+    openEditForm(redirectToDispaly?:boolean):void {
         const config = { height: '730px', width: '500px', data: this.skipass };
         const dialogRef = this.matDialog.open(SkiPassesFormComponent, config);
         dialogRef.afterClosed()
@@ -50,7 +50,7 @@ export class SkiPassesCardComponent extends i18n {
                 if(redirectToDispaly) this.openDisplayForm()
             });
     }
-    openDisplayForm() {
+    openDisplayForm():void {
         const config = { height: '770px', width: '500px', data: this.skipass };
         const dialogRef = this.matDialog.open(DisplayFormComponent, config);
         dialogRef.afterClosed().pipe(takeUntil(this.destroy$))
@@ -63,7 +63,7 @@ export class SkiPassesCardComponent extends i18n {
             });
     }
 
-    openMenu(event: Event) {
+    openMenu(event: Event):void {
         event.stopImmediatePropagation();
     }
 }

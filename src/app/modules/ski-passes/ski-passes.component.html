@@ -5,7 +5,8 @@
         <app-button [mode]="'icon'"  class="block__btnAdd" (click)="openCreateForm()"[text]="ADD_NEW"></app-button>
         <!-- <app-paginator [itemsOnPage]="3" [allItems]="skipasses" (onChangePage)="onChangedPage($event)"></app-paginator> -->
     </div>
+
     <div class="block__list">
-        <app-ski-passes-card *ngFor="let item of skipasses$ | async" [skipass]="item" (editCard)="update($event)" (deleteCard)="delete($event)"></app-ski-passes-card>
+        <app-ski-passes-card *ngFor="let item of (skipassesBe$ | async)" [skipass]="item" (editCard)="update($event)" (deleteCard)="delete($event)"></app-ski-passes-card>
     </div>
 </div>

@@ -25,7 +25,7 @@
             [matDatepickerFilter]="compareCompleteDate" (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateEndRef"></mat-datepicker-toggle>
         <mat-datepicker #dateEndRef></mat-datepicker>
-        <mat-error *ngIf="dateEnd?.errors?.['errorDate']">Дата завершения меньше даты начала.</mat-error>
+        <mat-error *ngIf="dateEnd?.errors?.['errorDate']">{{ERROR_DATE_END_LT_DATE_START}}</mat-error>
     </mat-form-field>
     <!-- Стоимость -->
     <mat-form-field class="form__field" appearance="fill">
