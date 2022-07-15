@@ -4,7 +4,8 @@
 </div>
 <form [formGroup]="skiPassForm" class="form">
     <!-- Фото карты -->
-    <div class="form__conteiner" [style]="{    background : 'no-repeat #F3F3F3  center url('+srcPhoto+')' } " (click)="loadPhoto()"></div>
+    <div class="form__conteiner" [style]="{    background : 'no-repeat #F3F3F3  center url('+srcPhoto+')' } "
+        (click)="loadPhoto()"></div>
     <!-- <input id="file" formControlName="photo" type="file" hidden="true"> -->
     <!-- Номер карты -->
     <mat-form-field class="form__field" appearance="fill">
@@ -31,12 +32,19 @@
     <mat-form-field class="form__field" appearance="fill">
         <input matInput formControlName="cost" type="number" [placeholder]="FORM_COST" />
     </mat-form-field>
-    <!-- Категория -->
+    <!-- посетитель -->
     <mat-form-field class="form__field" appearance="fill">
         <input type="text" matInput formControlName="visiter" [placeholder]="VISITER" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option}}
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.fio">
+                
+                <!-- <img class="example-option-img" aria-hidden [src]="option.photo" height="25">
+                <span>{{option.fio}}</span> |
+                <small>birthday: {{option.birthday}}</small> -->
+                <app-person-card
+                    [person]="option"
+                    [showMenu]="false">
+                </app-person-card>
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
@@ -44,6 +52,8 @@
 <!-- Кнопка подтверждения -->
 <div class="form__button">
     <!-- [disabled]="skiPassForm.invalid" -->
-    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="ADD" [disabled]="skiPassForm.invalid"></app-button>
-    <app-button *ngIf="!isCreate" [mat-dialog-close]="updateData" [text]="SAVE" (click)="saveRow()" [disabled]="skiPassForm.invalid"></app-button>
+    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="ADD" [disabled]="skiPassForm.invalid">
+    </app-button>
+    <app-button *ngIf="!isCreate" [mat-dialog-close]="updateData" [text]="SAVE" (click)="saveRow()"
+        [disabled]="skiPassForm.invalid"></app-button>
 </div>

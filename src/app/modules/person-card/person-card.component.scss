@@ -40,6 +40,14 @@
         // padding-top: 15px;
         // padding-bottom: 15px;
         // border: 1px solid black;
+        &__fio {
+            height: 23px;
+            font-size: 15px;
+        }
+        &__age{
+            font-size: 14px;
+        }
+
     }
 
     &__text {

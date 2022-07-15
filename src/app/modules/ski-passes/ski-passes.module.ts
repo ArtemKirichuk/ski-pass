@@ -24,6 +24,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DeleteFormComponent } from './delete-form/delete-form.component';
 import { DisplayFormComponent } from './display-form/display-form.component';
 import { RouterModule } from '@angular/router';
+import { PersonCardModule } from '../person-card/person-card.module';
 @NgModule({
     declarations: [
         SkiPassesComponent,
@@ -49,7 +50,8 @@ import { RouterModule } from '@angular/router';
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        PersonCardModule
     ],
     exports:[
         SkiPassesComponent,

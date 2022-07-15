@@ -5,7 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { map, Observable, startWith } from 'rxjs';
 import { CustomValidator, i18n, parseImg } from 'src/app/modules/shared/helper';
-import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
+import { VisitorService } from 'src/app/services/visitor.service';
+import { KeySkiPassType, SkiPassType, updateType, VisitorType } from 'src/app/types/types';
 
 @Component({
     selector: 'app-form',
@@ -23,11 +24,15 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
     get dateEnd() { return this.skiPassForm.get('dateEnd'); }
     get photo() { return this.skiPassForm.get('photo'); }
     get visiter() { return this.skiPassForm.get('visiter'); }
-    visiters: string[] = [];
-    filteredOptions!: Observable<string[]>;
+    visiters: VisitorType[] = [];
+    filteredOptions!: Observable<VisitorType[]>;
     constructor(private sanitizer: DomSanitizer,
-        @Inject(MAT_DIALOG_DATA) public skiPass: SkiPassType) {
+        @Inject(MAT_DIALOG_DATA) public skiPass: SkiPassType,
+        private visiterService:VisitorService) {
         super();
+        visiterService.getVisitors().subscribe((visiters)=>{
+            this.visiters = visiters;
+        })
         this.isCreate = false;
         if (!skiPass) {
             this.isCreate = true;
@@ -52,7 +57,6 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
             cost: new FormControl(this.skiPass?.cost, [Validators.required]),
             visiter: new FormControl(this.skiPass?.visiter),
         });
-
     }
     ngOnInit(): void {
         if (this.visiter)
@@ -61,9 +65,9 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
                 map(value => this.filterVisiter(value || '')),
             );
     }
-    private filterVisiter(value: string): string[] {
+    private filterVisiter(value: string): VisitorType[] {
         const filterValue = value.toLowerCase();
-        return this.visiters.filter(e => e.toLowerCase().includes(filterValue));
+        return this.visiters.filter(e => e.fio.toLowerCase().includes(filterValue));
     }
     changeDate(): void {
         this.skiPassForm.controls['dateStart'].updateValueAndValidity();
@@ -74,7 +78,6 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         return day !== null && day.getTime() >= new Date().setHours(0, 0, 0, 0);
     };
     
-
     //Сохранить изменения
     saveRow(): void {
         Object.assign(this.updateData, { oldKey: { cardNumber: this.skiPass.cardNumber }, newRow: this.skiPassForm.value });
