@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ButtonModule } from '../../shared/button/button.module';
-import { DatepickerModule } from '../../datepicker/datepicker.module';
+import { DatepickerModule } from '../../shared/datepicker/datepicker.module';
 import { InputModule } from '../../shared/input/input.module';
 import { PhotoFormModule } from '../../photo-form/photo-form.module';
 import { SelectModule } from '../../select/select.module';

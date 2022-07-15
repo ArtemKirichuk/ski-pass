@@ -6,7 +6,7 @@ import { PhotoFormModule } from '../../photo-form/photo-form.module';
 import { SelectModule } from '../../select/select.module';
 import { InputModule } from '../../shared/input/input.module';
 import { ButtonModule } from '../../shared/button/button.module';
-import { DatepickerModule } from '../../datepicker/datepicker.module';
+import { DatepickerModule } from '../../shared/datepicker/datepicker.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 

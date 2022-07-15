@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from '../../shared/button/button.module';
-import { DatepickerModule } from '../../datepicker/datepicker.module';
+import { DatepickerModule } from '../../shared/datepicker/datepicker.module';
 import { InputModule } from '../../shared/input/input.module';
 import { PhotoFormModule } from '../../photo-form/photo-form.module';
 import { SelectSexModule } from '../../select-sex/select-sex.module';

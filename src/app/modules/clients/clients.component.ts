@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { ClientDeleteComponent } from 'src/app/components/client-delete/client-delete.component';
-import { ClientInfoComponent } from 'src/app/components/client-info/client-info.component';
+import { ClientDeleteComponent } from 'src/app/modules/clients/client-delete/client-delete.component';
+import { ClientInfoComponent } from 'src/app/modules/clients/client-info/client-info.component';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { KeyVisitorType, updateType, VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from './add-new-clients/add-new-clients.component';

@@ -6,8 +6,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { RouterModule } from '@angular/router';
-import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
-import { ContainerMiniComponent } from 'src/app/components/container-mini/container-mini.component';
+// import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
+import { ContainerMiniComponent } from 'src/app/modules/main-page/content-page/container-mini/container-mini.component';
 // import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/instructors-mini.component';
 // import { DeleteFormComponent } from 'src/app/components/ski-pass-mimi/delete-form/delete-form.component';
 // import { DisplayFormComponent } from 'src/app/components/ski-pass-mimi/display-form/display-form.component';
@@ -35,7 +35,7 @@ import { MainPageComponent } from './main-page.component';
 @NgModule({
     declarations: [
         MainPageComponent,
-        ClientsMiniComponent,
+        // ClientsMiniComponent,
         // InstructorsMiniComponent,
         // ContainerMiniComponent,
     ],

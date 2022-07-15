@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { InstructorDeleteComponent } from 'src/app/components/instructor-delete/instructor-delete.component';
-import { InstructorInfoComponent } from 'src/app/components/instructor-info/instructor-info.component';
+import { InstructorDeleteComponent } from 'src/app/modules/instructors/instructor-delete/instructor-delete.component';
+import { InstructorInfoComponent } from 'src/app/modules/instructors/instructor-info/instructor-info.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType, updateType,KeyInstructorType } from 'src/app/types/types';
 import { AddNewInstructorComponent } from './add-new-instructor/add-new-instructor.component';

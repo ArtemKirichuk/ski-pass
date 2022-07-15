@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentPageComponent } from './content-page.component';
-import { ContainerMiniComponent } from 'src/app/components/container-mini/container-mini.component';
-import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
+import { ContainerMiniComponent } from 'src/app/modules/main-page/content-page/container-mini/container-mini.component';
+// import { ClientsMiniComponent } from 'src/app/components/clients-mini/clients-mini.component';
 // import { InstructorsMiniComponent } from 'src/app/components/instructors-mini/instructors-mini.component';
 import { SkiPassesModule } from '../../ski-passes/ski-passes.module';
 import { RouterModule } from '@angular/router';
