@@ -5,7 +5,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { EditProfileComponent } from 'src/app/components/edit-profile/edit-profile.component';
+import { EditProfileComponent } from 'src/app/modules/main-page/header/edit-profile/edit-profile.component';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

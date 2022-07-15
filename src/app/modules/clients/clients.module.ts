@@ -26,7 +26,7 @@ import { ClientsComponent } from './clients.component';
     ],
     imports: [
         CommonModule,
-        // RouterModule.forChild([{path:'', component: ClientsComponent}]),
+        RouterModule.forChild([{path:'clients', component: ClientsComponent}]),
         MatMenuModule,
         MatIconModule,        
         ButtonModule,

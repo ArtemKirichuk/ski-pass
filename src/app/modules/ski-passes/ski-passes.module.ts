@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DeleteFormComponent } from './delete-form/delete-form.component';
 import { DisplayFormComponent } from './display-form/display-form.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
     declarations: [
         SkiPassesComponent,
@@ -35,7 +36,7 @@ import { DisplayFormComponent } from './display-form/display-form.component';
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        // RouterModule.forChild([{ path: '', component: SkiPassesComponent }]),
+        RouterModule.forChild([{ path: 'ski-passes', component: SkiPassesComponent }]),
         ButtonModule,
         PaginatorModule,
         ButtonModule,

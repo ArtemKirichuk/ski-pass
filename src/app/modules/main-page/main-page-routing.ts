@@ -1,16 +1,13 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContentPageComponent } from './content-page/content-page.component';
-
-import { SkiPassesComponent } from '../ski-passes/ski-passes.component';
 import { MainPageComponent } from './main-page.component';
-import { InstructorsComponent } from '../instructors/instructors.component';
-import { ClientsComponent } from '../clients/clients.component';
+
 // {
 //   path: 'clients',
 //   loadChildren: () => import('src/app/modules/clients/clients.module').then(m => m.ClientsModule)
 // },
+
 const routes: Routes = [
   {
     path: '',
@@ -21,9 +18,9 @@ const routes: Routes = [
 
         children: [
           { path: '', loadChildren: () => import('src/app/modules/main-page/content-page/content-page.module').then(m => m.ContentPageModule) },
-          { path: 'ski-passes', component: SkiPassesComponent },
-          { path: 'instructors', component: InstructorsComponent },
-          { path: 'clients', component: ClientsComponent },
+          { path: 'ski-passes', loadChildren: () => import('src/app/modules/ski-passes/ski-passes.module').then(m => m.SkiPassesModule ) },
+          { path: 'instructors', loadChildren: () => import('src/app/modules/instructors/instructors.module').then(m => m.InstructorsModule ) },
+          { path: 'clients', loadChildren: () => import('src/app/modules/clients/clients.module').then(m => m.ClientsModule ) },
         ]
       }
     ]

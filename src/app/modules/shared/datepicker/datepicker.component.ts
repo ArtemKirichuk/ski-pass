@@ -4,7 +4,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HeaderDatepickerComponent } from 'src/app/components/header-datepicker/header-datepicker.component';
+import { HeaderDatepickerComponent } from 'src/app/modules/shared/datepicker/header-datepicker/header-datepicker.component';
 
 class CustomDateAdapter extends MomentDateAdapter {
     override getDayOfWeekNames() {

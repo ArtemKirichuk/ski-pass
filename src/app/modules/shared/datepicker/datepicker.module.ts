@@ -8,7 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { HeaderDatepickerComponent } from 'src/app/components/header-datepicker/header-datepicker.component';
+import { HeaderDatepickerComponent } from 'src/app/modules/shared/datepicker/header-datepicker/header-datepicker.component';
 import { DatepickerComponent } from './datepicker.component';
 
 
