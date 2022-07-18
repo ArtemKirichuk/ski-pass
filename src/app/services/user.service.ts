@@ -7,7 +7,7 @@ import { KeyUserType, updateType, UserType } from '../types/types';
     providedIn: 'root'
 }) 
 export class UserService {
-
+    signIn = 'signIn';
     currentUser$: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({} as UserType);
 
     constructor(private httpClient: HttpClient) {
@@ -37,15 +37,15 @@ export class UserService {
 
     //------------------------------ singIn -----------------------------------
     singIn(user: UserType): Observable<boolean> {
-        return this.httpClient.post<boolean>('signIn', user);
+        return this.httpClient.post<boolean>(this.signIn, user);
     }
 
     singInGet(): Observable<string> {
-        return this.httpClient.get<string>('signIn');
+        return this.httpClient.get<string>(this.signIn);
     }
 
     singOut():Observable<boolean>{
-        return this.httpClient.delete<boolean>('singIn');
+        return this.httpClient.delete<boolean>(this.signIn);
     }
 
     
