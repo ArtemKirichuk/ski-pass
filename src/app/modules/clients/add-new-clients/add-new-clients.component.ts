@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatDialogRef } from '@angular/material/dialog';
 import { VisitorType } from 'src/app/types/types';
 
@@ -31,7 +32,7 @@ export class AddNewClientsComponent {
     photoClients : string = this.DEFAULT_IMG;
 
     addClientsForm : FormGroup;
-
+    @ViewChild(MatAutocompleteTrigger) autocomplete!: MatAutocompleteTrigger;
     constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) {
        
         this.addClientsForm = new FormGroup({
@@ -84,7 +85,9 @@ export class AddNewClientsComponent {
     // checkSkiPass(skiPass:number){
 
     // }
-
+    openAutoCompleteMenu() {
+        this.autocomplete.openPanel()
+      }
 
 
     

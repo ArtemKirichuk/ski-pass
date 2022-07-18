@@ -1,74 +1,59 @@
-
-<app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
-<form class = "add-clients" [formGroup]="addClientsForm" novalidate>
-    <app-photo-form 
-        [img] = "photoClients" 
-        (imgLink)="handlerEvent($event)">
+<app-title-modal-form [title]="TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
+<form class="add-clients" [formGroup]="addClientsForm" novalidate>
+    <app-photo-form [img]="photoClients" (imgLink)="handlerEvent($event)">
     </app-photo-form>
 
 
-    <app-input 
-        class = "add-clients__input" 
-        [title]="NAME"  
-        [type]="TEXT_TYPE"
-        formControlName="name">
+    <app-input class="add-clients__input" [title]="NAME" [type]="TEXT_TYPE" formControlName="name">
     </app-input>
-    <small 
-        class = "add-clients__error" 
-        *ngIf = "clickAddButton && checkEmpty('name')">
-            {{ERROR_EMPTY_NAME}}
+    <small class="add-clients__error" *ngIf="clickAddButton && checkEmpty('name')">
+        {{ERROR_EMPTY_NAME}}
     </small>
 
-    <app-datepicker
-        class="add-clients__date"
-        [dayPlaceholder] = "BIRTHDAY"
-        formControlName = "birthday">
+    <app-datepicker class="add-clients__date" [dayPlaceholder]="BIRTHDAY" formControlName="birthday">
     </app-datepicker>
-    <small 
-        class = "add-clients__error" 
-        *ngIf = "clickAddButton && checkEmpty('birthday')">
-            {{ERROR_EMPTY_BIRTHDAY}}
+    <small class="add-clients__error" *ngIf="clickAddButton && checkEmpty('birthday')">
+        {{ERROR_EMPTY_BIRTHDAY}}
     </small>
-    
 
-    
-    <app-input 
-        class = "add-clients__input-number" 
-        [title]="NUMBER"  
-        [type]="NUMBER_TYPE"
+
+
+    <app-input class="add-clients__input-number" [title]="NUMBER" [type]="NUMBER_TYPE"
         formControlName="numberSkiPasses">
     </app-input>
-    <small 
-        class = "add-clients__error" 
-        *ngIf = "clickAddButton && checkEmpty('numberSkiPasses')">
-            {{ERROR_EMPTY_NUMBER}}
+    <small class="add-clients__error" *ngIf="clickAddButton && checkEmpty('numberSkiPasses')">
+        {{ERROR_EMPTY_NUMBER}}
     </small>
-    <small 
-        class = "add-clients__error" 
-        *ngIf = "clickAddButton && !checkEmpty('numberSkiPasses') && checkLen('numberSkiPasses')">
-            {{ERROR_SKI_PASS_LEN}}
+    <small class="add-clients__error"
+        *ngIf="clickAddButton && !checkEmpty('numberSkiPasses') && checkLen('numberSkiPasses')">
+        {{ERROR_SKI_PASS_LEN}}
     </small>
-    
-    
-    <app-select
-        formControlName="instructor"
-        class="add-clients__select"
-        [placeholder]="INSTRUCTOR">        
-    </app-select>
 
-    <app-input 
-        class = "add-clients__input" 
-        [title]="SPORT"  
-        [type]="TEXT_TYPE"
-        formControlName="category">
+
+    <app-select formControlName="instructor" class="add-clients__select" [placeholder]="INSTRUCTOR">
+    </app-select>
+    <!-- <div class="warper"> -->
+        <div class="select-warper">
+            <input type="text" placeholder="Pick one" aria-label="Number" readonly class="select"
+                (click)="openAutoCompleteMenu()" formControlName="numberSkiPasses" [matAutocomplete]="auto" />
+            <button class="toggle-arrow">
+                <img src="assets/images/arrow-down-filled.svg" alt="">
+            </button>
+        </div>
+    <!-- </div> -->
+    <mat-autocomplete id="autocomplete" autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option value="1">option</mat-option>
+        <mat-option value="2">2</mat-option>
+        <mat-option value="3">3</mat-option>
+    </mat-autocomplete>
+
+    <app-input class="add-clients__input" [title]="SPORT" [type]="TEXT_TYPE" formControlName="category">
     </app-input>
-    <small 
-        class = "add-clients__error" 
-        *ngIf = "clickAddButton && checkEmpty('category')">
-            {{ERROR_EMPTY_SPORT}}
+    <small class="add-clients__error" *ngIf="clickAddButton && checkEmpty('category')">
+        {{ERROR_EMPTY_SPORT}}
     </small>
-    
-    <div class = "add-clients__button">
-        <app-button [text]="BUTTON_ADD"  (click)="doneAddClients()"></app-button>
+
+    <div class="add-clients__button">
+        <app-button [text]="BUTTON_ADD" (click)="doneAddClients()"></app-button>
     </div>
 </form>

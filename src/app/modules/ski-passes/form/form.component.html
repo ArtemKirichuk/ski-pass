@@ -8,10 +8,11 @@
         (click)="loadPhoto()"></div>
     <!-- <input id="file" formControlName="photo" type="file" hidden="true"> -->
     <!-- Номер карты -->
-    <mat-form-field class="form__field" appearance="fill">
-        <input formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER" matInput />
-        <mat-error *ngIf="cardNumber?.errors?.['errorCard']">Неверный номер карты.</mat-error>
-    </mat-form-field>
+    
+        <input  class = "input"formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER"  />
+        <mat-error clss="error"*ngIf="cardNumber?.errors?.['errorCard']">{{ERROR_CARD_NUMBER}}</mat-error>
+        <!-- <mat-form-field class="form__field" appearance="fill"></mat-form-field> -->
+    
     <!-- Дата начала -->
     <mat-form-field class="form__field " appearance="fill">
         <input matInput formControlName="dateStart" [matDatepicker]="dateStartRef" [placeholder]="FORM_DATE_START"
@@ -37,10 +38,6 @@
         <input type="text" matInput formControlName="visiter" [placeholder]="VISITER" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.fio">
-                
-                <!-- <img class="example-option-img" aria-hidden [src]="option.photo" height="25">
-                <span>{{option.fio}}</span> |
-                <small>birthday: {{option.birthday}}</small> -->
                 <app-person-card
                     [person]="option"
                     [showMenu]="false">

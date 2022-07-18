@@ -74,6 +74,7 @@ export class i18n {
     readonly INSTRUCTORS = 'Инструкторы';
     readonly VISITERS = 'Посетители';
     readonly ERROR_DATE_END_LT_DATE_START = 'Дата завершения меньше даты начала.';
+    readonly ERROR_CARD_NUMBER = 'Неверный номер карты.';
 
     // private constructor(){}
 }

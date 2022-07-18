@@ -15,7 +15,7 @@ import { SelectModule } from '../../select/select.module';
 import { TitleModalFormModule } from '../../shared/title-modal-form/title-modal-form.module';
 import { AddNewClientsComponent } from './add-new-clients.component';
 
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
     declarations: [
@@ -35,7 +35,8 @@ import { AddNewClientsComponent } from './add-new-clients.component';
         MatInputModule,
         DatepickerModule,
         MatButtonModule,
-        SelectModule
+        SelectModule,
+        MatAutocompleteModule
     ],
     exports:[
         AddNewClientsComponent
