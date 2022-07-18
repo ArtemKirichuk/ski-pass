@@ -1,8 +1,8 @@
 
-import { crud } from '../crud';
+import { Crud } from '../crud';
 
 
-export class Instructor extends crud {
+export class Instructor extends Crud {
     //Instructor
     db: Instructor[] = [];
     static instance: Instructor = new Instructor();

@@ -1,8 +1,8 @@
 
 
-import { crud } from '../crud';
+import { Crud } from '../crud';
 
-export class SkiPass extends crud{
+export class SkiPass extends Crud{
     private static nameDB = 'skipass';
     private static keys:string[] = ['cardNumber'];
     static instance = new SkiPass();

@@ -80,5 +80,20 @@ export class DatepickerComponent  implements ControlValueAccessor{
         this.onChange(new Date(+year, +month - 1, +day));
         this.onTouched(new Date(+year, +month - 1, +day));
     }
+    // filterInputKeyupUpTo(){
+    //     this.lastTo = this.parseInputDate(this.toInput.nativeElement.value)
+    //     if (this.lastTo) {
+    //       this.lastTo.setDate(this.lastTo.getDate()+1)
+    //     }
+    //     this.filterDates()
+    //   }
+    //   private parseInputDate(v):Date{
+    //     //this was a manual change in the input and needs to be parsed
+    //     let a:Array<any> = v.split('.')
+    //     a.forEach((v, i) => a[i] = parseInt(v) + (i == 1 ? -1 : 0))
+    //     console.log(new Date(a[2], a[1], a[0]))
+    //     return  new Date(a[2], a[1], a[0])
+    // }
+  
 }
 

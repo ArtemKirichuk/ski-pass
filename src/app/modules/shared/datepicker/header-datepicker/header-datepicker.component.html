@@ -1,13 +1,13 @@
 <div>
-        <p class="year">{{_calendar.activeDate | date: 'YYYY'}}</p>
+        <p  class="year" (click)="toYearView()">{{_calendar.activeDate | date: 'YYYY'}}</p>
         <p class="date">{{_calendar.activeDate | date: 'EE, dd MMMM' | uppercase }}</p>
 </div>
 <div class="example-header">
-    <button mat-icon-button (click)="previousClicked('month')">
+    <button mat-icon-button (click)="previousClicked()">
         <span class="material-icons">arrow_back</span>
     </button>
     <span class="example-header-label" >{{periodLabel}}</span>
-    <button mat-icon-button (click)="nextClicked('month')">
+    <button mat-icon-button (click)="nextClicked()">
         <span class="material-icons">arrow_forward</span>
     </button>
 </div>

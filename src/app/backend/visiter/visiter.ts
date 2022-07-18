@@ -1,8 +1,8 @@
 
 import { VisitorType } from 'src/app/types/types';
-import { crud } from '../crud';
+import { Crud } from '../crud';
 
-export class Visiter extends crud {
+export class Visiter extends Crud {
     //VISITER
     private static  visiterKey = 'visiter';
     private static visiterKeys:string[]= ['fio' ];

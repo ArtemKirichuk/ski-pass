@@ -3,14 +3,16 @@
     padding-top: 32px;
     width: 37px;
     height: 19px;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
     color: #212121;
     padding-bottom: 0px;
     margin-bottom: 0px;
+}
+.year:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 .date{
     width: 190px;

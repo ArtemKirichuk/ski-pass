@@ -1,4 +1,4 @@
-export class crud {
+export class Crud {
 
     constructor(
         protected dbKey: string,
