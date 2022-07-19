@@ -34,7 +34,7 @@ export class ClientInfoComponent {
     }
 
     editVisitor(): void {
-        const editDialogRef = this.dialog.open(EditClientsComponent, {data : {clients : this.visitor}, width:'35%'});
+        const editDialogRef = this.dialog.open(EditClientsComponent, {data : {clients : this.visitor}, width:'500px'});
         editDialogRef.afterClosed().subscribe(editedVisitor => {
             if (editedVisitor) {
                 const update: updateType<KeyVisitorType, VisitorType> = {

@@ -55,7 +55,7 @@ export class ClientsComponent implements OnInit, OnDestroy{
     }
 
     addNewClients(): void {
-        const dialogRef = this.dialog.open(AddNewClientsComponent, {width:'35%'});    
+        const dialogRef = this.dialog.open(AddNewClientsComponent, {width:'500px'});    
         dialogRef.afterClosed().subscribe(visitor => {
             if (visitor) {
                 this.visitorService.createVisitor(visitor).subscribe(ok => {
@@ -88,7 +88,7 @@ export class ClientsComponent implements OnInit, OnDestroy{
     }
 
     onEditVisitor(visitor: VisitorType): void  {
-        const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'35%'});
+        const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'500px'});
         
         dialogRef.afterClosed().subscribe(editedVisitor => {
             if (editedVisitor) {
@@ -108,8 +108,8 @@ export class ClientsComponent implements OnInit, OnDestroy{
     onShowVisitor(visitor: VisitorType): void {
         const params = {
             data: visitor,
-            width: '511px',
-            height: '782px'
+            width: '500px',
+            height: '790px'
         };
         this.dialog.open(ClientInfoComponent, params);
     }

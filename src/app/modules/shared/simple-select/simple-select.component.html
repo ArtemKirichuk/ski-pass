@@ -1,0 +1,16 @@
+<div class="select-warper">
+    <input type="text" 
+        [placeholder]="placeholder" 
+        readonly
+        class="select"
+        (click)="openAutoCompleteMenu($event)" 
+        (onChange)="$event"
+        [matAutocomplete]="auto"
+         />
+    <button class="toggle-arrow"  (click)="openAutoCompleteMenu($event)">
+        <img src="assets/images/arrow-down-filled.svg" alt="">
+    </button>
+</div>
+<mat-autocomplete id="autocomplete" autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option (click)="selectItem(item)" class ="option" *ngFor="let item of data" [value]="item">{{item}}</mat-option>
+</mat-autocomplete>

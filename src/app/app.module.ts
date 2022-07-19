@@ -11,9 +11,6 @@ import { MainInterceptor } from './backend/fakeServer.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { MainPageModule } from './modules/main-page/main-page.module';
 
-
-
-
 registerLocaleData(localeRu, 'ru');
 
 @NgModule({

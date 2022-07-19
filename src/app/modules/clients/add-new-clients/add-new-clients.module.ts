@@ -14,8 +14,7 @@ import { PhotoFormModule } from '../../photo-form/photo-form.module';
 import { SelectModule } from '../../select/select.module';
 import { TitleModalFormModule } from '../../shared/title-modal-form/title-modal-form.module';
 import { AddNewClientsComponent } from './add-new-clients.component';
-
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { SimpleSelectModule } from '../../shared/simple-select/simple-select.module';
 
 @NgModule({
     declarations: [
@@ -36,7 +35,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
         DatepickerModule,
         MatButtonModule,
         SelectModule,
-        MatAutocompleteModule
+        SimpleSelectModule
     ],
     exports:[
         AddNewClientsComponent

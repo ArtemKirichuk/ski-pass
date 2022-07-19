@@ -75,6 +75,21 @@ export class i18n {
     readonly VISITERS = 'Посетители';
     readonly ERROR_DATE_END_LT_DATE_START = 'Дата завершения меньше даты начала.';
     readonly ERROR_CARD_NUMBER = 'Неверный номер карты.';
-
+    readonly NAME = 'ФИО';
+    readonly ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
+    readonly ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
+    readonly ERROR_SKI_PASS_LEN = 'Ски-пасс должен быть 16-символьным'; 
+    readonly ERROR_SKI_PASS_NOT_FOUND = 'Такого ски-пасса не существует'; 
+    readonly ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта';
+    readonly ERROR_EMPTY_BIRTHDAY = 'Необходимо заполнить день рождения';
+    readonly BIRTHDAY = 'День рождения';
+    readonly NUMBER_SKIPASS = 'Номер ски-пасса';
+    readonly NUMBER_TYPE = 'number';
+    readonly TEXT_TYPE = 'text';
+    readonly INSTRUCTOR = 'Назначить тренера';
+    readonly SPORT = 'Вид спорта';
+    readonly BUTTON_ADD = 'Добавить';
+    readonly TITLE_ADD_NEW_VISITER = 'Добавить нового посетителя';
+    readonly DEFAULT_IMG = 'assets/images/default-photo.svg';
     // private constructor(){}
 }
