@@ -17,23 +17,23 @@ import { PaginatorComponent } from '../shared/paginator/paginator.component';
     styleUrls: ['./clients.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClientsComponent implements OnInit, OnDestroy{
+export class ClientsComponent implements OnInit, OnDestroy {
 
     CLIENTS = 'Посетители';
     ADD = 'Добавить нового';
 
     showedVisitors: VisitorType[] = [];
-    @ViewChild('paginator') paginator:PaginatorComponent<VisitorType> | undefined;
+    @ViewChild('paginator') paginator: PaginatorComponent<VisitorType> | undefined;
 
     allVisitors$ = new BehaviorSubject<VisitorType[]>([]);
     subscription = new Subscription();
 
-    constructor(private dialog : MatDialog,
-                private visitorService: VisitorService) {        
+    constructor(private dialog: MatDialog,
+        private visitorService: VisitorService) {
     }
 
     ngOnInit(): void {
-        this.visitorService.getVisitors().subscribe(resp=> {
+        this.visitorService.getVisitors().subscribe(resp => {
             this.visitorService.sendVisitorToStream(resp);
         });
 
@@ -42,20 +42,20 @@ export class ClientsComponent implements OnInit, OnDestroy{
             if (this.paginator) {
                 this.paginator.allItems = resp;
                 this.paginator?.setPage(this.paginator.currentPage);
-            }            
-        });        
+            }
+        });
     }
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
 
-    onChangedPage(event: VisitorType[]): void  {
+    onChangedPage(event: VisitorType[]): void {
         this.showedVisitors = event;
     }
 
     addNewClients(): void {
-        const dialogRef = this.dialog.open(AddNewClientsComponent, {width:'500px'});    
+        const dialogRef = this.dialog.open(AddNewClientsComponent, { width: '500px' });
         dialogRef.afterClosed().subscribe(visitor => {
             if (visitor) {
                 this.visitorService.createVisitor(visitor).subscribe(ok => {
@@ -64,7 +64,7 @@ export class ClientsComponent implements OnInit, OnDestroy{
                     }
                 });
             }
-        });        
+        });
     }
 
     updateVisitors(): void {
@@ -73,24 +73,29 @@ export class ClientsComponent implements OnInit, OnDestroy{
         });
     }
 
-    onDeleteVisitor(visitor: VisitorType): void {
+    onDeleteVisitor(visitor: VisitorType, redirectToDispaly?: boolean): void {
         const data = { data: visitor };
         const dialogRef = this.dialog.open(ClientDeleteComponent, data);
         dialogRef.afterClosed().subscribe(ok => {
-            if(ok) {
+            if (ok) {
                 this.visitorService.deleteVisitor(visitor).subscribe(resp => {
                     if (resp) {
                         this.updateVisitors();
                     }
+                    
                 });
+                return
             }
-        });        
+            if (redirectToDispaly) {
+                this.onShowVisitor(visitor)
+            }
+        });
     }
 
-    onEditVisitor(visitor: VisitorType): void  {
-        const dialogRef = this.dialog.open(EditClientsComponent, {data : {clients : visitor}, width:'500px'});
-        
-        dialogRef.afterClosed().subscribe(editedVisitor => {
+    onEditVisitor(visitor: VisitorType, redirectToDispaly?: boolean): void {
+        const dialogRef = this.dialog.open(EditClientsComponent, { data: { clients: visitor }, width: '500px' });
+
+        dialogRef.afterClosed().subscribe((editedVisitor:VisitorType) => {
             if (editedVisitor) {
                 const update: updateType<KeyVisitorType, VisitorType> = {
                     oldKey: { fio: visitor.fio },
@@ -101,16 +106,23 @@ export class ClientsComponent implements OnInit, OnDestroy{
                         this.updateVisitors();
                     }
                 });
+                return
+            }
+            if (redirectToDispaly) {
+                this.onShowVisitor(visitor)
             }
         });
     }
 
     onShowVisitor(visitor: VisitorType): void {
-        const params = {
-            data: visitor,
-            width: '500px',
-            height: '790px'
-        };
-        this.dialog.open(ClientInfoComponent, params);
+        const dialogRef = this.dialog.open(ClientInfoComponent, { data: visitor, width: '500px', height: '790px' });
+        dialogRef.afterClosed().subscribe(edit => {
+            if (edit) {
+                this.onEditVisitor(visitor, true);
+            }
+            else if (edit === false) {
+                this.onDeleteVisitor(visitor, true);
+            }
+        })
     }
 }

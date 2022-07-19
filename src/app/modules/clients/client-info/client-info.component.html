@@ -2,8 +2,8 @@
     <div class="client-info__header">
         <span class="client-info__title">{{TITLE}}</span>
         <div class="client-info__icons">
-            <img src="../../../assets/images/edit-icon.svg" class="client-info__edit" (click)="editVisitor()">
-            <img src="../../../assets/images/delete-icon.svg" class="client-info__delete" (click)="deleteVisitor()">
+            <img src="assets/images/edit-icon.svg" [mat-dialog-close]="true" class="client-info__edit" >
+            <img src="assets/images/delete-icon.svg" [mat-dialog-close]="false" class="client-info__delete" >
         </div>
     </div>
 
