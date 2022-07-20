@@ -60,6 +60,8 @@ export enum attr{
     ACCESS_FILE_EXTENSION = '.jpg, .jpeg, .png',
 }
 export enum i18nRU {
+    TITLE_DELETE_VISITER ='Удаление посетителя',
+    TEXT_DELETE_VISITER = 'Вы уверены, что хотите удалить карточку этого посетителя?',
     TITLE_VISITER = 'Карточка посетителя',
     APPOINTED_INSTRUCTOR = 'Назначенный тренер',
     SELECT_IMG= 'Вам нужно выбрать изображение',

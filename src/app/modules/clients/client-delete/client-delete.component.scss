@@ -1,7 +1,6 @@
 .client-delete {
     display: flex;
     flex-direction: column;
-    padding: 5% 8% 0 8%;
     align-items: center;
 
     &__fio {
@@ -20,8 +19,6 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 24px;
-        /* or 171% */
-
         text-align: center;
         text-transform: capitalize;
         color: #707EF9;

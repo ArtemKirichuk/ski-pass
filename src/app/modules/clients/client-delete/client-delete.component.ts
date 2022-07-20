@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VisitorType } from 'src/app/types/types';
+import { i18nRU } from '../../shared/helper';
 
 @Component({
     selector: 'app-client-delete',
@@ -8,10 +9,7 @@ import { VisitorType } from 'src/app/types/types';
     styleUrls: ['./client-delete.component.scss']
 })
 export class ClientDeleteComponent {
-
-    TITLE = 'Удаление посетителя';
-    TEXT = 'Вы уверены, что хотите удалить карточку этого посетителя?';
-    OK = 'OK';
+    i18nRU = i18nRU
 
     visitor: VisitorType = {} as VisitorType;
     constructor(@Inject(MAT_DIALOG_DATA) public _visitor: VisitorType,

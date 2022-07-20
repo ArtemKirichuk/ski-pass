@@ -4,6 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
+import { PhotoFormModule } from '../photo-form/photo-form.module';
 import { ClientDeleteComponent } from 'src/app/modules/clients/client-delete/client-delete.component';
 import { ClientInfoComponent } from 'src/app/modules/clients/client-info/client-info.component';
 import { PaginatorModule } from 'src/app/modules/shared/paginator/paginator.module';
@@ -13,7 +14,7 @@ import { EditClientsModule } from './edit-clients/edit-clients.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { TitleModalFormModule } from '../shared/title-modal-form/title-modal-form.module';
 import { ClientsComponent } from './clients.component';
-import { PhotoFormModule } from '../photo-form/photo-form.module';
+
 
 
 @NgModule({
