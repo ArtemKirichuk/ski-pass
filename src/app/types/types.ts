@@ -45,3 +45,11 @@ export type updateType<T,U> = {
     oldKey:T;
     newRow:U;
 }
+export type PersanCardType={
+    header:string;
+    title:string;
+    img:string;
+    deleteBtn?:string;
+    editBtn?:string;
+    editContext?:string;
+}

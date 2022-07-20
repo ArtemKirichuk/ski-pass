@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditClientsComponent } from './edit-clients.component';
 import { TitleModalFormModule } from '../../shared/title-modal-form/title-modal-form.module';
-import { PhotoFormModule } from '../../photo-form/photo-form.module';
+import { PhotoFormModule } from '../../shared/photo-form/photo-form.module';
 import { SelectModule } from '../../select/select.module';
 import { InputModule } from '../../shared/input/input.module';
 import { ButtonModule } from '../../shared/button/button.module';

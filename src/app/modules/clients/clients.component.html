@@ -18,9 +18,9 @@
         <app-person-card 
             class="clients-block__client" 
             *ngFor="let visitor of showedVisitors;" 
-            [person]="visitor"
-            (onDeleteVisitor)="onDeleteVisitor($event)" 
-            (onEditVisitor)="onEditVisitor($event)"
-            (onShowVisitor)="onShowVisitor($event)"></app-person-card>
+            [data]="getCardData(visitor)"
+            (onDelete)="onDeleteVisitor(visitor)" 
+            (onEdit)="onEditVisitor(visitor)"
+            (onShow)="onShowVisitor(visitor)"></app-person-card>
     </div>
 </div>

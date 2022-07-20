@@ -2,7 +2,9 @@ import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { InstuctorService } from 'src/app/services/instuctor.service';
-import { InstructorType } from 'src/app/types/types';
+import { InstructorType, PersanCardType } from 'src/app/types/types';
+import { AgePipe } from '../shared/age/age.pipe';
+import { i18nRU } from '../shared/helper';
 
 @Component({
     selector: 'app-select',
@@ -121,5 +123,12 @@ export class SelectComponent implements OnInit, ControlValueAccessor, Validator 
 
         this.onChange(this.value);
         this.onTouch(this.value);  
+    }
+    getCardData(instructor: InstructorType): PersanCardType {
+        return {
+            header: instructor.fio,
+            title: instructor.category + i18nRU.EXPERIENCE + AgePipe.prototype.transform(instructor.startWork),
+            img: instructor.photo
+        }
     }
 }

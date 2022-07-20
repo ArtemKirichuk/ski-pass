@@ -19,13 +19,12 @@
     </div>   
 
     <div class="instructors-block__list">
-        <app-instructor-card
-            class="instructors-block__instructor"
-            *ngFor="let instructor of showedInstructors;"
-            [instructor]="instructor"
-            (onDeleteInstructor)="onDeleteInstructor($event)"
-            (onEditInstuctor)="onEditInstructor($event)"
-            (onShowInstructor)="onShowInstructor($event)"
-        ></app-instructor-card>
+        <app-person-card 
+        class="instructors-block__instructor"
+            *ngFor="let instructor of showedInstructors;" 
+            [data]="getCardData(instructor)"
+            (onDelete)="onDeleteInstructor(instructor)" 
+            (onEdit)="onEditInstructor(instructor)"
+            (onShow)="onShowInstructor(instructor)"></app-person-card>
     </div>
 </div>

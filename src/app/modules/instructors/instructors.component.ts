@@ -4,11 +4,12 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { InstructorDeleteComponent } from 'src/app/modules/instructors/instructor-delete/instructor-delete.component';
 import { InstructorInfoComponent } from 'src/app/modules/instructors/instructor-info/instructor-info.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
-import { InstructorType, updateType,KeyInstructorType } from 'src/app/types/types';
+import { InstructorType, updateType, KeyInstructorType, PersanCardType } from 'src/app/types/types';
 import { AddNewInstructorComponent } from './add-new-instructor/add-new-instructor.component';
 import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
-import {  i18nErrors, i18nRU } from '../shared/helper';
+import { i18nErrors, i18nRU } from '../shared/helper';
+import { AgePipe } from '../shared/age/age.pipe';
 // import { KeyInstructorType } from '../shared/interfaces';
 
 @Component({
@@ -19,15 +20,15 @@ import {  i18nErrors, i18nRU } from '../shared/helper';
 })
 export class InstructorsComponent implements OnInit, OnDestroy {
 
-    width ='500px';
+    width = '500px';
     showedInstructors: InstructorType[] = [];
     allInstructors$: BehaviorSubject<InstructorType[]> = new BehaviorSubject<InstructorType[]>([]);
     subscription: Subscription = new Subscription();
     i18nRU = i18nRU
-    @ViewChild('paginator') paginator:PaginatorComponent<InstructorType> | undefined;
+    @ViewChild('paginator') paginator: PaginatorComponent<InstructorType> | undefined;
 
-    constructor(private dialog : MatDialog,
-                private instructorService: InstuctorService) {
+    constructor(private dialog: MatDialog,
+        private instructorService: InstuctorService) {
     }
 
     ngOnInit(): void {
@@ -41,7 +42,7 @@ export class InstructorsComponent implements OnInit, OnDestroy {
             if (this.paginator) {
                 this.paginator.allItems = resp;
                 this.paginator?.setPage(this.paginator.currentPage);
-            } 
+            }
         });
     }
 
@@ -51,9 +52,9 @@ export class InstructorsComponent implements OnInit, OnDestroy {
 
     onChangedPage(event: InstructorType[]): void {
         this.showedInstructors = event;
-    }    
+    }
 
-    onDeleteInstructor(instructor: InstructorType,redirect?:boolean) {
+    onDeleteInstructor(instructor: InstructorType, redirect?: boolean) {
         const data = { data: instructor };
         const dialogRef = this.dialog.open(InstructorDeleteComponent, data);
         dialogRef.afterClosed().subscribe(ok => {
@@ -67,14 +68,14 @@ export class InstructorsComponent implements OnInit, OnDestroy {
                 });
                 return
             }
-            if(redirect){
+            if (redirect) {
                 this.onShowInstructor(instructor);
             }
         });
     }
 
     addNewInstructor(): void {
-        const dialogRef = this.dialog.open(AddNewInstructorComponent, {width:this.width});
+        const dialogRef = this.dialog.open(AddNewInstructorComponent, { width: this.width });
         dialogRef.afterClosed().subscribe(instructor => {
             if (instructor) {
                 this.instructorService.createInstructor(instructor).subscribe(ok => {
@@ -89,14 +90,14 @@ export class InstructorsComponent implements OnInit, OnDestroy {
         });
     }
 
-    updateInstructors(): void{
+    updateInstructors(): void {
         this.instructorService.getInstructors().subscribe(instructorsList => {
             this.instructorService.sendInstructorToStream(instructorsList);
         });
     }
 
-    onEditInstructor(instructor: InstructorType, redirect?:boolean): void {
-        const params = {data : {instructor : instructor}, width:this.width};
+    onEditInstructor(instructor: InstructorType, redirect?: boolean): void {
+        const params = { data: { instructor: instructor }, width: this.width };
         const dialogRef = this.dialog.open(EditInstructorComponent, params);
 
         dialogRef.afterClosed().subscribe(editedInstructor => {
@@ -112,22 +113,33 @@ export class InstructorsComponent implements OnInit, OnDestroy {
                 });
                 return
             }
-            if(redirect){
+            if (redirect) {
                 this.onShowInstructor(instructor);
             }
         });
     }
 
     onShowInstructor(instructor: InstructorType): void {
-        
-        const dialog = this.dialog.open(InstructorInfoComponent, { data: instructor, width: this.width,  height: '766px'});
-        dialog.afterClosed().subscribe((edit:boolean)=>{
-            if(edit){
-                this.onEditInstructor(instructor,true)
+
+        const dialog = this.dialog.open(InstructorInfoComponent, { data: instructor, width: this.width, height: '766px' });
+        dialog.afterClosed().subscribe((edit: boolean) => {
+            if (edit) {
+                this.onEditInstructor(instructor, true)
             }
-            else if (edit === false){
-                this.onDeleteInstructor(instructor,true)
+            else if (edit === false) {
+                this.onDeleteInstructor(instructor, true)
             }
         })
     }
+    getCardData(instructor: InstructorType): PersanCardType {
+        return {
+            header: instructor.fio,
+            title: instructor.category + i18nRU.EXPERIENCE + AgePipe.prototype.transform(instructor.startWork),
+            img: instructor.photo,
+            deleteBtn: i18nRU.DELETE,
+            editBtn: i18nRU.EDIT,
+            editContext: i18nRU.APPOINTED_VISITOR
+        }
+    }
+
 }

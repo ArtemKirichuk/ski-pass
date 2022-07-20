@@ -9,6 +9,8 @@ import { attr, i18nRU, parseImg } from 'src/app/modules/shared/helper';
 export class PhotoFormComponent {
 
     @Input() img = '';
+    @Input() width = '173px';
+    @Input() height = '173px';
     @Input() select:boolean = true;
     @Output() imgLink = new EventEmitter();
     i18nRU = i18nRU

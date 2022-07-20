@@ -1,0 +1,35 @@
+<div class="person-card">
+    <div class="person-card__content" (click)="show()">
+        <div class="person-card__avatar-block">
+            <app-photo-form [select]="false" [width]="width" [height]="height" [img]="data.img"></app-photo-form>
+        </div>
+        
+        <div class="person-card__info">        
+            <div class="person-card__info__fio">
+                <span class="person-card__text">{{data.header}}</span>
+            </div>
+            <div class="person-card__info__age">
+                <span class="person-card__text person-card__text_opacity_50">{{data.title}}</span>   
+            </div>  
+        </div>  
+    </div>    
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="person-card__menu-btn" *ngIf="showMenu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="edit()">
+        <span>{{data.editContext}}</span>
+    </button>
+    <button mat-menu-item (click)="edit()">
+        <span>{{data.editBtn}}</span>
+    </button>
+    <button mat-menu-item (click)="delete()">
+        <span>{{data.deleteBtn}}</span>
+    </button>
+    </mat-menu>
+    
+    
+    
+</div>

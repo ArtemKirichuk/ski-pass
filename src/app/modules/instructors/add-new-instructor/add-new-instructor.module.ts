@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from '../../shared/button/button.module';
 import { DatepickerModule } from '../../shared/datepicker/datepicker.module';
 import { InputModule } from '../../shared/input/input.module';
-import { PhotoFormModule } from '../../photo-form/photo-form.module';
+import { PhotoFormModule } from '../../shared/photo-form/photo-form.module';
 import { SelectSexModule } from '../../select-sex/select-sex.module';
 import { SelectVisitorModule } from '../../select-visitor/select-visitor.module';
 import { SelectModule } from '../../select/select.module';

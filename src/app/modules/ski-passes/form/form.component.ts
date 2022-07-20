@@ -6,7 +6,8 @@ import * as moment from 'moment';
 import { map, Observable, startWith } from 'rxjs';
 import { CustomValidator, i18nErrors, i18nRU, parseImg } from 'src/app/modules/shared/helper';
 import { VisitorService } from 'src/app/services/visitor.service';
-import { KeySkiPassType, SkiPassType, updateType, VisitorType } from 'src/app/types/types';
+import { KeySkiPassType, PersanCardType, SkiPassType, updateType, VisitorType } from 'src/app/types/types';
+import { AgePipe } from '../../shared/age/age.pipe';
 
 @Component({
     selector: 'app-form',
@@ -102,5 +103,11 @@ export class SkiPassesFormComponent implements OnInit {
         };
         input.click();
     }
-
+    getCardData(visiter:VisitorType):PersanCardType{
+        return { 
+            header: visiter.fio,
+            title: AgePipe.prototype.transform(visiter.birthday),
+            img: visiter.photo
+        }
+    }
 }

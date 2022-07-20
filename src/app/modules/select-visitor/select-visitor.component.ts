@@ -1,7 +1,9 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { VisitorService } from 'src/app/services/visitor.service';
-import { VisitorType } from 'src/app/types/types';
+import { PersanCardType, VisitorType } from 'src/app/types/types';
+import { AgePipe } from '../shared/age/age.pipe';
+import { i18nRU } from '../shared/helper';
 
 @Component({
     selector: 'app-select-visitor',
@@ -67,5 +69,14 @@ export class SelectVisitorComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: (val:string) => void): void {
       this.onTouch = fn;
   }
-
+  getCardData(visiter:VisitorType):PersanCardType{
+    return { 
+        header: visiter.fio,
+        title: AgePipe.prototype.transform(visiter.birthday),
+        img: visiter.photo,
+        // deleteBtn: i18nRU.DELETE,
+        // editBtn: i18nRU.EDIT,
+        // editContext: i18nRU.APPOINT_COACH
+    }
+}
 }

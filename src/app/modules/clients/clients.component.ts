@@ -4,10 +4,12 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { ClientDeleteComponent } from 'src/app/modules/clients/client-delete/client-delete.component';
 import { ClientInfoComponent } from 'src/app/modules/clients/client-info/client-info.component';
 import { VisitorService } from 'src/app/services/visitor.service';
-import { KeyVisitorType, updateType, VisitorType } from 'src/app/types/types';
+import { KeyVisitorType, PersanCardType, updateType, VisitorType } from 'src/app/types/types';
 import { AddNewClientsComponent } from './add-new-clients/add-new-clients.component';
 import { EditClientsComponent } from './edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
+import { i18nRU } from '../shared/helper';
+import { AgePipe } from '../shared/age/age.pipe';
 
 
 
@@ -124,5 +126,15 @@ export class ClientsComponent implements OnInit, OnDestroy {
                 this.onDeleteVisitor(visitor, true);
             }
         })
+    }
+    getCardData(visiter:VisitorType):PersanCardType{
+        return { 
+            header: visiter.fio,
+            title: AgePipe.prototype.transform(visiter.birthday),
+            img: visiter.photo,
+            deleteBtn: i18nRU.DELETE,
+            editBtn: i18nRU.EDIT,
+            editContext: i18nRU.APPOINT_COACH
+        }
     }
 }

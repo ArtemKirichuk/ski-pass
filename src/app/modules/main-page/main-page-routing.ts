@@ -3,11 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page.component';
 
-// {
-//   path: 'clients',
-//   loadChildren: () => import('src/app/modules/clients/clients.module').then(m => m.ClientsModule)
-// },
-
 const routes: Routes = [
   {
     path: '',

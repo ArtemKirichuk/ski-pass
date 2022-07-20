@@ -9,7 +9,7 @@ import { ReadProfileUserComponent } from 'src/app/modules/main-page/header/read-
 import { TitleModalFormModule } from '../../shared/title-modal-form/title-modal-form.module';
 import { InputModule } from '../../shared/input/input.module';
 import { ButtonModule } from '../../shared/button/button.module';
-import { PhotoFormModule } from '../../photo-form/photo-form.module';
+import { PhotoFormModule } from '../../shared/photo-form/photo-form.module';
 
 
 

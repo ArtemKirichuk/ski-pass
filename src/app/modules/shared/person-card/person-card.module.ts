@@ -2,23 +2,23 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { AgeModule } from '../../shared/age/age.module';
-import { InstructorCardComponent } from './instructor-card.component';
+import { PhotoFormModule } from '../photo-form/photo-form.module';
+import { AgeModule } from '../age/age.module';
+import { PersonCardComponent } from './person-card.component';
 
 @NgModule({
     declarations: [
-        InstructorCardComponent
+        PersonCardComponent
     ],
-    exports: [
-        InstructorCardComponent
-    ],
+    exports: [PersonCardComponent],
     imports: [
         MatMenuModule,
         MatIconModule,
         AgeModule,
-        CommonModule
+        CommonModule,
+        PhotoFormModule
     ]
 })
-export class InstructorCardModule {
+export class PersonCardModule {
 
 }
