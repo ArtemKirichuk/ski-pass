@@ -1,6 +1,2 @@
-<div class = "img" (click)="clickEditPhoto()">
-    <img class = "img__input" 
-        type="image" 
-        src="{{img}}" 
-        alt="{{IMG_NOT_FOUND}}">
-</div>
+<div class="img-container" (click)="clickEditPhoto()"
+    [style]="{ background : 'no-repeat #F3F3F3  center/100% url('+img+')' } "></div>

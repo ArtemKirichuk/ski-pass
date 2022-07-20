@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType } from 'src/app/types/types';
-import {  i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
+import {  attr, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class AddNewClientsComponent {
     photoClients: string = srcAsset.DEFAULT_IMG;
     i18nRU = i18nRU;
     i18nErrors = i18nErrors;
+    attr = attr;
     addClientsForm: FormGroup;
     skipasses: string[] = []
     constructor(private dialogRef: MatDialogRef<AddNewClientsComponent>,

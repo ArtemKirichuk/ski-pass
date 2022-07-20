@@ -51,7 +51,15 @@ export enum srcAsset {
     arrowDownURL = 'assets/images/arrow-down-icon.svg',
     nextPageIcon = 'assets/images/next-page-icon.svg',
 }
+export enum attr{
+    TEXT_TYPE = 'text',
+    INPUT = 'input',
+    FILE= 'file',
+    ACCESS_FILE_EXTENSION = '.jpg, .jpeg, .png',
+}
 export enum i18nRU {
+    SELECT_IMG= 'Вам нужно выбрать изображение',
+    SELECT_ONLY_IMG = 'Для выбора доступны только изображения',
     ADD_NEW = 'Добавить новый',
     ADD_NEW1 = 'Добавить нового',
     FIO = 'ФИО',
@@ -82,14 +90,13 @@ export enum i18nRU {
     BIRTHDAY = 'День рождения',
     NUMBER_SKIPASS = 'Номер ски-пасса',
     NUMBER_TYPE = 'number',
-    TEXT_TYPE = 'text',
+    
     SPORT = 'Вид спорта',
     BUTTON_ADD = 'Добавить',
     TITLE_ADD_NEW_VISITER = 'Добавить нового посетителя',
     SEARCH = 'Поиск',
     EXIT = 'Выход',
     SKI_RESORT = 'Горнолыжный курорт',
-
 }
 export enum i18nErrors {
     ERROR_ADD_USER = 'Ошибка добавления пользователя',
