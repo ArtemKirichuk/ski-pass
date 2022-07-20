@@ -50,6 +50,8 @@ export enum srcAsset {
     arrowUpURL = 'assets/images/arrow-up-icon.svg',
     arrowDownURL = 'assets/images/arrow-down-icon.svg',
     nextPageIcon = 'assets/images/next-page-icon.svg',
+    editIcon = 'assets/images/edit-icon.svg',
+    deleteIcon = 'assets/images/delete-icon.svg',
 }
 export enum attr{
     TEXT_TYPE = 'text',
@@ -58,6 +60,8 @@ export enum attr{
     ACCESS_FILE_EXTENSION = '.jpg, .jpeg, .png',
 }
 export enum i18nRU {
+    TITLE_VISITER = 'Карточка посетителя',
+    APPOINTED_INSTRUCTOR = 'Назначенный тренер',
     SELECT_IMG= 'Вам нужно выбрать изображение',
     SELECT_ONLY_IMG = 'Для выбора доступны только изображения',
     ADD_NEW = 'Добавить новый',

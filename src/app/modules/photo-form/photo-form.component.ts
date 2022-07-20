@@ -9,9 +9,11 @@ import { attr, i18nRU, parseImg } from 'src/app/modules/shared/helper';
 export class PhotoFormComponent {
 
     @Input() img = '';
+    @Input() select:boolean = true;
     @Output() imgLink = new EventEmitter();
     i18nRU = i18nRU
     clickEditPhoto(): void {
+        if(!this.select) return
         const input = document.createElement(attr.INPUT);
         input.type = attr.FILE;
         input.accept = attr.ACCESS_FILE_EXTENSION;

@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {  VisitorType } from 'src/app/types/types';
+import { i18nRU, srcAsset } from '../../shared/helper';
 
 @Component({
     selector: 'app-client-info',
@@ -8,13 +9,8 @@ import {  VisitorType } from 'src/app/types/types';
     styleUrls: ['./client-info.component.scss']
 })
 export class ClientInfoComponent {
-
-    TITLE = 'Карточка посетителя';
-    BIRTHDAY = 'Дата рождения';
-    SKI_PASS_NUMBER = 'Номер ски-пасса';
-    APPOINTED_INSTRUCTOR = 'Назначенный тренер';
-    OK = 'OK';
-
+    srcAsset = srcAsset
+    i18nRU = i18nRU
     constructor(
         @Inject(MAT_DIALOG_DATA) public visitor: VisitorType
     ) { }

@@ -13,6 +13,7 @@ import { EditClientsModule } from './edit-clients/edit-clients.module';
 import { PersonCardModule } from '../person-card/person-card.module';
 import { TitleModalFormModule } from '../shared/title-modal-form/title-modal-form.module';
 import { ClientsComponent } from './clients.component';
+import { PhotoFormModule } from '../photo-form/photo-form.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ClientsComponent } from './clients.component';
         AddNewClientsModule,
         TitleModalFormModule,
         EditClientsModule,
-        MatDialogModule
+        MatDialogModule,
+        PhotoFormModule,
     ]
 })
 export class ClientsModule { }

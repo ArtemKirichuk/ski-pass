@@ -1,5 +1,6 @@
 <app-title-modal-form [title]="i18nRU.TITLE_ADD_NEW_VISITER" (closeEvent)="handlerClose($event)"></app-title-modal-form>
 <form class="add-clients" [formGroup]="addClientsForm" novalidate>
+    <!-- Фото пользователя -->
     <app-photo-form [img]="photoClients" (imgLink)="handlerEvent($event)">
     </app-photo-form>
     

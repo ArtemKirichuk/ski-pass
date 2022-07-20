@@ -1,32 +1,31 @@
 <div class="client-info">
     <div class="client-info__header">
-        <span class="client-info__title">{{TITLE}}</span>
+        <span class="client-info__title">{{i18nRU.TITLE_VISITER}}</span>
         <div class="client-info__icons">
-            <img src="assets/images/edit-icon.svg" [mat-dialog-close]="true" class="client-info__edit" >
-            <img src="assets/images/delete-icon.svg" [mat-dialog-close]="false" class="client-info__delete" >
+            <mat-icon [mat-dialog-close]="true" class="client-info__edit">edit</mat-icon>
+            <mat-icon [mat-dialog-close]="false" class="client-info__delete">delete</mat-icon>
+            <!-- <img src="{{srcAsset.editIcon}}" class="client-info__edit" [mat-dialog-close]="true">
+            <img src="{{srcAsset.deleteIcon}}" class="client-info__delete" [mat-dialog-close]="false"> -->
         </div>
     </div>
-
-    <div class = "avatar-block">
-        <img class = "avatar-block__avatar" src="{{visitor.photo}}">      
+    <!-- Фото пользователя -->
+    <div class="avatar-block">
+        <app-photo-form [select]="false" [img]="visitor.photo"></app-photo-form>
     </div>
 
     <span class="client-info__fio">{{visitor.fio}}</span>
     <span class="client-info__sport">{{visitor.sport}}</span>
-
     <div class="client-info__all-info">
-        <span class="client-info__label">{{BIRTHDAY}}</span>
+        <span class="client-info__label">{{i18nRU.BIRTHDAY}}</span>
         <span class="client-info__value">{{visitor.birthday | date:'dd.MM.yyyy' }}</span>
 
-        <span class="client-info__label">{{SKI_PASS_NUMBER}}</span>
+        <span class="client-info__label">{{i18nRU.NUMBER_SKIPASS}}</span>
         <span class="client-info__value">{{visitor.skiPass}}</span>
 
-        <span class="client-info__label">{{APPOINTED_INSTRUCTOR}}</span>
+        <span class="client-info__label">{{i18nRU.APPOINTED_INSTRUCTOR}}</span>
         <span class="client-info__value">{{visitor.instructor}}</span>
     </div>
 
-    
-
-    <app-button [text]="OK" class="btn" mat-dialog-close>        
+    <app-button [text]="i18nRU.OK" class="btn" mat-dialog-close>
     </app-button>
 </div>
