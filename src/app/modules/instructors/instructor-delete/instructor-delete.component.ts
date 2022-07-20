@@ -21,7 +21,6 @@ export class InstructorDeleteComponent {
     }
 
     closeNo() {
-        debugger
         this.dialogRef.close(null);
     }
 

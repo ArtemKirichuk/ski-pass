@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { SkipassService } from 'src/app/services/skipass.service';
-import { i18n } from 'src/app/modules/shared/helper';
+import { i18nRU } from 'src/app/modules/shared/helper';
 
 import { updateType, SkiPassType, KeySkiPassType } from 'src/app/types/types';
 // import { KeySkiPassType, SkiPassType } from '../shared/interfaces';
@@ -14,16 +14,16 @@ import { SkiPassesFormComponent } from './form/form.component';
     styleUrls: ['./ski-passes.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkiPassesComponent extends i18n implements OnDestroy {
+export class SkiPassesComponent implements  OnDestroy {
     // skipasses$!: Observable<SkiPassType[]>;
     skipassesBe$: BehaviorSubject<SkiPassType[]> ;
     destroy$: Subject<boolean>;
     updateSkipass$: Observable<SkiPassType[]>;
+    i18nRU = i18nRU
     constructor(
         private matDialog: MatDialog,
         private skipassService: SkipassService
     ) {
-        super();
         this.skipassesBe$ = new BehaviorSubject<SkiPassType[]>([] as SkiPassType[])
         this.destroy$ = new Subject();
         this.updateSkipass$ = new Observable(observer => {

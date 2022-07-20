@@ -9,9 +9,9 @@ import { AddNewClientsComponent } from '../../clients/add-new-clients/add-new-cl
     templateUrl: './add-new-instructor.component.html',
     styleUrls: ['./add-new-instructor.component.scss']
 })
-export class AddNewInstructorComponent{
-    TITLE  = 'Добавить нового инструктора';
-    DEFAULT_IMG  = '../../../assets/images/default-photo.svg';
+export class AddNewInstructorComponent {
+    TITLE = 'Добавить нового инструктора';
+    DEFAULT_IMG = '../../../assets/images/default-photo.svg';
     NAME = 'ФИО';
     ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
     ERROR_EMPTY_SEX = 'Необходимо выбрать пол';
@@ -24,37 +24,37 @@ export class AddNewInstructorComponent{
     CLIENT = 'Назначить посетителя';
     CATEGORY = 'Категория';
     BUTTON_ADD = 'Добавить';
-    photoInstructor : string = this.DEFAULT_IMG;
+    photoInstructor: string = this.DEFAULT_IMG;
 
-    addInstructorForm : FormGroup;
-    clickCloseWindow  = false;
-  
+    addInstructorForm: FormGroup;
+    clickCloseWindow = false;
 
-    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>) {
-      
+
+    constructor(private dialogRef: MatDialogRef<AddNewClientsComponent>) {
+
         this.addInstructorForm = new FormGroup({
             name: new FormControl(null, Validators.required),
             birthday: new FormControl(null, Validators.required),
             startWork: new FormControl(null, Validators.required),
             sex: new FormControl(null, Validators.required),
-            client : new FormControl(null),
-            category : new FormControl(null, Validators.required)
+            client: new FormControl(null),
+            category: new FormControl(null, Validators.required)
         });
     }
 
-    handlerClose($event:boolean):void{
-        if($event){
+    handlerClose($event: boolean): void {
+        if ($event) {
             this.dialogRef.close(null);
         }
     }
 
-    handlerEvent($event:string):void{
+    handlerEvent($event: string): void {
         this.photoInstructor = $event;
     }
 
-    doneAddInstructor():void{
+    doneAddInstructor(): void {
         this.clickCloseWindow = true;
-        if(this.addInstructorForm.valid){
+        if (this.addInstructorForm.valid) {
             const formValue = this.addInstructorForm.getRawValue();
             const instructor: InstructorType = {
                 fio: formValue.name,
@@ -69,7 +69,7 @@ export class AddNewInstructorComponent{
         }
     }
 
-    checkEmpty(param: string):boolean{
+    checkEmpty(param: string): boolean {
         return this.addInstructorForm.get(param)?.value === null || this.addInstructorForm.get(param)?.value === '';
     }
 

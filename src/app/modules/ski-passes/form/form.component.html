@@ -1,5 +1,5 @@
 <div class="title">
-    <p class="title__textTitle">{{FORM_TITLE_SKIPASS}}</p>
+    <p class="title__textTitle">{{i18nRU.FORM_TITLE_SKIPASS}}</p>
     <mat-icon mat-dialog-close class="title__iconClose">close</mat-icon>
 </div>
 <form [formGroup]="skiPassForm" class="form">
@@ -8,14 +8,16 @@
         (click)="loadPhoto()"></div>
     <!-- <input id="file" formControlName="photo" type="file" hidden="true"> -->
     <!-- Номер карты -->
-    
-        <input  class = "input"formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER"  />
-        <mat-error clss="error"*ngIf="cardNumber?.errors?.['errorCard']">{{ERROR_CARD_NUMBER}}</mat-error>
+    <div class="form__field">
+        <app-input class="input" [title]="i18nRU.FORM_CARD_NUMBER" [type]="'number'" formControlName="cardNumber">
+        </app-input>
+        <!-- <input  class = "input" formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER"  /> -->
+        <mat-error clss="error" *ngIf="cardNumber?.errors?.['errorCard']">{{i18nErrors.ERROR_CARD_NUMBER}}</mat-error>
         <!-- <mat-form-field class="form__field" appearance="fill"></mat-form-field> -->
-    
+    </div>
     <!-- Дата начала -->
     <mat-form-field class="form__field " appearance="fill">
-        <input matInput formControlName="dateStart" [matDatepicker]="dateStartRef" [placeholder]="FORM_DATE_START"
+        <input matInput formControlName="dateStart" [matDatepicker]="dateStartRef" [placeholder]="i18nRU.FORM_DATE_START"
             (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateStartRef"></mat-datepicker-toggle>
         <mat-datepicker #dateStartRef></mat-datepicker>
@@ -23,24 +25,22 @@
     </mat-form-field>
     <!-- Дата завершения -->
     <mat-form-field class="form__field" appearance="fill">
-        <input matInput formControlName="dateEnd" [matDatepicker]="dateEndRef" [placeholder]="FORM_DATE_END"
+        <input matInput formControlName="dateEnd" [matDatepicker]="dateEndRef" [placeholder]="i18nRU.FORM_DATE_END"
             [matDatepickerFilter]="compareCompleteDate" (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateEndRef"></mat-datepicker-toggle>
         <mat-datepicker #dateEndRef></mat-datepicker>
-        <mat-error *ngIf="dateEnd?.errors?.['errorDate']">{{ERROR_DATE_END_LT_DATE_START}}</mat-error>
+        <mat-error *ngIf="dateEnd?.errors?.['errorDate']">{{i18nErrors.ERROR_DATE_END_LT_DATE_START}}</mat-error>
     </mat-form-field>
     <!-- Стоимость -->
     <mat-form-field class="form__field" appearance="fill">
-        <input matInput formControlName="cost" type="number" [placeholder]="FORM_COST" />
+        <input matInput formControlName="cost" type="number" [placeholder]="i18nRU.FORM_COST" />
     </mat-form-field>
     <!-- посетитель -->
     <mat-form-field class="form__field" appearance="fill">
-        <input type="text" matInput formControlName="visiter" [placeholder]="VISITER" [matAutocomplete]="auto">
+        <input type="text" matInput formControlName="visiter" [placeholder]="i18nRU.VISITER" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.fio">
-                <app-person-card
-                    [person]="option"
-                    [showMenu]="false">
+                <app-person-card [person]="option" [showMenu]="false">
                 </app-person-card>
             </mat-option>
         </mat-autocomplete>
@@ -49,8 +49,8 @@
 <!-- Кнопка подтверждения -->
 <div class="form__button">
     <!-- [disabled]="skiPassForm.invalid" -->
-    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="ADD" [disabled]="skiPassForm.invalid">
+    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="i18nRU.ADD" [disabled]="skiPassForm.invalid">
     </app-button>
-    <app-button *ngIf="!isCreate" [mat-dialog-close]="updateData" [text]="SAVE" (click)="saveRow()"
+    <app-button *ngIf="!isCreate" [mat-dialog-close]="updateData" [text]="i18nRU.SAVE" (click)="saveRow()"
         [disabled]="skiPassForm.invalid"></app-button>
 </div>

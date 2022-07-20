@@ -25,6 +25,7 @@ import { DeleteFormComponent } from './delete-form/delete-form.component';
 import { DisplayFormComponent } from './display-form/display-form.component';
 import { RouterModule } from '@angular/router';
 import { PersonCardModule } from '../person-card/person-card.module';
+import { InputModule } from '../shared/input/input.module';
 @NgModule({
     declarations: [
         SkiPassesComponent,
@@ -51,7 +52,8 @@ import { PersonCardModule } from '../person-card/person-card.module';
         MatInputModule,
         MatSelectModule,
         MatAutocompleteModule,
-        PersonCardModule
+        PersonCardModule,
+        InputModule
     ],
     exports:[
         SkiPassesComponent,

@@ -1,6 +1,6 @@
 <div class="container"[style]="{    background : 'no-repeat center/100% #F3F3F3   url('+skipass.photo+')' }"  (click)="openDisplayForm()">
     
-    <div class="name">{{PASS}} {{skipass.dateStart | date: 'dd.MM.yyyy'}}-{{skipass.dateEnd | date : 'dd.MM.yyyy' }}
+    <div class="name">{{i18nRU.PASS}} {{skipass.dateStart | date: 'dd.MM.yyyy'}}-{{skipass.dateEnd | date : 'dd.MM.yyyy' }}
     </div>
     <div class="cost">{{skipass.cost | currency : 'RUR':'symbol':'1.0-0'}}</div>
 
@@ -9,13 +9,13 @@
     </button>
     <mat-menu #menu="matMenu" yPosition="below">
         <button mat-menu-item (click)="openEditForm()">
-            <span>{{ASSIGN_VISITOR}}</span>
+            <span>{{i18nRU.ASSIGN_VISITOR}}</span>
         </button>
         <button mat-menu-item (click)="openEditForm()">
-            <span>{{EDIT}}</span>
+            <span>{{i18nRU.EDIT}}</span>
         </button>
         <button mat-menu-item (click)="openDeleteForm()">
-            <span>{{DELETE}}</span>
+            <span>{{i18nRU.DELETE}}</span>
         </button>
     </mat-menu>
 </div>

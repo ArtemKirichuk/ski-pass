@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
-import { i18n } from 'src/app/modules/shared/helper';
+import { i18nRU } from 'src/app/modules/shared/helper';
 import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 import { DeleteFormComponent } from '../delete-form/delete-form.component';
 import { DisplayFormComponent } from '../display-form/display-form.component';
@@ -12,13 +12,14 @@ import { SkiPassesFormComponent } from '../form/form.component';
     templateUrl: './ski-passes-card.component.html',
     styleUrls: ['./ski-passes-card.component.scss']
 })
-export class SkiPassesCardComponent extends i18n {
+export class SkiPassesCardComponent{
     @Input() skipass!: SkiPassType;
     @Output() deleteCard: EventEmitter<KeySkiPassType> = new EventEmitter<KeySkiPassType>();
     @Output() editCard: EventEmitter<updateType<KeySkiPassType, SkiPassType>> = new EventEmitter<updateType<KeySkiPassType, SkiPassType>>();
     destroy$ = new Subject();
+    i18nRU = i18nRU
     constructor(private matDialog: MatDialog) {
-        super();
+        
     }
 
     getPhoto(img: string):string {

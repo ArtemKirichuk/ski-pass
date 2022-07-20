@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType } from 'src/app/types/types';
-import { i18n } from '../../shared/helper';
+import {  i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 
 
 @Component({
@@ -11,24 +11,23 @@ import { i18n } from '../../shared/helper';
     templateUrl: './add-new-clients.component.html',
     styleUrls: ['./add-new-clients.component.scss']
 })
-export class AddNewClientsComponent extends i18n {
+export class AddNewClientsComponent {
 
     value = '';
     clickAddButton = false;
-    photoClients: string = this.DEFAULT_IMG;
-
+    photoClients: string = srcAsset.DEFAULT_IMG;
+    i18nRU = i18nRU;
+    i18nErrors = i18nErrors;
     addClientsForm: FormGroup;
     skipasses: string[] = []
     constructor(private dialogRef: MatDialogRef<AddNewClientsComponent>,
         private skipassService: SkipassService) {
-        super()
+        
         this.addClientsForm = new FormGroup({
             name: new FormControl(null, Validators.required),
             birthday: new FormControl(null, Validators.required),
             numberSkiPasses: new FormControl(null, [
                 Validators.required,
-                Validators.minLength(16),
-                Validators.maxLength(16)
             ]),
             instructor: new FormControl(null),
             category: new FormControl(null, Validators.required)
@@ -50,7 +49,7 @@ export class AddNewClientsComponent extends i18n {
 
     doneAddClients(): void {
         this.clickAddButton = true;
-        debugger
+        
         if (this.addClientsForm.valid) {
             const visitor: VisitorType = {
                 fio: this.addClientsForm.get('name')?.value,

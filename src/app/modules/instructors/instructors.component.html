@@ -1,10 +1,10 @@
 <div class="instructors-block" *ngIf="allInstructors$ | async as allInstructors">
     <div class="clients-block__header">
 
-        <span class="instructors-block__text">{{INSTRUCTORS}}</span>
+        <span class="instructors-block__text">{{i18nRU.INSTRUCTORS}}</span>
 
         <app-button
-            [text]="ADD"
+            [text]="i18nRU.ADD_NEW1"
             [mode]="'icon'"
             (click) = "addNewInstructor()"
         ></app-button>

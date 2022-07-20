@@ -1,5 +1,5 @@
 <div class="title">
-    <p class="title__textTitle">{{CARD_SKIPASS}}</p>
+    <p class="title__textTitle">{{i18nRU.CARD_SKIPASS}}</p>
     <div>
         <mat-icon [mat-dialog-close]="true"  class="title__icon">edit</mat-icon>
         <mat-icon [mat-dialog-close]="false"  class="title__icon">delete</mat-icon>
@@ -15,16 +15,16 @@
         <div class="form__field__cardNumber">{{data.cardNumber}}</div>
     </div>
     <div class="form__field__common">
-        <label class="form__field__common__label">{{ACTION_TIME | uppercase}}</label>
+        <label class="form__field__common__label">{{i18nRU.ACTION_TIME | uppercase}}</label>
         <div class="form__field__common__data">{{data.dateStart | date : 'dd.MM.yyyy'}} -
             {{data.dateEnd|date:'dd.MM.yyyy'}}</div>
     </div>
     <div class="form__field__common">
-        <label class="form__field__common__label">{{COST | uppercase}}</label>
+        <label class="form__field__common__label">{{i18nRU.COST | uppercase}}</label>
         <div class="form__field__common__data">{{data.cost | currency : 'RUR':undefined:'1.0-0'}}</div>
     </div>
     <div class="form__field__common">
-        <label class="form__field__common__label">{{ASSIGNE_VISITER | uppercase}}</label>
+        <label class="form__field__common__label">{{i18nRU.ASSIGNE_VISITER | uppercase}}</label>
         <div class="form__field__common__data">{{data.visiter}}</div>
     </div>
 
@@ -32,5 +32,5 @@
 </div>
 <!-- Кнопка подтверждения -->
 <div class="form__button">
-    <app-button [mat-dialog-close] [text]="OK"></app-button>
+    <app-button [mat-dialog-close] [text]="i18nRU.OK"></app-button>
 </div>

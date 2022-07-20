@@ -1,5 +1,5 @@
 <div class="title">
-    <p class="title__textTitle">{{FORM_TITLE_SKIPASS}}</p>
+    <p class="title__textTitle">{{i18nRU.FORM_TITLE_SKIPASS}}</p>
     <mat-icon mat-dialog-close class="title__iconClose">close</mat-icon>
 </div>
 <div class="form">
@@ -9,10 +9,10 @@
         <div class="form__field__cardNumber">{{data.cardNumber}}</div>
     </div>
     <div class="form__field" >
-        <div class="form__field__question">{{DELETE_TEXT}}</div>
+        <div class="form__field__question">{{i18nRU.DELETE_TEXT}}</div>
     </div>
 </div>
 <!-- Кнопка подтверждения -->
 <div class="form__button">
-    <app-button [mat-dialog-close]="true" [text]="OK"></app-button>
+    <app-button [mat-dialog-close]="true" [text]="i18nRU.OK"></app-button>
 </div>

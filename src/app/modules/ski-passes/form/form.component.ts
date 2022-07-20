@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { map, Observable, startWith } from 'rxjs';
-import { CustomValidator, i18n, parseImg } from 'src/app/modules/shared/helper';
+import { CustomValidator, i18nErrors, i18nRU, parseImg } from 'src/app/modules/shared/helper';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { KeySkiPassType, SkiPassType, updateType, VisitorType } from 'src/app/types/types';
 
@@ -14,10 +14,12 @@ import { KeySkiPassType, SkiPassType, updateType, VisitorType } from 'src/app/ty
     styleUrls: ['./form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkiPassesFormComponent extends i18n implements OnInit {
+export class SkiPassesFormComponent implements OnInit {
     skiPassForm: FormGroup;
     srcPhoto = 'assets/images/default-photo.svg';
     isCreate: boolean;
+    i18nRU = i18nRU
+    i18nErrors = i18nErrors
     updateData: updateType<KeySkiPassType, SkiPassType> = {} as updateType<KeySkiPassType, SkiPassType>;
     get cardNumber() { return this.skiPassForm.get('cardNumber'); }
     get dateStart() { return this.skiPassForm.get('dateStart'); }
@@ -28,9 +30,8 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
     filteredOptions!: Observable<VisitorType[]>;
     constructor(private sanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) public skiPass: SkiPassType,
-        private visiterService:VisitorService) {
-        super();
-        visiterService.getVisitors().subscribe((visiters)=>{
+        private visiterService: VisitorService) {
+        visiterService.getVisitors().subscribe((visiters) => {
             this.visiters = visiters;
         })
         this.isCreate = false;
@@ -77,7 +78,7 @@ export class SkiPassesFormComponent extends i18n implements OnInit {
         const day: Date = (d?.toDate() || new Date());
         return day !== null && day.getTime() >= new Date().setHours(0, 0, 0, 0);
     };
-    
+
     //Сохранить изменения
     saveRow(): void {
         Object.assign(this.updateData, { oldKey: { cardNumber: this.skiPass.cardNumber }, newRow: this.skiPassForm.value });

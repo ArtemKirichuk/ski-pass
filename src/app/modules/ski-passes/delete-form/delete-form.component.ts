@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
-import { i18n } from 'src/app/modules/shared/helper';
+import {  i18nRU } from 'src/app/modules/shared/helper';
 import { SkiPassType } from 'src/app/types/types';
 
 
@@ -11,11 +11,9 @@ import { SkiPassType } from 'src/app/types/types';
     templateUrl: './delete-form.component.html',
     styleUrls: ['./delete-form.component.scss']
 })
-export class DeleteFormComponent extends i18n  {
+export class DeleteFormComponent {
   
-
-    constructor(@Inject(MAT_DIALOG_DATA) public data: SkiPassType) { 
-        super(); 
-    }
+    i18nRU = i18nRU
+    constructor(@Inject(MAT_DIALOG_DATA) public data: SkiPassType) {  }
 
 }
