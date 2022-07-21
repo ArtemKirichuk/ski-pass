@@ -5,8 +5,7 @@
         [img] = "photoInstructor" 
         (imgLink)="handlerEvent($event)">
     </app-photo-form>
-
-
+    
     <app-input 
         class = "add-instructor__input" 
         [title]="NAME"  
@@ -39,13 +38,7 @@
         *ngIf = "clickCloseWindow && checkEmpty('startWork')">
             {{ERROR_EMPTY_START_WORK}}
     </small>
-    <!-- <select class = "select" >
-        <option class = "option" value="" selected></option>
-        <option value="volvo">Volvo</option>
-        <option value="saab" disabled>Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select> -->
+
     <app-select-sex
         formControlName="sex"
         [title] = "SEX"

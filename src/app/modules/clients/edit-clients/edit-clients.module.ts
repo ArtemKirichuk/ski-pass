@@ -8,6 +8,7 @@ import { InputModule } from '../../shared/input/input.module';
 import { ButtonModule } from '../../shared/button/button.module';
 import { DatepickerModule } from '../../shared/datepicker/datepicker.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SimpleSelectModule } from '../../shared/simple-select/simple-select.module';
 
 
 
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ButtonModule,
         DatepickerModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SimpleSelectModule
     ],
     exports:[
         EditClientsComponent

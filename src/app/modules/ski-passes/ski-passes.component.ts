@@ -34,13 +34,8 @@ export class SkiPassesComponent implements  OnDestroy {
             });
 
         });
-        this.updateSkipass$.subscribe({
-            // next: skipasses => {
-            //     this.skipasses$ = of(skipasses);
-            // }
-        });
+        this.updateSkipass$.subscribe();
     }
-
     openCreateForm(): void {
         const dialogRef = this.matDialog.open(SkiPassesFormComponent, { height: '730px', width: '500px' });
         dialogRef.afterClosed()
@@ -57,25 +52,19 @@ export class SkiPassesComponent implements  OnDestroy {
             takeUntil(this.destroy$),
             switchMap(() => this.updateSkipass$)
         )
-        .subscribe(()=>{
-            // this.skipasses$ = of(skipasses);
-        });
+        .subscribe();
     }
     update(data: updateType<KeySkiPassType, SkiPassType>): void {
         this.skipassService.update(data).pipe(
             takeUntil(this.destroy$),
             switchMap(() => this.updateSkipass$)
-        ).subscribe(() => {
-            // this.skipasses$ = of(skipasses);
-        });
+        ).subscribe();
     }
     delete(event: KeySkiPassType): void {
         this.skipassService.delete(event).pipe(
             takeUntil(this.destroy$),
             switchMap(() => this.updateSkipass$)
-        ).subscribe(() => {
-            // this.skipasses$ = of(skipasses);
-        });
+        ).subscribe();
     }
     ngOnDestroy(): void {
         this.destroy$.next(true);

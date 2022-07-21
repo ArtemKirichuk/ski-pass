@@ -5,6 +5,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HeaderDatepickerComponent } from 'src/app/modules/shared/datepicker/header-datepicker/header-datepicker.component';
+import { i18nRU, srcAsset } from '../helper';
 
 class CustomDateAdapter extends MomentDateAdapter {
     override getDayOfWeekNames() {
@@ -41,9 +42,9 @@ const MATERIAL_DATEPICKER_FORMATS = {
 })
 
 export class DatepickerComponent  implements ControlValueAccessor{
-    IMG_DATEPICKER = '../../assets/images/datepicker.svg';
-
-    @Input() dayPlaceholder = 'Дата';
+    IMG_DATEPICKER = srcAsset.IMG_DATEPICKER;
+    
+    @Input() dayPlaceholder = i18nRU.FORM_DATE as string;
     exampleHeader = HeaderDatepickerComponent;
     @Input() value  = {} as Date;
     

@@ -6,14 +6,11 @@
     <!-- Фото карты -->
     <div class="form__conteiner" [style]="{    background : 'no-repeat #F3F3F3  center url('+srcPhoto+')' } "
         (click)="loadPhoto()"></div>
-    <!-- <input id="file" formControlName="photo" type="file" hidden="true"> -->
     <!-- Номер карты -->
     <div class="form__field">
         <app-input class="input" [title]="i18nRU.FORM_CARD_NUMBER" [type]="'number'" formControlName="cardNumber">
         </app-input>
-        <!-- <input  class = "input" formControlName="cardNumber" type="number" [placeholder]="FORM_CARD_NUMBER"  /> -->
-        <mat-error clss="error" *ngIf="cardNumber?.errors?.['errorCard']">{{i18nErrors.ERROR_CARD_NUMBER}}</mat-error>
-        <!-- <mat-form-field class="form__field" appearance="fill"></mat-form-field> -->
+        <mat-error clss="error" *ngIf="cardNumber?.errors?.['errorCard']">{{i18nErrors.ERROR_CARD_NUMBER}}</mat-error>    
     </div>
     <!-- Дата начала -->
     <mat-form-field class="form__field " appearance="fill">

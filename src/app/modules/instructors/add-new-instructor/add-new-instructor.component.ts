@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { InstructorType } from 'src/app/types/types';
-import { AddNewClientsComponent } from '../../clients/add-new-clients/add-new-clients.component';
 
 @Component({
     selector: 'app-add-new-instructor',
@@ -30,7 +29,7 @@ export class AddNewInstructorComponent {
     clickCloseWindow = false;
 
 
-    constructor(private dialogRef: MatDialogRef<AddNewClientsComponent>) {
+    constructor(private dialogRef: MatDialogRef<AddNewInstructorComponent>) {
 
         this.addInstructorForm = new FormGroup({
             name: new FormControl(null, Validators.required),

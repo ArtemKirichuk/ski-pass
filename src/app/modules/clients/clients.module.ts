@@ -8,13 +8,11 @@ import { PhotoFormModule } from '../shared/photo-form/photo-form.module';
 import { ClientDeleteComponent } from 'src/app/modules/clients/client-delete/client-delete.component';
 import { ClientInfoComponent } from 'src/app/modules/clients/client-info/client-info.component';
 import { PaginatorModule } from 'src/app/modules/shared/paginator/paginator.module';
-import { AddNewClientsModule } from './add-new-clients/add-new-clients.module';
 import { ButtonModule } from '../shared/button/button.module';
 import { EditClientsModule } from './edit-clients/edit-clients.module';
 import { PersonCardModule } from '../shared/person-card/person-card.module';
 import { TitleModalFormModule } from '../shared/title-modal-form/title-modal-form.module';
 import { ClientsComponent } from './clients.component';
-
 
 
 @NgModule({
@@ -34,7 +32,6 @@ import { ClientsComponent } from './clients.component';
         ButtonModule,
         PaginatorModule,
         PersonCardModule,
-        AddNewClientsModule,
         TitleModalFormModule,
         EditClientsModule,
         MatDialogModule,

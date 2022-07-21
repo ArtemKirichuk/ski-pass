@@ -52,14 +52,20 @@ export enum srcAsset {
     nextPageIcon = 'assets/images/next-page-icon.svg',
     editIcon = 'assets/images/edit-icon.svg',
     deleteIcon = 'assets/images/delete-icon.svg',
+    IMG_DATEPICKER = 'assets/images/datepicker.svg',
+    arrowDownfilled = 'assets/images/arrow-down-filled.svg',
 }
 export enum attr{
     TEXT_TYPE = 'text',
+    NUMBER_TYPE= 'number',
     INPUT = 'input',
     FILE= 'file',
     ACCESS_FILE_EXTENSION = '.jpg, .jpeg, .png',
 }
 export enum i18nRU {
+    FORM_DATE='Дата',
+    FORM_EDIT_TITLE_VISITER='Редактировать профиль пользователя',
+    FORM_ADD_TITLE_VISITER='Добавить профиль пользователя',
     APPOINTED_VISITOR = 'Назначить поситителя',
     EXPERIENCE = '. Опыт ',
     APPOINT_COACH = 'Назначить тренера',
@@ -82,6 +88,7 @@ export enum i18nRU {
     ADD = 'Добавить',
     PASS = 'Пропуск',
     FORM_TITLE_SKIPASS = 'Добавить новый ски-пасс',
+    
     FORM_CARD_NUMBER = 'Номер',
     SAVE = 'Сохранить',
     OK = 'OK',
@@ -99,7 +106,6 @@ export enum i18nRU {
     BIRTHDAY = 'День рождения',
     NUMBER_SKIPASS = 'Номер ски-пасса',
     NUMBER_TYPE = 'number',
-    
     SPORT = 'Вид спорта',
     BUTTON_ADD = 'Добавить',
     TITLE_ADD_NEW_VISITER = 'Добавить нового посетителя',

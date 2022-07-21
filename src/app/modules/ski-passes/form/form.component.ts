@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { map, Observable, startWith } from 'rxjs';
-import { CustomValidator, i18nErrors, i18nRU, parseImg } from 'src/app/modules/shared/helper';
+import { CustomValidator, i18nErrors, i18nRU, parseImg, srcAsset } from 'src/app/modules/shared/helper';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { KeySkiPassType, PersanCardType, SkiPassType, updateType, VisitorType } from 'src/app/types/types';
 import { AgePipe } from '../../shared/age/age.pipe';
@@ -17,7 +17,7 @@ import { AgePipe } from '../../shared/age/age.pipe';
 })
 export class SkiPassesFormComponent implements OnInit {
     skiPassForm: FormGroup;
-    srcPhoto = 'assets/images/default-photo.svg';
+    srcPhoto = srcAsset.DEFAULT_IMG as string;
     isCreate: boolean;
     i18nRU = i18nRU
     i18nErrors = i18nErrors

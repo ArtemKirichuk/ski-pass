@@ -2,13 +2,14 @@
     <input type="text" 
         [placeholder]="placeholder" 
         readonly
+        [value]="value"
         class="select"
         (click)="openAutoCompleteMenu($event)" 
         (onChange)="$event"
         [matAutocomplete]="auto"
          />
     <button class="toggle-arrow"  (click)="openAutoCompleteMenu($event)">
-        <img src="assets/images/arrow-down-filled.svg" alt="">
+        <img src="{{srcAsset.arrowDownfilled}}" alt="">
     </button>
 </div>
 <mat-autocomplete id="autocomplete" autoActiveFirstOption #auto="matAutocomplete">

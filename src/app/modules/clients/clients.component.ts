@@ -5,7 +5,6 @@ import { ClientDeleteComponent } from 'src/app/modules/clients/client-delete/cli
 import { ClientInfoComponent } from 'src/app/modules/clients/client-info/client-info.component';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { KeyVisitorType, PersanCardType, updateType, VisitorType } from 'src/app/types/types';
-import { AddNewClientsComponent } from './add-new-clients/add-new-clients.component';
 import { EditClientsComponent } from './edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
 import { i18nRU } from '../shared/helper';
@@ -57,7 +56,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
     }
 
     addNewClients(): void {
-        const dialogRef = this.dialog.open(AddNewClientsComponent, { width: '500px' });
+        const dialogRef = this.dialog.open(EditClientsComponent, { width: '500px' });
         dialogRef.afterClosed().subscribe(visitor => {
             if (visitor) {
                 this.visitorService.createVisitor(visitor).subscribe(ok => {
@@ -95,7 +94,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
     }
 
     onEditVisitor(visitor: VisitorType, redirectToDispaly?: boolean): void {
-        const dialogRef = this.dialog.open(EditClientsComponent, { data: { clients: visitor }, width: '500px' });
+        const dialogRef = this.dialog.open(EditClientsComponent, { data: visitor , width: '500px' });
 
         dialogRef.afterClosed().subscribe((editedVisitor:VisitorType) => {
             if (editedVisitor) {

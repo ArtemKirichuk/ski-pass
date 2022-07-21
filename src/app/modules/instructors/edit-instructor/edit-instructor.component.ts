@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddNewClientsComponent } from '../../clients/add-new-clients/add-new-clients.component';
 import { InstructorType } from '../../../types/types';
 
 @Component({
@@ -29,7 +28,7 @@ export class EditInstructorComponent {
     clickCloseWindow  = false;
 
 
-    constructor(private dialogRef:MatDialogRef<AddNewClientsComponent>, 
+    constructor(private dialogRef:MatDialogRef<EditInstructorComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: {instructor : InstructorType, width : string}) {
         this.photoInstructor = data.instructor.photo;
         this.editInstructorForm = new FormGroup({

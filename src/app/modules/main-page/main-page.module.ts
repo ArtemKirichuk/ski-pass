@@ -4,7 +4,6 @@ import {  ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AddNewClientsModule } from '../clients/add-new-clients/add-new-clients.module';
 import { AddNewInstructorModule } from '../instructors/add-new-instructor/add-new-instructor.module';
 import { ButtonModule } from '../shared/button/button.module';
 import { EditInstructorModule } from '../instructors/edit-instructor/edit-instructor.module';
@@ -35,7 +34,6 @@ import { MainPageComponent } from './main-page.component';
         InputModule,
         PhotoFormModule,
         TitleModalFormModule,
-        AddNewClientsModule,
         AddNewInstructorModule,
         HeaderModule,
         EditInstructorModule,

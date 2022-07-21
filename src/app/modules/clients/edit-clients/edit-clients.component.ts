@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType } from 'src/app/types/types';
-
-
+import { attr, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 
 @Component({
     selector: 'app-edit-clients',
@@ -11,39 +11,35 @@ import { VisitorType } from 'src/app/types/types';
     styleUrls: ['./edit-clients.component.scss']
 })
 export class EditClientsComponent {
-    TITLE = 'Редактировать профиль пользователя';
-    NAME = 'ФИО';
-    ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
-    ERROR_EMPTY_NUMBER = 'Необходимо заполнить номер ски-пасса';
-    ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта';
-    ERROR_EMPTY_BIRTHDAY = 'Необходимо заполнить дату рождения';
-    ERROR_SKI_PASS_LEN = 'Ски-пасс должен быть 16-символьным';
-    ERROR_SKI_PASS_NOT_FOUND = 'Такого ски-пасса не существует';
-    BIRTHDAY = 'День рождения';
-    NUMBER = 'Номер ски-пасса';
-    NUMBER_TYPE = 'number';
-    TEXT_TYPE = 'text';
-    INSTRUCTOR = 'Назначить тренера';
-    SPORT = 'Вид спорта';
-    BUTTON_EDIT = 'Редактировать';
-
+    i18nRU = i18nRU;
+    i18nErrors=i18nErrors;
+    attr=attr;
     editClientsForm: FormGroup;
     photoClients: string;
     clickEditButton = false;
-
-    constructor(@Inject(MAT_DIALOG_DATA) public data: { clients: VisitorType, width: string },
+    isCreate:boolean;
+    skipasses:string[] = [];
+    constructor(
+        private skipassService:SkipassService,
+        @Inject(MAT_DIALOG_DATA) public visiter: VisitorType ,
         private dialogRef: MatDialogRef<EditClientsComponent>) {
-        console.log(data.clients);
-        this.photoClients = data.clients.photo;
+            this.isCreate = false;
+        if (!visiter) {
+            this.isCreate = true;
+            visiter = {} as VisitorType;
+        }
+        this.photoClients = visiter.photo ? visiter.photo : srcAsset.DEFAULT_IMG;
         this.editClientsForm = new FormGroup({
-            name: new FormControl(data.clients.fio, Validators.required),
-            birthday: new FormControl(data.clients.birthday, Validators.required),
-            numberSkiPasses: new FormControl(data.clients.skiPass, Validators.required),
-            instructor: new FormControl(data.clients.instructor),
-            sport: new FormControl(data.clients.sport, Validators.required)
+            name:               new FormControl(visiter?.fio, Validators.required),
+            birthday:           new FormControl(visiter?.birthday, Validators.required),
+            numberSkiPasses:    new FormControl(visiter?.skiPass, Validators.required),
+            instructor:         new FormControl(visiter?.instructor),
+            sport:              new FormControl(visiter?.sport, Validators.required)
         });
+        skipassService.get().subscribe((skipass) => {
+            this.skipasses = skipass.map(e => String(e.cardNumber))
+        })
     }
-
 
     handlerClose($event: boolean): void {
         if ($event) {
@@ -51,8 +47,8 @@ export class EditClientsComponent {
         }
     }
 
-    handlerEvent($event: string): void {
-        this.photoClients = $event;
+    handlerEvent(img: string): void {
+        this.photoClients = img;
     }
 
     editClients() {
