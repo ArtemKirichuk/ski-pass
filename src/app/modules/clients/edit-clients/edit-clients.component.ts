@@ -19,28 +19,37 @@ export class EditClientsComponent {
     clickEditButton = false;
     isCreate:boolean;
     skipasses:string[] = [];
+    get name() { return this.editClientsForm.get('name'); }
+    get birthday() { return this.editClientsForm.get('birthday'); }
+    get numberSkiPasses() { return this.editClientsForm.get('numberSkiPasses'); }
+    get instructor() { return this.editClientsForm.get('instructor'); }
+    get sport() { return this.editClientsForm.get('sport'); }
     constructor(
         private skipassService:SkipassService,
-        @Inject(MAT_DIALOG_DATA) public visiter: VisitorType ,
+        @Inject(MAT_DIALOG_DATA) public visiterData: VisitorType ,
         private dialogRef: MatDialogRef<EditClientsComponent>) {
             this.isCreate = false;
-        if (!visiter) {
+        if (!visiterData) {
             this.isCreate = true;
-            visiter = {} as VisitorType;
+            visiterData = {} as VisitorType;
         }
-        this.photoClients = visiter.photo ? visiter.photo : srcAsset.DEFAULT_IMG;
+        debugger
+        this.photoClients = visiterData.photo ? visiterData.photo : srcAsset.DEFAULT_IMG;
         this.editClientsForm = new FormGroup({
-            name:               new FormControl(visiter?.fio, Validators.required),
-            birthday:           new FormControl(visiter?.birthday, Validators.required),
-            numberSkiPasses:    new FormControl(visiter?.skiPass, Validators.required),
-            instructor:         new FormControl(visiter?.instructor),
-            sport:              new FormControl(visiter?.sport, Validators.required)
+            name:               new FormControl(visiterData?.fio, Validators.required),
+            birthday:           new FormControl(visiterData?.birthday, Validators.required),
+            numberSkiPasses:    new FormControl(visiterData?.skiPass, Validators.required),
+            instructor:         new FormControl(visiterData?.instructor, Validators.required),
+            sport:              new FormControl(visiterData?.sport, Validators.required)
         });
         skipassService.get().subscribe((skipass) => {
             this.skipasses = skipass.map(e => String(e.cardNumber))
         })
     }
-
+    error(name:string):boolean{
+        const erros = this.editClientsForm.get(name)?.errors;
+        return erros?true:false;
+    }
     handlerClose($event: boolean): void {
         if ($event) {
             this.dialogRef.close(null);
@@ -65,14 +74,6 @@ export class EditClientsComponent {
             };
             this.dialogRef.close(clients);
         }
-    }
-
-    checkEmpty(param: string): boolean {
-        return this.editClientsForm.get(param)?.value === null || this.editClientsForm.get(param)?.value === '';
-    }
-
-    checkLen(param: string): boolean {
-        return `${this.editClientsForm.get(param)?.value}`.length !== 16;
     }
 
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as moment from 'moment';
@@ -109,5 +109,10 @@ export class SkiPassesFormComponent implements OnInit {
             title: AgePipe.prototype.transform(visiter.birthday),
             img: visiter.photo
         }
+    }
+    error(name:string):boolean{
+        
+        const erros:ValidationErrors  = this.skiPassForm.get(name)?.errors!
+        return erros['required'];
     }
 }

@@ -10,8 +10,6 @@ import { DatepickerModule } from '../../shared/datepicker/datepicker.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SimpleSelectModule } from '../../shared/simple-select/simple-select.module';
 
-
-
 @NgModule({
     declarations: [
         EditClientsComponent

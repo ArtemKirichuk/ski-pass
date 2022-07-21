@@ -1,27 +1,19 @@
 .input {
     box-sizing: border-box;
     display: block;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    //margin-right: 5%;
+    width: 100%;
     margin-bottom: 3%;
     height: calc(2.25rem + 2px);
-    //padding: 0.375rem 0.75rem;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    /* or 240% */
     color: #868686;
     background: #F3F3F3;
     height: calc(3.0rem + 2px);
     padding: 1rem 0.75rem;
-    //background-clip: padding-box;
-
     border: none;
-    //border: 1px solid black;
 
     border-radius: 10px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
