@@ -61,6 +61,9 @@ export enum attr {
     INPUT = 'input',
     FILE = 'file',
     ACCESS_FILE_EXTENSION = '.jpg, .jpeg, .png',
+    widthDialog = '500px',
+    icon = 'icon'
+
 }
 export enum i18nRU {
     FORM_ADD_TITLE_INSTRUCTOR = 'Добавить инструктора',
@@ -84,6 +87,7 @@ export enum i18nRU {
     INSTRUCTOR = 'Назначить тренера',
     INSTRUCTORS = 'Инструкторы',
     VISITERS = 'Посетители',
+    VISITER = 'Посетитель',
     ASSIGN_VISITOR = 'Назначить посетителя',
     EDIT = 'Редактировать',
     DELETE = 'Удалить',
@@ -97,7 +101,7 @@ export enum i18nRU {
     FORM_DATE_START = 'Начало действия',
     FORM_DATE_END = 'Коец действия',
     FORM_COST = 'Стоимость',
-    VISITER = 'Посетитель',
+    
     DELETE_TEXT = 'Вы уверены, что хотите удалить карточку этого ски-пасса?',
     ACTION_TIME = 'Время действия',
     COST = 'Цена',

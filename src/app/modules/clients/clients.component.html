@@ -1,11 +1,11 @@
 <div class="clients-block" *ngIf="allVisitors$ | async as allVisitors">
     <div class="clients-block__header">
 
-        <span class="clients-block__text">{{CLIENTS}}</span>
+        <span class="clients-block__text">{{i18nRU.VISITERS}}</span>
 
-        <app-button [text]="ADD" [mode]="'icon'" (click)="addNewClients()"></app-button>
+        <app-button [text]="i18nRU.ADD_NEW1" [mode]="attr.icon" (click)="addNewClients()"></app-button>
 
-        <app-paginator 
+        <app-paginator
             #paginator 
             [itemsOnPage]="26" 
             [allItems]="allVisitors" 

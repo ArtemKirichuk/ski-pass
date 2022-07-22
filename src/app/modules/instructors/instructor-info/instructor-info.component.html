@@ -2,13 +2,14 @@
     <div class="instructor-info__header">
         <span class="instructor-info__title">{{TITLE}}</span>
         <div class="instructor-info__icons">
-            <img src="assets/images/edit-icon.svg" [mat-dialog-close]="true" class="instructor-info__edit" >
-            <img src="assets/images/delete-icon.svg" [mat-dialog-close]="false" class="instructor-info__delete" >
+            <mat-icon [mat-dialog-close]="true" class="instructor-info__edit">edit</mat-icon>
+            <mat-icon [mat-dialog-close]="false" class="instructor-info__delete">delete</mat-icon>
         </div>
     </div>
 
-    <div class = "avatar-block">
-        <img class = "avatar-block__avatar" src="{{instructor.photo}}">      
+    <div class="avatar-block">
+        <app-photo-form [img]="instructor.photo" [select]="false">
+        </app-photo-form>
     </div>
 
     <span class="instructor-info__fio">{{instructor.fio}}</span>
@@ -23,8 +24,8 @@
 
         <span class="instructor-info__label">{{APPOINTED_VISITOR}}</span>
         <span class="instructor-info__value">{{instructor.visiter}}</span>
-    </div>    
+    </div>
 
-    <app-button [text]="OK" class="btn" mat-dialog-close>        
+    <app-button [text]="OK" class="btn" mat-dialog-close>
     </app-button>
 </div>

@@ -19,13 +19,22 @@
         line-height: 16px;
     }
 
+    &__delete, &__edit  {
+        color: #C8C8C8; 
+    }
     &__edit {
         margin-right: 21px;
     }
 
+    &__edit:hover {
+        cursor: pointer;
+        color: #212121;
+    }
+    &__delete:hover {
+        cursor: pointer;
+        color: #212121;
+    }
     &__fio {
-        font-family: 'Roboto';
-        font-style: normal;
         font-weight: 500;
         font-size: 36px;
         line-height: 138.19%;
@@ -34,39 +43,27 @@
     }
 
     &__sport {
-        font-family: 'Roboto';
-        font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 24px;
-        /* or 171% */
-
         text-align: center;
         text-transform: capitalize;
         color: #707EF9;
     }
 
     &__label {
-        font-family: 'Roboto';
-        font-style: normal;
         font-weight: 400;
         font-size: 12px;
-        line-height: 24px;
-        /* or 200% */
-
+        line-height: 24px;        
         text-transform: uppercase;
         text-align: center;
-
         color: rgba(160, 160, 160, 0.541327);
     }
 
     &__value {
-        font-family: 'Roboto';
-        font-style: normal;
         font-weight: 500;
         font-size: 20px;
         line-height: 23px;
-        /* identical to box height */
         color: rgba(0, 0, 0, 0.87);
         text-align: center;
         margin-bottom: 30px;

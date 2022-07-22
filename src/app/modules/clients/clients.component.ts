@@ -7,7 +7,7 @@ import { VisitorService } from 'src/app/services/visitor.service';
 import { KeyVisitorType, PersanCardType, updateType, VisitorType } from 'src/app/types/types';
 import { EditClientsComponent } from './edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
-import { i18nRU } from '../shared/helper';
+import { attr, i18nRU } from '../shared/helper';
 import { AgePipe } from '../shared/age/age.pipe';
 
 
@@ -19,10 +19,8 @@ import { AgePipe } from '../shared/age/age.pipe';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ClientsComponent implements OnInit, OnDestroy {
-
-    CLIENTS = 'Посетители';
-    ADD = 'Добавить нового';
-
+    i18nRU = i18nRU
+    attr = attr
     showedVisitors: VisitorType[] = [];
     @ViewChild('paginator') paginator: PaginatorComponent<VisitorType> | undefined;
 
@@ -37,7 +35,6 @@ export class ClientsComponent implements OnInit, OnDestroy {
         this.visitorService.getVisitors().subscribe(resp => {
             this.visitorService.sendVisitorToStream(resp);
         });
-
         this.subscription = this.visitorService.getVisitorsListStream$().subscribe(resp => {
             this.allVisitors$.next(resp);
             if (this.paginator) {
@@ -56,7 +53,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
     }
 
     addNewClients(): void {
-        const dialogRef = this.dialog.open(EditClientsComponent, { width: '500px' });
+        const dialogRef = this.dialog.open(EditClientsComponent, { width: attr.widthDialog });
         dialogRef.afterClosed().subscribe(visitor => {
             if (visitor) {
                 this.visitorService.createVisitor(visitor).subscribe(ok => {
@@ -94,7 +91,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
     }
 
     onEditVisitor(visitor: VisitorType, redirectToDispaly?: boolean): void {
-        const dialogRef = this.dialog.open(EditClientsComponent, { data: visitor , width: '500px' });
+        const dialogRef = this.dialog.open(EditClientsComponent, { data: visitor , width: attr.widthDialog });
 
         dialogRef.afterClosed().subscribe((editedVisitor:VisitorType) => {
             if (editedVisitor) {
@@ -116,7 +113,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
     }
 
     onShowVisitor(visitor: VisitorType): void {
-        const dialogRef = this.dialog.open(ClientInfoComponent, { data: visitor, width: '500px', height: '790px' });
+        const dialogRef = this.dialog.open(ClientInfoComponent, { data: visitor, width: attr.widthDialog  });
         dialogRef.afterClosed().subscribe(edit => {
             if (edit) {
                 this.onEditVisitor(visitor, true);

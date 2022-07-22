@@ -7,7 +7,7 @@ import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType, updateType, KeyInstructorType, PersanCardType } from 'src/app/types/types';
 import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
-import { i18nErrors, i18nRU } from '../shared/helper';
+import { attr, i18nErrors, i18nRU } from '../shared/helper';
 import { AgePipe } from '../shared/age/age.pipe';
 // import { KeyInstructorType } from '../shared/interfaces';
 
@@ -19,11 +19,12 @@ import { AgePipe } from '../shared/age/age.pipe';
 })
 export class InstructorsComponent implements OnInit, OnDestroy {
 
-    width = '500px';
+    
     showedInstructors: InstructorType[] = [];
     allInstructors$: BehaviorSubject<InstructorType[]> = new BehaviorSubject<InstructorType[]>([]);
     subscription: Subscription = new Subscription();
-    i18nRU = i18nRU
+    i18nRU = i18nRU;
+    attr = attr
     @ViewChild('paginator') paginator: PaginatorComponent<InstructorType> | undefined;
 
     constructor(private dialog: MatDialog,
@@ -74,7 +75,7 @@ export class InstructorsComponent implements OnInit, OnDestroy {
     }
 
     addNewInstructor(): void {
-        const dialogRef = this.dialog.open(EditInstructorComponent,{ width : this.width});
+        const dialogRef = this.dialog.open(EditInstructorComponent,{ width : attr.widthDialog});
         dialogRef.afterClosed().subscribe(instructor => {
             if (instructor) {
                 this.instructorService.createInstructor(instructor).subscribe(ok => {
@@ -97,7 +98,7 @@ export class InstructorsComponent implements OnInit, OnDestroy {
 
     onEditInstructor(instructor: InstructorType, redirect?: boolean): void {
         
-        const dialogRef = this.dialog.open(EditInstructorComponent, {data: instructor, width:this.width});
+        const dialogRef = this.dialog.open(EditInstructorComponent, {data: instructor, width:attr.widthDialog});
 
         dialogRef.afterClosed().subscribe(editedInstructor => {
             if (editedInstructor) {
@@ -120,7 +121,7 @@ export class InstructorsComponent implements OnInit, OnDestroy {
 
     onShowInstructor(instructor: InstructorType): void {
 
-        const dialog = this.dialog.open(InstructorInfoComponent, { data: instructor, width: this.width, height: '766px' });
+        const dialog = this.dialog.open(InstructorInfoComponent, { data: instructor, width: attr.widthDialog});
         dialog.afterClosed().subscribe((edit: boolean) => {
             if (edit) {
                 this.onEditInstructor(instructor, true)

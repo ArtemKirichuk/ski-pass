@@ -10,6 +10,8 @@ import { TitleModalFormModule } from '../shared/title-modal-form/title-modal-for
 import { InstructorsComponent } from './instructors.component';
 import { RouterModule } from '@angular/router';
 import { PersonCardModule } from '../shared/person-card/person-card.module';
+import { PhotoFormModule } from '../shared/photo-form/photo-form.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -28,7 +30,9 @@ import { PersonCardModule } from '../shared/person-card/person-card.module';
         TitleModalFormModule,
         EditInstructorModule,
         MatDialogModule,
-        PersonCardModule
+        PersonCardModule,
+        PhotoFormModule,
+        MatIconModule
     ]
 })
 export class InstructorsModule { }
