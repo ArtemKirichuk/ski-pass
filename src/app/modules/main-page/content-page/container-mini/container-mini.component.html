@@ -1,16 +1,17 @@
 <div class="mini-block">
-    <div class="mini-block__header">
-        <span class="mini-block__text"></span>
+    <div *ngIf="!show" class="mini-block__header">
+        <span class="mini-block__text">{{title}}</span>
         <img src="{{minimizeURL}}" class="mini-block__minimize" (click)="minimize()">
     </div>
+    <img *ngIf="show" src="{{minimizeURL}}" class="mini-block__minimize-absolute" (click)="minimize()">
     <div *ngIf="show">
         <ng-content select="[content]"></ng-content>
-    </div>
-    <div>
-        <span class="mini-block__all" [routerLink]="route">
-            {{i18nRU.ALL}}
-            <img src="{{srcAsset.nextPageIcon}}">
-        </span>
-    </div>
 
+        <div>
+            <span class="mini-block__all" [routerLink]="route">
+                {{i18nRU.ALL}}
+                <img src="{{srcAsset.nextPageIcon}}">
+            </span>
+        </div>
+    </div>
 </div>

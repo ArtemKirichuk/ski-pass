@@ -62,7 +62,8 @@ export enum attr {
     FILE = 'file',
     ACCESS_FILE_EXTENSION = '.jpg, .jpeg, .png',
     widthDialog = '500px',
-    icon = 'icon'
+    icon = 'icon',
+    title = 'title'
 
 }
 export enum i18nRU {
