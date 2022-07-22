@@ -28,11 +28,13 @@
         </small>
     </div>
     <!-- Пол -->
-    <app-select-sex formControlName="sex" [title]="i18nRU.SEX" class="edit-instructor__select">
-    </app-select-sex>
-    <small class="edit-instructor__error" *ngIf="clickCloseWindow && sex?.errors?.['required']">
-        {{i18nErrors.ERROR_EMPTY_SEX}}
-    </small>
+    <div class="form-field">
+        <app-simple-select [placeholder]="i18nRU.SEX" [data]="gender" formControlName="sex">
+        </app-simple-select>
+        <small class="edit-instructor__error" *ngIf="clickCloseWindow && sex?.errors?.['required']">
+            {{i18nErrors.ERROR_EMPTY_SEX}}
+        </small>
+    </div>
     <!-- Инструктор -->
     <app-select-visitor formControlName="client" class="edit-instructor__select"
         [placeholder]="i18nRU.APPOINTED_VISITOR">

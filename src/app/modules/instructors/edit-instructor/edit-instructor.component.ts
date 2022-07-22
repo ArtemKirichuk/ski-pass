@@ -15,7 +15,8 @@ export class EditInstructorComponent {
     photoInstructor: string;
     editInstructorForm: FormGroup;
     clickCloseWindow = false;
-    isCreate:boolean
+    isCreate:boolean;
+    gender = ['мужской', 'женский'];
     get name() { return this.editInstructorForm.get('name'); }
     get birthday() { return this.editInstructorForm.get('birthday'); }
     get startWork() { return this.editInstructorForm.get('startWork'); }
