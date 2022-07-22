@@ -28,9 +28,11 @@
     </div>
     <!-- Инструктор -->
     <div class="form-field">
-        <app-select class="edit-clients__select-instructor" formControlName="instructor"
+        <app-simple-select [placeholder]="i18nRU.APPOINTED_INSTRUCTOR" [data]="skipasses" [persanData]="(instructors | async) || []" [persanMod]="true" formControlName="instructor">
+        </app-simple-select>
+        <!-- <app-select class="edit-clients__select-instructor" formControlName="instructor"
             [placeholder]="i18nRU.APPOINTED_INSTRUCTOR">
-        </app-select>
+        </app-select> -->
     </div>
     <div class="form-field">
         <app-input class="edit-clients__input" [title]="i18nRU.SPORT" [type]="attr.TEXT_TYPE" formControlName="sport">

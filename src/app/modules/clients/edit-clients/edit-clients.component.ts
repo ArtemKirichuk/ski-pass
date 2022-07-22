@@ -1,9 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { map, Observable } from 'rxjs';
+import { InstuctorService } from 'src/app/services/instuctor.service';
 import { SkipassService } from 'src/app/services/skipass.service';
-import { VisitorType } from 'src/app/types/types';
+import { VisitorType, PersanCardType } from 'src/app/types/types';
 import { attr, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
+import { PersonCardComponent } from '../../shared/person-card/person-card.component';
 
 @Component({
     selector: 'app-edit-clients',
@@ -12,42 +16,54 @@ import { attr, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 })
 export class EditClientsComponent {
     i18nRU = i18nRU;
-    i18nErrors=i18nErrors;
-    attr=attr;
+    i18nErrors = i18nErrors;
+    attr = attr;
     editClientsForm: FormGroup;
     photoClients: string;
     clickEditButton = false;
-    isCreate:boolean;
-    skipasses:string[] = [];
+    isCreate: boolean;
+    skipasses: string[] = [];
+    instructors = new Observable<PersanCardType[]>;
+
     get name() { return this.editClientsForm.get('name'); }
     get birthday() { return this.editClientsForm.get('birthday'); }
     get numberSkiPasses() { return this.editClientsForm.get('numberSkiPasses'); }
     get instructor() { return this.editClientsForm.get('instructor'); }
     get sport() { return this.editClientsForm.get('sport'); }
     constructor(
-        private skipassService:SkipassService,
-        @Inject(MAT_DIALOG_DATA) public visiterData: VisitorType ,
-        private dialogRef: MatDialogRef<EditClientsComponent>) {
-            this.isCreate = false;
+        private skipassService: SkipassService,
+        @Inject(MAT_DIALOG_DATA) public visiterData: VisitorType,
+        private dialogRef: MatDialogRef<EditClientsComponent>,
+        private instuctorService: InstuctorService
+    ) {
+        this.isCreate = false;
         if (!visiterData) {
             this.isCreate = true;
             visiterData = {} as VisitorType;
         }
         this.photoClients = visiterData.photo ? visiterData.photo : srcAsset.DEFAULT_IMG;
         this.editClientsForm = new FormGroup({
-            name:               new FormControl(visiterData?.fio, Validators.required),
-            birthday:           new FormControl(visiterData?.birthday, Validators.required),
-            numberSkiPasses:    new FormControl(visiterData?.skiPass, Validators.required),
-            instructor:         new FormControl(visiterData?.instructor, Validators.required),
-            sport:              new FormControl(visiterData?.sport, Validators.required)
+            name: new FormControl(visiterData?.fio, Validators.required),
+            birthday: new FormControl(visiterData?.birthday, Validators.required),
+            numberSkiPasses: new FormControl(visiterData?.skiPass, Validators.required),
+            instructor: new FormControl(visiterData?.instructor, Validators.required),
+            sport: new FormControl(visiterData?.sport, Validators.required)
         });
         skipassService.get().subscribe((skipass) => {
             this.skipasses = skipass.map(e => String(e.cardNumber))
         })
+        this.instructors = instuctorService.getInstructors()
+            .pipe(
+                map((instructors) => {
+                    return instructors.map(insructor => {
+                        return { header: insructor.fio, title: insructor.category, img: insructor.photo }
+                    })
+                })
+            )
     }
-    error(name:string):boolean{
+    error(name: string): boolean {
         const erros = this.editClientsForm.get(name)?.errors;
-        return erros?true:false;
+        return erros ? true : false;
     }
     handlerClose($event: boolean): void {
         if ($event) {

@@ -56,6 +56,8 @@ export enum srcAsset {
     arrowDownfilled = 'assets/images/arrow-down-filled.svg',
 }
 export enum attr {
+    pointer = 'pointer',
+    text = 'text',
     TEXT_TYPE = 'text',
     NUMBER_TYPE = 'number',
     INPUT = 'input',

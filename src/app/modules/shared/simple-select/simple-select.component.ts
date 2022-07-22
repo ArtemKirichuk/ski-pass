@@ -1,7 +1,10 @@
 import { Component, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
-import { srcAsset } from '../helper';
+import { map, Observable, startWith } from 'rxjs';
+import { PersanCardType } from 'src/app/types/types';
+import { attr, srcAsset } from '../helper';
+
 
 @Component({
   selector: 'app-simple-select',
@@ -15,13 +18,33 @@ import { srcAsset } from '../helper';
     }
   ]
 })
-export class SimpleSelectComponent implements ControlValueAccessor {
+
+export class SimpleSelectComponent implements ControlValueAccessor, OnInit {
   @ViewChild(MatAutocompleteTrigger) autocomplete!: MatAutocompleteTrigger;
   @Input() placeholder: string = 'placeholder';
-  @Input() data: Array<string> = [];
-  @Input() value ='';
+  @Input() data: string[] = [];
+  @Input() persanData: PersanCardType[] = [];
+  @Input() value = '';
+  @Input() persanMod: boolean = false;
+  srcAsset = srcAsset;
+  filteredOptions!: Observable<PersanCardType[]>;
+  inputControl = new FormControl('');
+  attr = attr;
   constructor() { }
-  srcAsset = srcAsset
+  ngOnInit(): void {
+    
+    if (this.persanMod)
+      this.filteredOptions = this.inputControl.valueChanges.pipe(
+        startWith(''),
+        map((value) => { return this.filterPersan(value || '') })
+      )
+  }
+  private filterPersan(value: string): PersanCardType[] {
+    const filterValue = value.toLowerCase();
+    return this.persanData.filter((persan) => {
+      return persan.header.toLocaleLowerCase().includes(filterValue)
+    })
+  }
 
   openAutoCompleteMenu(event: Event) {
     event.stopImmediatePropagation();

@@ -21,7 +21,6 @@
 
     </mat-form-field>
     <!-- Дата завершения -->
-    
     <mat-form-field class="form__field" appearance="fill">
         <input matInput formControlName="dateEnd" [matDatepicker]="dateEndRef" [placeholder]="i18nRU.FORM_DATE_END"
             [matDatepickerFilter]="compareCompleteDate" (dateChange)="changeDate()">

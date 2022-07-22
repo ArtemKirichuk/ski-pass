@@ -1,17 +1,31 @@
 <div class="select-warper">
     <input type="text" 
+        id = 'input'
         [placeholder]="placeholder" 
-        readonly
+        [readonly]="false"
         [value]="value"
         class="select"
         (click)="openAutoCompleteMenu($event)" 
         (onChange)="$event"
         [matAutocomplete]="auto"
+        [formControl]="inputControl"
+        [style]="{cursor: persanMod ? attr.text : attr.pointer}"
          />
+         
     <button class="toggle-arrow"  (click)="openAutoCompleteMenu($event)">
         <img src="{{srcAsset.arrowDownfilled}}" alt="">
     </button>
 </div>
 <mat-autocomplete id="autocomplete" autoActiveFirstOption #auto="matAutocomplete">
-    <mat-option (click)="selectItem(item)" class ="option" *ngFor="let item of data" [value]="item">{{item}}</mat-option>
+    <div *ngIf="!persanMod" >
+        <mat-option (click)="selectItem(item)" class ="option" *ngFor="let item of data " [value]="item">{{item}}</mat-option>
+    </div>
+    <div *ngIf="persanMod" >
+        <mat-option (click)="selectItem(option.header)" *ngFor="let option of filteredOptions | async" [value]="option.header">
+            <app-person-card 
+                [data]="option" 
+                [showMenu]="false">
+            </app-person-card>
+        </mat-option>
+    </div>
 </mat-autocomplete>
