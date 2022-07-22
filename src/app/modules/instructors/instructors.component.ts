@@ -4,7 +4,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { InstructorDeleteComponent } from 'src/app/modules/instructors/instructor-delete/instructor-delete.component';
 import { InstructorInfoComponent } from 'src/app/modules/instructors/instructor-info/instructor-info.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
-import { InstructorType, updateType, KeyInstructorType, PersanCardType } from 'src/app/types/types';
+import { InstructorType, updateType, KeyInstructorType, PersonCardType } from 'src/app/types/types';
 import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
 import { attr, i18nErrors, i18nRU } from '../shared/helper';
@@ -131,7 +131,7 @@ export class InstructorsComponent implements OnInit, OnDestroy {
             }
         })
     }
-    getCardData(instructor: InstructorType): PersanCardType {
+    getCardData(instructor: InstructorType): PersonCardType {
         return {
             header: instructor.fio,
             title: instructor.category + i18nRU.EXPERIENCE + AgePipe.prototype.transform(instructor.startWork),

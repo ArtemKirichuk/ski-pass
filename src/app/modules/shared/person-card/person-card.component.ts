@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PersanCardType } from 'src/app/types/types';
+import { PersonCardType } from 'src/app/types/types';
 
 @Component({
     selector: 'app-person-card',
@@ -9,7 +9,7 @@ import { PersanCardType } from 'src/app/types/types';
 export class PersonCardComponent {
 
     @Input() showMenu = true;
-    @Input() data:PersanCardType ={} as PersanCardType;
+    @Input() data:PersonCardType ={} as PersonCardType;
     @Output() onDelete = new EventEmitter<void>();
     @Output() onEdit = new EventEmitter<void>();
     @Output() onShow = new EventEmitter<void>();

@@ -35,10 +35,12 @@
             {{i18nErrors.ERROR_EMPTY_SEX}}
         </small>
     </div>
-    <!-- Инструктор -->
-    <app-select-visitor formControlName="client" class="edit-instructor__select"
-        [placeholder]="i18nRU.APPOINTED_VISITOR">
-    </app-select-visitor>
+    <!-- Посетитель -->
+    <div class="form-field">
+        <app-simple-select [placeholder]="i18nRU.APPOINTED_VISITOR" [persanData]="(visiters | async) || []"
+            [persanMod]="true" formControlName="client">
+        </app-simple-select>
+    </div>
     <!-- Категория -->
     <div class="form-field">
         <app-input class="edit-instructor__input" [title]="i18nRU.CATEGORY" formControlName="category">

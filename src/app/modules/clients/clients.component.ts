@@ -4,7 +4,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { ClientDeleteComponent } from 'src/app/modules/clients/client-delete/client-delete.component';
 import { ClientInfoComponent } from 'src/app/modules/clients/client-info/client-info.component';
 import { VisitorService } from 'src/app/services/visitor.service';
-import { KeyVisitorType, PersanCardType, updateType, VisitorType } from 'src/app/types/types';
+import { KeyVisitorType, PersonCardType, updateType, VisitorType } from 'src/app/types/types';
 import { EditClientsComponent } from './edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
 import { attr, i18nRU } from '../shared/helper';
@@ -123,7 +123,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
             }
         })
     }
-    getCardData(visiter:VisitorType):PersanCardType{
+    getCardData(visiter:VisitorType):PersonCardType{
         return { 
             header: visiter.fio,
             title: AgePipe.prototype.transform(visiter.birthday),

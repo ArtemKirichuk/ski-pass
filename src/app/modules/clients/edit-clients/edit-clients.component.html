@@ -28,7 +28,7 @@
     </div>
     <!-- Инструктор -->
     <div class="form-field">
-        <app-simple-select [placeholder]="i18nRU.APPOINTED_INSTRUCTOR" [data]="skipasses" [persanData]="(instructors | async) || []" [persanMod]="true" formControlName="instructor">
+        <app-simple-select [placeholder]="i18nRU.APPOINTED_INSTRUCTOR" [persanData]="(instructors | async) || []" [persanMod]="true" formControlName="instructor">
         </app-simple-select>
         <!-- <app-select class="edit-clients__select-instructor" formControlName="instructor"
             [placeholder]="i18nRU.APPOINTED_INSTRUCTOR">

@@ -1,7 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { InstructorType } from '../../../types/types';
+
+import { map, Observable } from 'rxjs';
+import { VisitorService } from 'src/app/services/visitor.service';
+import { InstructorType, PersonCardType, VisitorType } from '../../../types/types';
+import { AgePipe } from '../../shared/age/age.pipe';
 import { i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 
 @Component({
@@ -15,8 +19,9 @@ export class EditInstructorComponent {
     photoInstructor: string;
     editInstructorForm: FormGroup;
     clickCloseWindow = false;
-    isCreate:boolean;
+    isCreate: boolean;
     gender = ['мужской', 'женский'];
+    visiters = new Observable<PersonCardType[]>;
     get name() { return this.editInstructorForm.get('name'); }
     get birthday() { return this.editInstructorForm.get('birthday'); }
     get startWork() { return this.editInstructorForm.get('startWork'); }
@@ -25,25 +30,38 @@ export class EditInstructorComponent {
     get category() { return this.editInstructorForm.get('category'); }
     constructor(
         private dialogRef: MatDialogRef<EditInstructorComponent>,
-        @Inject(MAT_DIALOG_DATA) public instructor: InstructorType 
+        @Inject(MAT_DIALOG_DATA) public instructor: InstructorType,
+        visitorService: VisitorService
     ) {
         this.isCreate = false;
         if (!instructor) {
             this.isCreate = true;
             instructor = {} as InstructorType;
         }
-        
+
         this.photoInstructor = instructor.photo ? instructor.photo : srcAsset.DEFAULT_IMG;
         this.editInstructorForm = new FormGroup({
-            name:       new FormControl(instructor.fio, Validators.required),
-            birthday:   new FormControl(instructor.birthday, Validators.required),
-            startWork:  new FormControl(instructor.startWork, Validators.required),
-            sex:        new FormControl(instructor.sex, Validators.required),
-            client:     new FormControl(instructor.visiter),
-            category:   new FormControl(instructor.category, Validators.required)
+            name: new FormControl(instructor.fio, Validators.required),
+            birthday: new FormControl(instructor.birthday, Validators.required),
+            startWork: new FormControl(instructor.startWork, Validators.required),
+            sex: new FormControl(instructor.sex, Validators.required),
+            client: new FormControl(instructor.visiter),
+            category: new FormControl(instructor.category, Validators.required)
         });
+        this.visiters = visitorService.getVisitors()
+            .pipe(
+                map(this.getPersonData)
+            )
     }
-
+    getPersonData(visiters:VisitorType[]):PersonCardType[]{
+        return visiters.map(visiter => {
+            return {
+                header: visiter.fio,
+                title: AgePipe.prototype.transform(visiter.birthday),
+                img: visiter.photo
+            }
+        })
+    }
     handlerClose($event: boolean): void {
         if ($event) {
             this.dialogRef.close(null);

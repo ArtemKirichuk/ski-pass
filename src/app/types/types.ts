@@ -45,7 +45,7 @@ export type updateType<T,U> = {
     oldKey:T;
     newRow:U;
 }
-export type PersanCardType={
+export type PersonCardType={
     header:string;
     title:string;
     img:string;

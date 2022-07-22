@@ -5,7 +5,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, Observable } from 'rxjs';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { SkipassService } from 'src/app/services/skipass.service';
-import { VisitorType, PersanCardType } from 'src/app/types/types';
+import { VisitorType, PersonCardType, InstructorType } from 'src/app/types/types';
+import { AgePipe } from '../../shared/age/age.pipe';
 import { attr, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 import { PersonCardComponent } from '../../shared/person-card/person-card.component';
 
@@ -23,7 +24,7 @@ export class EditClientsComponent {
     clickEditButton = false;
     isCreate: boolean;
     skipasses: string[] = [];
-    instructors = new Observable<PersanCardType[]>;
+    instructors = new Observable<PersonCardType[]>;
 
     get name() { return this.editClientsForm.get('name'); }
     get birthday() { return this.editClientsForm.get('birthday'); }
@@ -54,12 +55,17 @@ export class EditClientsComponent {
         })
         this.instructors = instuctorService.getInstructors()
             .pipe(
-                map((instructors) => {
-                    return instructors.map(insructor => {
-                        return { header: insructor.fio, title: insructor.category, img: insructor.photo }
-                    })
-                })
+                map( this.getPersonData )
             )
+    }
+    getPersonData(instructors:InstructorType[]):PersonCardType[]{
+        return instructors.map(instructor => {
+            return {
+                header: instructor.fio,
+                title: instructor.category + i18nRU.EXPERIENCE + AgePipe.prototype.transform(instructor.startWork),
+                img: instructor.photo
+            }
+        })
     }
     error(name: string): boolean {
         const erros = this.editClientsForm.get(name)?.errors;

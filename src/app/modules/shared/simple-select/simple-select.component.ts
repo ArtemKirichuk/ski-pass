@@ -2,7 +2,7 @@ import { Component, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
-import { PersanCardType } from 'src/app/types/types';
+import { PersonCardType } from 'src/app/types/types';
 import { attr, srcAsset } from '../helper';
 
 
@@ -23,11 +23,11 @@ export class SimpleSelectComponent implements ControlValueAccessor, OnInit {
   @ViewChild(MatAutocompleteTrigger) autocomplete!: MatAutocompleteTrigger;
   @Input() placeholder: string = 'placeholder';
   @Input() data: string[] = [];
-  @Input() persanData: PersanCardType[] = [];
+  @Input() persanData: PersonCardType[] = [];
   @Input() value = '';
   @Input() persanMod: boolean = false;
   srcAsset = srcAsset;
-  filteredOptions!: Observable<PersanCardType[]>;
+  filteredOptions!: Observable<PersonCardType[]>;
   inputControl = new FormControl('');
   attr = attr;
   constructor() { }
@@ -39,7 +39,7 @@ export class SimpleSelectComponent implements ControlValueAccessor, OnInit {
         map((value) => { return this.filterPersan(value || '') })
       )
   }
-  private filterPersan(value: string): PersanCardType[] {
+  private filterPersan(value: string): PersonCardType[] {
     const filterValue = value.toLowerCase();
     return this.persanData.filter((persan) => {
       return persan.header.toLocaleLowerCase().includes(filterValue)
