@@ -33,7 +33,6 @@ export class EditClientsComponent {
             this.isCreate = true;
             visiterData = {} as VisitorType;
         }
-        debugger
         this.photoClients = visiterData.photo ? visiterData.photo : srcAsset.DEFAULT_IMG;
         this.editClientsForm = new FormGroup({
             name:               new FormControl(visiterData?.fio, Validators.required),

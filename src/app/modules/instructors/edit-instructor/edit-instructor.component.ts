@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { InstructorType } from '../../../types/types';
+import { i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 
 @Component({
     selector: 'app-edit-instructor',
@@ -9,51 +10,52 @@ import { InstructorType } from '../../../types/types';
     styleUrls: ['./edit-instructor.component.scss']
 })
 export class EditInstructorComponent {
-    TITLE  = 'Редактировать профиль инструктора';
-    NAME = 'ФИО';
-    ERROR_EMPTY_NAME = 'Необходимо заполнить ФИО';
-    ERROR_EMPTY_SEX = 'Необходимо выбрать пол';
-    ERROR_EMPTY_CATEGORY = 'Необходимо заполнить категорию';
-    ERROR_EMPTY_BIRTHDAY = 'Необходимо заполнить день рождения';
-    ERROR_EMPTY_START_WORK = 'Необходимо заполнить день начала работы';
-    BIRTHDAY = 'День рождения';
-    START_WORK = 'День начала работы';
-    SEX = 'Пол';
-    CLIENT = 'Назначить посетителя';
-    CATEGORY = 'Категория';
-    BUTTON_EDIT = 'Редактировать';
-    photoInstructor : string;
-
-    editInstructorForm : FormGroup;
-    clickCloseWindow  = false;
-
-
-    constructor(private dialogRef:MatDialogRef<EditInstructorComponent>, 
-    @Inject(MAT_DIALOG_DATA) public data: {instructor : InstructorType, width : string}) {
-        this.photoInstructor = data.instructor.photo;
+    i18nRU = i18nRU;
+    i18nErrors = i18nErrors;
+    photoInstructor: string;
+    editInstructorForm: FormGroup;
+    clickCloseWindow = false;
+    isCreate:boolean
+    get name() { return this.editInstructorForm.get('name'); }
+    get birthday() { return this.editInstructorForm.get('birthday'); }
+    get startWork() { return this.editInstructorForm.get('startWork'); }
+    get sex() { return this.editInstructorForm.get('sex'); }
+    get client() { return this.editInstructorForm.get('client'); }
+    get category() { return this.editInstructorForm.get('category'); }
+    constructor(
+        private dialogRef: MatDialogRef<EditInstructorComponent>,
+        @Inject(MAT_DIALOG_DATA) public instructor: InstructorType 
+    ) {
+        this.isCreate = false;
+        if (!instructor) {
+            this.isCreate = true;
+            instructor = {} as InstructorType;
+        }
+        
+        this.photoInstructor = instructor.photo ? instructor.photo : srcAsset.DEFAULT_IMG;
         this.editInstructorForm = new FormGroup({
-            name: new FormControl(data.instructor.fio, Validators.required),
-            birthday: new FormControl(data.instructor.birthday, Validators.required),
-            startWork: new FormControl(data.instructor.startWork, Validators.required),
-            sex: new FormControl(data.instructor.sex, Validators.required),
-            client : new FormControl(data.instructor.visiter),
-            category : new FormControl(data.instructor.category, Validators.required)
+            name:       new FormControl(instructor.fio, Validators.required),
+            birthday:   new FormControl(instructor.birthday, Validators.required),
+            startWork:  new FormControl(instructor.startWork, Validators.required),
+            sex:        new FormControl(instructor.sex, Validators.required),
+            client:     new FormControl(instructor.visiter),
+            category:   new FormControl(instructor.category, Validators.required)
         });
     }
 
-    handlerClose($event:boolean):void{
-        if($event){
+    handlerClose($event: boolean): void {
+        if ($event) {
             this.dialogRef.close(null);
         }
     }
 
-    handlerEvent($event:string):void{
+    handlerEvent($event: string): void {
         this.photoInstructor = $event;
     }
 
-    doneEditInstructor(){
+    doneEditInstructor() {
         this.clickCloseWindow = true;
-        if(this.editInstructorForm.valid){
+        if (this.editInstructorForm.valid) {
             const formValue = this.editInstructorForm.getRawValue();
             const instructor: InstructorType = {
                 fio: formValue.name,
@@ -68,7 +70,7 @@ export class EditInstructorComponent {
         }
     }
 
-    checkEmpty(param: string):boolean{
+    checkEmpty(param: string): boolean {
         return this.editInstructorForm.get(param)?.value === null || this.editInstructorForm.get(param)?.value === '';
     }
 

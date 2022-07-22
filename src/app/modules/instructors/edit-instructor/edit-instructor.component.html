@@ -1,75 +1,51 @@
-
-<app-title-modal-form [title] = "TITLE" (closeEvent)="handlerClose($event)"></app-title-modal-form>
-<form class = "edit-instructor" [formGroup]="editInstructorForm" novalidate>
-    <app-photo-form 
-        [img] = "photoInstructor" 
-        (imgLink)="handlerEvent($event)">
+<app-title-modal-form [title]="isCreate ? i18nRU.FORM_ADD_TITLE_INSTRUCTOR : i18nRU.FORM_EDIT_TITLE_INSTRUCTOR"
+    (closeEvent)="handlerClose($event)"></app-title-modal-form>
+<form class="edit-instructor" [formGroup]="editInstructorForm" novalidate>
+    <app-photo-form [img]="photoInstructor" (imgLink)="handlerEvent($event)">
     </app-photo-form>
-
-
-    <app-input 
-        class = "edit-instructor__input" 
-        [title]="NAME"  
-        formControlName="name">
-    </app-input>
-    <small 
-        class = "edit-instructor__error" 
-        *ngIf = "clickCloseWindow && checkEmpty('name')">
-            {{ERROR_EMPTY_NAME}}
-    </small>
-
-    <app-datepicker
-        class="edit-instructor__date"
-        [dayPlaceholder] = "BIRTHDAY"
-        formControlName = "birthday">
-    </app-datepicker>
-    <small 
-        class = "edit-instructor__error" 
-        *ngIf = "clickCloseWindow && checkEmpty('birthday')">
-            {{ERROR_EMPTY_BIRTHDAY}}
-    </small>
-
-    <app-datepicker
-        class="edit-instructor__date"
-        [dayPlaceholder] = "START_WORK"
-        formControlName = "startWork">
-    </app-datepicker>
-    <small 
-        class = "edit-instructor__error" 
-        *ngIf = "clickCloseWindow && checkEmpty('startWork')">
-            {{ERROR_EMPTY_START_WORK}}
-    </small>
-    
-    <app-select-sex
-        formControlName="sex"
-        [title] = "SEX"
-        class="edit-instructor__select">
+    <!-- ФИО -->
+    <div class="form-field">
+        <app-input [title]="i18nRU.FIO" formControlName="name">
+        </app-input>
+        <small class="edit-instructor__error" *ngIf="clickCloseWindow &&  name?.errors?.['required']">
+            {{i18nErrors.ERROR_EMPTY_NAME}}
+        </small>
+    </div>
+    <!-- День рожденье -->
+    <div class="form-field">
+        <app-datepicker class="edit-instructor__date" [dayPlaceholder]="i18nRU.BIRTHDAY" formControlName="birthday">
+        </app-datepicker>
+        <small class="edit-instructor__error" *ngIf="clickCloseWindow && birthday?.errors?.['required']">
+            {{i18nErrors.ERROR_EMPTY_BIRTHDAY}}
+        </small>
+    </div>
+    <!-- Начало работы -->
+    <div class="form-field">
+        <app-datepicker class="edit-instructor__date" [dayPlaceholder]="i18nRU.START_WORK" formControlName="startWork">
+        </app-datepicker>
+        <small class="edit-instructor__error" *ngIf="clickCloseWindow && startWork?.errors?.['required']">
+            {{i18nErrors.ERROR_EMPTY_START_WORK}}
+        </small>
+    </div>
+    <!-- Пол -->
+    <app-select-sex formControlName="sex" [title]="i18nRU.SEX" class="edit-instructor__select">
     </app-select-sex>
-    <small 
-        class = "edit-instructor__error" 
-        *ngIf = "clickCloseWindow && checkEmpty('sex')">
-            {{ERROR_EMPTY_SEX}}
+    <small class="edit-instructor__error" *ngIf="clickCloseWindow && sex?.errors?.['required']">
+        {{i18nErrors.ERROR_EMPTY_SEX}}
     </small>
-
-    <app-select-visitor
-        formControlName="client"
-        class="edit-instructor__select"
-        [placeholder]="CLIENT">        
+    <!-- Инструктор -->
+    <app-select-visitor formControlName="client" class="edit-instructor__select"
+        [placeholder]="i18nRU.APPOINTED_VISITOR">
     </app-select-visitor>
-
-    <app-input 
-        class = "edit-instructor__input" 
-        [title]="CATEGORY"  
-        formControlName="category">
-    </app-input>
-    <small 
-        class = "edit-instructor__error" 
-        *ngIf = "clickCloseWindow && checkEmpty('category')">
-            {{ERROR_EMPTY_CATEGORY}}
-    </small>
-    
-    <div class = "edit-instructor__button">
-        <app-button  [text]="BUTTON_EDIT"  (click)="doneEditInstructor()" ></app-button>
+    <!-- Категория -->
+    <div class="form-field">
+        <app-input class="edit-instructor__input" [title]="i18nRU.CATEGORY" formControlName="category">
+        </app-input>
+        <small class="edit-instructor__error" *ngIf="clickCloseWindow && category?.errors?.['required']">
+            {{i18nErrors.ERROR_EMPTY_CATEGORY}}
+        </small>
+    </div>
+    <div class="edit-instructor__button">
+        <app-button [text]="isCreate? i18nRU.ADD:i18nRU.EDIT" (click)="doneEditInstructor()"></app-button>
     </div>
 </form>
-

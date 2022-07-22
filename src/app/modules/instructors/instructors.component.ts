@@ -5,7 +5,6 @@ import { InstructorDeleteComponent } from 'src/app/modules/instructors/instructo
 import { InstructorInfoComponent } from 'src/app/modules/instructors/instructor-info/instructor-info.component';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType, updateType, KeyInstructorType, PersanCardType } from 'src/app/types/types';
-import { AddNewInstructorComponent } from './add-new-instructor/add-new-instructor.component';
 import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
 import { i18nErrors, i18nRU } from '../shared/helper';
@@ -75,7 +74,7 @@ export class InstructorsComponent implements OnInit, OnDestroy {
     }
 
     addNewInstructor(): void {
-        const dialogRef = this.dialog.open(AddNewInstructorComponent, { width: this.width });
+        const dialogRef = this.dialog.open(EditInstructorComponent,{ width : this.width});
         dialogRef.afterClosed().subscribe(instructor => {
             if (instructor) {
                 this.instructorService.createInstructor(instructor).subscribe(ok => {
@@ -97,8 +96,8 @@ export class InstructorsComponent implements OnInit, OnDestroy {
     }
 
     onEditInstructor(instructor: InstructorType, redirect?: boolean): void {
-        const params = { data: { instructor: instructor }, width: this.width };
-        const dialogRef = this.dialog.open(EditInstructorComponent, params);
+        
+        const dialogRef = this.dialog.open(EditInstructorComponent, {data: instructor, width:this.width});
 
         dialogRef.afterClosed().subscribe(editedInstructor => {
             if (editedInstructor) {
