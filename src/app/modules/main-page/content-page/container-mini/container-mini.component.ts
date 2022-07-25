@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {  attr, i18nRU, srcAsset } from 'src/app/modules/shared/helper';
+import {  attribute, i18nRU, srcAsset } from 'src/app/modules/shared/helper';
 
 @Component({
   selector: 'app-container-mini',
@@ -7,9 +7,9 @@ import {  attr, i18nRU, srcAsset } from 'src/app/modules/shared/helper';
   styleUrls: ['./container-mini.component.scss']
 })
 export class ContainerMiniComponent implements OnInit {
-  attr = attr
+  attribute = attribute
   
-  @Input() title: string = attr.title;
+  @Input() title: string = attribute.title;
   @Input() route: string = '/clients';
   
   i18nRU = i18nRU

@@ -3,7 +3,7 @@ import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } f
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
 import { PersonCardType } from 'src/app/types/types';
-import { attr, srcAsset } from '../helper';
+import { attribute, srcAsset } from '../helper';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class SimpleSelectComponent implements ControlValueAccessor, OnInit {
   srcAsset = srcAsset;
   filteredOptions!: Observable<PersonCardType[]>;
   inputControl = new FormControl('');
-  attr = attr;
+  attribute = attribute;
   constructor() { }
   ngOnInit(): void {
     

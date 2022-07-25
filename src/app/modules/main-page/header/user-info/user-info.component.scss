@@ -40,8 +40,6 @@
     &__name{
         color: white;
         text-align: center;
-        font-family: 'Roboto';
-        font-style: normal;
         font-weight: 500;
         font-size: 15px;
         line-height: 138.19%;
@@ -49,12 +47,9 @@
     &__post{
         color: #707EF9;
         text-align: center;
-        font-family: 'Roboto';
-        font-style: normal;
         font-weight: 400;
         font-size: 10px;
         line-height: 24px;
-        /* or 240% */
 
         text-transform: capitalize;
     }

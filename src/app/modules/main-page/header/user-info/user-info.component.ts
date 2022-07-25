@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { attribute, i18nRU, srcAsset } from 'src/app/modules/shared/helper';
 import { UserService } from 'src/app/services/user.service';
 import { UserType } from '../../../../types/types';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
@@ -13,10 +14,9 @@ import { ReadProfileUserComponent } from '../read-profile-user/read-profile-user
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoComponent {
-    POST  = 'Администратор';
-    PASSWORD  = '123456';
-    DEFAULT_IMG  = '../../../assets/images/default-photo.svg';
-
+    attribute = attribute;
+    DEFAULT_IMG  = srcAsset.DEFAULT_IMG;
+    POST = i18nRU.POST
     destroy$: Subject<boolean> = new Subject<boolean>();
    
     currentUser$ : BehaviorSubject<UserType> = new BehaviorSubject<UserType>({} as UserType);
@@ -42,11 +42,11 @@ export class UserInfoComponent {
 
 
     editProfile() : void{
-        this.dialog.open(EditProfileComponent, {width:'35%'});
+        this.dialog.open(EditProfileComponent, {width: attribute.widthDialog});
     }
 
     readInfoProfile() : void{
-        this.dialog.open(ReadProfileUserComponent, {width:'35%'});
+        this.dialog.open(ReadProfileUserComponent, {width:attribute.widthDialog});
     }
   
 }

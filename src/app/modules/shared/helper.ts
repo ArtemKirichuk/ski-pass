@@ -55,7 +55,7 @@ export enum srcAsset {
     IMG_DATEPICKER = 'assets/images/datepicker.svg',
     arrowDownfilled = 'assets/images/arrow-down-filled.svg',
 }
-export enum attr {
+export enum attribute {
     pointer = 'pointer',
     text = 'text',
     TEXT_TYPE = 'text',
@@ -64,11 +64,16 @@ export enum attr {
     FILE = 'file',
     ACCESS_FILE_EXTENSION = '.jpg, .jpeg, .png',
     widthDialog = '500px',
+    widthAvatar= '64px',
+    heightAvatar= '64px',
+
     icon = 'icon',
     title = 'title'
 
 }
 export enum i18nRU {
+    TITLE_ADMIN = 'Личный кабинет администратора',
+    POST  = 'Администратор',
     FORM_ADD_TITLE_INSTRUCTOR = 'Добавить инструктора',
     FORM_EDIT_TITLE_INSTRUCTOR = 'Редактировать профиль инструктора',
     FORM_DATE = 'Дата',

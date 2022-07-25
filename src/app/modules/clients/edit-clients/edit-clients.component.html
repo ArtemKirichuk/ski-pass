@@ -5,7 +5,7 @@
     </app-photo-form>
 
     <div class="form-field">
-        <app-input class="edit-clients__input" [title]="i18nRU.FIO" [type]="attr.TEXT_TYPE" formControlName="name">
+        <app-input class="edit-clients__input" [title]="i18nRU.FIO" [type]="attribute.TEXT_TYPE" formControlName="name">
         </app-input>
         <small class="edit-clients__error" *ngIf="clickEditButton && name?.errors?.['required']">
             {{i18nErrors.ERROR_EMPTY_NAME}}
@@ -35,7 +35,7 @@
         </app-select> -->
     </div>
     <div class="form-field">
-        <app-input class="edit-clients__input" [title]="i18nRU.SPORT" [type]="attr.TEXT_TYPE" formControlName="sport">
+        <app-input class="edit-clients__input" [title]="i18nRU.SPORT" [type]="attribute.TEXT_TYPE" formControlName="sport">
         </app-input>
         <small class="edit-clients__error" *ngIf="clickEditButton && sport?.errors?.['required']">
             {{i18nErrors.ERROR_EMPTY_SPORT}}

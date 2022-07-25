@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { attr, i18nRU, parseImg } from 'src/app/modules/shared/helper';
+import { attribute, i18nRU, parseImg } from 'src/app/modules/shared/helper';
 
 @Component({
     selector: 'app-photo-form',
@@ -16,9 +16,9 @@ export class PhotoFormComponent {
     i18nRU = i18nRU
     clickEditPhoto(): void {
         if(!this.select) return
-        const input = document.createElement(attr.INPUT);
-        input.type = attr.FILE;
-        input.accept = attr.ACCESS_FILE_EXTENSION;
+        const input = document.createElement(attribute.INPUT);
+        input.type = attribute.FILE;
+        input.accept = attribute.ACCESS_FILE_EXTENSION;
         input.onchange = e => {
             this.getImageList(e);
         };

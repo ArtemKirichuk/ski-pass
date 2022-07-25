@@ -7,7 +7,7 @@ import { InstuctorService } from 'src/app/services/instuctor.service';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType, PersonCardType, InstructorType } from 'src/app/types/types';
 import { AgePipe } from '../../shared/age/age.pipe';
-import { attr, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
+import { attribute, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
 import { PersonCardComponent } from '../../shared/person-card/person-card.component';
 
 @Component({
@@ -18,7 +18,7 @@ import { PersonCardComponent } from '../../shared/person-card/person-card.compon
 export class EditClientsComponent {
     i18nRU = i18nRU;
     i18nErrors = i18nErrors;
-    attr = attr;
+    attribute = attribute;
     editClientsForm: FormGroup;
     photoClients: string;
     clickEditButton = false;

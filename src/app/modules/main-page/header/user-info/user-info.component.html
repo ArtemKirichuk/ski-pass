@@ -1,12 +1,13 @@
 <div class="info" *ngIf="currentUser$ | async as user">
     <div class = "info__avatar">
         <div class = "info__avatar__div">
-            <img class = "info__avatar__div__img" src="{{user.photo}}" alt="" (click)="readInfoProfile()">
+            <app-photo-form class = "info__avatar__div__img"  [select]="false" [width]="attribute.widthAvatar" [height]="attribute.heightAvatar" [img]="user.photo" (click)="readInfoProfile()">
+            </app-photo-form>
             <div>
                 <mat-icon class = "info__avatar__div__img__icon" (click)="editProfile()">edit</mat-icon>
             </div>
         </div>
-        
+       
     </div>
     <div class="info__name">{{user.name + " " + user.surname}}</div>
     <div class="info__post">{{POST}}</div>
