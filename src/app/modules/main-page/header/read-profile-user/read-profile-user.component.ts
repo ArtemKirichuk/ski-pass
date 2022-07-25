@@ -13,13 +13,14 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 })
 export class ReadProfileUserComponent implements OnInit, OnDestroy {
 
-
     i18nRU = i18nRU;
-
     user$: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({} as UserType);
     destroy$: Subject<boolean> = new Subject<boolean>();
 
-    constructor(private userService: UserService, private dialog: MatDialog, private dialogRef: MatDialogRef<ReadProfileUserComponent>) { }
+    constructor(
+        private userService: UserService,
+         private dialog: MatDialog,
+         private dialogRef: MatDialogRef<ReadProfileUserComponent>) { }
 
     ngOnInit(): void {
         this.userService.currentUser$
@@ -29,14 +30,9 @@ export class ReadProfileUserComponent implements OnInit, OnDestroy {
             });
     }
 
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.unsubscribe();
-    }
-
-    editProfile(): void {
-        this.dialog.open(EditProfileComponent, { width: attribute.widthDialog });
-    }
+    // editProfile(): void {
+    //     this.dialog.open(EditProfileComponent, { width: attribute.widthDialog });
+    // }
 
     handlerClose($event: boolean): void {
         if ($event) {
@@ -48,6 +44,10 @@ export class ReadProfileUserComponent implements OnInit, OnDestroy {
         const user = this.user$.value;
         user.photo = $event;
         this.user$.next(user);
+    }
+    ngOnDestroy(): void {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
     }
 
 }

@@ -10,6 +10,7 @@ import { TitleModalFormModule } from '../../shared/title-modal-form/title-modal-
 import { InputModule } from '../../shared/input/input.module';
 import { ButtonModule } from '../../shared/button/button.module';
 import { PhotoFormModule } from '../../shared/photo-form/photo-form.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -28,7 +29,8 @@ import { PhotoFormModule } from '../../shared/photo-form/photo-form.module';
         TitleModalFormModule,
         InputModule,
         ButtonModule,
-        PhotoFormModule
+        PhotoFormModule,
+        MatDialogModule
     ],
     exports:[
         HeaderComponent,

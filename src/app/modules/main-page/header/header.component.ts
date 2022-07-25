@@ -7,28 +7,29 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { EditProfileComponent } from 'src/app/modules/main-page/header/edit-profile/edit-profile.component';
 import { UserService } from 'src/app/services/user.service';
+import { attribute, i18nRU, srcAsset } from '../../shared/constants';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent{
-    SEARCH  = 'Поиск';
-    EXIT  = 'Выход';
-    SKI_RESORT  = 'Горнолыжный курорт';
-    CLIENTS = 'Посетители';
-    INSTRUCTORS = 'Инструкторы';
-    SKI_PASSES = 'Ски-пассы';
-    ADMIN_MODE = 'Режим администратора';
-    SETTINGS = 'Настройки';
-    IMG_SETTING = '../../assets/images/setting.svg';
-    COPYRIGHT = 'Все права защищены';
-    searchForm = new FormControl('');
-    destroy$ : Subject<boolean> = new Subject<boolean>();
+export class HeaderComponent {
+    srcAsset = srcAsset;
+    i18nRU = i18nRU;
+  
     
-    constructor(private userService:UserService, private router : Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog : MatDialog){
-        iconRegistry.addSvgIcon('setting', sanitizer.bypassSecurityTrustResourceUrl(this.IMG_SETTING));
+    searchForm = new FormControl('');
+    destroy$: Subject<boolean> = new Subject<boolean>();
+
+    constructor(
+        private userService: UserService,
+        private router: Router,
+        iconRegistry: MatIconRegistry,
+        sanitizer: DomSanitizer,
+        private dialog: MatDialog
+    ) {
+        iconRegistry.addSvgIcon('setting', sanitizer.bypassSecurityTrustResourceUrl(srcAsset.setting));
     }
 
     ngOnDestroy(): void {
@@ -36,35 +37,35 @@ export class HeaderComponent{
         this.destroy$.unsubscribe();
     }
 
-    logOut():void{
+    logOut(): void {
         this.userService.singOut()
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(result =>{
-            if(result){
-                this.router.navigate(['/autorization']);
-            }
-        });
-        
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(result => {
+                if (result) {
+                    this.router.navigate(['/autorization']);
+                }
+            });
+
     }
 
-    routingMainPage():void{
+    routingMainPage(): void {
         this.router.navigate(['']);
     }
 
-    routerClients():void{
+    routerClients(): void {
         this.router.navigate(['/clients']);
     }
 
-    routerInstructors():void{
+    routerInstructors(): void {
         this.router.navigate(['/instructors']);
     }
 
-    routerSkiPasses():void{
+    routerSkiPasses(): void {
         this.router.navigate(['/ski-passes']);
     }
 
-    editProfile() : void{
-        this.dialog.open(EditProfileComponent, {width:'35%'});
+    editProfile(): void {
+        this.dialog.open(EditProfileComponent, { width: attribute.widthDialog });
     }
 
 }

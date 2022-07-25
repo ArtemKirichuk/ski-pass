@@ -7,7 +7,8 @@
             <app-photo-form class = "info__avatar__div__img" [select]="false" [img]="user.photo">
             </app-photo-form>
         </div>
-        <mat-icon class = "info__avatar__icon" (click)="editProfile()">edit</mat-icon>
+        <!-- <mat-icon class = "info__avatar__icon" [mat-dialog-close]="true" (click)="editProfile()">edit</mat-icon> -->
+        <mat-icon class = "info__avatar__icon" [mat-dialog-close]="true" >edit</mat-icon>
     </div>
 
     

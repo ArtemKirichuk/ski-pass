@@ -15,22 +15,24 @@ import { ReadProfileUserComponent } from '../read-profile-user/read-profile-user
 })
 export class UserInfoComponent {
     attribute = attribute;
-    DEFAULT_IMG  = srcAsset.DEFAULT_IMG;
+    DEFAULT_IMG = srcAsset.DEFAULT_IMG;
     POST = i18nRU.POST
     destroy$: Subject<boolean> = new Subject<boolean>();
-   
-    currentUser$ : BehaviorSubject<UserType> = new BehaviorSubject<UserType>({} as UserType);
-    
-    constructor(private userService:UserService, public dialog:MatDialog){
+    currentUser$: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({} as UserType);
+
+    constructor(
+        private userService: UserService,
+        public dialog: MatDialog
+    ) {
 
     }
 
     ngOnInit(): void {
         this.userService.currentUser$
             .pipe(takeUntil(this.destroy$))
-            .subscribe( user =>{
+            .subscribe(user => {
                 this.currentUser$.next(user);
-                if(!this.currentUser$.value.photo)
+                if (!this.currentUser$.value.photo)
                     this.currentUser$.value.photo = this.DEFAULT_IMG;
             });
     }
@@ -40,13 +42,26 @@ export class UserInfoComponent {
         this.destroy$.unsubscribe();
     }
 
+    editProfile(redirect?:boolean): void {
+        // debugger
+        const editDialog = this.dialog.open(EditProfileComponent, { width: attribute.widthDialog });
 
-    editProfile() : void{
-        this.dialog.open(EditProfileComponent, {width: attribute.widthDialog});
+        editDialog.afterClosed().subscribe(() => {
+            
+            if (redirect) {
+                this.readInfoProfile();
+            }
+        })
     }
 
-    readInfoProfile() : void{
-        this.dialog.open(ReadProfileUserComponent, {width:attribute.widthDialog});
+    readInfoProfile(): void {
+        const readDialog = this.dialog.open(ReadProfileUserComponent, { width: attribute.widthDialog });
+        readDialog.afterClosed().subscribe((redirect) => {
+            if (redirect) {
+                this.editProfile( true )
+            }
+
+        })
     }
-  
+
 }

@@ -17,6 +17,7 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
+                cursor: pointer;
                 &__icon{
                     background-color: #E8EDF1;
                     border-radius: 50%;
@@ -29,6 +30,7 @@
                     text-align: center;
                     line-height: 22px;
                     clear: right;
+                    cursor: pointer;
                     &:hover{
                         background-color: #cfd2d4;
                     }

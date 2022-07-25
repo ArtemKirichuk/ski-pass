@@ -11,6 +11,7 @@ export enum srcAsset {
     facebookIcon = 'assets/images/facebook-icon.svg',
     vkIcon = 'assets/images/vk-icon.svg',
     logo = 'assets/images/logo.svg',
+    setting = 'assets/images/setting.svg',
 }
 export enum attribute {
     pointer = 'pointer',
@@ -93,7 +94,11 @@ export enum i18nRU {
     PASSWORD = 'Пароль',
     LOGIN = 'Войти',
     REGISTRATION = 'Зарегистрироваться',
-    COPYRIGHT = '(с) 2021. Все права защищены',
+    COPYRIGHT_YEAR = '(с) 2021. Все права защищены',
+    COPYRIGHT = 'Все права защищены',
+    CLIENTS = 'Посетители',
+    ADMIN_MODE = 'Режим администратора',
+    SETTINGS = 'Настройки',
 }
 export enum i18nErrors {
     ERROR_EMPTY_START_WORK = 'Необходимо заполнить день начала работы',
