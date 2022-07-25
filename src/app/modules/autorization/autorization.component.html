@@ -1,71 +1,55 @@
 <div class="background">
 
     <div class="login-block">
-        <img src="../../../assets/images/logo.svg" class="logo">
+        <img [src]="srcAsset.logo" class="logo">
 
         <div class="login-block__text-block">
             <span class="login-block__text login-block__text_color_blue">
-                {{PERSONAL_ACCOUNT_TEXT | uppercase}}
+                {{i18nRU.PERSONAL_ACCOUNT_TEXT | uppercase}}
             </span>
             <span class="login-block__text">
-                {{SKI_RESRORT_TEXT | uppercase}}
+                {{i18nRU.SKI_RESRORT_TEXT | uppercase}}
             </span>
-        </div>        
-    
-        <form action="" class="login-block__form" [formGroup]="form" (ngSubmit)="submit()">        
-            <div class="text-field text-field_floating">  
-                <input 
-                    type="text" 
-                    class="text-field__input" 
-                    id="login_name" 
-                    placeholder="{{NAME}}"
+        </div>
+
+        <form action="" class="login-block__form" [formGroup]="form" (ngSubmit)="submit()">
+            <div class="text-field text-field_floating">
+                <input type="text" class="text-field__input" id="login_name" placeholder="{{i18nRU.NAME}}"
                     formControlName="login">
-                <label for="login_name" class="text-field__label">{{NAME}}</label>
-                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">{{ ERROR_LOGIN }}</small>
+                <label for="login_name" class="text-field__label">{{i18nRU.NAME}}</label>
+                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">
+                    {{i18nErrors.ERROR_LOGIN }}
+                </small>
             </div>
-    
-            <div class="text-field text-field_floating">  
-                <input 
-                    type="password" 
-                    class="text-field__input" 
-                    id="login_password" 
-                    placeholder="{{PASSWORD}}"
+
+            <div class="text-field text-field_floating">
+                <input type="password" class="text-field__input" id="login_password" placeholder="{{i18nRU.PASSWORD}}"
                     formControlName="password">
-                <label for="login_password" class="text-field__label">{{PASSWORD}}</label>
-                <small *ngIf="form.controls['password'].invalid && form.controls['password'].touched">{{ ERROR_PASSWORD }}</small>
+                <label for="login_password" class="text-field__label">{{i18nRU.PASSWORD}}</label>
+                <small *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+                    {{i18nErrors.ERROR_PASSWORD }}
+                </small>
             </div>
-    
+
             <div class="btn-block">
-                <app-button class="btn"
-                [disabled]="form.invalid"
-                [mode]="'noIcon'"
-                [text]=LOGIN>
+                <app-button class="btn" [disabled]="form.invalid" [mode]="attribute.noIcon" [text]=i18nRU.LOGIN>
                 </app-button>
             </div>
-            
+
         </form>
 
         <div class="social-block">
-            <button class="google">
-                <img src="../../../assets/images/google-icon.svg">
-            </button>
-    
-            <button class="facebook">
-                <img src="../../../assets/images/facebook-icon.svg">
-            </button>
-    
-            <button class="vk">
-                <img src="../../../assets/images/vk-icon.svg">
+            <button *ngFor="let icon of icons" class="social-icon ">
+                <img [src]="icon">
             </button>
         </div>
 
         <span class="registration-block">
-            <a routerLink="/registration">{{REGISTRATION}}</a>
+            <a routerLink="/registration">{{i18nRU.REGISTRATION}}</a>
         </span>
     </div>
 
     <div class="copyright-block">
-        {{COPYRIGHT}}
+        {{i18nRU.COPYRIGHT}}
     </div>
 </div>
-

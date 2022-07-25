@@ -7,6 +7,10 @@ export enum srcAsset {
     deleteIcon = 'assets/images/delete-icon.svg',
     IMG_DATEPICKER = 'assets/images/datepicker.svg',
     arrowDownfilled = 'assets/images/arrow-down-filled.svg',
+    googleIcon = 'assets/images/google-icon.svg',
+    facebookIcon = 'assets/images/facebook-icon.svg',
+    vkIcon = 'assets/images/vk-icon.svg',
+    logo = 'assets/images/logo.svg',
 }
 export enum attribute {
     pointer = 'pointer',
@@ -20,7 +24,8 @@ export enum attribute {
     widthAvatar= '64px',
     heightAvatar= '64px',
     icon = 'icon',
-    title = 'title'
+    title = 'title',
+    noIcon = 'noIcon'
 }
 export enum i18nRU {
     TITLE_ADMIN = 'Личный кабинет администратора',
@@ -78,6 +83,13 @@ export enum i18nRU {
     START_WORK = 'День начала работы',
     SEX = 'Пол',
     CATEGORY = 'Категория',
+    PERSONAL_ACCOUNT_TEXT = 'Личный кабинет',
+    SKI_RESRORT_TEXT = 'горнолыжного курорта',
+    NAME = 'Имя',
+    PASSWORD = 'Пароль',
+    LOGIN = 'Войти',
+    REGISTRATION = 'Зарегистрироваться',
+    COPYRIGHT = '(с) 2021. Все права защищены',
 }
 export enum i18nErrors {
     ERROR_EMPTY_START_WORK = 'Необходимо заполнить день начала работы',
@@ -92,4 +104,7 @@ export enum i18nErrors {
     ERROR_SKI_PASS_NOT_FOUND = 'Такого ски-пасса не существует',
     ERROR_EMPTY_SPORT = 'Необходимо заполнить вид спорта',
     ERROR_EMPTY_BIRTHDAY = 'Необходимо заполнить день рождения',
+    ERROR_LOGIN_PASSWORD = 'Проверьте правильность логина и пароля',
+    ERROR_LOGIN = 'Введите имя',
+    ERROR_PASSWORD = 'Введите пароль',
 }

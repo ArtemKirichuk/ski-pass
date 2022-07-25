@@ -1,14 +1,14 @@
 <div class="background">
 
     <div class="registration-block">
-        <img src="../../../assets/images/logo.svg" class="logo">
+        <img [src]="srcAsset.logo" class="logo">
 
         <div class="registration-block__text-block">
             <span class="registration-block__text registration-block__text_color_blue">
-                {{PERSONAL_ACCOUNT_TEXT | uppercase}}
+                {{i18nRu.PERSONAL_ACCOUNT_TEXT | uppercase}}
             </span>
             <span class="registration-block__text">
-                {{SKI_RESRORT_TEXT | uppercase}}
+                {{i18nRu.SKI_RESRORT_TEXT | uppercase}}
             </span>
         </div>        
     
@@ -17,52 +17,43 @@
                 <input type="text" 
                     class="text-field__input" 
                     id="registration_name" 
-                    placeholder="{{NAME}}" 
+                    placeholder="{{i18nRu.NAME}}" 
                     formControlName="login">
-                <label for="registration_name" class="text-field__label">{{NAME}}</label>
-                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">{{ ERROR_LOGIN }}</small>   
+                <label for="registration_name" class="text-field__label">{{i18nRu.NAME}}</label>
+                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">{{ i18nErrors.ERROR_LOGIN }}</small>   
             </div>
     
             <div class="text-field text-field_floating">  
                 <input type="password" 
                     class="text-field__input" 
                     id="registration_password" 
-                    placeholder="{{PASSWORD}}"
+                    placeholder="{{i18nRu.PASSWORD}}"
                     formControlName="password">
-                <label for="registration_password" class="text-field__label">{{PASSWORD}}</label>
-                <small *ngIf="form.controls['password'].invalid && form.controls['password'].touched">{{ ERROR_PASSWORD }}</small>       
+                <label for="registration_password" class="text-field__label">{{i18nRu.PASSWORD}}</label>
+                <small *ngIf="form.controls['password'].invalid && form.controls['password'].touched">{{ i18nErrors.ERROR_PASSWORD }}</small>       
             </div>
     
             <div class="btn-block">
                 <app-button class="btn"
-                    [text]=REGISTRATION
+                    [text]=i18nRu.REGISTRATION
                     [disabled]="form.invalid">
                 </app-button>
             </div>
-            
         </form>
 
         <div class="social-block">
-            <button class="google">
-                <img src="../../../assets/images/google-icon.svg">
-            </button>
-    
-            <button class="facebook">
-                <img src="../../../assets/images/facebook-icon.svg">
-            </button>
-    
-            <button class="vk">
-                <img src="../../../assets/images/vk-icon.svg">
+            <button *ngFor="let icon of icons" class="social-icon">
+                <img [src]="icon">
             </button>
         </div>
 
         <span class="login-block" >
-            <a routerLink="/autorization">{{LOGIN}}</a>
+            <a routerLink="/autorization">{{i18nRu.LOGIN}}</a>
         </span>
     </div>
 
     <div class="copyright-block">
-        {{COPYRIGHT}}
+        {{i18nRu.COPYRIGHT}}
     </div>
 </div>
 

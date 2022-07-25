@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { UserType } from 'src/app/types/types';
+import { i18nErrors, i18nRU, srcAsset } from '../shared/constants';
 
 
 @Component({
@@ -14,18 +15,10 @@ import { UserType } from 'src/app/types/types';
 export class RegistrationComponent {
 
     form: FormGroup;
-
-    PERSONAL_ACCOUNT_TEXT = 'Личный кабинет';
-    SKI_RESRORT_TEXT = 'горнолыжного курорта';
-    NAME = 'Имя';
-    PASSWORD = 'Пароль';
-    LOGIN = 'Войти';
-    REGISTRATION = 'Зарегистрироваться';
-    COPYRIGHT = '(с) 2021. Все права защищены';
-    ERRORS = 'Введите имя и пароль';
-    ERROR_LOGIN = 'Введите имя';
-    ERROR_PASSWORD = 'Введите пароль';
-
+    icons = [srcAsset.googleIcon,srcAsset.facebookIcon,srcAsset.vkIcon];
+    i18nRu=i18nRU;
+    i18nErrors=i18nErrors;
+    srcAsset = srcAsset;
     constructor(private userService: UserService,
                 private router: Router) { 
         this.form = new FormGroup({
