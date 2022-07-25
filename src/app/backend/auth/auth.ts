@@ -10,17 +10,17 @@ export class Auth {
     private constructor() { 
         this.User = User.instance;
     }
-    signIn(inputUser: UserType): boolean {
+    signIn(inputUser: UserType): UserType|undefined {
         const users = this.User.get<UserType>();
         //проверяем существование localstore пользователей
-        const bExistUser:boolean = users.some(e => e.name == inputUser.name && e.password == inputUser.password);
-        if (bExistUser) {
+        const user:UserType|undefined = users.find(e => e.name == inputUser.name && e.password == inputUser.password);
+        if (user) {
             this.login = inputUser.name;
             localStorage.setItem(this.loginKey, inputUser.name);
         } else {
             this.login = null;
         }
-        return bExistUser;
+        return user;
     }
     signOut() {
         this.login = null;

@@ -15,36 +15,31 @@ import { i18nErrors, i18nRU, srcAsset } from '../shared/constants';
 export class RegistrationComponent {
 
     form: FormGroup;
-    icons = [srcAsset.googleIcon,srcAsset.facebookIcon,srcAsset.vkIcon];
-    i18nRu=i18nRU;
-    i18nErrors=i18nErrors;
+    icons = [srcAsset.googleIcon, srcAsset.facebookIcon, srcAsset.vkIcon];
+    i18nRu = i18nRU;
+    i18nErrors = i18nErrors;
     srcAsset = srcAsset;
-    constructor(private userService: UserService,
-                private router: Router) { 
+    constructor(
+        private userService: UserService,
+        private router: Router
+    ) {
         this.form = new FormGroup({
-            login: new FormControl(null, Validators.required),
+            name: new FormControl(null, Validators.required),
             password: new FormControl(null, Validators.required)
         });
     }
 
     submit(): void {
-        const login = this.form.get('login')?.value;
-        const password = this.form.get('password')?.value;
 
-        const user: UserType = {
-            name: login,
-            surname: '',
-            password: password,
-            photo: ''
-        };
-
+        let user = { surname : ''} as UserType;
+        user = Object.assign(user,this.form.value);
         this.userService.createUser(user).subscribe(val => {
             if (val) {
                 this.userService.sendUser$(user);
                 this.router.navigate(['']);
             }
             else {
-                alert('Не удалось создать пользователя');
+                alert(i18nErrors.ERROR_CANT_CREATE_USER);
             }
         });
     }

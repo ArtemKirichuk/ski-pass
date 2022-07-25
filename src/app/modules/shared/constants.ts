@@ -107,4 +107,5 @@ export enum i18nErrors {
     ERROR_LOGIN_PASSWORD = 'Проверьте правильность логина и пароля',
     ERROR_LOGIN = 'Введите имя',
     ERROR_PASSWORD = 'Введите пароль',
+    ERROR_CANT_CREATE_USER = 'Не удалось создать пользователя',
 }

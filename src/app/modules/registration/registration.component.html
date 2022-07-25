@@ -18,9 +18,9 @@
                     class="text-field__input" 
                     id="registration_name" 
                     placeholder="{{i18nRu.NAME}}" 
-                    formControlName="login">
+                    formControlName="name">
                 <label for="registration_name" class="text-field__label">{{i18nRu.NAME}}</label>
-                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">{{ i18nErrors.ERROR_LOGIN }}</small>   
+                <small *ngIf="form.controls['name'].invalid && form.controls['name'].touched">{{ i18nErrors.ERROR_LOGIN }}</small>   
             </div>
     
             <div class="text-field text-field_floating">  

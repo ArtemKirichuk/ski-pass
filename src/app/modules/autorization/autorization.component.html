@@ -15,9 +15,9 @@
         <form action="" class="login-block__form" [formGroup]="form" (ngSubmit)="submit()">
             <div class="text-field text-field_floating">
                 <input type="text" class="text-field__input" id="login_name" placeholder="{{i18nRU.NAME}}"
-                    formControlName="login">
+                    formControlName="name">
                 <label for="login_name" class="text-field__label">{{i18nRU.NAME}}</label>
-                <small *ngIf="form.controls['login'].invalid && form.controls['login'].touched">
+                <small *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
                     {{i18nErrors.ERROR_LOGIN }}
                 </small>
             </div>

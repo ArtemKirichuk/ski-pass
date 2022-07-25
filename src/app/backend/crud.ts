@@ -61,7 +61,6 @@ export class Crud {
             return false;
         }
         Object.assign(editRow,row);
-        // db.splice(db.indexOf(editRow!), 1, row);
         localStorage.setItem(this.dbKey, JSON.stringify(db));
         return true;
     }

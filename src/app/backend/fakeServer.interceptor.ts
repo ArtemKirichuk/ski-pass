@@ -19,7 +19,8 @@ type request = HttpRequest<
     updateType<KeyVisitorType, VisitorType>|
     updateType<KeySkiPassType, SkiPassType>
 >;
-type responce = boolean | UserType[] | VisitorType[] | InstructorType[] | SkiPassType[]|string;
+type responce = UserType[] | (UserType | undefined) | boolean | VisitorType[] | InstructorType[] | SkiPassType[]|string;
+
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
     Visiter: Visiter;
