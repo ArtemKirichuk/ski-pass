@@ -43,11 +43,8 @@ export class UserInfoComponent {
     }
 
     editProfile(redirect?:boolean): void {
-        // debugger
         const editDialog = this.dialog.open(EditProfileComponent, { width: attribute.widthDialog });
-
         editDialog.afterClosed().subscribe(() => {
-            
             if (redirect) {
                 this.readInfoProfile();
             }
