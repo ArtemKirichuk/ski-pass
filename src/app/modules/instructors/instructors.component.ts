@@ -7,7 +7,7 @@ import { InstuctorService } from 'src/app/services/instuctor.service';
 import { InstructorType, updateType, KeyInstructorType, PersonCardType } from 'src/app/types/types';
 import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
-import { attribute, i18nErrors, i18nRU } from '../shared/helper';
+import { attribute, i18nErrors, i18nRU } from '../shared/constants';
 import { AgePipe } from '../shared/age/age.pipe';
 // import { KeyInstructorType } from '../shared/interfaces';
 

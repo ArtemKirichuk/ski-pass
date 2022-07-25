@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {  VisitorType } from 'src/app/types/types';
-import { i18nRU, srcAsset } from '../../shared/helper';
+import { i18nRU, srcAsset } from '../../shared/constants';
 
 @Component({
     selector: 'app-client-info',

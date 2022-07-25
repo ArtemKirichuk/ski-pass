@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { SkipassService } from 'src/app/services/skipass.service';
-import { i18nRU } from 'src/app/modules/shared/helper';
+import { i18nRU } from 'src/app/modules/shared/constants';
 
 import { updateType, SkiPassType, KeySkiPassType } from 'src/app/types/types';
 // import { KeySkiPassType, SkiPassType } from '../shared/interfaces';

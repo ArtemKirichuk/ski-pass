@@ -7,8 +7,9 @@ import { InstuctorService } from 'src/app/services/instuctor.service';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType, PersonCardType, InstructorType } from 'src/app/types/types';
 import { AgePipe } from '../../shared/age/age.pipe';
-import { attribute, i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
-import { PersonCardComponent } from '../../shared/person-card/person-card.component';
+import { attribute, i18nErrors, i18nRU, srcAsset } from '../../shared/constants';
+
+
 
 @Component({
     selector: 'app-edit-clients',

@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { InstructorType, PersonCardType, VisitorType } from '../../../types/types';
 import { AgePipe } from '../../shared/age/age.pipe';
-import { i18nErrors, i18nRU, srcAsset } from '../../shared/helper';
+import { i18nErrors, i18nRU, srcAsset } from '../../shared/constants';
 
 @Component({
     selector: 'app-edit-instructor',

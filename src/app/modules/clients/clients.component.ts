@@ -7,7 +7,7 @@ import { VisitorService } from 'src/app/services/visitor.service';
 import { KeyVisitorType, PersonCardType, updateType, VisitorType } from 'src/app/types/types';
 import { EditClientsComponent } from './edit-clients/edit-clients.component';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
-import { attribute, i18nRU } from '../shared/helper';
+import { attribute, i18nRU } from '../shared/constants';
 import { AgePipe } from '../shared/age/age.pipe';
 
 

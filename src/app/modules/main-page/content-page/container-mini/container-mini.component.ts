@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {  attribute, i18nRU, srcAsset } from 'src/app/modules/shared/helper';
+import {  attribute, i18nRU, srcAsset } from 'src/app/modules/shared/constants';
 
 @Component({
   selector: 'app-container-mini',

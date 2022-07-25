@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { i18nRU } from 'src/app/modules/shared/helper';
+import { i18nRU } from 'src/app/modules/shared/constants';
 
 @Component({
   selector: 'app-content-page',

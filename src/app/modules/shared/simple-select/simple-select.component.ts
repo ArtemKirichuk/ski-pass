@@ -3,7 +3,7 @@ import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } f
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
 import { PersonCardType } from 'src/app/types/types';
-import { attribute, srcAsset } from '../helper';
+import { attribute, srcAsset } from '../constants';
 
 
 @Component({

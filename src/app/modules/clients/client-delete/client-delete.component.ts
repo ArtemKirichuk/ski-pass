@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VisitorType } from 'src/app/types/types';
-import { i18nRU } from '../../shared/helper';
+import { i18nRU } from '../../shared/constants';
 
 @Component({
     selector: 'app-client-delete',

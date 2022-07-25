@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
-import { i18nRU } from 'src/app/modules/shared/helper';
+import { i18nRU } from 'src/app/modules/shared/constants';
 import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 import { DeleteFormComponent } from '../delete-form/delete-form.component';
 import { DisplayFormComponent } from '../display-form/display-form.component';
