@@ -38,12 +38,14 @@
     &__minimize {
         margin-left: auto;
         cursor: pointer;
+        
     }
     &__minimize-absolute{
         position: absolute;
         top: 30px;
         right: 30px;
         cursor: pointer;
+        z-index: 10;
     }
     &__minimize:active {
         transform: rotate(180deg);

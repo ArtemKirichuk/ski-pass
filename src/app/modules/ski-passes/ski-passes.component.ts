@@ -13,11 +13,11 @@ import { SkiPassesFormComponent } from './form/form.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkiPassesComponent implements OnDestroy {
-    // skipasses$!: Observable<SkiPassType[]>;
     skipassesBe$: BehaviorSubject<SkiPassType[]>;
     destroy$: Subject<boolean>;
     updateSkipass$: Observable<SkiPassType[]>;
-    i18nRU = i18nRU
+    i18nRU = i18nRU;
+    attribute = attribute;
     constructor(
         private matDialog: MatDialog,
         private skipassService: SkipassService
