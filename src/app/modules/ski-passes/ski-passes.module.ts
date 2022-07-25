@@ -20,6 +20,7 @@ import { DisplayFormComponent } from './display-form/display-form.component';
 import { RouterModule } from '@angular/router';
 import { PersonCardModule } from '../shared/person-card/person-card.module';
 import { InputModule } from '../shared/input/input.module';
+import { PhotoFormModule } from '../shared/photo-form/photo-form.module';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { InputModule } from '../shared/input/input.module';
         MatSelectModule,
         MatAutocompleteModule,
         PersonCardModule,
-        InputModule
+        InputModule,
+        PhotoFormModule
     ],
     exports:[
         SkiPassesComponent,

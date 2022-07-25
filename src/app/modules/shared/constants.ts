@@ -26,7 +26,10 @@ export enum attribute {
     heightAvatar= '64px',
     icon = 'icon',
     title = 'title',
-    noIcon = 'noIcon'
+    noIcon = 'noIcon',
+    rur = 'RUR',
+    digitsInfo = '1.0-0',
+    dateFormat = 'dd.MM.yyyy',
 }
 export enum i18nRU {
     TITLE_ADMIN = 'Личный кабинет администратора',
