@@ -15,6 +15,7 @@ export enum srcAsset {
 export enum attribute {
     pointer = 'pointer',
     text = 'text',
+    file = 'file',
     TEXT_TYPE = 'text',
     NUMBER_TYPE = 'number',
     INPUT = 'input',

@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject, takeUntil } from 'rxjs';
 import { InstuctorService } from 'src/app/services/instuctor.service';
 import { SkipassService } from 'src/app/services/skipass.service';
 import { VisitorType, PersonCardType, InstructorType } from 'src/app/types/types';
@@ -16,7 +16,8 @@ import { attribute, i18nErrors, i18nRU, srcAsset } from '../../shared/constants'
     templateUrl: './edit-clients.component.html',
     styleUrls: ['./edit-clients.component.scss']
 })
-export class EditClientsComponent {
+export class EditClientsComponent implements OnDestroy{
+    
     i18nRU = i18nRU;
     i18nErrors = i18nErrors;
     attribute = attribute;
@@ -26,7 +27,7 @@ export class EditClientsComponent {
     isCreate: boolean;
     skipasses: string[] = [];
     instructors = new Observable<PersonCardType[]>;
-
+    destroy$: Subject<boolean> = new Subject();
     get name() { return this.editClientsForm.get('name'); }
     get birthday() { return this.editClientsForm.get('birthday'); }
     get numberSkiPasses() { return this.editClientsForm.get('numberSkiPasses'); }
@@ -51,15 +52,17 @@ export class EditClientsComponent {
             instructor: new FormControl(visiterData?.instructor, Validators.required),
             sport: new FormControl(visiterData?.sport, Validators.required)
         });
-        skipassService.get().subscribe((skipass) => {
-            this.skipasses = skipass.map(e => String(e.cardNumber))
-        })
+        skipassService.get()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((skipass) => {
+                this.skipasses = skipass.map(e => String(e.cardNumber))
+            })
         this.instructors = instuctorService.getInstructors()
             .pipe(
-                map( this.getPersonData )
+                map(this.getPersonData)
             )
     }
-    getPersonData(instructors:InstructorType[]):PersonCardType[]{
+    getPersonData(instructors: InstructorType[]): PersonCardType[] {
         return instructors.map(instructor => {
             return {
                 header: instructor.fio,
@@ -96,6 +99,9 @@ export class EditClientsComponent {
             };
             this.dialogRef.close(clients);
         }
+    }
+    ngOnDestroy(): void {
+        this.destroy$.next(true)
     }
 
 }

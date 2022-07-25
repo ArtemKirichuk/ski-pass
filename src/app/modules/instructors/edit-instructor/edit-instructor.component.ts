@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject, takeUntil } from 'rxjs';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { InstructorType, PersonCardType, VisitorType } from '../../../types/types';
 import { AgePipe } from '../../shared/age/age.pipe';
@@ -13,7 +13,7 @@ import { i18nErrors, i18nRU, srcAsset } from '../../shared/constants';
     templateUrl: './edit-instructor.component.html',
     styleUrls: ['./edit-instructor.component.scss']
 })
-export class EditInstructorComponent {
+export class EditInstructorComponent implements OnDestroy {
     i18nRU = i18nRU;
     i18nErrors = i18nErrors;
     photoInstructor: string;
@@ -22,6 +22,7 @@ export class EditInstructorComponent {
     isCreate: boolean;
     gender = ['мужской', 'женский'];
     visiters = new Observable<PersonCardType[]>;
+    destroy$: Subject<Boolean> = new Subject();
     get name() { return this.editInstructorForm.get('name'); }
     get birthday() { return this.editInstructorForm.get('birthday'); }
     get startWork() { return this.editInstructorForm.get('startWork'); }
@@ -48,12 +49,14 @@ export class EditInstructorComponent {
             client: new FormControl(instructor.visiter),
             category: new FormControl(instructor.category, Validators.required)
         });
+
         this.visiters = visitorService.getVisitors()
             .pipe(
+                takeUntil(this.destroy$),
                 map(this.getPersonData)
             )
     }
-    getPersonData(visiters:VisitorType[]):PersonCardType[]{
+    getPersonData(visiters: VisitorType[]): PersonCardType[] {
         return visiters.map(visiter => {
             return {
                 header: visiter.fio,
@@ -92,5 +95,7 @@ export class EditInstructorComponent {
     checkEmpty(param: string): boolean {
         return this.editInstructorForm.get(param)?.value === null || this.editInstructorForm.get(param)?.value === '';
     }
-
+    ngOnDestroy(): void {
+        this.destroy$.next(true)
+    }
 }

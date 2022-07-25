@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { map, Observable, startWith } from 'rxjs';
-import { CustomValidator,  parseImg} from 'src/app/modules/shared/helper';
-import { i18nErrors, i18nRU, srcAsset } from 'src/app/modules/shared/constants';
+import { CustomValidator, parseImg } from 'src/app/modules/shared/helper';
+import { attribute, i18nErrors, i18nRU, srcAsset } from 'src/app/modules/shared/constants';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { KeySkiPassType, PersonCardType, SkiPassType, updateType, VisitorType } from 'src/app/types/types';
 import { AgePipe } from '../../shared/age/age.pipe';
@@ -87,9 +87,8 @@ export class SkiPassesFormComponent implements OnInit {
     }
     loadPhoto(): void {
         const input = document.createElement('input');
-        // const input = document.getElementById('file') as HTMLInputElement;
-        input.type = 'file';
-        input.accept = '.jpg, .jpeg, .png';
+        input.type = attribute.file;
+        input.accept = attribute.ACCESS_FILE_EXTENSION;
 
         input.onchange = (event: Event) => {
             const files = (event.target as HTMLInputElement).files;
@@ -104,16 +103,16 @@ export class SkiPassesFormComponent implements OnInit {
         };
         input.click();
     }
-    getCardData(visiter:VisitorType):PersonCardType{
-        return { 
+    getCardData(visiter: VisitorType): PersonCardType {
+        return {
             header: visiter.fio,
             title: AgePipe.prototype.transform(visiter.birthday),
             img: visiter.photo
         }
     }
-    error(name:string):boolean{
-        
-        const erros:ValidationErrors  = this.skiPassForm.get(name)?.errors!
+    error(name: string): boolean {
+
+        const erros: ValidationErrors = this.skiPassForm.get(name)?.errors!
         return erros['required'];
     }
 }
