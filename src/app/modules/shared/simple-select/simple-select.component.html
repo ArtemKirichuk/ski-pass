@@ -1,18 +1,16 @@
 <div class="select-warper">
     <input type="text" 
-        id = 'input'
         [placeholder]="placeholder" 
         [readonly]="false"
-        [value]="value"
         class="select"
         (click)="openAutoCompleteMenu($event)" 
-        (onChange)="$event"
         [matAutocomplete]="auto"
-        [formControl]="inputControl"
-        [style]="{cursor: persanMod ? attribute.text : attribute.pointer}"
-         />
+        [value]="value"
+        (input)="changeInput($event)"
+        [style]="{cursor: persanMod ? attribute.text : attribute.pointer}"/>
          
     <button class="toggle-arrow"  (click)="openAutoCompleteMenu($event)">
+        
         <img src="{{srcAsset.arrowDownfilled}}" alt="">
     </button>
 </div>

@@ -52,13 +52,14 @@ export class EditClientsComponent implements OnDestroy{
             instructor: new FormControl(visiterData?.instructor, Validators.required),
             sport: new FormControl(visiterData?.sport, Validators.required)
         });
-        skipassService.get()
+        this.skipassService.get()
             .pipe(takeUntil(this.destroy$))
             .subscribe((skipass) => {
                 this.skipasses = skipass.map(e => String(e.cardNumber))
             })
-        this.instructors = instuctorService.getInstructors()
+        this.instructors = this.instuctorService.getInstructors()
             .pipe(
+                takeUntil(this.destroy$),
                 map(this.getPersonData)
             )
     }

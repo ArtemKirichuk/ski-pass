@@ -1,7 +1,7 @@
 import { Component, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, of, startWith } from 'rxjs';
 import { PersonCardType } from 'src/app/types/types';
 import { attribute, srcAsset } from '../constants';
 
@@ -28,16 +28,11 @@ export class SimpleSelectComponent implements ControlValueAccessor, OnInit {
   @Input() persanMod: boolean = false;
   srcAsset = srcAsset;
   filteredOptions!: Observable<PersonCardType[]>;
-  inputControl = new FormControl('');
+  // inputControl = new FormControl(this.value);
   attribute = attribute;
   constructor() { }
-  ngOnInit(): void {
-    
-    if (this.persanMod)
-      this.filteredOptions = this.inputControl.valueChanges.pipe(
-        startWith(''),
-        map((value) => { return this.filterPersan(value || '') })
-      )
+  ngOnInit(): void { 
+    this.filteredOptions = of(this.filterPersan(''));
   }
   private filterPersan(value: string): PersonCardType[] {
     const filterValue = value.toLowerCase();
@@ -50,26 +45,33 @@ export class SimpleSelectComponent implements ControlValueAccessor, OnInit {
     event.stopImmediatePropagation();
     this.autocomplete.openPanel()
   }
-  onChange(value: string) {
+  changeInput(event: Event) {
+
+    if (!this.persanMod) {
+      return
+    }
+    const value = (event.target as HTMLInputElement).value;
+    this.onChange(value);
+    this.filteredOptions = of(this.filterPersan(value || ''));
+  }
+  onChange(value: string):void {
     this.value = value;
   }
-
+  onTouched(value: string):void {
+    this.value = value;
+  }
   selectItem(value: string): void {
     this.onChange(value);
   }
   writeValue(value: string): void {
-    if (value) {
-      this.onChange(value);
-    }
-  }
 
-  modelChanged(value: string): void {
     this.onChange(value);
   }
+
   registerOnChange(fn: (val: string) => void): void {
     this.onChange = fn;
   }
   registerOnTouched(fn: (val: string) => void) {
-
+    this.onTouched = fn;
   }
 }
