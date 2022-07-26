@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
-import { i18nRU } from 'src/app/modules/shared/constants';
+import { attribute, i18nRU } from 'src/app/modules/shared/constants';
 import { KeySkiPassType, SkiPassType, updateType } from 'src/app/types/types';
 import { DeleteFormComponent } from '../delete-form/delete-form.component';
 import { DisplayFormComponent } from '../display-form/display-form.component';
@@ -17,7 +17,8 @@ export class SkiPassesCardComponent{
     @Output() deleteCard: EventEmitter<KeySkiPassType> = new EventEmitter<KeySkiPassType>();
     @Output() editCard: EventEmitter<updateType<KeySkiPassType, SkiPassType>> = new EventEmitter<updateType<KeySkiPassType, SkiPassType>>();
     destroy$ = new Subject();
-    i18nRU = i18nRU
+    i18nRU = i18nRU;
+    attribute = attribute;
     constructor(private matDialog: MatDialog) {
         
     }
@@ -26,7 +27,7 @@ export class SkiPassesCardComponent{
         return `no-repeat url(${img})`;
     }
     openDeleteForm(redirectToDispaly?:boolean):void {
-        const config = { height: '580px', width: '500px', data: this.skipass };
+        const config = { width: attribute.widthDialog, data: this.skipass };
         const dialogRef = this.matDialog.open(DeleteFormComponent, config);
         dialogRef.afterClosed()
             .pipe(takeUntil(this.destroy$))
@@ -39,7 +40,7 @@ export class SkiPassesCardComponent{
             });
     }
     openEditForm(redirectToDispaly?:boolean):void {
-        const config = { height: '730px', width: '500px', data: this.skipass };
+        const config = { width: attribute.widthDialog, data: this.skipass };
         const dialogRef = this.matDialog.open(SkiPassesFormComponent, config);
         dialogRef.afterClosed()
             .pipe(takeUntil(this.destroy$))
@@ -52,7 +53,7 @@ export class SkiPassesCardComponent{
             });
     }
     openDisplayForm():void {
-        const config = { height: '770px', width: '500px', data: this.skipass };
+        const config = { width: attribute.widthDialog, data: this.skipass };
         const dialogRef = this.matDialog.open(DisplayFormComponent, config);
         dialogRef.afterClosed().pipe(takeUntil(this.destroy$))
             .subscribe(isEdit => {

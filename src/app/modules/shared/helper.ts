@@ -39,6 +39,7 @@ export class CustomValidator {
     }
     static cardNumber() {
         return (control: AbstractControl): ValidationErrors | null => {
+            
             const error = String(control.value).length !== 16;
             return error ? { errorCard: { value: control.value } } : null;
         };

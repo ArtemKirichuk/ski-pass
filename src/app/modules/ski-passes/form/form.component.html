@@ -4,52 +4,80 @@
 </div>
 <form [formGroup]="skiPassForm" class="form">
     <!-- Фото карты -->
-    <div class="form__conteiner" [style]="{    background : 'no-repeat #F3F3F3  center url('+srcPhoto+')' } "
+    <div class="form__conteiner" [style]=" {  background : 'no-repeat #F3F3F3  center url('+(photoStream | async)+')' } "
         (click)="loadPhoto()"></div>
     <!-- Номер карты -->
     <div class="form__field">
-        <app-input class="input" [title]="i18nRU.FORM_CARD_NUMBER" [type]="'number'" formControlName="cardNumber">
+        
+        <app-input class="input" [title]="i18nRU.FORM_CARD_NUMBER" [type]="attribute.NUMBER_TYPE"
+            formControlName="cardNumber">
         </app-input>
-        <mat-error clss="error" *ngIf="cardNumber?.errors?.['errorCard']">{{i18nErrors.ERROR_CARD_NUMBER}}</mat-error>
+        <small class="error" *ngIf="(validate | async) && cardNumber?.errors?.['errorCard']">
+            {{i18nErrors.ERROR_CARD_NUMBER}}
+        </small>
     </div>
     <!-- Дата начала -->
-    <mat-form-field class="form__field " appearance="fill">
+    <div class="form__field">
+        <app-datepicker [dayPlaceholder]="i18nRU.FORM_DATE_START" formControlName="dateStart">
+        </app-datepicker>
+        <small class="error" *ngIf="(validate | async) && dateStart?.errors?.['required']">
+            {{i18nErrors.ERROR_EMPTY_DATE_START}}
+        </small>
+    </div>
+    <!-- <mat-form-field class="form__field " appearance="fill">
         <input matInput formControlName="dateStart" [matDatepicker]="dateStartRef" [placeholder]="i18nRU.FORM_DATE_START"
             (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateStartRef"></mat-datepicker-toggle>
         <mat-datepicker #dateStartRef></mat-datepicker>
 
-    </mat-form-field>
+    </mat-form-field> -->
     <!-- Дата завершения -->
-    <mat-form-field class="form__field" appearance="fill">
+    <div class="form__field">
+        <app-datepicker [dayPlaceholder]="i18nRU.FORM_DATE_END" formControlName="dateEnd">
+        </app-datepicker>
+        <small class="error" *ngIf="(validate | async) && dateStart?.errors?.['required']">
+            {{i18nErrors.ERROR_EMPTY_DATE_END}}
+        </small>
+    </div>
+    <!-- <mat-form-field class="form__field" appearance="fill">
         <input matInput formControlName="dateEnd" [matDatepicker]="dateEndRef" [placeholder]="i18nRU.FORM_DATE_END"
             [matDatepickerFilter]="compareCompleteDate" (dateChange)="changeDate()">
         <mat-datepicker-toggle matSuffix [for]="dateEndRef"></mat-datepicker-toggle>
         <mat-datepicker #dateEndRef></mat-datepicker>
         <mat-error *ngIf="dateEnd?.errors?.['errorDate']">{{i18nErrors.ERROR_DATE_END_LT_DATE_START}}</mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
     <!-- Стоимость -->
-    <mat-form-field class="form__field" appearance="fill">
+    <div class="form__field">
+        <app-input class="input" [title]="i18nRU.FORM_COST" [type]="attribute.NUMBER_TYPE" formControlName="cost">
+        </app-input>
+        <small class="error" *ngIf="(validate | async) && cost?.errors?.['required']">
+            {{i18nErrors.ERROR_COST_PAST}}
+        </small>
+    </div>
+    <!-- <mat-form-field class="form__field" appearance="fill">
         <input matInput formControlName="cost" type="number" [placeholder]="i18nRU.FORM_COST" />
-    </mat-form-field>
+    </mat-form-field> -->
     <!-- посетитель -->
-    <mat-form-field class="form__field" appearance="fill">
+    <div class="form__field">
+        <app-simple-select [placeholder]="i18nRU.VISITER" [persanData]="(visitersData | async) || []"
+            [persanMod]="true" formControlName="visiter">
+        </app-simple-select>
+    </div>
+    <!-- <mat-form-field class="form__field" appearance="fill">
+        
         <input type="text" matInput formControlName="visiter" [placeholder]="i18nRU.VISITER" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.fio">
-                <app-person-card 
-                    [data]="getCardData(option)" 
-                    [showMenu]="false">
+                <app-person-card [data]="getCardData(option)" [showMenu]="false">
                 </app-person-card>
             </mat-option>
         </mat-autocomplete>
-    </mat-form-field>
+    </mat-form-field> -->
 </form>
 <!-- Кнопка подтверждения -->
 <div class="form__button">
-    <!-- [disabled]="skiPassForm.invalid" -->
-    <app-button *ngIf="isCreate" [mat-dialog-close]="skiPassForm.value" [text]="i18nRU.ADD" [disabled]="skiPassForm.invalid">
-    </app-button>
-    <app-button *ngIf="!isCreate" [mat-dialog-close]="updateData" [text]="i18nRU.SAVE" (click)="saveRow()"
-        [disabled]="skiPassForm.invalid"></app-button>
+    <!-- [disabled]="skiPassForm.invalid" [mat-dialog-close]="skiPassForm.value" [mat-dialog-close]="updateData"-->
+    <app-button *ngIf="isCreate"  [text]="isCreate ? i18nRU.ADD : i18nRU.SAVE" (click)="saveRow()"></app-button>
+    <!-- <app-button *ngIf="!isCreate"  [text]="i18nRU.SAVE" (click)="saveRow()"></app-button> -->
+        
 </div>

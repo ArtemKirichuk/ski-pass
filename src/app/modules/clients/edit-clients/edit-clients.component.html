@@ -11,6 +11,7 @@
             {{i18nErrors.ERROR_EMPTY_NAME}}
         </small>
     </div>
+    <!-- ДР -->
     <div class="form-field">
         <app-datepicker class="edit-clients__date" [dayPlaceholder]="i18nRU.BIRTHDAY" formControlName="birthday">
         </app-datepicker>
@@ -18,6 +19,7 @@
             {{i18nErrors.ERROR_EMPTY_BIRTHDAY}}
         </small>
     </div>
+    
     <!-- Номер скипаса -->
     <div class="form-field">
         <app-simple-select [placeholder]="i18nRU.NUMBER_SKIPASS" [data]="skipasses" formControlName="numberSkiPasses">
@@ -26,13 +28,10 @@
             {{i18nErrors.ERROR_EMPTY_NUMBER}}
         </small>
     </div>
-    <!-- Инструктор -->
+    <!-- Инструктор  -->
     <div class="form-field">
         <app-simple-select [placeholder]="i18nRU.APPOINTED_INSTRUCTOR" [persanData]="(instructors | async) || []" [persanMod]="true" formControlName="instructor">
         </app-simple-select>
-        <!-- <app-select class="edit-clients__select-instructor" formControlName="instructor"
-            [placeholder]="i18nRU.APPOINTED_INSTRUCTOR">
-        </app-select> -->
     </div>
     <div class="form-field">
         <app-input class="edit-clients__input" [title]="i18nRU.SPORT" [type]="attribute.TEXT_TYPE" formControlName="sport">

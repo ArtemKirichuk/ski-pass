@@ -1,7 +1,7 @@
 <div class="select-warper">
     <input type="text" 
         [placeholder]="placeholder" 
-        [readonly]="false"
+        [readonly]="!persanMod"
         class="select"
         (click)="openAutoCompleteMenu($event)" 
         [matAutocomplete]="auto"

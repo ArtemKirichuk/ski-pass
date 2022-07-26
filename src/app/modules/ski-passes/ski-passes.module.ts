@@ -21,6 +21,8 @@ import { RouterModule } from '@angular/router';
 import { PersonCardModule } from '../shared/person-card/person-card.module';
 import { InputModule } from '../shared/input/input.module';
 import { PhotoFormModule } from '../shared/photo-form/photo-form.module';
+import { DatepickerModule } from '../shared/datepicker/datepicker.module';
+import { SimpleSelectModule } from '../shared/simple-select/simple-select.module';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,9 @@ import { PhotoFormModule } from '../shared/photo-form/photo-form.module';
         MatAutocompleteModule,
         PersonCardModule,
         InputModule,
-        PhotoFormModule
+        PhotoFormModule,
+        DatepickerModule,
+        SimpleSelectModule
     ],
     exports:[
         SkiPassesComponent,

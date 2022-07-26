@@ -47,9 +47,9 @@ export class SimpleSelectComponent implements ControlValueAccessor, OnInit {
   }
   changeInput(event: Event) {
 
-    if (!this.persanMod) {
-      return
-    }
+    // if (!this.persanMod) {
+    //   return
+    // }
     const value = (event.target as HTMLInputElement).value;
     this.onChange(value);
     this.filteredOptions = of(this.filterPersan(value || ''));
