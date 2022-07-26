@@ -17,7 +17,6 @@ import { AgePipe } from '../../shared/age/age.pipe';
 })
 export class SkiPassesFormComponent {
     skiPassForm: FormGroup;
-    srcPhoto = srcAsset.DEFAULT_IMG as string;
     isCreate: boolean;
     i18nRU = i18nRU;
     i18nErrors = i18nErrors;
@@ -49,8 +48,8 @@ export class SkiPassesFormComponent {
             this.isCreate = true;
             this.skiPass = {} as SkiPassType;
         }
-        // this.srcPhoto = this.skiPass.photo ? this.skiPass.photo : this.srcPhoto;
-        this.srcPhoto = this.photoStream.value;
+        
+        this.photoStream.next(this.skiPass.photo ? this.skiPass.photo : srcAsset.DEFAULT_IMG)
         this.skiPassForm = new FormGroup({
             photo: new FormControl(this.skiPass.photo),
             cardNumber: new FormControl(this.skiPass?.cardNumber, [
@@ -125,7 +124,6 @@ export class SkiPassesFormComponent {
             if (files && files.length) {
                 file = files[0];
                 parseImg(file, 'URL', (res: string | ArrayBuffer | null) => {
-                    this.srcPhoto = res as string;
                     this.photoStream.next(res as string)
                     this.skiPassForm.controls['photo'].setValue(res);
                 });
